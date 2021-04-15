@@ -1,0 +1,47 @@
+import React from "react";
+import styled from 'styled-components';
+import { Link } from "react-router-dom";
+
+const HeaderStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+`;
+
+const LogoStyle = styled.h1`
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: red;
+`;
+
+const MenusStyle = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
+const LinkStyle = styled.div`
+    margin-right: 50px;
+`;
+
+class Header extends React.Component{
+    render(){
+        return (
+            <HeaderStyle>
+                <LogoStyle>tistory</LogoStyle>
+                <MenusStyle>
+                    <LinkStyle>
+                        <Link to="/search">Search</Link>
+                    </LinkStyle>
+                    <LinkStyle>
+                        <Link to="/list">List</Link>
+                    </LinkStyle>
+                </MenusStyle>
+            </HeaderStyle>
+        );
+    }
+}
+
+export default Header;

@@ -1,45 +1,22 @@
 import React from 'react';
-import './App.css';
-import Home from './components/Home';
+import styled from 'styled-components';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import Header from './components/Header';
+import SearchPresenter from './Routes/Seach/SearchPresenter';
+import HomePresenter from './Routes/Home/HomePresenter';
 import List from './components/List';
-import Search from './components/Search';
+import "./App.css";
 
 class App extends React.Component{
-  state={
-    curmenu: "Home",
-    mainComp: {
-      Home: (<Home />),
-      List: (<List />),
-      Search: (<Search />)
-    }
-  };
-  
-  Menus = () => {
-    return ["Home","List", "Search"].map(function(menu, index){
-      return (<li key={index} onClick={()=>{
-        this.setState({curmenu:menu})
-      }}>{menu}</li>)
-    });
-  }
-  componentDidMount(){
-    this.Menus();
-  }
   render(){
-    const {curmenu, mainComp} = this.state
-    const Menus = this.Menus()
     return (
-      <div className="App">
-        <header>
-          <h1>tistory</h1>
-          <ul>
-            {Menus}
-          </ul>
-        </header>
-        <main>
-          {mainComp[curmenu]}
-        </main>
-      </div>
-    )
+      <Router>
+          <Header />
+          <Route exact path="/search" component={SearchPresenter} />
+          <Route exact path="/list" component={List} />
+          <Route exact path="/home" component={HomePresenter} />
+       </Router>
+    );
   }
 }
 
