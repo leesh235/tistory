@@ -15,6 +15,7 @@ class HomeContainer extends React.Component{
         this.getMovies();
     }
     render(){//현재 
+        
         return(
             <div>
                 <HomePresenter {...this.state} />

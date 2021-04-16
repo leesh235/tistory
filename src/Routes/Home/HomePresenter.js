@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Movie.css"
 import styled from 'styled-components';
-import PagesPresenter from "../Pages/PagesPresenter"
+import Pages from "../Pages/Pages"
 
 const BodyStyle = styled.main`
     width: auto;
@@ -49,7 +49,7 @@ class HomePresenter extends React.Component{
                         );
                     })
                 )}
-            <PagesPresenter pagenum={len}/>
+            <Pages pagenum={len}/>
             </BodyStyle>
         );
     }
