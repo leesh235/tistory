@@ -1,4 +1,4 @@
-h3{
+h4{
     margin: 0;
     margin-bottom: 15px;
     margin-left: 20px;
@@ -11,9 +11,17 @@ h5{
 }
 
 ul{
+    height: 70px;
     margin: 0;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
     flex-wrap: wrap;
+}
+
+li{
+    margin-right: 60px;
 }
 
 p{

@@ -28,7 +28,11 @@ class List extends React.Component{
             <BodyStyle>
                 <LinksStyle>
                     {listName.map(name => {
-                        return (<LinkStyle><Link to={`/${name}`} >{name}</Link></LinkStyle>);
+                        return (
+                            <LinkStyle>
+                                <Link to={name==="home" ? "/" : `/${name}`} >{name}</Link>
+                            </LinkStyle>
+                        );
                     })}
                 </LinksStyle>
             </BodyStyle>

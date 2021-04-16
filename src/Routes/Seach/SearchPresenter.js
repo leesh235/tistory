@@ -10,7 +10,6 @@ const BodyStyle = styled.main`
 const SearchStyle = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: pink;
     margin-top:150px;
 `;
 
@@ -24,14 +23,16 @@ const InputStyle = styled.input.attrs({
   border-bottom: 1px solid gray;
 `;
 
-function SearchPresenter(){
-    return(
-        <BodyStyle>
-            <SearchStyle>
-                <InputStyle type="text" name="search" placeholder="검색어 입력..."/>
-            </SearchStyle>
-        </BodyStyle>
-    );
+class SearchPresenter extends React.Component {
+    render(){
+        return(
+            <BodyStyle>
+                <SearchStyle>
+                    <InputStyle type="text" name="search" placeholder="검색어 입력..."/>
+                </SearchStyle>
+            </BodyStyle>
+        );
+    }
 }
 
 export default SearchPresenter;
