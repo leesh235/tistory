@@ -27,13 +27,24 @@ const ImgStyle = styled.img`
 `;
 
 class HomePresenter extends React.Component{
+    state={
+        page_id:1
+    }
+    getDate = (index) =>{
+        this.setState({page_id:index})
+    }
     render(){
         const movies = this.props.movies
-        const len = Math.ceil(movies.length / 8)
+        const getDate = this.getDate
+        const {page_id} = this.state
+        const start = page_id * 8 - 7
+        const end = page_id * 8
         return(//현재
             <BodyStyle>
                 {this.props.isLoding ? "Loding..." : (
-                    movies.map(movie => {
+                    movies.map((movie, ind) => {
+                        let cnt = ind + 1
+                        if((start <= cnt) && (end >= cnt))
                         return(
                             <MovieStyle>
                                 <ImgStyle src={movie.medium_cover_image} alt={movie.title} title={movie.title} />
@@ -49,7 +60,7 @@ class HomePresenter extends React.Component{
                         );
                     })
                 )}
-            <Pages pagenum={len}/>
+            <Pages getDate={getDate}/>
             </BodyStyle>
         );
     }

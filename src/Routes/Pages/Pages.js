@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const BodyStyle = styled.div`
@@ -18,7 +19,6 @@ const PagesStyle = styled.div`
 `;
 
 const PageStyle = styled.div`
-    background-color: pink;
     margin: 0px 10px 0px 10px;
 `;
 
@@ -27,31 +27,10 @@ const BntStyle = styled.button`
 `;
 
 class Pages extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            arr:[],
-            num:this.props.pagenum
-        }
-        
-    }
-
-    initArr = () => {
-        const {num} = this.state
-        let i = 0, cnt = 0
-        let array= []
-        if(num <= 5){
-            for(i = 0; i < num; i++){
-                cnt++
-                array[i] = cnt
-            }
-        }else{
-            for(i = 0; i < 5; i++){
-                cnt++
-                array[i] = cnt
-            }
-        }
-        this.setState({arr:array})
+    state={
+        arr:[1, 2, 3, 4, 5],
+        //num: this.props.pagenum
+        num: 7
     }
     
     handleMinus = () => {
@@ -73,6 +52,7 @@ class Pages extends React.Component{
         }
         console.log(arr)
     }
+
     render(){
         const {arr} = this.state
         return(
@@ -82,7 +62,14 @@ class Pages extends React.Component{
                         <BntStyle onClick={this.handleMinus}>m</BntStyle>
                         {arr.map(i => {
                             return(
-                                <PageStyle>{i}</PageStyle>
+                                <PageStyle><Link onClick={() => {
+                                    this.props.getDate(i)
+                                }} to={{
+                                    pathname:`/page=${i}`,
+                                    state:{
+                                        i
+                                    }
+                                }}>{i}</Link></PageStyle>
                             );
                         })}
                         <BntStyle onClick={this.handleAdd}>a</BntStyle>

@@ -15,7 +15,7 @@ class App extends React.Component{
           <Route exact={true} path="/search" component={SearchPresenter} />
           <Route exact={true} path="/list" component={List} />
           <Route exact={true} path="/" component={HomeContainer} />
-          <Route exact={true} path="/page=1" component={HomeContainer} />
+          <Route exact={true} path="/page=:i" component={HomeContainer} />
           <Footer />
        </Router>
     );
