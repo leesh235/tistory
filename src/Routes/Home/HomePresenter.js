@@ -30,11 +30,19 @@ class HomePresenter extends React.Component{
     state={
         page_id:1
     }
+    initArr=(len)=>{
+        let arr = []
+        for(let i = 1; i <= len; i++){
+            arr.push(i)
+        }
+        return arr
+    }
     getDate = (index) =>{
         this.setState({page_id:index})
     }
     render(){
         const movies = this.props.movies
+        const len = Math.ceil(movies.length / 8)
         const getDate = this.getDate
         const {page_id} = this.state
         const start = page_id * 8 - 7
@@ -60,7 +68,7 @@ class HomePresenter extends React.Component{
                         );
                     })
                 )}
-            <Pages getDate={getDate}/>
+            <Pages getDate={getDate} len={len}/>
             </BodyStyle>
         );
     }
