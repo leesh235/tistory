@@ -27,10 +27,14 @@ const BntStyle = styled.button`
 `;
 
 class Pages extends React.Component{
-    state={
-        arr:[1, 2, 3, 4, 5],
-        //num: this.props.pagenum
-        num: 7
+    constructor(props){
+        super(props);
+        this.state={
+            arr:[1, 2, 3, 4, 5],
+            num: this.props.pageNum
+            //num: 7
+        }
+
     }
     
     handleMinus = () => {
@@ -40,7 +44,6 @@ class Pages extends React.Component{
                 arr: arr.map(i => {return i = i - 1;})
             })
         }
-        console.log(arr)
     }
 
     handleAdd = () => {
@@ -50,27 +53,29 @@ class Pages extends React.Component{
                 arr: arr.map(i => {return i = i + 1;})
             })
         }
-        console.log(arr)
     }
 
     render(){
-        const {arr} = this.state
+        const {arr, num} = this.state
         return(
             <BodyStyle>
                 <PagesContainer>
                     <PagesStyle>
                         <BntStyle onClick={this.handleMinus}>m</BntStyle>
                         {arr.map(i => {
-                            return(
-                                <PageStyle><Link onClick={() => {
-                                    this.props.getDate(i)
-                                }} to={{
-                                    pathname:`/page=${i}`,
-                                    state:{
-                                        i
-                                    }
-                                }}>{i}</Link></PageStyle>
-                            );
+                            if(i <= num){
+                                return(
+                                    <PageStyle key={i}><Link onClick={() => {
+                                        this.props.getDate(i)
+                                    }} to={{
+                                        pathname:`/page=${i}`,
+                                        state:{
+                                            i
+                                        }
+                                    }}>{i}</Link></PageStyle>
+                                );
+                            }
+                            return "";
                         })}
                         <BntStyle onClick={this.handleAdd}>a</BntStyle>
                     </PagesStyle>

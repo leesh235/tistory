@@ -28,7 +28,14 @@ class SearchPresenter extends React.Component {
         return(
             <BodyStyle>
                 <SearchStyle>
-                    <InputStyle type="text" name="search" placeholder="검색어 입력..."/>
+                    <form action="/search_process" method="post" onSubmit={function(e){
+                        e.preventDefault();
+                        debugger;
+                        alert("submit!!");
+                    }}>
+                        <InputStyle type="text" name="title" placeholder="검색어 입력..."/>
+                        <input type="submit" />
+                    </form>
                 </SearchStyle>
             </BodyStyle>
         );

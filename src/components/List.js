@@ -27,9 +27,9 @@ class List extends React.Component{
         return (
             <BodyStyle>
                 <LinksStyle>
-                    {listName.map(name => {
+                    {listName.map((name,index) => {
                         return (
-                            <LinkStyle>
+                            <LinkStyle key={index}>
                                 <Link to={name==="home" ? "/" : `/${name}`} >{name}</Link>
                             </LinkStyle>
                         );

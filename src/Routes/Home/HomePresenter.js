@@ -27,48 +27,48 @@ const ImgStyle = styled.img`
 `;
 
 class HomePresenter extends React.Component{
-    state={
-        page_id:1
-    }
-    initArr=(len)=>{
-        let arr = []
-        for(let i = 1; i <= len; i++){
-            arr.push(i)
+    constructor(props){
+        super(props);
+        this.state={
+            movies: this.props.movies,
+            isLoding: this.props.isLoding,
+            page_id:1
         }
-        return arr
-    }
-    getDate = (index) =>{
-        this.setState({page_id:index})
+
     }
     render(){
-        const movies = this.props.movies
-        const len = Math.ceil(movies.length / 8)
-        const getDate = this.getDate
-        const {page_id} = this.state
+        const {movies, isLoding, page_id} = this.state
+        const pageNum = movies.length
+        const len = Math.ceil(pageNum/8)
         const start = page_id * 8 - 7
         const end = page_id * 8
         return(//현재
             <BodyStyle>
-                {this.props.isLoding ? "Loding..." : (
+                {isLoding ? "Loding..." : (
                     movies.map((movie, ind) => {
                         let cnt = ind + 1
                         if((start <= cnt) && (end >= cnt))
-                        return(
-                            <MovieStyle>
-                                <ImgStyle src={movie.medium_cover_image} alt={movie.title} title={movie.title} />
-                                <MovieData>
-                                    <h4 className="movie__title">{movie.title}</h4>
-                                    <h5 className="movie__year">{movie.year}</h5>
-                                    <ul className="movie__genres">{movie.genres.map((genres, index) => {
-                                        return <li key={index} className="genres__genre">{genres}</li>
-                                    })}</ul>
-                                    <p className="movie__summary">{movie.summary.slice(0,140)}...</p>
-                                </MovieData>
-                            </MovieStyle>
-                        );
+                        {
+                            return(
+                                <MovieStyle key={ind}>
+                                    <ImgStyle src={movie.medium_cover_image} alt={movie.title} title={movie.title} />
+                                    <MovieData>
+                                        <h4 className="movie__title">{movie.title}</h4>
+                                        <h5 className="movie__year">{movie.year}</h5>
+                                        <ul className="movie__genres">{movie.genres.map((genres, index) => {
+                                            return <li key={index} className="genres__genre">{genres}</li>
+                                        })}</ul>
+                                        <p className="movie__summary">{movie.summary.slice(0,140)}...</p>
+                                    </MovieData>
+                                </MovieStyle>
+                            );
+                        }
+                        return "";
                     })
                 )}
-            <Pages getDate={getDate} len={len}/>
+            <Pages getDate={(index) => {
+                this.setState({page_id:index})
+            }} pageNum={len}/>
             </BodyStyle>
         );
     }

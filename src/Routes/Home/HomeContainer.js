@@ -3,9 +3,12 @@ import axios from "axios";
 import HomePresenter from './HomePresenter';
 
 class HomeContainer extends React.Component{
-    state={
-        isLoding: true,
-        movies:[]
+    constructor(props){
+        super(props);
+        this.state={
+            isLoding: true,
+            movies:[]
+        }
     }
     getMovies = async () => {
         const {data:{data:{movies}}} = await axios.get("https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating");
@@ -14,12 +17,9 @@ class HomeContainer extends React.Component{
     componentDidMount(){
         this.getMovies();
     }
-    render(){//현재 
-        
+    render(){//현재
         return(
-            <div>
-                <HomePresenter {...this.state} />
-            </div>
+            <HomePresenter {...this.state} />
         );
     }
 }
