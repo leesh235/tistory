@@ -30,7 +30,9 @@ class Header extends React.Component{
     render(){
         return (
             <HeaderStyle>
-                <LogoStyle>tistory</LogoStyle>
+                <LogoStyle>
+                    <Link to="/">tistory</Link>
+                </LogoStyle>
                 <MenusStyle>
                     <LinkStyle>
                         <Link to="/search">Search</Link>

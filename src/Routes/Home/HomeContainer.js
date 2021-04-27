@@ -1,27 +1,25 @@
 import React from 'react';
-import axios from "axios";
+import { gql,useQuery } from '@apollo/client';
 import HomePresenter from './HomePresenter';
 
-class HomeContainer extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            isLoding: true,
-            movies:[]
-        }
-    }
-    getMovies = async () => {
-        const {data:{data:{movies}}} = await axios.get("https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating");
-        this.setState({movies, isLoding: false});
-    }
-    componentDidMount(){
-        this.getMovies();
-    }
-    render(){//현재
-        return(
-            <HomePresenter {...this.state} />
-        );
+const GET_MOVIES = gql`
+{
+    movies {
+        id
+        title
+        rating
+        summary
+        medium_cover_image
+        genres
     }
 }
+`;
 
-export default HomeContainer;
+export default () => {
+    const {loading, data} = useQuery(GET_MOVIES);
+    return (
+        <div>
+            {data && data.movies ? <HomePresenter loading={loading} movies={data.movies} /> : null}
+        </div>
+    );
+};

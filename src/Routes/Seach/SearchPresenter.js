@@ -30,7 +30,7 @@ class SearchPresenter extends React.Component {
                 <SearchStyle>
                     <form action="/search_process" method="post" onSubmit={function(e){
                         e.preventDefault();
-                        debugger;
+                        this.props.searching(e.target.title.value)
                         alert("submit!!");
                     }}>
                         <InputStyle type="text" name="title" placeholder="검색어 입력..."/>

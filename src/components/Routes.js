@@ -6,6 +6,7 @@ import Footer from './Footer';
 import List from './List';
 import SearchContainer from '../Routes/Seach/SearchContainer';
 import index from '../Routes/Home/index';
+import DetailIndex from '../Routes/Detail/index'
 
 class Routes extends React.Component{
     render(){
@@ -14,6 +15,7 @@ class Routes extends React.Component{
                 <Header />
                 <Route exact={true} path="/search" component={SearchContainer} />
                 <Route exact={true} path="/list" component={List} />
+                <Route exact={true} path="/detail:id" component={DetailIndex} />
                 <Route exact={true} path="/" component={index} />
                 <Route exact={true} path="/page=:i" component={index} />
                 <Footer />
