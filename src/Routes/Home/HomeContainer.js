@@ -19,7 +19,7 @@ export default () => {
     const {loading, data} = useQuery(GET_MOVIES);
     return (
         <div>
-            {data && data.movies ? <HomePresenter loading={loading} movies={data.movies} /> : null}
+            {!loading && data.movies ? <HomePresenter movies={data.movies} /> : "loading..."}
         </div>
     );
 };

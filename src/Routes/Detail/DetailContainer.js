@@ -7,11 +7,12 @@ const GET_MOVIES = gql`
 query getMovie($id: Int!) {
     movie(id: $id) {
       id
-      rating
       title
+      rating
+      description_intro
       language
       medium_cover_image
-      summary
+      genres
     }
   }
 `;
@@ -21,7 +22,7 @@ export default () => {
     const {loading, data} = useQuery(GET_MOVIES,{variables: { id: +id }});
     return (
         <div>
-            {data && data.movies ? <DetailPresenter loading={loading} movies={data.movie} /> : null}
+            {!loading && data.movie ? <DetailPresenter movie={data.movie} /> : "loading..."}
         </div>
     );
 };

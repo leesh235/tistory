@@ -13,11 +13,11 @@ class Routes extends React.Component{
         return(
             <Router>
                 <Header />
-                <Route exact={true} path="/search" component={SearchContainer} />
-                <Route exact={true} path="/list" component={List} />
-                <Route exact={true} path="/detail:id" component={DetailIndex} />
-                <Route exact={true} path="/" component={index} />
-                <Route exact={true} path="/page=:i" component={index} />
+                <Route exact path="/search" component={SearchContainer} />
+                <Route exact path="/list" component={List} />
+                <Route path="/detail:id" component={DetailIndex} />
+                <Route exact path="/" component={index} />
+                <Route exact path="/page=:i" component={index} />
                 <Footer />
             </Router>
         );
