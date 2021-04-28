@@ -9,7 +9,9 @@ const BodyStyle = styled.div`
 const FooterStyle = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top:120px;
+    margin-top:100px;
+    height:200px;
+    border-top: 1px solid gray;
 `;
 
 const SelectStyle = styled.div`

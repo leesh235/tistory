@@ -62,7 +62,7 @@ class HomePresenter extends React.Component{
                                             <ul className="movie__genres">{movie.genres.map((genres, index) => {
                                                 return <li key={index} className="genres__genre">{genres}</li>
                                             })}</ul>
-                                            <p className="movie__summary">{movie?.summary?.slice(0,100)}</p>
+                                            <p className="movie__summary">{movie?.summary?.slice(0,100)}...</p>
                                         </MovieData>
                                     </MovieStyle>
                                 </Link>
