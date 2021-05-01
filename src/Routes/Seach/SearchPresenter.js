@@ -23,23 +23,22 @@ const InputStyle = styled.input.attrs({
   border-bottom: 1px solid gray;
 `;
 
-class SearchPresenter extends React.Component {
-    render(){
-        return(
-            <BodyStyle>
-                <SearchStyle>
-                    <form action="/search_process" method="post" onSubmit={function(e){
-                        e.preventDefault();
-                        this.props.searching(e.target.title.value)
-                        alert("submit!!");
-                    }}>
-                        <InputStyle type="text" name="title" placeholder="검색어 입력..."/>
-                        <input type="submit" />
-                    </form>
-                </SearchStyle>
-            </BodyStyle>
-        );
-    }
+const SearchPresenter = () => {
+
+    return(
+        <BodyStyle>
+            <SearchStyle>
+                <form action="/search_process" method="post" onSubmit={function(e){
+                    e.preventDefault();
+                    this.props.searching(e.target.title.value)
+                    alert("submit!!");
+                }}>
+                    <InputStyle type="text" name="title" placeholder="검색어 입력..."/>
+                    <input type="submit" />
+                </form>
+            </SearchStyle>
+        </BodyStyle>
+    );
 }
 
 export default SearchPresenter;

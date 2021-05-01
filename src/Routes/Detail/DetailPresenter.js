@@ -69,36 +69,27 @@ const Msummary = styled.div`
     font-size:22px;
 `;
 
-class DetailPresenter extends React.Component{
-        constructor(props){
-            super(props);
-            this.state={
-                movie: this.props.movie
-            }
+const DetailPresenter = ({ movie }) => {
 
-        }
-    render(){
-        const {movie} = this.state
-        return(
-            <Mcontents>
-                <HeaderSize>
-                    <Mheader>
-                        <Mimg src={movie.medium_cover_image} alt={movie.title} title={movie.title} />
-                        <Mdiv>
-                            <Mtitle>{movie.title}</Mtitle>
-                            <Mrationg>★{movie.rating}</Mrationg>
-                            <Mgenres>{movie.genres.map((g,index) => {
-                                return(
-                                    <Mgenre key={index}>{g}</Mgenre>
-                                )
-                            })}</Mgenres>
-                        </Mdiv>
-                    </Mheader>
-                </HeaderSize>
-                <Msummary>{movie.description_intro}</Msummary>
-            </Mcontents>
-        );
-    }
+    return(
+        <Mcontents>
+            <HeaderSize>
+                <Mheader>
+                    <Mimg src={movie.medium_cover_image} alt={movie.title} title={movie.title} />
+                    <Mdiv>
+                        <Mtitle>{movie.title}</Mtitle>
+                        <Mrationg>★{movie.rating}</Mrationg>
+                        <Mgenres>{movie.genres.map((g,index) => {
+                            return(
+                                <Mgenre key={index}>{g}</Mgenre>
+                            )
+                        })}</Mgenres>
+                    </Mdiv>
+                </Mheader>
+            </HeaderSize>
+            <Msummary>{movie.description_intro}</Msummary>
+        </Mcontents>
+    );
 }
 
 export default DetailPresenter;

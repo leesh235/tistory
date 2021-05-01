@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -26,19 +26,11 @@ const BntStyle = styled.button`
 
 `;
 
-class Pages extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            arr:[1, 2, 3, 4, 5],
-            num: this.props.pageNum
-            //num: 7
-        }
+const Pages = ({ getDate, pageNum }) => {
 
-    }
-    
-    handleMinus = () => {
-        const {arr} = this.state
+    const arr=[1, 2, 3, 4, 5];
+
+    const handleMinus = () => {
         if(arr[0] !== 1){
             this.setState({
                 arr: arr.map(i => {return i = i - 1;})
@@ -46,43 +38,39 @@ class Pages extends React.Component{
         }
     }
 
-    handleAdd = () => {
-        const {arr,num} = this.state
-        if(num > 5 && arr[4] < num){
+    const handleAdd = () => {
+        if(pageNum > 5 && arr[4] < pageNum){
             this.setState({
                 arr: arr.map(i => {return i = i + 1;})
             })
         }
     }
 
-    render(){
-        const {arr, num} = this.state
-        return(
-            <BodyStyle>
-                <PagesContainer>
-                    <PagesStyle>
-                        <BntStyle onClick={this.handleMinus}>m</BntStyle>
-                        {arr.map(i => {
-                            if(i <= num){
-                                return(
-                                    <PageStyle key={i}><Link onClick={() => {
-                                        this.props.getDate(i)
-                                    }} to={{
-                                        pathname:`/page=${i}`,
-                                        state:{
-                                            i
-                                        }
-                                    }}>{i}</Link></PageStyle>
-                                );
-                            }
-                            return "";
-                        })}
-                        <BntStyle onClick={this.handleAdd}>a</BntStyle>
-                    </PagesStyle>
-                </PagesContainer>
-            </BodyStyle>
-        );
-    }
+    return(
+        <BodyStyle>
+            <PagesContainer>
+                <PagesStyle>
+                    <BntStyle onClick={handleMinus}>◀</BntStyle>
+                    {arr.map(i => {
+                        if(i <= pageNum){
+                            return(
+                                <PageStyle key={i}><Link onClick={() => {
+                                    getDate(i)
+                                }} to={{
+                                    pathname:`/page=${i}`,
+                                    state:{
+                                        i
+                                    }
+                                }}>{i}</Link></PageStyle>
+                            );
+                        }
+                        return "";
+                    })}
+                    <BntStyle onClick={handleAdd}>▶</BntStyle>
+                </PagesStyle>
+            </PagesContainer>
+        </BodyStyle>
+    );
 }
 
 export default Pages;
