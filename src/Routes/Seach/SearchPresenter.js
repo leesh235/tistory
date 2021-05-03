@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const BodyStyle = styled.main`
@@ -23,18 +23,26 @@ const InputStyle = styled.input.attrs({
   border-bottom: 1px solid gray;
 `;
 
-const SearchPresenter = () => {
 
+const SearchPresenter = ({searchName}) => {
+    const [name, setName] = useState("");
+    const handleName = (e) => {
+        const {target:{value}} = e
+        setName(value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        searchName(name);
+    }
+
+    //ex)Home stay
     return(
         <BodyStyle>
             <SearchStyle>
-                <form action="/search_process" method="post" onSubmit={function(e){
-                    e.preventDefault();
-                    this.props.searching(e.target.title.value)
-                    alert("submit!!");
-                }}>
-                    <InputStyle type="text" name="title" placeholder="검색어 입력..."/>
-                    <input type="submit" />
+                <form onSubmit={handleSubmit}>
+                    <InputStyle type="text" name="title" placeholder="검색어 입력..." onChange={handleName}/>
+                    <input type="submit" vlaue="submit"/>
                 </form>
             </SearchStyle>
         </BodyStyle>

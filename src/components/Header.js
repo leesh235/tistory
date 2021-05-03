@@ -7,6 +7,8 @@ const HeaderStyle = styled.div`
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 1px solid gray;
+    a{text-decoration: none;
+    color: inherit;}
 `;
 
 const LogoStyle = styled.h1`
@@ -26,24 +28,25 @@ const LinkStyle = styled.div`
     margin-right: 50px;
 `;
 
-class Header extends React.Component{
-    render(){
-        return (
-            <HeaderStyle>
-                <LogoStyle>
-                    <Link to="/">tistory</Link>
-                </LogoStyle>
-                <MenusStyle>
-                    <LinkStyle>
-                        <Link to="/search">Search</Link>
-                    </LinkStyle>
-                    <LinkStyle>
-                        <Link to="/list">List</Link>
-                    </LinkStyle>
-                </MenusStyle>
-            </HeaderStyle>
-        );
-    }
+const Header = () => {
+    return (
+        <HeaderStyle>
+            <LogoStyle>
+                <Link to="/">tistory</Link>
+            </LogoStyle>
+            <MenusStyle>
+                <LinkStyle>
+                    <Link to={{
+                        pathname: "/search",
+                        state:{name : ""}
+                    }}>Search</Link>
+                </LinkStyle>
+                <LinkStyle>
+                    <Link to="/list">List</Link>
+                </LinkStyle>
+            </MenusStyle>
+        </HeaderStyle>
+    );
 }
 
 export default Header;
