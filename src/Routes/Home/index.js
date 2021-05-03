@@ -1,12 +1,10 @@
 import React from 'react';
 import HomeContainer from './HomeContainer';
 
-class HomeIndex extends React.Component{
-        render(){
-                return(
-                        <HomeContainer />
-                );
-        }
+const HomeIndex = () => {
+        return(
+                <HomeContainer />
+        );
 }
 
 export default HomeIndex;

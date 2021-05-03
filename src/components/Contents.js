@@ -11,7 +11,7 @@ const TextDiv = styled.div`
 
 const MovieStyle = styled.div`
     display: flex;
-    flex-display: row;
+    flex-direction: row;
     padding: 20px;
     border-bottom: 1px solid gray;
 `;

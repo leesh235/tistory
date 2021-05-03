@@ -15,9 +15,8 @@ const GET_MOVIES = gql`
     }
 }
 `;
-//Dressed to Kill
-//31239
-const SearchContainer = () => {
+
+const SearchContainer = ({initName}) => {
     const {loading, data} = useQuery(GET_MOVIES);
     const [name, searchName] = useState("");
 
@@ -33,7 +32,7 @@ const SearchContainer = () => {
         })
         return (
             <div>
-                {result.length !== 0 ? <HomePresenter movies={result}/> : searchName("")}
+                {result.length !== 0 ? <HomePresenter movies={result} searchName={searchName}/> : searchName("")}
             </div>
         );
     }

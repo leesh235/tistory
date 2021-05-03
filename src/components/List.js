@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const BodyStyle = styled.main`
     width: auto;
-    height: auto;
+    height: 500px;
     margin: 50px 100px 50px 100px;
 `;
 
@@ -12,6 +12,10 @@ const LinksStyle = styled.div`
     display: flex;
     flex-direction: column;
     font-size: 1.3em;
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
 `;
 
 const LinkStyle = styled.div`
@@ -20,7 +24,7 @@ const LinkStyle = styled.div`
 
 class List extends React.Component{
     state={
-        listName: ["home", "tag"]
+        listName: ["home", "add", "tag"]
     }
     render(){
         const {listName} = this.state

@@ -38,7 +38,9 @@ const Header = () => {
                 <LinkStyle>
                     <Link to={{
                         pathname: "/search",
-                        state:{name : ""}
+                        state:{
+                            initName: ""
+                        }
                     }}>Search</Link>
                 </LinkStyle>
                 <LinkStyle>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const BodyStyle = styled.main`
     width: auto;
-    height: auto;
+    height: 400px;
     margin: 50px 100px 50px 100px;
 `;
 
@@ -36,13 +36,12 @@ const SearchPresenter = ({searchName}) => {
         searchName(name);
     }
 
-    //ex)Home stay
     return(
         <BodyStyle>
             <SearchStyle>
-                <form onSubmit={handleSubmit}>
+                <form action="result" method="post" onSubmit={handleSubmit} >
                     <InputStyle type="text" name="title" placeholder="검색어 입력..." onChange={handleName}/>
-                    <input type="submit" vlaue="submit"/>
+                    <input type="submit" vlaue="submit" />
                 </form>
             </SearchStyle>
         </BodyStyle>

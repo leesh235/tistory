@@ -9,8 +9,9 @@ const BodyStyle = styled.main`
     margin: 30px 100px 50px 100px;
 `;
 
-const HomePresenter = ({movies}) => {
+const HomePresenter = (props) => {
     
+    const movies = props.movies
     const [pageId, setPageId] = useState(1);
     const pageNum = movies.length
     const len = Math.ceil(pageNum/8)
