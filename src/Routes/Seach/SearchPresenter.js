@@ -39,9 +39,9 @@ const SearchPresenter = ({searchName}) => {
     return(
         <BodyStyle>
             <SearchStyle>
-                <form action="result" method="post" onSubmit={handleSubmit} >
+                <form  onSubmit={handleSubmit} >
                     <InputStyle type="text" name="title" placeholder="검색어 입력..." onChange={handleName}/>
-                    <input type="submit" vlaue="submit" />
+                    <input type="submit" vlaue="submit"/>
                 </form>
             </SearchStyle>
         </BodyStyle>

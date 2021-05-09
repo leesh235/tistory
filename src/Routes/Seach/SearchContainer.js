@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { gql,useQuery } from '@apollo/client';
 import SearchPresenter from './SearchPresenter';
-import HomePresenter from '../Home/HomePresenter';
+import SearchList from './SearchList';
 
 const GET_MOVIES = gql`
 {
@@ -32,7 +32,7 @@ const SearchContainer = ({initName}) => {
         })
         return (
             <div>
-                {result.length !== 0 ? <HomePresenter movies={result} searchName={searchName}/> : searchName("")}
+                {result.length !== 0 ? <SearchList movies={result} searchName={searchName}/> : searchName("")}
             </div>
         );
     }

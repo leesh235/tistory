@@ -43,6 +43,10 @@ const SummaryIn = styled.textarea`
     margin-bottom: 20px;
 `;
 
+const SubmitIn = styled.input`
+    width: 50px;
+`;
+
 
 const AddPresenter = () => {
     return (
@@ -53,6 +57,7 @@ const AddPresenter = () => {
                     <RatingIn type="text" placeholder="hi" />
                     <GenresIn type="text" placeholder="hi" />
                     <SummaryIn type="text" placeholder="hi" />
+                    <SubmitIn type="submit" value="add" />
                 </ContentStyle>
             </BoxStyle>
         </BodyStyle>
