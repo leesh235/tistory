@@ -1,0 +1,21 @@
+{
+  "name": "tistory_backend",
+  "version": "1.0.0",
+  "description": "backend for tistory",
+  "main": "index.js",
+  "repository": "https://github.com/leesh235/tistory_backend",
+  "author": "leesh235 <leeshgh235@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.2",
+    "@babel/node": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "global": "^4.4.0",
+    "graphql-yoga": "^1.18.3",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  }
+}
