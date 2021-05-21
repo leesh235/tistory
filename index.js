@@ -1,5 +1,18 @@
 import {GraphQLServer} from "graphql-yoga"
-console.log("Graphql Server Running")
-// const server = new GraphQLServer({})
+import resolvers from "./graphql/resolvers"
 
-// server.start(() => console.log("Graphql Server Running"));
+const server = new GraphQLServer({
+    typeDefs:`type User{
+        id: Int!
+        title: String
+    }
+    
+    type Query{
+        users(limit: Int): [User]!
+        user(id: Int!): User
+    }
+    `,
+    resolvers
+})
+
+server.start(() => console.log("Graphql Server Running"));
