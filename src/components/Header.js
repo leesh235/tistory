@@ -36,12 +36,7 @@ const Header = () => {
             </LogoStyle>
             <MenusStyle>
                 <LinkStyle>
-                    <Link to={{
-                        pathname: "/search",
-                        state:{
-                            initName: ""
-                        }
-                    }}>Search</Link>
+                    <Link to="login">Log in</Link>
                 </LinkStyle>
                 <LinkStyle>
                     <Link to="/list">List</Link>

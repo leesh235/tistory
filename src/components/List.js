@@ -24,7 +24,7 @@ const LinkStyle = styled.div`
 
 class List extends React.Component{
     state={
-        listName: ["home", "add", "tag"]
+        listName: ["home", "search" ,"add", "tag"]
     }
     render(){
         const {listName} = this.state

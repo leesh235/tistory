@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { defaults, resolvers } from "./LocalState";
 
 const cache = new InMemoryCache();
 const link = new createHttpLink({
@@ -7,7 +8,9 @@ const link = new createHttpLink({
 
 const client = new ApolloClient({
     cache: cache,
-    link: link
+    link: link,
+    defaults,
+    resolvers
 })
 
 export default client;
