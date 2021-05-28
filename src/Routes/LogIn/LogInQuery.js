@@ -7,7 +7,7 @@ export const LOGIN =gql`
 `;
 
 export const TOKENLOGIN = gql`
-    mutation logUserIn($token: String!){
-        logUserIn(token: $token) @client
+    mutation userLogIn($token: String!){
+        userLogIn(token: $token) @client
     }
 `;

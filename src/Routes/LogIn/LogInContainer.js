@@ -4,7 +4,6 @@ import LogInPresenter from './LogInPresenter';
 import { useHistory } from "react-router-dom";
 import useInput from "../../Hooks/useInput";
 import { LOGIN, TOKENLOGIN } from "./LogInQuery";
-
 export default () => {
     
     const idInput = useInput("");
@@ -29,8 +28,8 @@ export default () => {
                 } = await loginMutation();
 
                 if(token !== "" || token !== "undefined"){
-                    tokenMutation({
-                        variables: token
+                    await tokenMutation({
+                        variables: {token}
                     });
                     setTimeout(() => {
                         history.push("/")

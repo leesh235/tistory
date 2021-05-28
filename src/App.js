@@ -2,17 +2,22 @@ import React from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 import "./App.css";
 import Routes from './components/Routes';
+import { useQuery } from '@apollo/client';
+import { TOKENINFO } from "./apollo/tokenQuery";
 
-class App extends React.Component{
-  render(){
-    return (//현재
+const App = () => {
+
+  const { data : {
+    isLoggedIn
+  }} = useQuery(TOKENINFO); 
+
+  return (
       <div className="App">
         <Router>
-          <Routes />
+          <Routes isLoggedIn={isLoggedIn} />
         </Router>
-      </div>
-    );
-  }
+    </div>
+  )
 }
 
 export default App;

@@ -46,13 +46,7 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
-const Text = styled.span`
-    font-size: 13px;
-    color: #8e8e8e;
-    text-decoration: none;
-`;
-
-export default ({ id, password, passConfirm, onSubmit }) => {
+export default ({ id, password, passConfirm, name, onSubmit }) => {
     return (
         <Wrapper>
             <Container>
@@ -60,7 +54,7 @@ export default ({ id, password, passConfirm, onSubmit }) => {
                     <Input placeholder={"  아이디"} {...id}></Input>
                     <Input placeholder={"  비밀번호"} {...password} type={"password"}></Input>
                     <Input placeholder={"  비밀번호 확인"} {...passConfirm} type={"password"}></Input>
-                    <Input placeholder={"  이름"} {...onSubmit}></Input>
+                    <Input placeholder={"  이름"} {...name}></Input>
                     <Button>가입하기</Button>                    
                 </form>
             </Container>

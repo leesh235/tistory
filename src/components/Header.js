@@ -1,6 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import { TOKENINFO } from "../apollo/tokenQuery";
+import {useQuery} from "@apollo/client";
 
 const HeaderStyle = styled.div`
     display: flex;
@@ -29,6 +31,17 @@ const LinkStyle = styled.div`
 `;
 
 const Header = () => {
+
+    //const { data : {
+    //    isLoggedIn
+    //} } = useQuery(TOKENINFO);
+
+    //  const onClick = async(e) => {
+    //      e.preventDefault();
+    //      //console.log(data.isLoggedIn);
+    //  }
+    //console.log(isLoggedIn);
+
     return (
         <HeaderStyle>
             <LogoStyle>
@@ -36,7 +49,7 @@ const Header = () => {
             </LogoStyle>
             <MenusStyle>
                 <LinkStyle>
-                    <Link to="login">Log in</Link>
+                        <Link to="login">Log in</Link> 
                 </LinkStyle>
                 <LinkStyle>
                     <Link to="/list">List</Link>

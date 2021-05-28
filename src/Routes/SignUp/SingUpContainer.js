@@ -52,6 +52,7 @@ export default () => {
             id={idInput}
             password={passInput}
             passConfirm={passConfirmInput}
+            name={nameInput}
             onSubmit={onSubmit}
         />
     );

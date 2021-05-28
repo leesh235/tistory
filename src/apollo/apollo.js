@@ -1,16 +1,14 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import ApolloClient from "apollo-boost";
 import { defaults, resolvers } from "./LocalState";
 
-const cache = new InMemoryCache();
-const link = new createHttpLink({
-    uri: "http://localhost:4000/",
+export default new ApolloClient({
+  uri: "http://localhost:4000",
+  credentials: "same-origin",
+  clientState: {
+      defaults,
+      resolvers,
+  },
+  headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
 });
-
-const client = new ApolloClient({
-    cache: cache,
-    link: link,
-    defaults,
-    resolvers
-})
-
-export default client;
