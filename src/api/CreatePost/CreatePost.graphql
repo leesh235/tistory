@@ -1,0 +1,7 @@
+type Mutation {
+    createPost(title: String! contents: String): Boolean!
+}
+
+type Query {
+    dummy: String
+}

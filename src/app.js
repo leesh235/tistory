@@ -3,7 +3,10 @@ import schema from "./schema";
 import "./env"
 
 const server = new GraphQLServer({
-    schema
+    schema,
+    context: ({ request }) => ({
+        request
+    })
 })
 
 server.start(() => console.log("Graphql Server Running"));

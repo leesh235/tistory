@@ -1,0 +1,12 @@
+type postdetail {
+    title: String
+    contents: String
+}
+
+type Query {
+    getPost(postId: String): postdetail
+}
+
+type Mutation {
+    dummy: String
+}

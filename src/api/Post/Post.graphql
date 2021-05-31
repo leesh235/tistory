@@ -1,0 +1,20 @@
+scalar DateTime
+
+type Post {
+    title: String
+    postId: String
+    createAt: DateTime
+}
+
+type Posts{
+    exist: Boolean
+    posts: [Post]
+}
+
+type Query{
+    getPosts(id: String): Posts
+}
+
+type Mutation{
+    dummy: String
+}

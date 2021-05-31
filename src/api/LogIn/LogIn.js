@@ -7,17 +7,17 @@ const prisma = new PrismaClient();
 export default {
     Mutation: {
         login: async (_, args) => {
-            const { email, password } = args;
+            const { userId, password } = args;
 
             //email존재 여부확인
             const userInfo = await prisma.user.findUnique({
                 where:{
-                    email
+                    userId
                 }
             });
             //없으면 오류발생
             if(!userInfo){
-                throw Error("Email does not exist.");
+                throw Error("userId does not exist.");
             }
 
             //password 비교하기
