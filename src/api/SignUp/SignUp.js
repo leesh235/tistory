@@ -6,26 +6,39 @@ const prisma = new PrismaClient();
 export default {
     Mutation: {
         create: async (_,args) => {
-            const { userId, email, password } = args;
-            
-            //email or userId 중 중복이 있으면 exsits가 true값이 된다.
-            const exist = await prisma.user.findFirst({
-                where:{
-                    OR:[
-                        {userId}, {email},
-                    ],
-                },
-            });
-            //true일때 오류
-            if(exist){
-                throw Error("Overlap email or userId ");
-            }
+            try {
 
-            //password hashe화
-            const hashePassword = await bcrypt.hash(password, 5);
-            //연결된 db에 정보넣기
-            await prisma.user.create({ data:{userId, email, password:hashePassword} });
-            return true;
+                const { userId, email, password } = args;
+
+                //하나라도 공백이면 가입 실패
+                if( userId === "" || email === "" || password === "" ){
+                    return false;
+                }
+
+                //email or userId 중 중복이 있으면 exsits가 true값이 된다.
+                const exist = await prisma.user.findFirst({
+                    where:{
+                        OR:[
+                            {userId}, {email},
+                        ],
+                    },
+                });
+                
+                //exist가 true면 중복 존재로 error 발생
+                if(exist){
+                    throw Error("Overlap email or userId ");
+                }
+
+                //password hashe화
+                const hashePassword = await bcrypt.hash(password, 5);
+                //연결된 db에 정보넣기
+                await prisma.user.create({ data:{userId, email, password:hashePassword} });
+                return true;
+
+            } catch(error) {
+                console.log(error);
+                return false;
+            }
         }
     }
 };

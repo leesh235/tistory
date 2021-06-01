@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { isAuthenticated } from "../../utile"
 
 const prisma = new PrismaClient();
 
@@ -6,13 +7,13 @@ export default {
     Mutation: {
         createPost: async (_, args, {request}) => {
             try{
-                console.log(request.headers.authorization)
-                if( request.headers.user.id !== null ){
+                console.log(request.headers.payload)
+                if( request.user.userId !== null ){
                     const { title, contents } = args;
-                    const id = request.headers.user.id;
+                    const id = request.user.userId;
                     await prisma.post.create({
                         data: {
-                            id,
+                            id: userId,
                             title,
                             contents
                         }

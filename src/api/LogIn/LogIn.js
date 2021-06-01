@@ -27,7 +27,7 @@ export default {
                 throw Error("This password is incorrect.");
             }
 
-            const token = jwt.sign({id: userInfo.id}, process.env.SECRET);
+            const token = jwt.sign({id: userInfo.id}, process.env.JWT_SECRET);
             return token;
         }
     }
