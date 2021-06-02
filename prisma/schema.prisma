@@ -11,15 +11,15 @@ generator client {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(cuid())
   userId String @unique
   email String @unique
   password String
 }
 
 model Post {
-  postId Int @id @default(autoincrement())
-  id Int
+  postId String @id @default(cuid())
+  id String
   title String
   contents String?
   createdAt DateTime @default(now())

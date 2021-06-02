@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import * as bcrypt from "bcryptjs";
+import { generatToken, generatPassword } from "../../utile";
 import * as jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
@@ -7,28 +7,36 @@ const prisma = new PrismaClient();
 export default {
     Mutation: {
         login: async (_, args) => {
-            const { userId, password } = args;
+            try {
+                
+                const { userId, password } = args;
 
-            //email존재 여부확인
-            const userInfo = await prisma.user.findUnique({
-                where:{
-                    userId
-                }
-            });
-            //없으면 오류발생
-            if(!userInfo){
-                throw Error("userId does not exist.");
+                //email존재 여부확인
+                const userInfo = await prisma.user.findUnique({
+                    where:{
+                        userId
+                    }
+                });
+
+                //user가 없으면
+                if(!userInfo){
+                    return null;
+                };
+    
+                //password가 다르면
+                if(userInfo.password !== generatPassword(password)){
+                    return null;
+                };
+
+                //토큰생성
+                const token = generatToken(userInfo.id);
+                
+                return token;
+
+            } catch(error) {
+                console.log(error);
+                return null;
             }
-
-            //password 비교하기
-            const passwordMatch = await bcrypt.compare(password, userInfo.password);
-            //다르면 오류발생
-            if(!passwordMatch){
-                throw Error("This password is incorrect.");
-            }
-
-            const token = jwt.sign({id: userInfo.id}, process.env.JWT_SECRET);
-            return token;
         }
     }
 }

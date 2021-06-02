@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import * as bcrypt from "bcryptjs";
+import { generatPassword } from "../../utile";
 
 const prisma = new PrismaClient();
 
@@ -28,11 +28,9 @@ export default {
                 if(exist){
                     throw Error("Overlap email or userId ");
                 }
-
-                //password hashe화
-                const hashePassword = await bcrypt.hash(password, 5);
+                
                 //연결된 db에 정보넣기
-                await prisma.user.create({ data:{userId, email, password:hashePassword} });
+                await prisma.user.create({ data:{userId, email, password:generatPassword(password)} });
                 return true;
 
             } catch(error) {
