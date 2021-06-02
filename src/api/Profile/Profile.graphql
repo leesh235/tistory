@@ -1,0 +1,12 @@
+type Profile{
+    userId: String
+    email: String
+}
+
+type Query{
+    getProfile: Profile
+}
+
+type Mutation{
+    dummy: String
+}

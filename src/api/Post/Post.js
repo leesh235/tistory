@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export default {
     Query: {
-        getPosts: async(_,args) => {
+        getPosts: async(_,__) => {
             try {
                 const Posts = await prisma.post.findMany({})
 

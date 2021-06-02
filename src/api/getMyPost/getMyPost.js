@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export default {
     Query: {
-        getMyPosts: async(_,args,{request}) => {
+        getMyPosts: async(_,__,{request}) => {
             try {
                 const exist = isAuthenticated(request);
 
