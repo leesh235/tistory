@@ -3,11 +3,20 @@ import jwt from "jsonwebtoken";
 
 //middleware function
 export const isAuthenticated = request => {
-    console.log(request.user);
-    if (!request.user) {
-      throw Error("You need to log in to perform this action");
+    try {
+
+        // console.log(request.user);
+        const user = request.user;
+        if (user !== undefined || user !== null) {
+          return true;
+        }else{
+            throw Error("You need to log in to perform this action");
+        }
+
+    } catch(error) {
+        console.log(error);
+        return false;
     }
-    return true;
 };
 
 //passord 해쉬화
