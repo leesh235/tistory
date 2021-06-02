@@ -4,32 +4,19 @@ const prisma = new PrismaClient();
 
 export default {
     Query: {
-        getPosts: async(_,args,{request}) => {
+        getPosts: async(_,args) => {
             try {
-                const Posts = await prisma.post.findMany({
-                    where:{
-                        id: request.user.id
-                    }
-                })
+                const Posts = await prisma.post.findMany({})
 
                 if(!Posts){
-                    return {
-                        exist: false,
-                        posts: null
-                    }
-                }
-
-                return {
-                    exist: true,
-                    posts: Posts
+                    return  null
+                }else{
+                    return Posts;
                 }
 
             }catch (error){
                 console.log(error);
-                return {
-                    exist: false,
-                    posts: null
-                }
+                return null;
             }
         }
     }
