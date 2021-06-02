@@ -9,15 +9,12 @@ export default {
             try{
                 
                 const exist = isAuthenticated(request);
-                // console.log(request);
-                //  = request.headers.authorization
                 if( exist === true ){
                     const { title, contents } = args;
-                    console.log(title, contents);
-                    const userId = request.user.userId;
+                    const id = request.user.id;
                     await prisma.post.create({
                         data: {
-                            id: userId,
+                            id,
                             title,
                             contents
                         }

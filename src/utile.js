@@ -2,20 +2,13 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 
 //middleware function
-export const isAuthenticated = (request) => {
-    try {
-        // const user = request.user;
-        // if (user === undefined || user === null) {
-        //     return false;
-        // } else {
-        //     return true;
-        // }
-        console.log(request.user);
-    } catch (error) {
-        console.log(error);
-        return false;
+export const isAuthenticated = request => {
+    console.log(request.user);
+    if (!request.user) {
+      throw Error("You need to log in to perform this action");
     }
-}
+    return true;
+};
 
 //passord 해쉬화
 export const generatPassword = (password) => {

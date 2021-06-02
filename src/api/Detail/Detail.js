@@ -7,10 +7,6 @@ export default {
         getPost: async(_,args,{request}) => {
             try{
                 
-                const Post = await prisma.post.findUnique({
-                    
-                })
-
             }catch(error){
                 console.log(error);
                 return null;

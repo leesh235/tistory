@@ -1,5 +1,5 @@
 type Mutation {
-    create(email: String! password: String! userId: String!): Boolean!
+    create(userId: String! password: String! email: String!): Boolean!
 }
 
 type Query {
