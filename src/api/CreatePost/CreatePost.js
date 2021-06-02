@@ -9,7 +9,7 @@ export default {
             try{
                 
                 const exist = isAuthenticated(request);
-                console.log(request.user);
+                // console.log(request.user);
                 if( exist === true ){
                     const { title, contents } = args;
                     const userId = request.user.userId;

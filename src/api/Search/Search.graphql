@@ -1,0 +1,15 @@
+scalar DateTime
+
+type Search {
+    title: String
+    id: String
+    createdAt: DateTime
+}
+
+type Query{
+    getSearch(text: String): [Search]
+}
+
+type Mutation{
+ dummy: String
+}
