@@ -1,10 +1,12 @@
-type postdetail {
+type Post {
     title: String
     contents: String
+    createdAt: DateTime
+    id: String
 }
 
 type Query {
-    getPost(postId: String): postdetail
+    getPost(postId: String): Post
 }
 
 type Mutation {

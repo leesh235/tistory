@@ -4,14 +4,15 @@ const prisma = new PrismaClient();
 
 export default {
     Query: {
-        getPosts: async(_,__) => {
+        getAllPosts: async(_,__) => {
             try {
-                const Posts = await prisma.post.findMany({})
+                const allPosts = await prisma.post.findMany({})
 
-                if(!Posts){
-                    return  null
+                if(allPosts !== null){
+                    // console.log(allPosts);
+                    return  allPosts
                 }else{
-                    return Posts;
+                    return null;
                 }
 
             }catch (error){
