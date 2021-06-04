@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router} from 'react-router-dom';
+import "./App.css";
+import Routes from './components/Routes';
+import { useQuery } from '@apollo/client';
+import { TOKENINFO } from "./apollo/tokenQuery";
 
-function App() {
+const App = () => {
+
+  const { data : {
+    isLoggedIn
+  }} = useQuery(TOKENINFO); 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App">
+        <Router>
+          <Routes isLoggedIn={isLoggedIn} />
+        </Router>
     </div>
-  );
+  )
 }
 
 export default App;
