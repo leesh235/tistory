@@ -1,40 +1,26 @@
 import React, { useState } from 'react';
-import { gql,useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { SEARCH } from "./SearchQuery";
 import SearchPresenter from './SearchPresenter';
 import SearchList from './SearchList';
 
-const GET_MOVIES = gql`
-{
-    movies {
-        id
-        title
-        rating
-        summary
-        medium_cover_image
-        genres
-    }
-}
-`;
+const SearchContainer = () => {
+    const [text, setText] = useState("");
+    const {loading, data} = useQuery(SEARCH, {variables: {text:text}});
+    // console.log(data)
 
-const SearchContainer = ({initName}) => {
-    const {loading, data} = useQuery(GET_MOVIES);
-    const [name, searchName] = useState("");
-
-    if(name === ""){
+    if(text === ""){
         return (
             <div>
-                {!loading && data.movies ? <SearchPresenter searchName={name => searchName(name)} /> : "loading..."}
+                <SearchPresenter setText={text => setText(text)} />
             </div>
         );
     }else{
-        const result = data?.movies?.filter(movie => {
-            return movie.title.includes(name)
-        })
         return (
             <div>
-                {result.length !== 0 ? <SearchList movies={result} searchName={searchName}/> : searchName("")}
+                {!loading && data.getSearch ? <SearchList result={data.getSearch} /> : "loading..."}
             </div>
-        );
+        )
     }
 }
 

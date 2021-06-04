@@ -24,23 +24,24 @@ const InputStyle = styled.input.attrs({
 `;
 
 
-const SearchPresenter = ({searchName}) => {
-    const [name, setName] = useState("");
-    const handleName = (e) => {
+const SearchPresenter = ({setText}) => {
+    const [initText, setInitText] = useState("");
+
+    const handleText = (e) => {
         const {target:{value}} = e
-        setName(value);
+        setInitText(value);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        searchName(name);
+        setText(initText);
     }
 
     return(
         <BodyStyle>
             <SearchStyle>
                 <form  onSubmit={handleSubmit} >
-                    <InputStyle type="text" name="title" placeholder="검색어 입력..." onChange={handleName}/>
+                    <InputStyle type="text" name="title" placeholder="검색어 입력..." onChange={handleText}/>
                     <input type="submit" vlaue="submit"/>
                 </form>
             </SearchStyle>
