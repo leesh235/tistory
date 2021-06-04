@@ -11,7 +11,7 @@ export default () => {
 
     const [loginMutation] = useMutation(LOGIN, {
         variables: {
-            email: idInput.value,
+            userId: idInput.value,
             password: passInput.value
         }
     });

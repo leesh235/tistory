@@ -32,15 +32,9 @@ const LinkStyle = styled.div`
 
 const Header = () => {
 
-    //const { data : {
-    //    isLoggedIn
-    //} } = useQuery(TOKENINFO);
-
-    //  const onClick = async(e) => {
-    //      e.preventDefault();
-    //      //console.log(data.isLoggedIn);
-    //  }
-    //console.log(isLoggedIn);
+    const { data : {
+       isLoggedIn
+    } } = useQuery(TOKENINFO);
 
     return (
         <HeaderStyle>
@@ -49,7 +43,7 @@ const Header = () => {
             </LogoStyle>
             <MenusStyle>
                 <LinkStyle>
-                        <Link to="login">Log in</Link> 
+                    {isLoggedIn ? <Link to="profile">profile</Link> : <Link to="login">Log in</Link>}
                 </LinkStyle>
                 <LinkStyle>
                     <Link to="/list">List</Link>

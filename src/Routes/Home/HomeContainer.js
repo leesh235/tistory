@@ -1,26 +1,13 @@
 import React from 'react';
-import { gql,useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { POST } from "./HomeQuery";
 import HomePresenter from './HomePresenter';
 
-// const GET_MOVIES = gql`
-// {
-//     movies {
-//         id
-//         title
-//         rating
-//         summary
-//         medium_cover_image
-//         genres
-//     }
-// }
-// `;
-
 export default () => {
-    // const {loading, data} = useQuery(GET_MOVIES);
+    const {loading, data} = useQuery(POST);
     return (
         <div>
-            {/* {!loading && data.movies ? <HomePresenter movies={data.movies} /> : "loading..."} */}
-            <HomePresenter />
+            {!loading && data ? <HomePresenter allPosts={data.getAllPosts} /> : "loading..."}
         </div>
     );
 };

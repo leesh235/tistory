@@ -9,72 +9,49 @@ const TextDiv = styled.div`
     }
 `;
 
-const MovieStyle = styled.div`
+const AllPostsStyle = styled.div`
     display: flex;
     flex-direction: row;
     padding: 20px;
     border-bottom: 1px solid gray;
 `;
 
-const MovieData = styled.div`
+const PostData = styled.div`
     display: flex;
     flex-direction: column;
 `;
 
-const ImgStyle = styled.img`
-    width:200px;
-    height:200px;
-`;
-
-const StyleH4 = styled.h4`
+const TitleStyle = styled.h4`
     margin: 0;
     margin-bottom: 15px;
     margin-left: 20px;
 `;
 
-const StyleH5 = styled.h5`
+const UserStyle = styled.div`
     margin: 0;
     margin-bottom: 15px;
     margin-left: 20px;
 `;
 
-const StyleUl = styled.ul`
-    height: 70px;
-    margin: 0;
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    flex-wrap: wrap;
-`;
-
-const StyleLi = styled.li`
-    margin-right: 60px;
-`;
-
-const StyleP = styled.p`
+const DateStyle = styled.div`
     margin: 0;
     margin-bottom: 15px;
     margin-left: 20px;
 `;
 
-function Contents({id, title, picture, year, genres, summary}){
+function Contents({id, title, postId, createdAt }){
     return(
         <TextDiv>
             <Link to={{
-                pathname: `/detail${id}`
+                pathname: `/detail${postId}`
                 }}>
-                <MovieStyle key={id}>
-                    <ImgStyle src={picture} alt={title} title={title} />
-                    <MovieData>
-                        <StyleH4>{title}</StyleH4>
-                        <StyleH5>{year}</StyleH5>
-                        <StyleUl>{genres.map((genres, index) => {
-                            return <StyleLi key={index}>{genres}</StyleLi>
-                        })}</StyleUl>
-                        <StyleP>{summary}...</StyleP>
-                    </MovieData>
-                </MovieStyle>
+                <AllPostsStyle key={postId}>
+                    <PostData>
+                        <TitleStyle>{title}</TitleStyle>
+                        <UserStyle>{id}</UserStyle>
+                        <DateStyle>{createdAt}</DateStyle>
+                    </PostData>
+                </AllPostsStyle>
             </Link>
         </TextDiv>
     );
