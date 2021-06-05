@@ -10,13 +10,13 @@ export default () => {
     const idInput = useInput("");
     const passInput = useInput("");
     const passConfirmInput = useInput("");
-    const nameInput = useInput("");
+    const emailInput = useInput("");
 
     const [signupMutation] = useMutation(SIGNUP, {
         variables: {
-            email: idInput.value,
+            userId: idInput.value,
             password: passInput.value,
-            name: nameInput.value
+            email: emailInput.value
         }
     });
 
@@ -30,7 +30,7 @@ export default () => {
                 idInput.value !== "" &&
                 passInput.value !== "" &&
                 passConfirmInput.value !== "" &&
-                nameInput.value !== ""
+                emailInput.value !== ""
             ){
                 if(passInput.value !== passConfirmInput.value){
                     alert("비밀번호가 일치하지 않습니다.");
@@ -52,7 +52,7 @@ export default () => {
             id={idInput}
             password={passInput}
             passConfirm={passConfirmInput}
-            name={nameInput}
+            email={emailInput}
             onSubmit={onSubmit}
         />
     );

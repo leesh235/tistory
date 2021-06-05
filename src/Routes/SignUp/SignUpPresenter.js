@@ -46,7 +46,7 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
-export default ({ id, password, passConfirm, name, onSubmit }) => {
+export default ({ id, password, passConfirm, email, onSubmit }) => {
     return (
         <Wrapper>
             <Container>
@@ -54,7 +54,7 @@ export default ({ id, password, passConfirm, name, onSubmit }) => {
                     <Input placeholder={"  아이디"} {...id}></Input>
                     <Input placeholder={"  비밀번호"} {...password} type={"password"}></Input>
                     <Input placeholder={"  비밀번호 확인"} {...passConfirm} type={"password"}></Input>
-                    <Input placeholder={"  이름"} {...name}></Input>
+                    <Input placeholder={"  email"} {...email}></Input>
                     <Button>가입하기</Button>                    
                 </form>
             </Container>
