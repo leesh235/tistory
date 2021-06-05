@@ -25,39 +25,28 @@ const TitleIn = styled.input`
     margin-bottom: 20px;
 `;
 
-const RatingIn = styled.input`
-    height: 30px;
-    width: 80%;
-    margin-bottom: 20px;
-`;
-
-const GenresIn = styled.input`
-    height: 30px;
-    width: 80%;
-    margin-bottom: 20px;
-`;
-
 const SummaryIn = styled.textarea`
     height: 30px;
     width: 80%;
     margin-bottom: 20px;
 `;
 
-const SubmitIn = styled.input`
-    width: 50px;
+const SubmitIn = styled.button`
+    width: 60px;
+    height: 60px;
 `;
 
 
-const AddPresenter = () => {
+const AddPresenter = ({title, contents, onSubmit}) => {
     return (
         <BodyStyle>
             <BoxStyle>
                 <ContentStyle>
-                    <TitleIn type="text" placeholder="hi" />
-                    <RatingIn type="text" placeholder="hi" />
-                    <GenresIn type="text" placeholder="hi" />
-                    <SummaryIn type="text" placeholder="hi" />
-                    <SubmitIn type="submit" value="add" />
+                    <form onSubmit={onSubmit}>
+                        <TitleIn placeholder={"  제목"} {...title} />
+                        <SummaryIn placeholder={"  내용"} {...contents} />
+                        <SubmitIn>완료</SubmitIn>
+                    </form>
                 </ContentStyle>
             </BoxStyle>
         </BodyStyle>

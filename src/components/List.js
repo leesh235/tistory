@@ -19,12 +19,12 @@ const LinksStyle = styled.div`
 `;
 
 const LinkStyle = styled.div`
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 30px 0px;
 `;
 
 class List extends React.Component{
     state={
-        listName: ["home", "mypost","search" ,"add", "tag"]
+        listName: ["home", "mypost","search" ,"add"]
     }
     render(){
         const {listName} = this.state
