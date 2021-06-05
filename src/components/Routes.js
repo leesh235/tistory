@@ -10,12 +10,16 @@ import DetailIndex from '../Routes/Detail/index'
 import AddIndex from '../Routes/Add/index';
 import LogInIndex from '../Routes/LogIn/index';
 import SignUpIndex from '../Routes/SignUp/index';
+import ProfileIndex from '../Routes/Profile/index';
+import MyPostIndex from '../Routes/MyPost/index';
 
 const Routes = () => {
     return(
         <Router>
             <Header />
             <Route exact path="/search" component={SearchIndex} />
+            <Route exact path="/mypost" component={MyPostIndex} />
+            <Route exact path="/profile" component={ProfileIndex} />
             <Route exact path="/login" component={LogInIndex} />
             <Route exact path="/signup" component={SignUpIndex} />
             <Route exact path="/result" component={SearchList} />

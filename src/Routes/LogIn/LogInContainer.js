@@ -33,7 +33,7 @@ export default () => {
                     });
                     setTimeout(() => {
                         history.push("/")
-                    }, 2000);
+                    }, 500);
                 }
             } 
         }catch (error) {

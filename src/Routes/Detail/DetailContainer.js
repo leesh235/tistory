@@ -11,7 +11,7 @@ export default () => {
     const {loading, data} = useQuery(DETAIL,{variables: {postId: postId} });
     return (
         <div>
-            {!loading && data.getPost ? <DetailPresenter post={data.getPost} /> : "loading..."}
+            {postId && !loading && data.getPost ? <DetailPresenter post={data.getPost} /> : "loading..."}
         </div>
     );
 };
