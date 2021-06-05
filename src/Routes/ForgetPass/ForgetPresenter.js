@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Input = styled.input`
     height: 40px;
@@ -45,34 +44,19 @@ const Container = styled.div`
     justify-content: center;
     height: 80vh;
     flex-direction: column;
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
 `;
 
-const Text = styled.span`
-    font-size: 13px;
-    color: #8e8e8e;
-    text-decoration: none;
-`;
-
-export default ({ id, password, onSubmit }) => {
+const ForgetPresenter = ({email, onSubmit}) => {
     return (
         <Wrapper>
             <Container>
                 <form onSubmit={onSubmit}>
-                    <Input placeholder="  아이디" {...id}></Input>
-                    <Input placeholder="  비밀번호" {...password} type={"password"}></Input>
-                    <Button >로그인</Button>                
+                    <Input placeholder={"  email"} {...email}></Input>
+                    <Button>보내기</Button>                    
                 </form>
-                <Link to="/signup">
-                    <Text>회원가입</Text>
-                </Link>
-                <Link to="/forget">
-                    <Text>비밀번호찾기</Text>
-                </Link>
             </Container>
         </Wrapper>
     );
 }
+
+export default ForgetPresenter;

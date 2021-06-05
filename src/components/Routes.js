@@ -12,12 +12,14 @@ import LogInIndex from '../Routes/LogIn/index';
 import SignUpIndex from '../Routes/SignUp/index';
 import ProfileIndex from '../Routes/Profile/index';
 import MyPostIndex from '../Routes/MyPost/index';
+import ForgetIndex from '../Routes/ForgetPass/index';
 
 const Routes = () => {
     return(
         <Router>
             <Header />
             <Route exact path="/search" component={SearchIndex} />
+            <Route exact path="/forget" component={ForgetIndex} />
             <Route exact path="/mypost" component={MyPostIndex} />
             <Route exact path="/profile" component={ProfileIndex} />
             <Route exact path="/login" component={LogInIndex} />
