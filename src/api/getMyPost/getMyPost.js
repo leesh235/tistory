@@ -17,6 +17,7 @@ export default {
 
                     return myPosts
                 }else {
+                    console.log("You need to log in to perform this action");
                     return null;
                 }
 

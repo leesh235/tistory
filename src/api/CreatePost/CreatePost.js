@@ -22,6 +22,7 @@ export default {
                     })
                     return true;
                 }else{
+                    console.log("You need to log in to perform this action");
                     return false;
                 }
 

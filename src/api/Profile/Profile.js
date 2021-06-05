@@ -9,7 +9,7 @@ export default {
             try {
 
                 const exist = isAuthenticated(request);
-
+                // console.log(exist)
                 if(exist){
                     const id = request.user.id;
                     const user = await prisma.user.findUnique({

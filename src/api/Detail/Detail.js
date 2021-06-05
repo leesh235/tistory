@@ -8,21 +8,24 @@ export default {
         getPost: async(_, args, {request}) => {
             try{
                 const exist = isAuthenticated(request);
-
+                console.log(exist)
                 if(exist === true){
                     const { postId } = args;
+                    // console.log(postId)
                     const post = await prisma.post.findUnique({
                         where: { postId }
                     })
-
+                    
                     if(post !== null){
+                        // console.log(post);
                         return post;
                     }else{
                         return null;
                     }
 
                 }else{
-                    throw Error("You need to log in to perform this action");
+                    console.log("You need to log in to perform this action");
+                    return null
                 }
 
             }catch(error){

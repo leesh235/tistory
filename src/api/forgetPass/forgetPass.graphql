@@ -1,0 +1,7 @@
+type Mutation {
+    forgetPass(email: String!): Boolean!
+}
+
+type Query{
+    dummy: String
+}

@@ -8,16 +8,26 @@ export default {
             try {
                 const { text } = args;
                 //모든 post 불러오기
-                const getPost = await prisma.post.findMany({})
 
-                //title에 text를 포함하고 있는 post 구하기
-                const getTitle = getPost.filter((post) => {
-                    return post.title.includes(text);
-                })
+                if(text){
+                    const getPost = await prisma.post.findMany({})
+    
+                    //title에 text를 포함하고 있는 post 구하기
+                    const getTitle = getPost.filter((post) => {
+                        return post.title.includes(text);
+                    })
+                    // console.log(getTitle);
 
-                // console.log(getTitle);
+                    if(getTitle){
+                        return getTitle;
+                    }else{
+                        return null;
+                    }
+                    
+                }else{
+                    return null;
+                }
 
-                return getTitle;
             }catch (error){
                 console.log(error);
                 return null;

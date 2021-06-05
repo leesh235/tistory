@@ -1,6 +1,7 @@
 scalar DateTime
 
 type myPost {
+    postId: String
     title: String
     id: String
     createdAt: DateTime
