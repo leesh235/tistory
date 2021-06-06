@@ -17,7 +17,7 @@ const ForgetContainer = () => {
 
     const  history = useHistory();
 
-    const onSubmit = async (e) => {
+    const onFn = async (e) => {
         e.preventDefault()
         try{
             if(emailInput !== ""){
@@ -27,10 +27,10 @@ const ForgetContainer = () => {
                     alert("비밀번호가 재발급 되었습니다.");
 
                 }else{
-                    alert("존재하지않는 email입니다.")
+                    alert("존재하지않는 email입니다.");
                     setTimeout(() => {
-                        history.push("/login")
-                    }, 500);
+                        window.location.href = "/login";
+                    }, 4000);
                 }
             }
         }catch(error){
@@ -41,7 +41,7 @@ const ForgetContainer = () => {
     return (
         <ForgetPresenter 
             email={emailInput}
-            onSubmit={onSubmit}
+            onFn={onFn}
         />
     );
 }

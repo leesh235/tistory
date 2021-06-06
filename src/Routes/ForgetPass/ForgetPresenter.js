@@ -46,11 +46,11 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
-const ForgetPresenter = ({email, onSubmit}) => {
+const ForgetPresenter = ({email, onFn}) => {
     return (
         <Wrapper>
             <Container>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onFn}>
                     <Input placeholder={"  email"} {...email}></Input>
                     <Button>보내기</Button>                    
                 </form>
