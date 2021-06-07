@@ -1,0 +1,12 @@
+{
+  "name": "tistory_fileserver",
+  "version": "1.0.0",
+  "description": "Fileserver for tistory",
+  "main": "index.js",
+  "repository": "https://github.com/leesh235/tistory_fileserver",
+  "author": "leesh235 <leeshgh235@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./src/index.js"
+  }
+}
