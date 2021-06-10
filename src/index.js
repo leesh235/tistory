@@ -32,6 +32,10 @@ const uploadImg = multer({
     }
 });
 
+app.get('/upload', ({req, res}) => {
+    res.render('upload');
+});
+
 //서버 실행알림
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
