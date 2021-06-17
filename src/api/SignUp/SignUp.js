@@ -18,9 +18,9 @@ export default {
                 //email or userId 중 중복이 있으면 exsits가 true값이 된다.
                 const exist = await prisma.user.findFirst({
                     where:{
-                        // OR:[
-                        //     {userId}, {email},
-                        // ],
+                        OR:[
+                            {userId}, {email},
+                        ],
                     },
                 });
                 

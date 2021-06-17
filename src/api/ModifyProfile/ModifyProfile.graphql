@@ -1,0 +1,7 @@
+type Mutation {
+    ModifyProfile(password: String!): Boolean!
+}
+
+type Query {
+    dummy: String
+}
