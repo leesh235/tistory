@@ -1,0 +1,7 @@
+type Mutation {
+    ModifyPost(postId: String! title: String! contents: String): Boolean!
+}
+
+type Query {
+    dummy: String
+}
