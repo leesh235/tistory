@@ -7,9 +7,13 @@ const ProfileContainer = () => {
 
     const { loading, data } = useQuery(PROFILE);
     // console.log(data);
+    const onClick = (e) => {
+        e.preventDefault();
+        window.location.replace("/modifyProfile");
+    }
     return (
         <div>
-            {!loading && data.getProfile ? <ProfilePresenter userInfo={data.getProfile} /> : "loading..."}
+            {!loading && data.getProfile ? <ProfilePresenter userInfo={data.getProfile} onClick={onClick} /> : "loading..."}
         </div>
     );
 }

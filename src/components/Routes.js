@@ -13,6 +13,7 @@ import SignUpIndex from '../Routes/SignUp/index';
 import ProfileIndex from '../Routes/Profile/index';
 import MyPostIndex from '../Routes/MyPost/index';
 import ForgetIndex from '../Routes/ForgetPass/index';
+import ModifyProfileIndex from '../Routes/ModifyProfile/index';
 
 const Routes = () => {
     return(
@@ -30,6 +31,8 @@ const Routes = () => {
             <Route exact path="/" component={HomeIndex} />
             <Route exact path="/page=:i" component={HomeIndex} />
             <Route exact path="/add" component={AddIndex} />
+            <Route exact path="/add" component={AddIndex} />
+            <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
             <Footer />
         </Router>
     );

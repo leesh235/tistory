@@ -28,13 +28,18 @@ const UserInfo = styled.div`
     margin-bottom: 15px
 `;
 
-const ProfilePresenter = ({userInfo}) => {
+const ProfileBtn = styled.button`
+
+`;
+
+const ProfilePresenter = ({userInfo, onClick}) => {
     return (
         <ProfileWrapper>
             <ProfileContainer>
                 <UserInfo>{`아이디:           ${userInfo.userId}`}</UserInfo>
                 <UserInfo>{`email:            ${userInfo.email}`}</UserInfo>
             </ProfileContainer>
+            <ProfileBtn onClick={onClick}>수정</ProfileBtn>
         </ProfileWrapper>
     );
 }
