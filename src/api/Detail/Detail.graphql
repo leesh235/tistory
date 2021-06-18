@@ -5,8 +5,13 @@ type Post {
     id: String
 }
 
+type ConfirmInfo{
+    equal: Boolean
+    Post: Post
+}
+
 type Query {
-    getPost(postId: String): Post
+    getPost(postId: String! id: String!): ConfirmInfo
 }
 
 type Mutation {

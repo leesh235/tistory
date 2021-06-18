@@ -14,7 +14,7 @@ export default {
                     const myPosts = await prisma.post.findMany({
                         where: { id: userId }
                     })
-
+                    console.log(myPosts);
                     return myPosts
                 }else {
                     console.log("You need to log in to perform this action");
