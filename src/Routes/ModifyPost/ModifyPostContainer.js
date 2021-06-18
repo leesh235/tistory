@@ -4,6 +4,7 @@ import { MODIFYPOST } from "./ModifyPostQuery";
 import ModifyPostPresenter from './ModifyPostPresenter';
 import useInput from "../../Hooks/useInput";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default () => {
 
@@ -20,6 +21,8 @@ export default () => {
         }
     })
 
+    const history = useHistory();
+    
     const onSubmit = async(e) => {
         e.preventDefault();
 
@@ -30,7 +33,9 @@ export default () => {
 
                 if(ModifyPost){
                     alert("내용이 변경되었습니다.")
-                    window.location.replace(`/detail/${postId}`);
+                    setTimeout(() => {
+                        history.goBack()
+                    }, 500);
                 }
 
             }else{

@@ -45,6 +45,9 @@ function Contents({id, title, postId, createdAt }){
         <TextDiv>
             <Link to={{
                 pathname: `/detail/${postId}`,
+                state:{
+                    id
+                }
             }}>
                 <AllPostsStyle key={postId}>
                     <PostData>

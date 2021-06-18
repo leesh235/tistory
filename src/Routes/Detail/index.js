@@ -1,9 +1,11 @@
 import React from 'react';
 import DetailContainer from './DetailContainer';
 
-const DetailIndex = () => {
+const DetailIndex = (props) => {
+        const {history, location} = props;
+        // console.log(location);
         return(
-                <DetailContainer />
+                <DetailContainer history={history} location={location} />
         );
 }
 

@@ -28,10 +28,9 @@ const Routes = () => {
             <Route exact path="/signup" component={SignUpIndex} />
             <Route exact path="/result" component={SearchList} />
             <Route exact path="/list" component={List} />
-            <Route path="/detail/:postId" component={DetailIndex} />
+            <Route exact path="/detail/:postId" component={DetailIndex} />
             <Route exact path="/" component={HomeIndex} />
             <Route exact path="/page=:i" component={HomeIndex} />
-            <Route exact path="/add" component={AddIndex} />
             <Route exact path="/add" component={AddIndex} />
             <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
             <Route exact path="/modifyPost/:postId" component={modifyPostIndex} />

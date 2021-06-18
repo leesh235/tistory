@@ -61,7 +61,7 @@ const PostBtn = styled.button`
 
 `;
 
-const DetailPresenter = ({post, postId, onClick}) => {
+const DetailPresenter = ({post, postId, equal}) => {
 
     return(
         <Mcontents>
@@ -75,11 +75,14 @@ const DetailPresenter = ({post, postId, onClick}) => {
                 </HeaderStyle>
             </HeaderSize>
             <ContentsStyle>{post.contents}</ContentsStyle>
-            <Link to={{
-                pathname: `/modifyPost/${postId}`
-            }}>
-                <PostBtn>수정</PostBtn>
-            </Link>
+            {equal ? 
+                <Link to={{
+                    pathname: `/modifyPost/${postId}`
+                }}>
+                    <PostBtn>수정</PostBtn>
+                </Link> :
+                ""
+            }
         </Mcontents>
     );
 }

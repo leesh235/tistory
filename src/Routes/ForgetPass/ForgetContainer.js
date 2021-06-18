@@ -29,7 +29,7 @@ const ForgetContainer = () => {
                 }else{
                     alert("존재하지않는 email입니다.");
                     setTimeout(() => {
-                        window.location.href = "/login";
+                        history.goBack();
                     }, 4000);
                 }
             }
