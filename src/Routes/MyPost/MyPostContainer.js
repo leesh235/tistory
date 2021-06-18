@@ -10,6 +10,7 @@ const MyPostContainer = () => {
     return (
         <div>
             {!loading && data.getMyPosts ? <MyPostPresenter myposts={data.getMyPosts} /> : "loading..."}
+            {/* {!loading && data.getMyPosts ? console.log(data) : "loading..."} */}
         </div>
     );
 }

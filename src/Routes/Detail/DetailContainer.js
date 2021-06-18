@@ -9,9 +9,13 @@ export default () => {
     const {postId} = useParams();
     // console.log(postId);
     const {loading, data} = useQuery(DETAIL,{variables: {postId: postId} });
+    const onClick = (e) => {
+        e.preventDefault();
+        window.location.replace("/modifyPost");
+    }
     return (
         <div>
-            {postId && !loading && data.getPost ? <DetailPresenter post={data.getPost} /> : "loading..."}
+            {postId && !loading && data.getPost ? <DetailPresenter post={data.getPost} postId={postId} onClick={onClick} /> : "loading..."}
         </div>
     );
 };

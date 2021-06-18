@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import moment from "moment";
+import { Link } from 'react-router-dom';
 
 const Mcontents = styled.div`
     display: flex;
@@ -56,7 +57,11 @@ const ContentsStyle = styled.div`
     font-size:22px;
 `;
 
-const DetailPresenter = ({post}) => {
+const PostBtn = styled.button`
+
+`;
+
+const DetailPresenter = ({post, postId, onClick}) => {
 
     return(
         <Mcontents>
@@ -70,6 +75,11 @@ const DetailPresenter = ({post}) => {
                 </HeaderStyle>
             </HeaderSize>
             <ContentsStyle>{post.contents}</ContentsStyle>
+            <Link to={{
+                pathname: `/modifyPost/${postId}`
+            }}>
+                <PostBtn>수정</PostBtn>
+            </Link>
         </Mcontents>
     );
 }
