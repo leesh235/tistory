@@ -31,19 +31,24 @@ const SummaryIn = styled.textarea`
     margin-bottom: 20px;
 `;
 
+const ImgIn = styled.input`
+    margin-bottom: 20px;
+`;
+
 const SubmitIn = styled.button`
     width: 60px;
     height: 60px;
 `;
 
 
-const AddPresenter = ({title, contents, onSubmit}) => {
+const AddPresenter = ({title, contents, handlePicture, onSubmit}) => {
     return (
         <BodyStyle>
             <BoxStyle>
                 <ContentStyle>
                     <form onSubmit={onSubmit}>
                         <TitleIn placeholder={"  제목"} {...title} />
+                        <ImgIn type="file" onChange={handlePicture} />
                         <SummaryIn placeholder={"  내용"} {...contents} />
                         <SubmitIn>완료</SubmitIn>
                     </form>

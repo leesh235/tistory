@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
 import { ADD } from "./AddQuery";
 import AddPresenter from './AddPresenter';
 import useInput from '../../Hooks/useInput';
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const AddContainer = () => {
 
     const titleInput = useInput("");
     const contentsInput = useInput("");
+    const [picture, setPicture] = useState("");
 
     const [AddMutation] = useMutation(ADD, {
         variables: {
@@ -19,6 +21,14 @@ const AddContainer = () => {
 
     const history = useHistory();
 
+    const handlePicture = (e) => {
+        e.preventDefault();
+        const image = e.target.files[0];
+        console.log(image);
+    
+        setPicture(image);
+      }
+
     const onSubmit = async(e) => {
         e.preventDefault();
 
@@ -28,7 +38,21 @@ const AddContainer = () => {
                 if(createPost){
                     alert("작성 완료");
                     history.push("/");
+                }else{
+                    return false;
                 }
+                const formData = new FormData();
+                formData.append("title", titleInput.value);
+                formData.append("streamfile", picture);
+            
+                await axios({
+                  method: "post",
+                  url: "http://localhost:5000/add",
+                  data: formData,
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  }
+                })
             }else {
                 alert("제목을 작성해주세요.");
             }
@@ -41,6 +65,7 @@ const AddContainer = () => {
         <AddPresenter 
             title={titleInput}
             contents={contentsInput}
+            handlePicture={handlePicture}
             onSubmit={onSubmit}
         />
     );
