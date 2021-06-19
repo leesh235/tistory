@@ -30,7 +30,13 @@ export default {
                 }
                 
                 //연결된 db에 정보넣기
-                await prisma.user.create({ data:{userId, email, password:generatPassword(password)} });
+                await prisma.user.create({ 
+                    data:{
+                        userId, 
+                        email, 
+                        password:generatPassword(password),
+                    }
+                });
                 return true;
 
             } catch(error) {
