@@ -8,6 +8,8 @@ import fs from "fs-extra";
 const app = express();
 const PORT = 5000;
 
+app.use(bodyParser.json());
+
 //cors설정
 const corsOptions = {
     exposedHeaders: "Content-Disposition",
@@ -21,7 +23,7 @@ app.use(express.static('uploads'));
 //multer 설정
 //post로 전송된 파일의 저장경로와 파일명 명시
 const storage = multer.diskStorage({
-    destination: "./uploads",
+    destination: "uploads/",
     filename: (req, file, cb) => {
         cb(null, Date.now() + "."+ file.originalname);
     }
@@ -36,42 +38,32 @@ const upload = multer({
 });
 
 //해당 주소에서 image 받기
-app.post("/profile", upload.single("streamfile"), async(req, res) => {
-    // try{
-    //     if (fs.existsSync("./uploads/userprofile4")) {
-    //         fs.removeSync("./uploads/userprofile4");
-    //     }
-    //     fs.mkdirSync("./uploads/userprofile4");
-    //     fs.writeFile(
-    //         "./uploads/userprofile4" + "/profile.html",
-    //         '<p><img src="' + req.file + '" alt="image"></p>'
-    //     );
-    //     console.log("success!");
-    // }catch(error){
-    //     console.log(error);
-    // }
-    // console.log(req.file[0])
-})
-
-app.get("/", async(req, res) => {
+app.post("/add", upload.single("streamfile"), async(req, res) => {
     try{
-        if(fs.existsSync("userprofile2")){
-            const postName = fs.readdirSync("userprofile2")[0];
-            // console.log(postName);
-            const postPath = path.join("userprofile2", postName);
-            res.download(postPath, postName, (err) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("download success");
-                }
-            });
+        if (fs.existsSync("./uploads/userprofile4")) {
+            fs.removeSync("./uploads/userprofile4");
         }
-        
+        fs.mkdirSync("./uploads/userprofile4");
+        fs.writeFile(
+            "./uploads/userprofile4" + "/profile.html",
+            '<p><img src="' + req.file + '" alt="image"></p>'
+        );
+        console.log("success!");
     }catch(error){
         console.log(error);
     }
+    console.log(req.body.title)
+    console.log(req.body.streamfile)
+    console.log(req.file)
 })
+
+app.get("/", async(req, res) => {
+    res.send(`1623864526529.ex2.PNG`)
+})
+
+// app.get("/", async(req, res) => {
+
+// })
 
 // app.post("/add", upload.single("streamfile"), async(req, res) => {
     
