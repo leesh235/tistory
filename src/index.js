@@ -25,7 +25,7 @@ app.use(express.static('uploads'));
 const storage = multer.diskStorage({
     destination: "uploads/",
     filename: (req, file, cb) => {
-        cb(null, Date.now() + "."+ file.originalname);
+        cb(null, Date.now() + "." + req.body.userId + "."+ file.originalname);
     }
 });
 
@@ -52,9 +52,6 @@ app.post("/add", upload.single("streamfile"), async(req, res) => {
     }catch(error){
         console.log(error);
     }
-    console.log(req.body.title)
-    console.log(req.body.streamfile)
-    console.log(req.file)
 })
 
 app.get("/", async(req, res) => {
