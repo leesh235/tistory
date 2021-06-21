@@ -1,5 +1,6 @@
 type Mutation {
     ModifyProfile(password: String!): Boolean!
+    ModifyUserImg(userImg:String): Boolean
 }
 
 type Query {

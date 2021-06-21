@@ -15,7 +15,7 @@ model User {
   userId String @unique
   password String
   email String @unique
-  userImg Boolean @default(false)
+  userImg String?
 }
 
 model Post {
@@ -23,6 +23,6 @@ model Post {
   id String
   title String
   contents String?
-  postImg Boolean @default(false)
+  postImg String?
   createdAt DateTime @default(now())
 }

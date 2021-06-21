@@ -1,6 +1,8 @@
 type Profile{
     userId: String
     email: String
+    userImg: String
+    id: String
 }
 
 type Query{
