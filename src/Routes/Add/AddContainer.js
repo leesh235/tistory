@@ -6,7 +6,7 @@ import useInput from '../../Hooks/useInput';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-const AddContainer = () => {
+const AddContainer = (props) => {
 
     const titleInput = useInput("");
     const contentsInput = useInput("");
@@ -24,8 +24,8 @@ const AddContainer = () => {
     const handlePicture = (e) => {
         e.preventDefault();
         const image = e.target.files[0];
-        console.log(image);
-    
+        // console.log(image);
+        // console.log(props)
         setPicture(image);
       }
 
@@ -62,6 +62,7 @@ const AddContainer = () => {
     }
 
     return (
+        
         <AddPresenter 
             title={titleInput}
             contents={contentsInput}

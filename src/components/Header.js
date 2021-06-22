@@ -70,6 +70,12 @@ const Header = () => {
         }, 500);
     }
 
+    const onList = (e) => {
+        e.preventDefault();
+
+        console.log(e.target.className)
+    }
+
     return (
         <HeaderStyle>
             <LogoStyle onClick={onClick}>tistory</LogoStyle>
@@ -82,6 +88,9 @@ const Header = () => {
                 </LinkStyle>
                 <LinkStyle>
                     <Link to="/list">List</Link>
+                </LinkStyle>
+                <LinkStyle>
+                    <div className="aaa" onClick={onList}>ex</div>
                 </LinkStyle>
             </MenusStyle>
         </HeaderStyle>

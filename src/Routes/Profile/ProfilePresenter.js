@@ -36,6 +36,7 @@ const ProfilePresenter = ({userInfo, onClick}) => {
     return (
         <ProfileWrapper>
             <ProfileContainer>
+                <UserInfo>{`사진:           ${userInfo.userImg}`}</UserInfo>
                 <UserInfo>{`아이디:           ${userInfo.userId}`}</UserInfo>
                 <UserInfo>{`email:            ${userInfo.email}`}</UserInfo>
             </ProfileContainer>

@@ -46,11 +46,16 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
-export default ({ password, passConfirm, onSubmit }) => {
+const ImgIn = styled.input`
+    margin-bottom: 20px;
+`;
+
+export default ({ password, passConfirm, handlePicture, onSubmit }) => {
     return (
         <Wrapper>
             <Container>
                 <form onSubmit={onSubmit}>
+                    <ImgIn type="file" onChange={handlePicture} />
                     <Input placeholder={"  비밀번호"} {...password} type={"password"}></Input>
                     <Input placeholder={"  비밀번호 확인"} {...passConfirm} type={"password"}></Input>
                     <Button>변경하기</Button>                    
