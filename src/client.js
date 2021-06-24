@@ -1,13 +1,16 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-
-const cache = new InMemoryCache();
-const link = new createHttpLink({
-    uri: "http://localhost:4000/",
-});
+import { setContext } from "apollo-link-context";
+import fetch from "fetch";
 
 const makeClient = (token) => {
 
-    const authLink = setContext(_, ({headers}) => {
+    const cache = new InMemoryCache();
+    const httpLink = new createHttpLink({
+        uri: "http://localhost:4000/",
+        fetch
+    });
+
+    const authLink = setContext((_, {headers}) => {
         return{
             headers: {
                 ...headers,
@@ -17,7 +20,7 @@ const makeClient = (token) => {
     });
 
     const client = new ApolloClient({
-        link: authLink.concat(link),
+        link: authLink.concat(httpLink),
         cache: cache
     });
     return client;

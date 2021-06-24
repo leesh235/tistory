@@ -4,6 +4,7 @@ import multer from "multer";
 import bodyParser from "body-parser";
 import path from "path";
 import fs from "fs-extra";
+import { profileToDB } from "./modules/uploadImg"
 
 const app = express();
 const PORT = 5000;
@@ -25,7 +26,8 @@ app.use(express.static('uploads'));
 const storage = multer.diskStorage({
     destination: "uploads/",
     filename: (req, file, cb) => {
-        cb(null, Date.now() + "." + req.body.userId + "."+ file.originalname);
+        console.log(req.body)
+        cb(null, Date.now() + "."+ file.originalname);
     }
 });
 
@@ -40,14 +42,31 @@ const upload = multer({
 //해당 주소에서 image 받기
 app.post("/add", upload.single("streamfile"), async(req, res) => {
     try{
-        if (fs.existsSync("./uploads/userprofile4")) {
-            fs.removeSync("./uploads/userprofile4");
-        }
-        fs.mkdirSync("./uploads/userprofile4");
-        fs.writeFile(
-            "./uploads/userprofile4" + "/profile.html",
-            '<p><img src="' + req.file + '" alt="image"></p>'
-        );
+        // if (fs.existsSync("./uploads/userprofile4")) {
+        //     fs.removeSync("./uploads/userprofile4");
+        // }
+        // fs.mkdirSync("./uploads/userprofile4");
+        // fs.writeFile(
+        //     "./uploads/userprofile4" + "/profile.html",
+        //     '<p><img src="' + req.file + '" alt="image"></p>'
+        // );
+        console.log("success!");
+    }catch(error){
+        console.log(error);
+    }
+})
+
+app.post("/profile", upload.single("streamfile"), async(req, res) => {
+    try{
+        // if (fs.existsSync("./uploads/userprofile4")) {
+        //     fs.removeSync("./uploads/userprofile4");
+        // }
+        // fs.mkdirSync("./uploads/userprofile4");
+        // fs.writeFile(
+        //     "./uploads/userprofile4" + "/profile.html",
+        //     '<p><img src="' + req.file + '" alt="image"></p>'
+        // );
+        profileToDB({req, res})
         console.log("success!");
     }catch(error){
         console.log(error);
