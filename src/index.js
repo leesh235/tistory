@@ -20,14 +20,19 @@ app.use(cors(corsOptions));
 
 //정적자원 이용
 app.use(express.static('uploads'));
-
 //multer 설정
 //post로 전송된 파일의 저장경로와 파일명 명시
 const storage = multer.diskStorage({
-    destination: "uploads/",
+    destination: (req, file, cb) => {
+        let dirPath = `./uploads/${req.body.user}`;
+        if (fs.existsSync(dirPath)) {
+            fs.unlinkSync(dirPath, );
+        }
+        fs.mkdirSync(dirPath);
+        cb(null, dirPath);
+    },
     filename: (req, file, cb) => {
-        console.log(req.body)
-        cb(null, Date.now() + "."+ file.originalname);
+        cb(null, Date.now() + file.originalname);
     }
 });
 
@@ -40,6 +45,14 @@ const upload = multer({
 });
 
 //해당 주소에서 image 받기
+app.post("/profile", upload.single("streamfile"), async(req, res) => {
+    try{
+        console.log("success!");
+    }catch(error){
+        console.log(error);
+    }
+})
+
 app.post("/add", upload.single("streamfile"), async(req, res) => {
     try{
         // if (fs.existsSync("./uploads/userprofile4")) {
@@ -50,23 +63,7 @@ app.post("/add", upload.single("streamfile"), async(req, res) => {
         //     "./uploads/userprofile4" + "/profile.html",
         //     '<p><img src="' + req.file + '" alt="image"></p>'
         // );
-        console.log("success!");
-    }catch(error){
-        console.log(error);
-    }
-})
-
-app.post("/profile", upload.single("streamfile"), async(req, res) => {
-    try{
-        // if (fs.existsSync("./uploads/userprofile4")) {
-        //     fs.removeSync("./uploads/userprofile4");
-        // }
-        // fs.mkdirSync("./uploads/userprofile4");
-        // fs.writeFile(
-        //     "./uploads/userprofile4" + "/profile.html",
-        //     '<p><img src="' + req.file + '" alt="image"></p>'
-        // );
-        profileToDB({req, res})
+        console.log(req.body);
         console.log("success!");
     }catch(error){
         console.log(error);
