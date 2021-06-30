@@ -25,10 +25,14 @@ app.use(express.static('uploads'));
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         let dirPath = `./uploads/${req.body.user}`;
+
         if (fs.existsSync(dirPath)) {
-            fs.unlinkSync(dirPath, );
+            const files = fs.readdirSync(dirPath)
+            fs.removeSync(dirPath+"/"+files[0])
+            console.log(files[0])
+        }else{
+            fs.mkdirSync(dirPath);
         }
-        fs.mkdirSync(dirPath);
         cb(null, dirPath);
     },
     filename: (req, file, cb) => {
@@ -53,6 +57,26 @@ app.post("/profile", upload.single("streamfile"), async(req, res) => {
     }
 })
 
+app.get("/profile/user", async(req, res) => {
+    const dirPath = `./uploads/user`;
+
+    if(fs.existsSync(dirPath)){
+        const profileName = fs.readdirSync(dirPath)[0];
+        const profilePath = path.join(dirPath, profileName);
+
+        res.download(profilePath, profileName, (err) => {
+            if(err){
+                console.log(err);
+            }else{
+                console.log("download success");
+            }
+        });
+    }else {
+        console.log("undefined");
+        res.status(500).json({text: "error"});
+    }
+})
+
 app.post("/add", upload.single("streamfile"), async(req, res) => {
     try{
         // if (fs.existsSync("./uploads/userprofile4")) {
@@ -70,20 +94,11 @@ app.post("/add", upload.single("streamfile"), async(req, res) => {
     }
 })
 
-app.get("/", async(req, res) => {
-    res.send(`1623864526529.ex2.PNG`)
-})
-
 // app.get("/", async(req, res) => {
 
 // })
 
 // app.post("/add", upload.single("streamfile"), async(req, res) => {
-    
-// })
-
-// //해당 주소로 image보내기
-// app.get("/profile", async(req, res) => {
     
 // })
 
