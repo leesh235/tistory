@@ -4,25 +4,28 @@ import multer from "multer";
 import bodyParser from "body-parser";
 import path from "path";
 import fs from "fs-extra";
+import morgan from "morgan";
 import { profileToDB } from "./modules/uploadImg"
 
 const app = express();
 const PORT = 5000;
-
-app.use(bodyParser.json());
 
 //cors설정
 const corsOptions = {
     exposedHeaders: "Content-Disposition",
     origin: "http://localhost:3000",
 };
+
+//middleware 등록
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(morgan('dev'));
 
 //정적자원 이용
 app.use(express.static('uploads'));
 //multer 설정
 //post로 전송된 파일의 저장경로와 파일명 명시
-const storage = multer.diskStorage({
+let storage = multer.diskStorage({
     destination: (req, file, cb) => {
         let dirPath = `./uploads/${req.body.user}`;
 
@@ -36,75 +39,48 @@ const storage = multer.diskStorage({
         cb(null, dirPath);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + file.originalname);
+        cb(null, file.originalname);
     }
 });
 
 //파일 저장경로 지정 및 크기제한
-const upload = multer({
+let upload = multer({
     storage: storage,
     limits:{
         filessize: 100 * 1024 * 1024
     }
-});
+}).single("streamfile");
 
 //해당 주소에서 image 받기
-app.post("/profile", upload.single("streamfile"), async(req, res) => {
+app.post("/profile", async(req, res) => {
     try{
-        console.log("success!");
-    }catch(error){
-        console.log(error);
-    }
-})
-
-app.get("/profile/user", async(req, res) => {
-    const dirPath = `./uploads/user`;
-
-    if(fs.existsSync(dirPath)){
-        const profileName = fs.readdirSync(dirPath)[0];
-        const profilePath = path.join(dirPath, profileName);
-
-        res.download(profilePath, profileName, (err) => {
-            if(err){
-                console.log(err);
-            }else{
-                console.log("download success");
+        upload(req, res, (err) => {
+            if(req.file){
+                console.log(req.file)
+                console.log("success!");
+            } else {
+                console.log("no such file");
             }
-        });
-    }else {
-        console.log("undefined");
-        res.status(500).json({text: "error"});
-    }
-})
-
-app.post("/add", upload.single("streamfile"), async(req, res) => {
-    try{
-        // if (fs.existsSync("./uploads/userprofile4")) {
-        //     fs.removeSync("./uploads/userprofile4");
-        // }
-        // fs.mkdirSync("./uploads/userprofile4");
-        // fs.writeFile(
-        //     "./uploads/userprofile4" + "/profile.html",
-        //     '<p><img src="' + req.file + '" alt="image"></p>'
-        // );
-        console.log(req.body);
-        console.log("success!");
+        })
     }catch(error){
         console.log(error);
     }
 })
 
-// app.get("/", async(req, res) => {
-
-// })
-
-// app.post("/add", upload.single("streamfile"), async(req, res) => {
-    
-// })
-
-// app.get("/detail/:postId", async(req, res) => {
-//     const postId = req.params.postId;
-// })
+app.get("/profileImg", async(req, res) => {
+    try{
+        const dirpath = "uploads/user";
+        const filename = fs.readdirSync(dirpath)[0];
+        if(filename){
+            const uri = "user/" + filename
+            res.status(200).send({profileImg: uri});
+        }else{
+            res.status(404).send({message: "no such image"});
+        }
+    }catch(err){
+        res.status(500).send({message: `${err}`})
+    }
+})
 
 //서버 실행알림
 app.listen(PORT, () => {
