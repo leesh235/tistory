@@ -82,6 +82,8 @@ app.get("/profileImg", async(req, res) => {
     }
 })
 
+//merge test
+
 //서버 실행알림
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
