@@ -32,11 +32,11 @@ const ProfileBtn = styled.button`
 
 `;
 
-const ProfilePresenter = ({userInfo, onClick}) => {
+const ProfilePresenter = ({userImg, userInfo, onClick}) => {
     return (
         <ProfileWrapper>
             <ProfileContainer>
-                <UserInfo>{`사진:           ${userInfo.userImg}`}</UserInfo>
+                <img src={`http://localhost:5000/${userImg}`} />
                 <UserInfo>{`아이디:           ${userInfo.userId}`}</UserInfo>
                 <UserInfo>{`email:            ${userInfo.email}`}</UserInfo>
             </ProfileContainer>

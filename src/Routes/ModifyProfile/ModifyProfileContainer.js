@@ -46,7 +46,7 @@ export default () => {
 
                 if(picture !== undefined && picture !== null){
                     const formData = new FormData();
-                    // formData.append("title", titleInput.value);
+                    formData.append("user", "user");
                     formData.append("streamfile", picture);
         
                     await axios({
