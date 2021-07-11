@@ -41,11 +41,10 @@ const MenusStyle = styled.div`
     flex-direction: row;
     align-items: center;
     margin-right: 50px;
-    padding: 40px 0px;
 `;
 
 const LinkStyle = styled.div`
-    margin-right: 50px;
+    margin: 0px 50px 0px 50px;
     cursor:pointer;
 `;
 
@@ -110,14 +109,11 @@ const Header = () => {
                 <LinkStyle>
                     {!loading && isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
                 </LinkStyle>
-                <LinkStyle>
-                    <Link to="/list">List</Link>
-                </LinkStyle>
+
                 <LinkStyle>
                     <ListWrapper>
-                        <LinksStyle onClick={onList}>ex</LinksStyle>
+                        <LinksStyle onClick={onList}>List</LinksStyle>
                         {open ? <ListBar diplay={"block"} /> : null }
-                    {console.log(open)}
                     </ListWrapper>
                 </LinkStyle>
             </MenusStyle>
