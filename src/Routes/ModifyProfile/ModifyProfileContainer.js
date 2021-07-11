@@ -45,6 +45,7 @@ export default () => {
                 }
 
                 if(picture !== undefined && picture !== null){
+                    const jwt = localStorage.getItem("token");
                     const formData = new FormData();
                     formData.append("user", "user");
                     formData.append("streamfile", picture);
@@ -54,7 +55,8 @@ export default () => {
                         url: "http://localhost:5000/profile",
                         data: formData,
                         headers: {
-                        "Content-Type": "multipart/form-data",
+                            Authorization: jwt,
+                            "Content-Type": "multipart/form-data",
                         }
                     })
                 }

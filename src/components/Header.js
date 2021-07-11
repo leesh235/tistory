@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { TOKENINFO } from "../apollo/tokenQuery";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
+import ListBar from "./ListBar";
 
 const HeaderStyle = styled.div`
     display: flex;
     flex-direction: row;
+    position: fixed;
+    top: 0;
+    min-width: 100%;
+    z-index: 9999999999;
+    background-color: white;
+    box-shadow: 0 0.5px 3px gray;
     justify-content: space-between;
     border-bottom: 1px solid gray;
     a{
@@ -26,7 +33,7 @@ const LogoStyle = styled.h1`
 `;
 
 const LogOutStyle = styled.div`
-    cursor:pointer
+
 `;
 
 const MenusStyle = styled.div`
@@ -34,11 +41,25 @@ const MenusStyle = styled.div`
     flex-direction: row;
     align-items: center;
     margin-right: 50px;
+    padding: 40px 0px;
 `;
 
 const LinkStyle = styled.div`
     margin-right: 50px;
+    cursor:pointer;
 `;
+
+const ListWrapper = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+`;
+
+const LinksStyle = styled.div`
+    cursor:pointer;
+`;
+
 
 //log out query
 const TOKENLOGOUT = gql`
@@ -53,7 +74,8 @@ const Header = () => {
        isLoggedIn
     } } = useQuery(TOKENINFO);
 
-    const [tokenMutation] = useMutation(TOKENLOGOUT)
+    const [open, setOpen] = useState(false);
+    const [tokenMutation] = useMutation(TOKENLOGOUT);
 
     const handleLogOut = async(e) => {
         e.preventDefault();
@@ -70,10 +92,12 @@ const Header = () => {
         }, 500);
     }
 
-    const onList = (e) => {
-        e.preventDefault();
-
-        console.log(e.target.className)
+    const onList = () => {
+        if(open === true){
+            setOpen(false);
+        }else{
+            setOpen(true);
+        }
     }
 
     return (
@@ -90,7 +114,11 @@ const Header = () => {
                     <Link to="/list">List</Link>
                 </LinkStyle>
                 <LinkStyle>
-                    <div className="aaa" onClick={onList}>ex</div>
+                    <ListWrapper>
+                        <LinksStyle onClick={onList}>ex</LinksStyle>
+                        {open ? <ListBar diplay={"block"} /> : null }
+                    {console.log(open)}
+                    </ListWrapper>
                 </LinkStyle>
             </MenusStyle>
         </HeaderStyle>

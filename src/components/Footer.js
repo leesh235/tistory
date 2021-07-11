@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const BodyStyle = styled.div`
-    width: auto;
+    min-width: 100%;
     height: auto;
 `;
 
