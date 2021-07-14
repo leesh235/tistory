@@ -13,14 +13,19 @@ const SearchStyle = styled.div`
     margin-top:150px;
 `;
 
-const InputStyle = styled.input.attrs({
-    required:true
-  })`
-  height: 50px;
-  width: 100%;
-  font-size: 20pt;
-  border: 0px;
-  border-bottom: 1px solid gray;
+const InputStyle = styled.input`
+    padding: 10px 8px;
+    margin-right: 10px;
+    height: 40px;
+    width: 200px;
+    font-size: 15pt;
+    border: 0px;
+    border-bottom: 1px solid gray;
+`;
+
+const SeachBtn = styled.input`
+    border: 0px;
+    background-color: white;
 `;
 
 
@@ -42,7 +47,7 @@ const SearchPresenter = ({setText}) => {
             <SearchStyle>
                 <form  onSubmit={handleSubmit} >
                     <InputStyle type="text" name="title" placeholder="검색어 입력..." onChange={handleText}/>
-                    <input type="submit" vlaue="submit"/>
+                    <SeachBtn type="submit" value="검색"/>
                 </form>
             </SearchStyle>
         </BodyStyle>
