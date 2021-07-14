@@ -14,16 +14,20 @@ export default {
                     const { password } = args;
                     const id = request.user.id;
                     // console.log(id);
-                    await prisma.user.update({
-                        where:{
-                            id
-                        },
-                        data: {
-                            password:generatPassword(password)
-                        }
-                    })
+
+                    if(password !== undefined && password !== null){
+                        await prisma.user.update({
+                            where:{
+                                id
+                            },
+                            data: {
+                                password:generatPassword(password)
+                            }
+                        })
+                    }
 
                     return true;
+
                 }else{
                     console.log("You need to log in to perform this action");
                     return false;
@@ -40,10 +44,8 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if( exist === true ){
-                    const { userImg } = args;
+                
                     const id = request.user.id;
-
-                    const setUserImg = null;
 
                     if(userImg !== undefined && userImg !== null){
                         setUserImg = id + userImg;
@@ -54,7 +56,7 @@ export default {
                             id
                         },
                         data: {
-                            userImg: setUserImg,
+                            userImg: id + "_profileImg",
                         }
                     })
 

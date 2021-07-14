@@ -1,5 +1,5 @@
 type Mutation {
-    ModifyProfile(password: String!): Boolean!
+    ModifyProfile(password: String): Boolean!
     ModifyUserImg(userImg:String): Boolean
 }
 
