@@ -3,15 +3,14 @@ import styled from "styled-components";
 
 const BodyStyle = styled.div`
     min-width: 100%;
-    height: auto;
+    height:200px;
+    background-color: silver;
+    box-shadow: 0px -0.5px 3px gray;
 `;
 
 const FooterStyle = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top:100px;
-    height:200px;
-    border-top: 1px solid gray;
 `;
 
 const SelectStyle = styled.div`
