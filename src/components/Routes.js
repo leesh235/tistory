@@ -17,7 +17,7 @@ import modifyPostIndex from '../Routes/ModifyPost/index';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    margin: 100px auto 0px auto;
+    margin: 100px auto 100px auto;
     width: 1180px;
 `;
 
