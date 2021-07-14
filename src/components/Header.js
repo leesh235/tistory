@@ -16,7 +16,6 @@ const HeaderStyle = styled.div`
     background-color: white;
     box-shadow: 0 0.5px 3px gray;
     justify-content: space-between;
-    border-bottom: 1px solid gray;
     a{
         text-decoration: none;
         color: inherit;
