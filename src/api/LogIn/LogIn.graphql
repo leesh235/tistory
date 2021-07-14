@@ -1,5 +1,10 @@
+type LoginInfo {
+    userId: String
+    token: String
+}
+
 type Mutation {
-    login(userId: String! password: String!): String!
+    login(userId: String! password: String!): LoginInfo!
 }
 
 type Query {

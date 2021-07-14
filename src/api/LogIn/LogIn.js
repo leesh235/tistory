@@ -19,22 +19,34 @@ export default {
 
                 //user가 없으면
                 if(!userInfo){
-                    return null;
+                    return {
+                        userId: null,
+                        token: null
+                    };
                 };
     
                 //password가 다르면
                 if(userInfo.password !== generatPassword(password)){
-                    return null;
+                    return {
+                        userId: null,
+                        token: null
+                    };
                 };
 
                 //토큰생성
                 const token = generatToken(userInfo.id);
                 
-                return token;
+                return {
+                    userId: userInfo.userId,
+                    token: token
+                };
 
             } catch(error) {
                 console.log(error);
-                return null;
+                return {
+                    userId: null,
+                    token: null
+                };
             }
         }
     }
