@@ -4,10 +4,15 @@ import LogInPresenter from './LogInPresenter';
 import { useHistory } from "react-router-dom";
 import useInput from "../../Hooks/useInput";
 import { LOGIN, TOKENLOGIN } from "./LogInQuery";
+import { useDispatch } from "react-redux";
+import { setUserId } from "../../redux/actions/user";
+
 export default () => {
     
     const idInput = useInput("");
     const passInput = useInput("");
+
+    const dispatch = useDispatch();
 
     const [loginMutation] = useMutation(LOGIN, {
         variables: {
@@ -24,8 +29,10 @@ export default () => {
         try{
             if(idInput.value !== "" && passInput.value !== ""){
                 const {
-                    data: {login: token}
+                    data: {login: {token, userId}}
                 } = await loginMutation();
+
+                dispatch(setUserId(userId));
 
                 if(token !== "" || token !== "undefined"){
                     await tokenMutation({
