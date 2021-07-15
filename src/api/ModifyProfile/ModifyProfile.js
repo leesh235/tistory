@@ -13,7 +13,7 @@ export default {
                 if( exist === true ){
                     const { password } = args;
                     const id = request.user.id;
-                    // console.log(id);
+                    console.log(password);
 
                     if(password !== undefined && password !== null){
                         await prisma.user.update({
@@ -29,7 +29,7 @@ export default {
                     return true;
 
                 }else{
-                    console.log("You need to log in to perform this action");
+                    console.log("You need to log in to perform this action1");
                     return false;
                 }
 
@@ -62,7 +62,7 @@ export default {
 
                     return true;
                 }else{
-                    console.log("You need to log in to perform this action");
+                    console.log("You need to log in to perform this action2");
                     return false;
                 }
 
