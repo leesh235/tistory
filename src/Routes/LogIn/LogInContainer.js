@@ -36,7 +36,9 @@ export default () => {
 
                 if(token !== "" || token !== "undefined"){
                     await tokenMutation({
-                        variables: {token}
+                        variables: {
+                            token
+                        }
                     });
                     setTimeout(() => {
                         history.push("/")

@@ -10,7 +10,7 @@ const Input = styled.input`
     padding: 10px;
 `;
 
-const Button = styled.button`
+const Btn = styled.div`
     width: 460px;
     height: 60px;
     background-color: #white;
@@ -31,11 +31,11 @@ const Wrapper = styled.div`
     justify-content: center;
     height: 100%;
     width: 100%;
-    form {
-        display: flex;
-        margin-bottom: 10px;
-        flex-direction: column;
-    }
+`;
+const FormWrapper = styled.div`
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: column;
 `;
 
 const Container = styled.div`
@@ -54,12 +54,12 @@ export default ({ password, passConfirm, handlePicture, onSubmit }) => {
     return (
         <Wrapper>
             <Container>
-                <form onSubmit={onSubmit}>
+                <FormWrapper>
                     <ImgIn type="file" onChange={handlePicture} />
                     <Input placeholder={"  비밀번호"} {...password} type={"password"}></Input>
                     <Input placeholder={"  비밀번호 확인"} {...passConfirm} type={"password"}></Input>
-                    <Button>변경하기</Button>                    
-                </form>
+                    <Btn onClick={onSubmit}>변경하기</Btn>                   
+                </FormWrapper> 
             </Container>
         </Wrapper>
     );

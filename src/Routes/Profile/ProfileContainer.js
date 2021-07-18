@@ -3,10 +3,13 @@ import { useQuery } from '@apollo/client';
 import { PROFILE } from "./ProfileQuery";
 import ProfilePresenter from "./ProfilePresenter";
 import axios from "axios";
+import {  useSelector } from "react-redux";
 
 const ProfileContainer = () => {
 
     const [userImg, setUserImg] = useState("");
+
+    const store_userId = useSelector((state) => state.user);
 
     const filesever = async() => {
         const res = await axios({
@@ -29,6 +32,7 @@ const ProfileContainer = () => {
 
     useEffect(() => {
         filesever();
+        console.log(store_userId)
     },[])
 
     return (
