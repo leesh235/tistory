@@ -34,7 +34,9 @@ export default () => {
 
                 dispatch(setUserId(userId));
 
-                if(token !== "" || token !== "undefined"){
+                if(token !== null || token !== null){
+                    dispatch(setUserId(userId));
+
                     await tokenMutation({
                         variables: {
                             token
@@ -43,8 +45,13 @@ export default () => {
                     setTimeout(() => {
                         history.push("/")
                     }, 500);
+
+                }else{
+                    window.alert("아이디가 없거나 비밀번호가 틀렸습니다.");
                 }
-            } 
+            } else{
+                window.alert("아이디, 비밀번호를 입력하세요");
+            }
         }catch (error) {
             console.log(error);
         }
