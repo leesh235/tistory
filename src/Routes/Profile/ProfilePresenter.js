@@ -48,7 +48,9 @@ const ProfilePresenter = ({userImg, userInfo}) => {
             <ProfileBtn>
                 <Link to={{
                     pathname: "/modifyProfile",
-                    state: userInfo.userImgId
+                    state: {
+                        userId: userInfo.userId
+                    }
                 }}>수정</Link>
             </ProfileBtn>
         </ProfileWrapper>
