@@ -17,22 +17,15 @@ const ProfileContainer = () => {
         const userId = data.getProfile.userId;
 
         if(data.getProfile.userImgId !== null){
-            console.log("안녕")
-            try{
-                const res = await axios({
-                    method: "get",
-                    url: `http://localhost:5000/profileImg/${userId}`,
-                    headers: {
-                        Authorization: jwt,
-                        "Content-Type": "multipart/form-data"
-                    }
-                })
-                console.log("userId: ", userId)
-                console.log(res.data.profileImg);
-                setUserImg(res.data.profileImg);
-            }catch(err){
-                console.log(err)
-            }
+            const res = await axios({
+                method: "get",
+                url: `http://localhost:5000/profileImg/${userId}`,
+                headers: {
+                    Authorization: jwt,
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            setUserImg(res.data.profileImg);
         }
     }
 
