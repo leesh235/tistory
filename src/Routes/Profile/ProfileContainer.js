@@ -30,8 +30,10 @@ const ProfileContainer = () => {
     }
 
     useEffect(() => {
-        filesever();
-    },[])
+        if(!loading){
+            filesever();
+        }
+    },[data])
 
     return (
         <div>
