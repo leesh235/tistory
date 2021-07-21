@@ -29,11 +29,6 @@ const ProfileContainer = () => {
         }
     }
 
-    const onClick = (e) => {
-        e.preventDefault();
-        window.location.replace("/modifyProfile");
-    }
-
     useEffect(() => {
         filesever();
     },[])
@@ -43,7 +38,6 @@ const ProfileContainer = () => {
             {!loading && data.getProfile ? <ProfilePresenter 
                 userInfo={data.getProfile} 
                 userImg={userImg}
-                onClick={onClick} 
                 /> 
             : "loading..."}
         </div>
