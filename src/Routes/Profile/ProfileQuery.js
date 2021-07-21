@@ -5,6 +5,7 @@ export const PROFILE = gql`
         getProfile{
             userId
             email
+            userImgId
         }
     }
 `;
