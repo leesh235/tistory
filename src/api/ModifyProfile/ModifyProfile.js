@@ -9,7 +9,7 @@ export default {
             try{
                 
                 const exist = isAuthenticated(request);
-                // console.log(request.user);
+                console.log(request.user);
                 if( exist === true ){
                     const { password } = args;
                     const id = request.user.id;
@@ -24,9 +24,12 @@ export default {
                                 password:generatPassword(password)
                             }
                         })
-                    }
 
-                    return true;
+                        return true;
+                    } else{
+                        console.log("비밀번호 변경을 하지 않았습니다.")
+                        return false;
+                    }
 
                 }else{
                     console.log("You need to log in to perform this action1");
@@ -45,30 +48,30 @@ export default {
 
                 if( exist === true ){
                 
+                    const { userImg } = args;
                     const id = request.user.id;
-
-                    if(userImg !== undefined && userImg !== null){
-                        setUserImg = id + userImg;
-                    }
-
-                    await prisma.user.update({
+                    console.log(userImg)
+                    const data = await prisma.user.update({
                         where:{
                             id
                         },
                         data: {
-                            userImg: id + "_profileImg",
+                            userImgId: id + "_profileImg"
                         }
                     })
 
-                    return true;
+                    console.log(data)
+                    console.log(id + "_profileImg")
+                    return {userImgId:id + "_profileImg"};
+
                 }else{
                     console.log("You need to log in to perform this action2");
-                    return false;
+                    return {userImgId:""};
                 }
 
             } catch (error){
                 console.log(error);
-                return false;
+                return {userImgId:""};
             }
         }
     }
