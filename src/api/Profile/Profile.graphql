@@ -1,7 +1,7 @@
 type Profile{
     userId: String
     email: String
-    userImg: String
+    userImgId: String
     id: String
 }
 
