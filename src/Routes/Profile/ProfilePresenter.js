@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 
 const ProfileWrapper = styled.div`
     display: flex;
@@ -33,7 +33,7 @@ const ProfileBtn = styled.button`
 
 `;
 
-const ProfilePresenter = ({userImg, userInfo, onClick}) => {
+const ProfilePresenter = ({userImg, userInfo}) => {
     return (
         <ProfileWrapper>
             <ProfileContainer>
@@ -41,7 +41,13 @@ const ProfilePresenter = ({userImg, userInfo, onClick}) => {
                 <UserInfo>{`아이디:           ${userInfo.userId}`}</UserInfo>
                 <UserInfo>{`email:            ${userInfo.email}`}</UserInfo>
             </ProfileContainer>
-            <ProfileBtn onClick={onClick}>수정</ProfileBtn>
+
+            <ProfileBtn>
+                <Link to={{
+                    pathname: "/modifyProfile",
+                    state: userInfo.userImgId
+                }}>수정</Link>
+            </ProfileBtn>
         </ProfileWrapper>
     );
 }
