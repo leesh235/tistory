@@ -30,7 +30,10 @@ const UserInfo = styled.div`
 `;
 
 const ProfileBtn = styled.button`
-
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
 `;
 
 const ProfilePresenter = ({userImg, userInfo}) => {
