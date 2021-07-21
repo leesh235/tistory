@@ -1,9 +1,9 @@
 import React from 'react';
 import ModifyProfileContainer from './ModifyProfileContainer';
 
-const ModifyProfileIndex = () => {
+const ModifyProfileIndex = (props) => {
         return(
-                <ModifyProfileContainer />
+                <ModifyProfileContainer props={props} />
         );
 }
 

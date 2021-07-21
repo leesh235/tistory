@@ -7,9 +7,9 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {  useSelector } from "react-redux";
 
-export default () => {
+export default ({props}) => {
 
-
+    let userId = props.history.location.state.userId
     const passwordInput = useInput("");
     const passConfirmInput = useInput("");
     const [picture, setPicture] = useState("");
@@ -30,7 +30,7 @@ export default () => {
     const onSubmit = async(e) => {
         e.preventDefault();
 
-        try{
+        try{     
             if(passwordInput.value !== passConfirmInput.value){
                 alert("비밀번호가 일치하지 않습니다.");
             } else{
@@ -40,12 +40,17 @@ export default () => {
                         password: passwordInput.value
                     }
                 });
-                console.log(ModifyProfile)
+                // console.log(ModifyProfile)
 
+                if(ModifyProfile){
+                    alert("비밀번호가 변경되었습니다.");
+                    history.goBack();
+                }
+                
                 if(picture !== undefined && picture !== null){
                     const jwt = localStorage.getItem("token");
                     const formData = new FormData();
-                    formData.append("user", store_userId.user);
+                    formData.append("user", userId);
                     formData.append("streamfile", picture);
         
                     await axios({
@@ -58,11 +63,6 @@ export default () => {
                         }
                     })
                 }
-
-                if(ModifyProfile){
-                    alert("비밀번호가 변경되었습니다.");
-                    history.goBack();
-                }
             }
 
         } catch(error){
@@ -71,7 +71,10 @@ export default () => {
     }
 
     useEffect(() => {
-        console.log(store_userId)
+        if(userId === ""){
+            history.push("/profile");
+        }
+        console.log(userId);
     },[])
 
     return (
