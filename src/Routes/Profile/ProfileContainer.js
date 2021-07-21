@@ -9,22 +9,33 @@ const ProfileContainer = () => {
 
     const [userImg, setUserImg] = useState("");
 
-    const store_userId = useSelector((state) => state.user);
-
-    const filesever = async() => {
-        const res = await axios({
-            method: "get",
-            url: "http://localhost:5000/profileImg",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        })
-        console.log(res.data.profileImg);
-        setUserImg(res.data.profileImg);
-    }
-
     const { loading, data } = useQuery(PROFILE);
     // console.log(data);
+
+    const filesever = async() => {
+        const jwt = localStorage.getItem("token");
+        const userId = data.getProfile.userId;
+
+        if(data.getProfile.userImgId !== null){
+            console.log("안녕")
+            try{
+                const res = await axios({
+                    method: "get",
+                    url: `http://localhost:5000/profileImg/${userId}`,
+                    headers: {
+                        Authorization: jwt,
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+                console.log("userId: ", userId)
+                console.log(res.data.profileImg);
+                setUserImg(res.data.profileImg);
+            }catch(err){
+                console.log(err)
+            }
+        }
+    }
+
     const onClick = (e) => {
         e.preventDefault();
         window.location.replace("/modifyProfile");
@@ -32,7 +43,6 @@ const ProfileContainer = () => {
 
     useEffect(() => {
         filesever();
-        console.log(store_userId)
     },[])
 
     return (
