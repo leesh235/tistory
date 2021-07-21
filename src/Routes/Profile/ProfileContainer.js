@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { PROFILE } from "./ProfileQuery";
 import ProfilePresenter from "./ProfilePresenter";
 import axios from "axios";
-import {  useSelector } from "react-redux";
 
 const ProfileContainer = () => {
 
