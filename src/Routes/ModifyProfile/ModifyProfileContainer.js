@@ -5,7 +5,6 @@ import ModifyProfilePresenter from './ModifyProfilePresenter';
 import useInput from "../../Hooks/useInput";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import {  useSelector } from "react-redux";
 
 export default ({props}) => {
 
@@ -13,8 +12,6 @@ export default ({props}) => {
     const passwordInput = useInput("");
     const passConfirmInput = useInput("");
     const [picture, setPicture] = useState("");
-
-    const store_userId = useSelector((state) => state.user);
 
     const [setProfileMutation] = useMutation(MODIFYPROFILE);
 
@@ -35,21 +32,24 @@ export default ({props}) => {
                 alert("비밀번호가 일치하지 않습니다.");
             } else{
 
-                const { data: { ModifyProfile } } = await setProfileMutation({
-                    variables: {
-                        password: passwordInput.value
+                if(passwordInput.value !== ""){
+                    const { data: { ModifyProfile } } = await setProfileMutation({
+                        variables: {
+                            password: passwordInput.value
+                        }
+                    });
+                    // console.log(ModifyProfile)
+    
+                    if(ModifyProfile){
+                        alert("비밀번호가 변경되었습니다.");
+                        history.goBack();
                     }
-                });
-                // console.log(ModifyProfile)
-
-                if(ModifyProfile){
-                    alert("비밀번호가 변경되었습니다.");
-                    history.goBack();
                 }
                 
                 if(picture !== undefined && picture !== null){
                     const jwt = localStorage.getItem("token");
                     const formData = new FormData();
+                    console.log(userId)
                     formData.append("user", userId);
                     formData.append("streamfile", picture);
         
@@ -62,6 +62,8 @@ export default ({props}) => {
                             "Content-Type": "multipart/form-data",
                         }
                     })
+                    alert("프로필 사진이 변경되었습니다.");
+                    history.goBack();
                 }
             }
 
