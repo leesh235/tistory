@@ -9,11 +9,11 @@ const BodyStyle = styled.main`
     margin: 30px 100px 50px 100px;
 `;
 
-const HomePresenter = ({ allPosts }) => {
+const HomePresenter = ({ postList }) => {
 
     return(//현재
         <BodyStyle>
-            {allPosts.map((post, index) => {
+            {postList.map((post, index) => {
                 return <Contents
                     key={index}
                     postId={post.postId}
