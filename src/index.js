@@ -6,6 +6,7 @@ import path from "path";
 import fs from "fs-extra";
 import morgan from "morgan";
 import { profileToDB } from "./modules/uploadImg"
+import { upload } from "./middleware/multer"
 
 const app = express();
 const PORT = 5000;
@@ -22,37 +23,11 @@ app.use(morgan('dev'));
 
 //정적자원 이용
 app.use(express.static('uploads'));
-//multer 설정
-//post로 전송된 파일의 저장경로와 파일명 명시
-let storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        let dirPath = `./uploads/${req.body.user}`;
+app.use(express.static('posts'));
 
-        if (fs.existsSync(dirPath)) {
-            const files = fs.readdirSync(dirPath)
-            fs.removeSync(dirPath+"/"+files[0])
-            console.log(files[0])
-        }else{
-            fs.mkdirSync(dirPath);
-        }
-        cb(null, dirPath);
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    }
-});
-
-//파일 저장경로 지정 및 크기제한
-let upload = multer({
-    storage: storage,
-    limits:{
-        filessize: 100 * 1024 * 1024
-    }
-}).single("streamfile");
 
 //profile image
-app.post("/profile", async(req, res) => {
-
+app.post("/profile", upload, async(req, res) => {
     try{
         upload(req, res, async(err) => {
             const {data} = await profileToDB(req);
