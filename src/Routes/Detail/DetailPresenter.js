@@ -77,7 +77,11 @@ const DetailPresenter = ({post, postId, equal}) => {
             <ContentsStyle>{post.contents}</ContentsStyle>
             {equal ? 
                 <Link to={{
-                    pathname: `/modifyPost/${postId}`
+                    pathname: `/modifyPost/${postId}`,
+                    state:{
+                        title: post.title,
+                        contents: post.contents
+                    }
                 }}>
                     <PostBtn>수정</PostBtn>
                 </Link> :
