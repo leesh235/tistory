@@ -13,7 +13,7 @@ import ProfileIndex from '../Routes/Profile/index';
 import MyPostIndex from '../Routes/MyPost/index';
 import ForgetIndex from '../Routes/ForgetPass/index';
 import ModifyProfileIndex from '../Routes/ModifyProfile/index';
-import modifyPostIndex from '../Routes/ModifyPost/index';
+import ModifyPostIndex from '../Routes/ModifyPost/index';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -38,7 +38,7 @@ const Routes = () => {
                 <Route exact path="/page=:i" component={HomeIndex} />
                 <Route exact path="/add" component={AddIndex} />
                 <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
-                <Route exact path="/modifyPost/:postId" component={modifyPostIndex} />
+                <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
             </Wrapper>
             <Footer />
         </Router>
