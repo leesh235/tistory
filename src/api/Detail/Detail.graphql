@@ -3,6 +3,7 @@ type Post {
     contents: String
     createdAt: DateTime
     id: String
+    postImgId: String
 }
 
 type ConfirmInfo{
