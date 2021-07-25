@@ -3,17 +3,9 @@ import fs from "fs-extra";
 
 //multer 설정
 //post로 전송된 파일의 저장경로와 파일명 명시
-const controller = (init) => {
-    if(init.user !== ""){
-        return `./uploads/${init.user}`
-    }else if (init.post !== ""){
-        return `./posts/${init.post}`
-    }
-}
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        // let dirPath = `./uploads/${req.body.user}`;
-        let dirPath = controller(req.body);
+        let dirPath = `./uploads/${req.body.user}`;
 
         if (fs.existsSync(dirPath)) {
             const files = fs.readdirSync(dirPath)
