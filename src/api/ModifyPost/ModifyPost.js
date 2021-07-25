@@ -46,6 +46,38 @@ export default {
                 console.log(error);
                 return false;
             }
+        },
+        ModifyPostImg: async(_, args, { request }) => {
+            try{
+                const exist = isAuthenticated(request);
+
+                if( exist === true ){
+                
+                    const { postImg } = args;
+                    console.log(postImg)
+                    const id = request.user.id;
+                    // console.log(userImg)
+                    const data = await prisma.post.update({
+                        where:{
+                            postId: postImg
+                        },
+                        data: {
+                            postImgId: postImg + "_postImg"
+                        }
+                    })
+
+                    console.log("data: ", data)
+                    console.log(postImg + "_profileImg");
+                    return {postImgId:postImg + "_postImg"};
+
+                }else{
+                    console.log("You need to log in to perform this action2");
+                    return {postImgId:""};
+                }
+            }catch(err){
+                console.log(err);
+                return {postImgId:""}
+            }
         }
     }
 }

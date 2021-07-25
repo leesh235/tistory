@@ -1,5 +1,11 @@
+type ResPostId {
+    postImgId: String
+}
+
+
 type Mutation {
     ModifyPost(postId: String! title: String! contents: String): Boolean!
+    ModifyPostImg(postImg: String): ResPostId
 }
 
 type Query {
