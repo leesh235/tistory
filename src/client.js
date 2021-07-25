@@ -8,9 +8,9 @@ import fetch from "cross-fetch";
 
 export const makeClient = (token) => {
 
-    // const errorLink = onError(({ graphQLErrors }) => {
-    //     if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
-    //   })
+    const errorLink = onError(({ graphQLErrors }) => {
+        if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message))
+      })
 
     const httpLink = new createHttpLink({
         uri: "http://localhost:4000/",
@@ -27,25 +27,9 @@ export const makeClient = (token) => {
     });
 
     const client = new ApolloClient({
-        link: authLink.concat(httpLink),
-        // link: ApolloLink.from([errorLink, authLink, , httpLink]),
+        // link: authLink.concat(httpLink),
+        link: ApolloLink.from([errorLink, authLink, , httpLink]),
         cache: new InMemoryCache()
     });
     return client;
-}
-
-// export let makeClient = (token) => { 
-//     const httpLink = new createHttpLink({
-//         uri: "http://localhost:4000/",
-//         fetch
-//     });
-//     const client = new ApolloClient({
-//         link: httpLink,
-//         credentials: "same-origin",
-//         headers: {
-//             authorization: token ? `Bearer ${token}` : ""
-//         },
-//     });
-//     return client;
-// }
-  
+}  
