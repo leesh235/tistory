@@ -61,7 +61,7 @@ const PostBtn = styled.button`
 
 `;
 
-const DetailPresenter = ({post, postId, equal}) => {
+const DetailPresenter = ({postImg, post, postId, equal}) => {
 
     return(
         <Mcontents>
@@ -75,6 +75,7 @@ const DetailPresenter = ({post, postId, equal}) => {
                 </HeaderStyle>
             </HeaderSize>
             <ContentsStyle>{post.contents}</ContentsStyle>
+            {postImg ? <img src={`http://localhost:5000/${postImg}`} /> : ""}
             {equal ? 
                 <Link to={{
                     pathname: `/modifyPost/${postId}`,

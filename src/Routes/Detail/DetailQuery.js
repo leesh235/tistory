@@ -9,6 +9,7 @@ export const DETAIL = gql`
                 contents
                 title
                 createdAt
+                postImgId
             }
         }
     }
