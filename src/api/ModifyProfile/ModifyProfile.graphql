@@ -4,7 +4,7 @@ type ResUserId {
 
 type Mutation {
     ModifyProfile(password: String): Boolean!
-    ModifyUserImg(userImg:String): ResUserId
+    ModifyUserImg(userImg: String): ResUserId
 }
 
 type Query {

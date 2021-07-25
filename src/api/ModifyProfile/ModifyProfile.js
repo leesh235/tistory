@@ -9,7 +9,7 @@ export default {
             try{
                 
                 const exist = isAuthenticated(request);
-                console.log(request.user);
+                // console.log(request.user);
                 if( exist === true ){
                     const { password } = args;
                     const id = request.user.id;
@@ -50,7 +50,7 @@ export default {
                 
                     const { userImg } = args;
                     const id = request.user.id;
-                    console.log(userImg)
+                    // console.log(userImg)
                     const data = await prisma.user.update({
                         where:{
                             id
@@ -60,8 +60,8 @@ export default {
                         }
                     })
 
-                    console.log(data)
-                    console.log(id + "_profileImg")
+                    // console.log("data: ", data)
+                    // console.log(id + "_profileImg")
                     return {userImgId:id + "_profileImg"};
 
                 }else{
