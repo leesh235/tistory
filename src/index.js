@@ -18,7 +18,6 @@ const corsOptions = {
 
 //middleware 등록
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 //정적자원 이용
@@ -51,28 +50,39 @@ let upload = multer({
     }
 }).single("streamfile");
 
-//해당 주소에서 image 받기
+//profile image
 app.post("/profile", async(req, res) => {
+
     try{
-        upload(req, res, (err) => {
+        upload(req, res, async(err) => {
+            const {data} = await profileToDB(req);
+            // console.log("data: ", data.ModifyUserImg.userImgId);
+
+            if(data.ModifyUserImg.userImgId === null){
+                return false;
+            }
+
             if(req.file){
-                console.log(req.file)
+                // console.log(req.file)
                 console.log("success!");
             } else {
                 console.log("no such file");
             }
         })
     }catch(error){
+        console.log("upload fail");
         console.log(error);
     }
 })
 
-app.get("/profileImg", async(req, res) => {
+app.get("/profileImg/:userId", async(req, res) => {
     try{
-        const dirpath = "uploads/user";
+        const userId = req.params.userId
+        // console.log("userId: ", userId)
+        const dirpath = `uploads/${userId}`;
         const filename = fs.readdirSync(dirpath)[0];
         if(filename){
-            const uri = "user/" + filename
+            const uri = dirpath+ "/" + filename
             res.status(200).send({profileImg: uri});
         }else{
             res.status(404).send({message: "no such image"});
@@ -82,7 +92,7 @@ app.get("/profileImg", async(req, res) => {
     }
 })
 
-//merge test
+//post image
 
 //서버 실행알림
 app.listen(PORT, () => {
