@@ -31,21 +31,20 @@ const SummaryIn = styled.textarea`
     margin-bottom: 20px;
 `;
 
-const SubmitIn = styled.button`
+const SubmitIn = styled.div`
     width: 60px;
     height: 60px;
 `;
 
-export default ({ title, contents, onSubmit }) => {
+export default ({ title, contents, onSubmit, handlePicture }) => {
     return (
         <BodyStyle>
             <BoxStyle>
                 <ContentStyle>
-                    <form onSubmit={onSubmit}>
+                        <input type="file" onChange={handlePicture} />
                         <TitleIn placeholder={"  제목"} {...title} />
                         <SummaryIn placeholder={"  내용"} {...contents} />
-                        <SubmitIn>완료</SubmitIn>
-                    </form>
+                        <SubmitIn onClick={onSubmit}>완료</SubmitIn>
                 </ContentStyle>
             </BoxStyle>
         </BodyStyle>

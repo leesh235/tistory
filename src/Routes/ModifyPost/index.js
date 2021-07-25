@@ -1,9 +1,9 @@
 import React from 'react';
 import ModifyPostContainer from './ModifyPostContainer';
 
-const ModifyPostIndex = () => {
+const ModifyPostIndex = ({history, location}) => {
         return(
-                <ModifyPostContainer />
+                <ModifyPostContainer history={history} location={location} />
         );
 }
 

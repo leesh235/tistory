@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { MODIFYPOST } from "./ModifyPostQuery";
 import ModifyPostPresenter from './ModifyPostPresenter';
 import useInput from "../../Hooks/useInput";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
-export default () => {
+export default ({history, location}) => {
+
+    useEffect(() => {
+        if(history.location.state === ""){
+            setHistory.goBack();
+        }
+       console.log(history.location.state) 
+    },[])
 
     const {postId} = useParams();
 
-    const titleInput = useInput("");
-    const contentsInput = useInput("");
+    const titleInput = useInput(history.location.state.title);
+    const contentsInput = useInput(history.location.state.contents);
+
+    const [postImg, setPostImg] = useState("");
 
     const [setPostMutation] = useMutation(MODIFYPOST, {
         variables: {
@@ -21,7 +31,14 @@ export default () => {
         }
     })
 
-    const history = useHistory();
+    const setHistory = useHistory();
+
+    const handlePicture = (e) => {
+        e.preventDefault();
+        const image = e.target.files[0];
+        // console.log(image);
+        setPostImg(image);
+    }
     
     const onSubmit = async(e) => {
         e.preventDefault();
@@ -34,12 +51,32 @@ export default () => {
                 if(ModifyPost){
                     alert("내용이 변경되었습니다.")
                     setTimeout(() => {
-                        history.goBack()
+                        setHistory.goBack()
                     }, 500);
                 }
 
             }else{
                 alert("제목을 입력하세요.")
+            }
+
+            if(postImg !== undefined && postImg !== null){
+                const jwt = localStorage.getItem("token");
+                const formData = new FormData();
+                // console.log(postId)
+                formData.append("user", postId);
+                formData.append("streamfile", postImg);
+    
+                await axios({
+                    method: "post",
+                    url: "http://localhost:5000/post",
+                    data: formData,
+                    headers: {
+                        Authorization: jwt,
+                        "Content-Type": "multipart/form-data",
+                    }
+                })
+                alert("사진이 변경되었습니다.");
+                setHistory.goBack();
             }
 
         }catch(error){
@@ -52,6 +89,7 @@ export default () => {
             title={titleInput}
             contents={contentsInput}
             onSubmit={onSubmit}
+            handlePicture={handlePicture}
         />
     );
 
