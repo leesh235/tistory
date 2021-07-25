@@ -1,4 +1,4 @@
-import { MODIFYUERIMG } from "./query.js";
+import { MODIFYUERIMG, MODIFYPOSTIMG } from "./query.js";
 import  {makeClient}  from "../client.js";
 
 //front에서 formdata로 userId를 넘겨 받아서
@@ -14,6 +14,18 @@ export const profileToDB = async(req) => {
         mutation: MODIFYUERIMG,
         variables: {
             userImg: req.body.user
+        }
+    });
+};
+
+export const postToDB = async(req) => {
+    // console.log("token: ", req.headers.authorization);
+    // console.log("userId: ", req.body.user);
+    const client = makeClient(req.headers.authorization);
+    return await client.mutate({
+        mutation: MODIFYPOSTIMG,
+        variables: {
+            postImg: req.body.post
         }
     });
 };

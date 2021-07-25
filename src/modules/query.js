@@ -7,3 +7,11 @@ export const MODIFYUERIMG = gql`
         }
     }
 `;
+
+export const MODIFYPOSTIMG = gql`
+    mutation ModifyUserImg($postImg: String){
+        ModifyUserImg(postImg: $userImg){
+            postImgId
+        }
+    }
+`;
