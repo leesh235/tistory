@@ -40,7 +40,7 @@ const ProfilePresenter = ({userImg, userInfo}) => {
     return (
         <ProfileWrapper>
             <ProfileContainer>
-                <img src={`http://localhost:5000/${userImg}`} />
+                {userImg ? <img src={`http://localhost:5000/${userImg}`} /> : ""}
                 <UserInfo>{`아이디:           ${userInfo.userId}`}</UserInfo>
                 <UserInfo>{`email:            ${userInfo.email}`}</UserInfo>
             </ProfileContainer>

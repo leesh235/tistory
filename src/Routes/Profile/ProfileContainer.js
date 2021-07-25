@@ -5,17 +5,18 @@ import ProfilePresenter from "./ProfilePresenter";
 import axios from "axios";
 
 const ProfileContainer = () => {
+    
+    const [userInfo, setUserInfo] = useState({});
 
     const [userImg, setUserImg] = useState("");
 
     const { loading, data } = useQuery(PROFILE);
-    // console.log(data);
 
     const filesever = async() => {
-        const jwt = localStorage.getItem("token");
-        const userId = data.getProfile.userId;
 
         if(data.getProfile.userImgId !== null){
+            const jwt = localStorage.getItem("token");
+            const userId = data.getProfile.userId;
             const res = await axios({
                 method: "get",
                 url: `http://localhost:5000/profileImg/${userId}`,
@@ -29,10 +30,15 @@ const ProfileContainer = () => {
     }
 
     useEffect(() => {
-        if(!loading){
-            filesever();
+        if(!loading && data){
+            console.log(data);
+            setUserInfo(data.getProfile)
+            if(data.getProfile){
+
+                filesever();
+            }
         }
-    },[data])
+    },[loading,userInfo])
 
     return (
         <div>
