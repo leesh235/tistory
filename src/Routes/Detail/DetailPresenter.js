@@ -46,9 +46,19 @@ const UserNameStyle = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 800px;
     min-height: 100px;
     margin: 50px 0px;
+    >:nth-child(n){
+        margin-bottom: 50px;
+    }
+`;
+
+const ImageStyle = styled.div`
+    width: auto;
+    height: auto;
 `;
 
 const BtnWrapper = styled.div`
@@ -87,8 +97,10 @@ const DetailPresenter = ({postImg, post, postId, equal}) => {
             </Top>
 
             <ContentWrapper>
+                {postImg ? <ImageStyle>
+                        <img src={`http://localhost:5000/${postImg}`} />
+                    </ImageStyle> : ""}
                 {post.contents}
-                {postImg ? <img src={`http://localhost:5000/${postImg}`} /> : ""}
             </ContentWrapper>
 
             <BtnWrapper>
