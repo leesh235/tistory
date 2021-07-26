@@ -2,58 +2,70 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const ProfileWrapper = styled.div`
+const Wrapper = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+    >:nth-child(1){
+        margin-bottom: 20px;
+    }
 `;
 
 const ProfileContainer = styled.div`
+    width: 800px;
+    min-height: 600px;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: 70vh;
-    width: 70vh;
+    padding: 50px;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    a{
-        text-decoration: none;
-        color: inherit;
+    >:nth-child(n){
+        margin-bottom: 20px;
     }
 `;
 
 const UserInfo = styled.div`
-    margin-bottom: 15px
+    
 `;
 
-const ProfileBtn = styled.button`
+const ImageWrapper = styled.div`
+
+`;
+
+const BtnWrapper = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    width: 800px;
     a{
         text-decoration: none;
         color: inherit;
     }
 `;
 
+const ProfileBtn = styled.div`
+
+`;
+
 const ProfilePresenter = ({userImg, userInfo}) => {
     return (
-        <ProfileWrapper>
+        <Wrapper>
             <ProfileContainer>
-                {userImg ? <img src={`http://localhost:5000/${userImg}`} /> : ""}
-                <UserInfo>{`아이디:           ${userInfo.userId}`}</UserInfo>
-                <UserInfo>{`email:            ${userInfo.email}`}</UserInfo>
+                <ImageWrapper>
+                    {userImg ? <img src={`http://localhost:5000/${userImg}`} /> : ""}
+                </ImageWrapper>
+                <UserInfo>{`아이디: ${userInfo.userId}`}</UserInfo>
+                <UserInfo>{`email: ${userInfo.email}`}</UserInfo>
             </ProfileContainer>
-
-            <ProfileBtn>
+            
+            <BtnWrapper>
                 <Link to={{
                     pathname: "/modifyProfile",
                     state: {
                         userId: userInfo.userId
                     }
-                }}>수정</Link>
-            </ProfileBtn>
-        </ProfileWrapper>
+                }}><ProfileBtn>수정</ProfileBtn></Link>
+            </BtnWrapper>
+        </Wrapper>
     );
 }
 
