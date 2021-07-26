@@ -104,8 +104,6 @@ const Header = () => {
             <MenusStyle>
                 <LinkStyle>
                     {!loading && isLoggedIn? <Link to="/profile">profile</Link> : ""}
-                    <div>   </div>
-                    {!loading && isLoggedIn? <Link to="/modifyProfile">modifyProfile</Link> : ""}
                 </LinkStyle>
                 <LinkStyle>
                     {!loading && isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
