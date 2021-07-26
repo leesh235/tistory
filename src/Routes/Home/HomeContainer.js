@@ -6,18 +6,16 @@ import HomePresenter from './HomePresenter';
 export default () => {
 
     const {loading, data} = useQuery(POST);
-    if(!loading){
-        console.log(data);
-    }
+
     useEffect(() => {
         if(!loading){
-            // console.log(data);
+            // console.log("data: ",data.getAllPosts.posts[0].postId);
         }
     },[])
 
     return (
         <div>
-            {!loading && data ? <HomePresenter postList={data.getAllPosts} /> : "loading..."}
+            {!loading && data ? <HomePresenter postList={data.getAllPosts.posts} /> : "loading..."}
         </div>
     );
 };
