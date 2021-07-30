@@ -1,14 +1,16 @@
-scalar DateTime
-
-type allPosts {
+type Post {
     postId: String
     title: String
     id: String
     createdAt: DateTime
 }
 
+type ResPosts {
+    posts: [Post]
+}
+
 type Query{
-    getAllPosts: [allPosts]
+    getAllPosts: ResPosts
 }
 
 type Mutation{

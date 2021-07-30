@@ -7,21 +7,22 @@ export default {
         getAllPosts: async(_,__) => {
             try {
                 const posts = await prisma.post.findMany({
-                    where: {
-                        title: "w"
+                    where: {},
+                    orderBy: {
+                        createdAt:"desc"
                     }
                 })
 
                 if(posts !== null){
                     console.log(posts);
-                    return  posts;
+                    return  {posts:posts};
                 }else{
-                    return null;
+                    return {posts:null};;
                 }
 
             }catch (error){
                 console.log(error);
-                return null;
+                return {posts:null};;
             }
         }
     }
