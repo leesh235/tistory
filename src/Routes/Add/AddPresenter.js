@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const BodyStyle = styled.div`
     width: auto;
@@ -44,7 +46,7 @@ const SubmitIn = styled.button`
 const AddPresenter = ({title, contents, handlePicture, onSubmit}) => {
     return (
         <BodyStyle>
-            <BoxStyle>
+            {/* <BoxStyle>
                 <ContentStyle>
                     <form onSubmit={onSubmit}>
                         <TitleIn placeholder={"  제목"} {...title} />
@@ -53,7 +55,15 @@ const AddPresenter = ({title, contents, handlePicture, onSubmit}) => {
                         <SubmitIn>완료</SubmitIn>
                     </form>
                 </ContentStyle>
-            </BoxStyle>
+            </BoxStyle> */}
+            <CKEditor
+                editor={ClassicEditor}
+                data='<p>Hello from CKEditor 5!</p>'
+                onChange={(event, editor) => {
+                    const data = editor.getData();
+                    console.log(data);
+                }}
+            />
         </BodyStyle>
     );
 }
