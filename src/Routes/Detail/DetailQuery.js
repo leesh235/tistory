@@ -14,3 +14,9 @@ export const DETAIL = gql`
         }
     }
 `;
+
+export const DELETEPOST = gql`
+    mutation DeletePost($postId: String!){
+        DeletePost(postId: $postId)
+    }
+`;
