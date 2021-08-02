@@ -40,10 +40,13 @@ const BtnWrapper = styled.div`
         text-decoration: none;
         color: inherit;
     }
+    >:nth-child(n){
+        margin-left: 30px;
+    }
 `;
 
 const ProfileBtn = styled.div`
-
+    cursor: pointer;
 `;
 
 const ProfilePresenter = ({userImg, userInfo}) => {
@@ -58,6 +61,7 @@ const ProfilePresenter = ({userImg, userInfo}) => {
             </ProfileContainer>
             
             <BtnWrapper>
+                <ProfileBtn>회원탈퇴</ProfileBtn>
                 <Link to={{
                     pathname: "/modifyProfile",
                     state: {
