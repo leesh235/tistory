@@ -31,7 +31,7 @@ const ProfileContainer = () => {
 
     useEffect(() => {
         if(!loading && data){
-            console.log(data);
+            // console.log(data);
             setUserInfo(data.getProfile)
             if(data.getProfile){
 
