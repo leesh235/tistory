@@ -75,10 +75,10 @@ const BtnWrapper = styled.div`
 `;
 
 const PostBtn = styled.div`
-
+    cursor: pointer;
 `;
 
-const DetailPresenter = ({postImg, post, postId, equal}) => {
+const DetailPresenter = ({postImg, post, postId, equal, onClick}) => {
 
     return(
         <Wrapper>
@@ -104,7 +104,7 @@ const DetailPresenter = ({postImg, post, postId, equal}) => {
             </ContentWrapper>
 
             <BtnWrapper>
-                {equal ? <PostBtn>삭제</PostBtn> : ""}
+                {equal ? <PostBtn onClick={onClick}>삭제</PostBtn> : ""}
                 {equal ? 
                     <Link to={{
                         pathname: `/modifyPost/${postId}`,

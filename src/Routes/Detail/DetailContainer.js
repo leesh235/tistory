@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { useQuery } from '@apollo/client';
-import { DETAIL } from "./DetailQuery";
+import { useQuery, useMutation } from '@apollo/client';
+import { DETAIL, DELETEPOST } from "./DetailQuery";
 import { useParams } from "react-router-dom";
 import DetailPresenter from './DetailPresenter';
 import axios from "axios";
@@ -20,6 +20,8 @@ export default ({history, location}) => {
         } 
     });
 
+    const [deletePost] = useMutation(DELETEPOST);
+
     const fileserver = async() => {
 
         if(data.getPost.Post.postImgId !== null){
@@ -34,6 +36,20 @@ export default ({history, location}) => {
             })
             console.log(res.data)
             setPostImg(res.data.postImg);
+        }
+    }
+
+    const onClick = async() => {
+        if(window.confirm("게시물을 삭제하시겠습니까?")){
+            const {data: {DeletePost}} = await deletePost({
+                variables: {
+                    postId: postId
+                }
+            })
+            console.log(DeletePost)
+            if(DeletePost){
+                window.location.replace("/")
+            }
         }
     }
 
@@ -55,6 +71,7 @@ export default ({history, location}) => {
                     post={data.getPost.Post}
                     equal={data.getPost.equal}
                     postId={postId}
+                    onClick={onClick}
                 /> : 
             "loading..."}
             
