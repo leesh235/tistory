@@ -1,7 +1,7 @@
 import React from 'react';
 import UnresisterPresenter from './UnresisterPresenter';
 
-const UnresisterContainer = () => {
+const UnresisterContainer = (props) => {
         return(
                 <UnresisterPresenter />
         );

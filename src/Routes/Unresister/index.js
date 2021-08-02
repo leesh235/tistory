@@ -1,9 +1,9 @@
 import React from 'react';
 import UnresisterContainer from './UnresisterContainer';
 
-const UnresisterIndex = () => {
+const UnresisterIndex = (props) => {
         return(
-                <UnresisterContainer />
+            <UnresisterContainer props={props} />
         );
 }
 
