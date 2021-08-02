@@ -14,6 +14,7 @@ import MyPostIndex from '../Routes/MyPost/index';
 import ForgetIndex from '../Routes/ForgetPass/index';
 import ModifyProfileIndex from '../Routes/ModifyProfile/index';
 import ModifyPostIndex from '../Routes/ModifyPost/index';
+import UnresisterIndex from '../Routes/Unresister/index';
 import styled from 'styled-components';
 
 import { useQuery } from '@apollo/client';
@@ -56,6 +57,7 @@ const Routes = () => {
                 <Route exact path="/add" component={AddIndex} />
                 <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
                 <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
+                <Route exact path="/profile/unresister" component={UnresisterIndex} />
             </Wrapper>
             <Footer />
         </Router>
