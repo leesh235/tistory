@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -16,12 +16,29 @@ import ModifyProfileIndex from '../Routes/ModifyProfile/index';
 import ModifyPostIndex from '../Routes/ModifyPost/index';
 import styled from 'styled-components';
 
+import { useQuery } from '@apollo/client';
+import { TOKENINFO } from "../apollo/tokenQuery";
+
 const Wrapper = styled.div`
     margin: 100px auto 100px auto;
     width: 1180px;
 `;
 
 const Routes = () => {
+
+    const userData = useQuery(TOKENINFO);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+    const userInit = async() => {
+      const {data}= await userData;
+      setIsLoggedIn(data.isLoggedIn);
+      console.log(data.isLoggedIn)
+    }
+  
+    useEffect(() => {
+      userInit();
+    },[isLoggedIn])
+
     return(
         <Router>
             <Header />
