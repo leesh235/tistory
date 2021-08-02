@@ -1,0 +1,3 @@
+type Mutation{
+    DeletePost(postId: String): Boolean!
+}
