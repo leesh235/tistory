@@ -46,7 +46,7 @@ const BtnWrapper = styled.div`
 `;
 
 const ProfileBtn = styled.div`
-    cursor: pointer;
+
 `;
 
 const ProfilePresenter = ({userImg, userInfo}) => {
@@ -61,7 +61,13 @@ const ProfilePresenter = ({userImg, userInfo}) => {
             </ProfileContainer>
             
             <BtnWrapper>
-                <ProfileBtn>회원탈퇴</ProfileBtn>
+            <Link to={{
+                    pathname: "/profile/unresister",
+                    state: {
+                        userInfo: userInfo
+                    }
+                }}><ProfileBtn>회원탈퇴</ProfileBtn></Link>
+            
                 <Link to={{
                     pathname: "/modifyProfile",
                     state: {
