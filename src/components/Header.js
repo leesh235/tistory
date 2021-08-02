@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { TOKENINFO } from "../apollo/tokenQuery";
+import { TOKENINFO, TOKENLOGOUT } from "../apollo/tokenQuery";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import ListBar from "./ListBar";
@@ -56,14 +56,6 @@ const ListWrapper = styled.div`
 
 const LinksStyle = styled.div`
     cursor:pointer;
-`;
-
-
-//log out query
-const TOKENLOGOUT = gql`
-    mutation userLogOut($token: String!){
-        userLogOut(token: $token) @client
-    }
 `;
 
 const Header = () => {
