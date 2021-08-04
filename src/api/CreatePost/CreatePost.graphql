@@ -1,5 +1,9 @@
+type ResPostId {
+    postId: String
+}
+
 type Mutation {
-    createPost(title: String! contents: String): Boolean!
+    createPost(title: String! contents: String): ResPostId
 }
 
 type Query {
