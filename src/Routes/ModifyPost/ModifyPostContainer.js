@@ -16,6 +16,8 @@ export default ({history, location}) => {
        console.log(history.location.state) 
     },[])
 
+    const [postData, setPostData] = useState("");
+
     const {postId} = useParams();
 
     const titleInput = useInput(history.location.state.title);
@@ -90,6 +92,7 @@ export default ({history, location}) => {
             contents={contentsInput}
             onSubmit={onSubmit}
             handlePicture={handlePicture}
+            setPostData={setPostData}
         />
     );
 
