@@ -11,13 +11,9 @@ const AddContainer = (props) => {
     const titleInput = useInput("");
     const contentsInput = useInput("");
     const [picture, setPicture] = useState("");
+    const [postData, setPostData] = useState("");
 
-    const [AddMutation] = useMutation(ADD, {
-        variables: {
-            title: titleInput.value,
-            contents: contentsInput.value
-        }
-    });
+    const [AddMutation] = useMutation(ADD);
 
     const history = useHistory();
 
@@ -34,25 +30,33 @@ const AddContainer = (props) => {
 
         try{
             if(titleInput.value !== ""){
-                const { data: createPost } = await AddMutation();
-                if(createPost){
+                const { data: { createPost : {postId} } } = await AddMutation({
+                    variables: {
+                        title: titleInput.value,
+                        contents: contentsInput.value
+                    }
+                });
+                console.log("postId: ", postId)
+                if(postId){
                     alert("작성 완료");
-                    history.push("/");
-                }else{
-                    return false;
+                    window.location.replace("/");
                 }
-                const formData = new FormData();
-                formData.append("title", titleInput.value);
-                formData.append("streamfile", picture);
-            
-                await axios({
-                  method: "post",
-                  url: "http://localhost:5000/add",
-                  data: formData,
-                  headers: {
-                    "Content-Type": "multipart/form-data",
-                  }
-                })
+                if(picture !== undefined && picture !== null){
+                    const jwt = localStorage.getItem("token");
+                    const formData = new FormData();
+                    formData.append("user", postId);
+                    formData.append("streamfile", picture);
+                
+                    await axios({
+                      method: "post",
+                      url: "http://localhost:5000/post",
+                      data: formData,
+                      headers: {
+                        Authorization: jwt,
+                        "Content-Type": "multipart/form-data",
+                      }
+                    })
+                }
             }else {
                 alert("제목을 작성해주세요.");
             }
@@ -68,6 +72,7 @@ const AddContainer = (props) => {
             contents={contentsInput}
             handlePicture={handlePicture}
             onSubmit={onSubmit}
+            setPostData={setPostData}
         />
     );
 }
