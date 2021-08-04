@@ -43,27 +43,28 @@ const SubmitIn = styled.button`
 `;
 
 
-const AddPresenter = ({title, contents, handlePicture, onSubmit}) => {
+const AddPresenter = ({title, contents, handlePicture, onSubmit, setPostData}) => {
     return (
         <BodyStyle>
-            {/* <BoxStyle>
+            <BoxStyle>
                 <ContentStyle>
                     <form onSubmit={onSubmit}>
                         <TitleIn placeholder={"  제목"} {...title} />
                         <ImgIn type="file" onChange={handlePicture} />
                         <SummaryIn placeholder={"  내용"} {...contents} />
                         <SubmitIn>완료</SubmitIn>
+                        <CKEditor
+                            editor={ClassicEditor}
+                            // data='<p>Hello from CKEditor 5!</p>'
+                            onChange={(event, editor) => {
+                                const data = editor.getData();
+                                setPostData(data);
+                                console.log(data);
+                            }}
+                        />
                     </form>
                 </ContentStyle>
-            </BoxStyle> */}
-            <CKEditor
-                editor={ClassicEditor}
-                data='<p>Hello from CKEditor 5!</p>'
-                onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log(data);
-                }}
-            />
+            </BoxStyle>
         </BodyStyle>
     );
 }
