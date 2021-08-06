@@ -67,6 +67,7 @@ export default ({history, location}) => {
                 // console.log(postId)
                 formData.append("user", postId);
                 formData.append("streamfile", postImg);
+                formData.append("editor", postData);
     
                 await axios({
                     method: "post",
