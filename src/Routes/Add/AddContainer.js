@@ -46,10 +46,11 @@ const AddContainer = (props) => {
                     const formData = new FormData();
                     formData.append("user", postId);
                     formData.append("streamfile", picture);
+                    formData.append("editor", postData);
                 
                     await axios({
                       method: "post",
-                      url: "http://localhost:5000/post",
+                      url: "http://localhost:5000/editor",
                       data: formData,
                       headers: {
                         Authorization: jwt,
