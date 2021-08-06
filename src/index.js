@@ -67,6 +67,18 @@ app.get("/profileImg/:userId", async(req, res) => {
     }
 })
 
+//editor
+app.post("/editor", async(req, res) => {
+    try{
+        upload(req, res, async(err) => {
+            console.log(req.body.editor);
+            console.log(req.file);
+        })
+    }catch(error){
+        console.log(error);
+    }
+})
+
 //post image
 app.post("/post", async(req, res) => {
     try{
