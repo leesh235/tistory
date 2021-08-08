@@ -5,21 +5,17 @@ import HomePresenter from './HomePresenter';
 
 export default () => {
 
-    const getPostList = useQuery(POST);
+    const { loading, data  } = useQuery(POST);
 
     const [posts, setPosts] = useState([])
 
-    const init = async() => {
-        const {data} = await getPostList;
-        setPosts(data.getAllPosts)
-        // console.log(data.getAllPosts)
-    }
-
     useEffect(() => {
-        init();
-    },[])
+
+    },[loading])
 
     return (
-        <HomePresenter postList={posts} />
+        <div>
+            {!loading && <HomePresenter postList={data.getAllPosts} />}
+        </div>
     );
 };
