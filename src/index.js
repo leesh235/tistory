@@ -69,13 +69,58 @@ app.get("/profileImg/:userId", async(req, res) => {
 
 //editor
 app.post("/editor", async(req, res) => {
+    console.log("editor: ",req.body)
     try{
         upload(req, res, async(err) => {
+            const {data} = await postToDB(req);
+
+            if(data.ModifyPostImg.postImgId === null){
+                console.log("실패")
+                return false;
+            }
+
+            console.log("editor: ",req.body)
+            const fileData = req.body.editor
+            var fileContents = Buffer.from(fileData, "utf8");
+            console.log("fileContents: ", fileContents)
+            const dirpath = `uploads/${req.body.user}`;
+            fs.mkdirSync(dirpath);
+            fs.writeFile(dirpath+ "/" + req.body.user + ".html", fileContents)
+            // `
+            // <!DOCTYPE html>
+            // <html>
+            //     <head></head>
+            //     <body>
+            //         ${req.body.editor}
+            //     </body>
+            // </html>
+            // `)
             console.log(req.body.editor);
-            console.log(req.file);
+            console.log(req.body.user);
         })
     }catch(error){
         console.log(error);
+    }
+})
+
+app.get("/editor/:postId", async(req, res) => {
+    try{
+        const postId = req.params.postId
+        const dirpath = `uploads/${postId}`;
+        const filename = fs.readdirSync(dirpath)[0].toString();
+        if(filename){
+            //uploads를 지정해줄 필요없음, 지정하면 오류발생
+            const uri = dirpath+ "/" + filename
+            console.log(uri)
+            // res.status(200).sendFile(filename.toString(),{root:__dirname});
+            res.status(200).download(uri, filename, (err) => {
+                console.log(err);
+            });
+        }else{
+            res.status(404).send({message: "no such image"});
+        }
+    }catch(err){
+        res.status(500).send({message: `${err}`})
     }
 })
 
