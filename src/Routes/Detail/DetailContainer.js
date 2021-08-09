@@ -23,19 +23,28 @@ export default ({history, location}) => {
     const [deletePost] = useMutation(DELETEPOST);
 
     const fileserver = async() => {
-
+        
         if(data.getPost.Post.postImgId !== null){
-            const jwt = localStorage.getItem("token");
-            const res = await axios({
-                method: "get",
-                url: `http://localhost:5000/postImg/${postId}`,
-                headers: {
-                    Authorization: jwt,
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-            console.log(res.data)
-            setPostImg(res.data.postImg);
+            try{
+                const jwt = localStorage.getItem("token");
+                const res = await axios({
+                    method: "get",
+                    url: `http://localhost:5000/editor/${postId}`,
+                    headers: {
+                        Authorization: jwt,
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+
+                // var blob = new Blob([res.data]);
+                // var postHtml = await new Response(blob).text();
+
+                setPostImg(res.data);
+            }catch(err){
+                console.log(err.response);
+            }
+        }else{
+            console.log("실패")
         }
     }
 
@@ -57,11 +66,11 @@ export default ({history, location}) => {
         if(location.state.id === undefined){
             history.push(`/`);
         }
-        if(!loading){
+        if(!loading && postImg === ""){
             fileserver();
         }
 
-    },[postImg])
+    },[loading])
 
     return (
         <div>
