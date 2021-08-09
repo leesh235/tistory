@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import moment from "moment";
 import { Link } from 'react-router-dom';
@@ -80,6 +80,14 @@ const PostBtn = styled.div`
 
 const DetailPresenter = ({postImg, post, postId, equal, onClick}) => {
 
+    const createMarkup = () => {
+        return {__html: `${postImg}`};
+    }
+
+    useEffect(() => {
+
+    },[postImg])
+
     return(
         <Wrapper>
             <Top>
@@ -97,10 +105,7 @@ const DetailPresenter = ({postImg, post, postId, equal, onClick}) => {
             </Top>
 
             <ContentWrapper>
-                {postImg ? <ImageStyle>
-                        <img src={`http://localhost:5000/${postImg}`} />
-                    </ImageStyle> : ""}
-                {post.contents}
+                {postImg && <div dangerouslySetInnerHTML={createMarkup()} />}
             </ContentWrapper>
 
             <BtnWrapper>
