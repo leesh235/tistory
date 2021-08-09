@@ -6,23 +6,23 @@ export default {
     Query: {
         getAllPosts: async(_,__) => {
             try {
-                const posts = await prisma.post.findMany({
+                const post = await prisma.post.findMany({
                     where: {},
                     orderBy: {
                         createdAt:"desc"
                     }
                 })
-
-                if(posts !== null){
-                    console.log(posts);
-                    return  {posts:posts};
+                
+                if(post !== null){
+                    console.log(post);
+                    return post;
                 }else{
-                    return {posts:null};;
+                    return null;
                 }
 
             }catch (error){
                 console.log(error);
-                return {posts:null};;
+                return null;
             }
         }
     }

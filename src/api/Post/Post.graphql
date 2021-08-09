@@ -5,12 +5,8 @@ type Post {
     createdAt: DateTime
 }
 
-type ResPosts {
-    posts: [Post]
-}
-
 type Query{
-    getAllPosts: ResPosts
+    getAllPosts: [Post]!
 }
 
 type Mutation{
