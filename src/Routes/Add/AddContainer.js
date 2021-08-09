@@ -40,23 +40,23 @@ const AddContainer = (props) => {
                 if(postId){
                     alert("작성 완료");
                     window.location.replace("/");
-                }
-                if(picture !== undefined && picture !== null){
-                    const jwt = localStorage.getItem("token");
-                    const formData = new FormData();
-                    formData.append("user", postId);
-                    formData.append("streamfile", picture);
-                    formData.append("editor", postData);
-                
-                    await axios({
-                      method: "post",
-                      url: "http://localhost:5000/editor",
-                      data: formData,
-                      headers: {
-                        Authorization: jwt,
-                        "Content-Type": "multipart/form-data",
-                      }
-                    })
+                    if(picture !== undefined && picture !== null){
+                        const jwt = localStorage.getItem("token");
+                        const formData = new FormData();
+                        formData.append("user", postId);
+                        formData.append("streamfile", picture);
+                        formData.append("editor", postData);
+                    
+                        await axios({
+                          method: "post",
+                          url: "http://localhost:5000/editor",
+                          data: formData,
+                          headers: {
+                            Authorization: jwt,
+                            "Content-Type": "multipart/form-data",
+                          }
+                        })
+                    }
                 }
             }else {
                 alert("제목을 작성해주세요.");
