@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Editor from '../../components/Editor';
 
 const BodyStyle = styled.div`
     width: auto;
@@ -53,7 +54,7 @@ const AddPresenter = ({title, contents, handlePicture, onSubmit, setPostData}) =
                         <ImgIn type="file" onChange={handlePicture} />
                         <SummaryIn placeholder={"  내용"} {...contents} />
                         <SubmitIn>완료</SubmitIn>
-                        <CKEditor
+                        {/* <CKEditor
                             editor={ClassicEditor}
                             // data='<p>Hello from CKEditor 5!</p>'
                             onChange={(event, editor) => {
@@ -61,6 +62,15 @@ const AddPresenter = ({title, contents, handlePicture, onSubmit, setPostData}) =
                                 setPostData(data);
                                 console.log(data);
                             }}
+                        /> */}
+                        <Editor
+                            // data={content}
+                            // uploadFolder="Test"
+                            // onChange={(event, editor) => {
+                            // // const data = editor.getData();
+                            // // setContent(data);
+                            // console.log({ event, editor });
+                            // }}
                         />
                     </form>
                 </ContentStyle>
