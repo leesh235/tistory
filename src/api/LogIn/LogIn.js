@@ -26,10 +26,9 @@ export default {
                         token: null,
                         status: "noExist"
                     };
-                };
-    
+                }
                 //password가 다르면
-                if(userInfo.password !== generatPassword(password)){
+                else if(userInfo.password !== generatPassword(password)){
                     return {
                         email: null,
                         nickName: null,
@@ -37,19 +36,20 @@ export default {
                         token: null,
                         status: "unmatchedPassword"
                     };
-                };
-
-                //토큰생성
-                const token = generatToken(userInfo.userId);
-                
-                return {
-                    email: userInfo.email,
-                    nickName: userInfo.nickName,
-                    userRole: userInfo.userRole,
-                    token: token,
-                    status: "success"
-                };
-
+                }
+                //로그인 성공
+                else{
+                    //토큰생성
+                    const token = generatToken(userInfo.userId);
+                    
+                    return {
+                        email: userInfo.email,
+                        nickName: userInfo.nickName,
+                        userRole: userInfo.userRole,
+                        token: token,
+                        status: "success"
+                    };
+                }
             } catch(error) {
                 console.log(error);
                 return {
