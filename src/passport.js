@@ -13,8 +13,9 @@ const jwtOptions = {
 //payload정보와 일치하는 정보(db)가 있으면 반환한다/콜백함수
 const verifyUser = async(payload, done) => {
     try {
+      //payload.id는 고정
         const user = await prisma.user.findUnique({
-            where: { id: payload.id },
+            where: { userId: payload.id },
         });
         if (user !== null) {
           return done(null, user);
