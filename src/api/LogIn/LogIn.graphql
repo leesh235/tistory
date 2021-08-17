@@ -1,4 +1,4 @@
-type LoginInfo {
+type Response {
     email: String
     nickName: String
     userRole: String
@@ -7,7 +7,7 @@ type LoginInfo {
 }
 
 type Mutation {
-    login(email: String! password: String!): LoginInfo!
+    login(email: String! password: String!): Response!
 }
 
 type Query {
