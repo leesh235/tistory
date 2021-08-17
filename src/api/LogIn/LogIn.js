@@ -8,44 +8,56 @@ export default {
         login: async (_, args) => {
             try {
                 
-                const { userId, password } = args;
+                const { email, password } = args;
 
                 //email존재 여부확인
                 const userInfo = await prisma.user.findUnique({
                     where:{
-                        userId
+                        email
                     }
                 });
 
                 //user가 없으면
                 if(!userInfo){
                     return {
-                        userId: null,
-                        token: null
+                        email: null,
+                        nickName: null,
+                        userRole: null,
+                        token: null,
+                        status: "noExist"
                     };
                 };
     
                 //password가 다르면
                 if(userInfo.password !== generatPassword(password)){
                     return {
-                        userId: null,
-                        token: null
+                        email: null,
+                        nickName: null,
+                        userRole: null,
+                        token: null,
+                        status: "unmatchedPassword"
                     };
                 };
 
                 //토큰생성
-                const token = generatToken(userInfo.id);
+                const token = generatToken(userInfo.userId);
                 
                 return {
-                    userId: userInfo.userId,
-                    token: token
+                    email: userInfo.email,
+                    nickName: userInfo.nickName,
+                    userRole: userInfo.userRole,
+                    token: token,
+                    status: "success"
                 };
 
             } catch(error) {
                 console.log(error);
                 return {
-                    userId: null,
-                    token: null
+                    email: null,
+                    nickName: null,
+                    userRole: null,
+                    token: null,
+                    status: "server error"
                 };
             }
         }
