@@ -10,42 +10,62 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if(exist){
-                    const { userId, password } = args;
-                    const id = request.user.id;
+                    const { email, password } = args;
+                    const userId = request.user.userId;
 
                     const userInfo = await prisma.user.findUnique({
                         where:{
-                            userId
+                            email
                         }
                     })
 
-                    if(userInfo.password !== generatPassword(password)){
-                        console.log("비밀번호가 다릅니다.")
-                        return false;
-                    }else{
+                    //토큰 정보와 로그인 정보가 다름
+                    if(userInfo.userId !== userId){
+                        return {
+                            check: false,
+                            status: "잘못된 접근 방법"
+                        };
+                    }
+                    //비밀번호 오류
+                    else if(userInfo.password !== generatPassword(password)){
+                        return {
+                            check: false,
+                            status: "비밀번호가 다릅니다"
+                        };
+                    }
+                    //회원탈퇴
+                    else{
+                        //작성한 게시글 모두 삭제
                         await prisma.post.deleteMany({
                             where: {
-                                id: userId
+                                writer: userId
                             }
                         });
-    
+                        //회원탈퇴
                         await prisma.user.delete({
                             where:{
-                                id
+                                userId
                             }
                         });
-                        
-                        console.log("success");
-                        return true;
+
+                        return {
+                            check: true,
+                            status: "회원탈퇴 완료"
+                        };
                     }
 
                 }else{
-                    console.log("You need to log in to perform this action");
-                    return false;
+                    return {
+                        check: false,
+                        status: "로그인이 필요합니다."
+                    };
                 }
             }catch(err){
                 console.log("err: ",err);
-                return false;
+                return {
+                    check: false,
+                    status: "server error"
+                };
             }
         }
     }
