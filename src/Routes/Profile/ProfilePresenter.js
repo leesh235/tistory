@@ -56,8 +56,9 @@ const ProfilePresenter = ({userImg, userInfo}) => {
                 <ImageWrapper>
                     {userImg ? <img src={`http://localhost:5000/${userImg}`} /> : ""}
                 </ImageWrapper>
-                <UserInfo>{`아이디: ${userInfo.userId}`}</UserInfo>
+                <UserInfo>{`닉네임: ${userInfo.nickName}`}</UserInfo>
                 <UserInfo>{`email: ${userInfo.email}`}</UserInfo>
+                <UserInfo>{`등급: ${userInfo.userRole}`}</UserInfo>
             </ProfileContainer>
             
             <BtnWrapper>
@@ -71,7 +72,7 @@ const ProfilePresenter = ({userImg, userInfo}) => {
                 <Link to={{
                     pathname: "/modifyProfile",
                     state: {
-                        userId: userInfo.userId
+                        email: userInfo.email
                     }
                 }}><ProfileBtn>수정</ProfileBtn></Link>
             </BtnWrapper>
