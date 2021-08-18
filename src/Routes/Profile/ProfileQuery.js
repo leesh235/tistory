@@ -5,7 +5,7 @@ export const PROFILE = gql`
         getProfile{
             email
             nickName
-            userRole:
+            userRole
             userImgId
             status
         }
