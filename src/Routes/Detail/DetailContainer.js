@@ -9,22 +9,23 @@ export default ({history, location}) => {
 
     const { postId } = useParams();
 
-    const [postImg, setPostImg] = useState("");
+    const [postContents, setPostContents] = useState("");
 
     // console.log(postId);
 
     const {loading, data} = useQuery(DETAIL,{
         variables: {
             postId: postId,
-            id: location.state.id
-        } 
+            email: location.state.writer
+        }
     });
+    console.log(data)
 
     const [deletePost] = useMutation(DELETEPOST);
 
     const fileserver = async() => {
         
-        if(data.getPost.Post.postImgId !== null){
+        if(data?.getPostDetail?.Post?.contents === "exist"){
             try{
                 const jwt = localStorage.getItem("token");
                 const res = await axios({
@@ -35,11 +36,7 @@ export default ({history, location}) => {
                         "Content-Type": "multipart/form-data"
                     }
                 })
-
-                // var blob = new Blob([res.data]);
-                // var postHtml = await new Response(blob).text();
-
-                setPostImg(res.data);
+                setPostContents(res.data);
             }catch(err){
                 console.log(err.response);
             }
@@ -50,40 +47,43 @@ export default ({history, location}) => {
 
     const onClick = async() => {
         if(window.confirm("게시물을 삭제하시겠습니까?")){
-            const {data: {DeletePost}} = await deletePost({
+            const {data: {DeletePost : {check, status}}} = await deletePost({
                 variables: {
                     postId: postId
                 }
             })
-            console.log(DeletePost)
-            if(DeletePost){
+            if(check){
                 window.location.replace("/")
+                const jwt = localStorage.getItem("token");
+                const res = await axios({
+                    method: "get",
+                    url: `http://localhost:5000/editor/delete/${postId}`,
+                    headers: {
+                        Authorization: jwt,
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
             }
         }
     }
 
     useEffect(() => {
-        if(location.state.id === undefined){
+        if(location.state.writer === undefined){
             history.push(`/`);
         }
-        if(!loading && postImg === ""){
-            fileserver();
-        }
-
+        fileserver();
     },[loading])
 
     return (
         <div>
-            {postId && !loading && data.getPost ? 
+            {!loading && data?.getPostDetail?.Post ? 
                 <DetailPresenter 
-                    postImg={postImg}
-                    post={data.getPost.Post}
-                    equal={data.getPost.equal}
-                    postId={postId}
+                    postContents={postContents}
+                    post={data.getPostDetail.Post}
+                    equal={data.getPostDetail.equal}
                     onClick={onClick}
                 /> : 
             "loading..."}
-            
         </div>
     );
 };
