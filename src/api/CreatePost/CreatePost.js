@@ -12,10 +12,10 @@ export default {
                 // console.log(request.user);
                 if( exist === true ){
                     const { title, contents } = args;
-                    const userId = request.user.userId;
+                    const email = request.user.email;
                     const newPost = await prisma.post.create({
                         data: {
-                            writer: userId,
+                            writer: email,
                             title,
                         }
                     })
