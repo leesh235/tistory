@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 `
 
-export const Editor = ({getFormData}) => {
+export const Editor = ({getFormData, user}) => {
   
   ClassicEditorBase.builtinPlugins = [
     Essentials,
@@ -81,9 +81,9 @@ export const Editor = ({getFormData}) => {
     },
     simpleUpload: {
       uploadUrl: `http://localhost:5000/editorImg`,
-      // headers: {
-      //   user: "hi"
-      // }
+      headers: {
+        user: user
+      }
     },
     language: 'en'
   };
