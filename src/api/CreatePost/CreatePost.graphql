@@ -3,8 +3,14 @@ type Response {
     status: String
 }
 
+type UploadTextResponse {
+    check: Boolean
+    status: String
+}
+
 type Mutation {
     createPost(title: String! contents: String): Response!
+    uploadText(postId: String): UploadTextResponse!
 }
 
 type Query {
