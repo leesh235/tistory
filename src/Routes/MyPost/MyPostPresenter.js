@@ -17,7 +17,7 @@ const MyPostPresenter = ({myposts}) => {
                     postId={mypost.postId}
                     title={mypost.title}
                     createdAt={mypost.createdAt}
-                    id={mypost.id}
+                    writer={mypost.writer}
                 />
             })}
             {/* <Pages getDate={(index) => {
