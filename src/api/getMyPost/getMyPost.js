@@ -10,20 +10,37 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if(exist){
-                    const userId = request.user.userId
+                    const email = request.user.email
                     const myPosts = await prisma.post.findMany({
-                        where: { id: userId }
+                        where: { writer: email }
                     })
                     console.log(myPosts);
-                    return myPosts
+
+                    if(myPosts !== null){
+                        return {
+                            status: "success",
+                            allMyPosts: myPosts
+                        }
+                    }else{
+                        return {
+                            status: "no exist my posts",
+                            allMyPosts: null
+                        }
+                    }
                 }else {
                     console.log("You need to log in to perform this action");
-                    return null;
+                    return {
+                        status: "not log in",
+                        allMyPosts: null
+                    }
                 }
 
             }catch (error){
                 console.log(error);
-                return null;
+                return {
+                    status: "server error",
+                    allMyPosts: null
+                }
             }
         }
     }

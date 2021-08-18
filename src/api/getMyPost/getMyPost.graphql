@@ -2,13 +2,18 @@ scalar DateTime
 
 type myPost {
     postId: String
+    writer: String
     title: String
-    id: String
     createdAt: DateTime
 }
 
+type Response{
+    status: String
+    allMyPosts: [myPost]
+}
+
 type Query{
-    getMyPosts: [myPost]
+    getMyPosts: Response
 }
 
 type Mutation{
