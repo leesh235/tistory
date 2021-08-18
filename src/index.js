@@ -111,30 +111,26 @@ app.post("/editor", async(req, res) => {
     }
 })
 
-// app.post("/editor", async(req, res) => {
-//     try{
-//         upload(req, res, async(err) => {
-//             console.log("body: ",req.body)
-//             console.log("headers: ",req.headers)
-//             const {data} = await postToDB(req);
-//             if(data.ModifyPostImg.postImgId === null){
-//                 console.log("실패")
-//                 return false;
-//             }
-//             postId = req.body.user;
-//             const fileData = req.body.editor
-//             var fileContents = Buffer.from(fileData, "utf8");
-//             // console.log("fileContents: ", fileContents)
-//             console.log("postId: ", tempoFile)
-//             const dirpath = `uploads/${req.body.user}`;
-//             fs.mkdirSync(dirpath);
-//             fs.writeFile(dirpath+ "/" + req.body.user + ".html", fileContents)
-//         })
-//     }catch(error){
-//         console.log(error);
-//     }
-// })
+//post 삭제
+app.get("/editor/delete/:postId", async(req, res) => {
+    try{
+        const postId = req.params.postId;
+        const dirPath = `uploads/${postId}`;
+        console.log("postId: ", postId)
+        if (fs.existsSync(dirPath)) {
+            fs.removeSync(dirPath);
+            res.status(200).send({message: "success delete post"});
+        }else{
+            res.status(200).send({message: "not exist post"});
+        }
 
+    }catch(error){
+        console.log(error);
+        res.status(500).send({message: "server error"});
+    }
+})
+
+//post 불러오기
 app.get("/editor/:postId", async(req, res) => {
     try{
         const postId = req.params.postId
