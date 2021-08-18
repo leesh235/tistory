@@ -78,15 +78,15 @@ const PostBtn = styled.div`
     cursor: pointer;
 `;
 
-const DetailPresenter = ({postImg, post, postId, equal, onClick}) => {
+const DetailPresenter = ({postContents, post, equal, onClick}) => {
 
     const createMarkup = () => {
-        return {__html: `${postImg}`};
+        return {__html: `${postContents}`};
     }
 
     useEffect(() => {
 
-    },[postImg])
+    },[postContents])
 
     return(
         <Wrapper>
@@ -98,24 +98,23 @@ const DetailPresenter = ({postImg, post, postId, equal, onClick}) => {
 
                 <ContentInfo>
                     <DateStyle>{`작성일: ${moment(post.createdAt).format("YYYY-MM-DD LT")}`}</DateStyle>
-                    <UserNameStyle>{`작성자: ${post.id}`}</UserNameStyle>
+                    <UserNameStyle>{`작성자: ${post.writer}`}</UserNameStyle>
                 </ContentInfo>
 
 
             </Top>
 
             <ContentWrapper>
-                {postImg && <div dangerouslySetInnerHTML={createMarkup()} />}
+                {postContents && <div dangerouslySetInnerHTML={createMarkup()} />}
             </ContentWrapper>
 
             <BtnWrapper>
                 {equal ? <PostBtn onClick={onClick}>삭제</PostBtn> : ""}
                 {equal ? 
                     <Link to={{
-                        pathname: `/modifyPost/${postId}`,
+                        pathname: `/modifyPost/${post.postId}`,
                         state:{
                             title: post.title,
-                            contents: post.contents
                         }
                     }}>
                         <PostBtn>수정</PostBtn>
