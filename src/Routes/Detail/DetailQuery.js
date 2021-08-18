@@ -1,13 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const DETAIL = gql`
-    query getPost($postId: String!, $id: String!){
-        getPost(postId: $postId, id: $id){
+    query getPostDetail($postId: String!, $email: String!){
+        getPostDetail(postId: $postId, email: $email){
             equal
+            status
             Post{
-                id
-                contents
+                postId
+                writer
                 title
+                contents
                 createdAt
                 postImgId
             }
@@ -17,6 +19,9 @@ export const DETAIL = gql`
 
 export const DELETEPOST = gql`
     mutation DeletePost($postId: String!){
-        DeletePost(postId: $postId)
+        DeletePost(postId: $postId){
+            check
+            status
+        }
     }
 `;
