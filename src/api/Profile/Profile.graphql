@@ -1,12 +1,13 @@
-type Profile{
-    userId: String
+type Response{
     email: String
+    nickName: String
+    userRole:  String
     userImgId: String
-    id: String
+    status: String
 }
 
 type Query{
-    getProfile: Profile
+    getProfile: Response!
 }
 
 type Mutation{
