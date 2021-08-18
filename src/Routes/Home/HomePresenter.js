@@ -19,7 +19,7 @@ const HomePresenter = ({ postList }) => {
                     postId={post.postId}
                     title={post.title}
                     createdAt={post.createdAt}
-                    id={post.id}
+                    writer={post.writer}
                 />
             })}
             {/* <Pages getDate={(index) => {
