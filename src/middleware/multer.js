@@ -26,3 +26,17 @@ export let upload = multer({
         filessize: 100 * 1024 * 1024
     }
 }).single("streamfile")
+
+//ckeditor를 통한 image 저장
+const imgStorage = multer.memoryStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() +  file.originalname)
+    }
+  })
+
+
+//ckeditor를 통한 image 저장
+export const imageUpload = multer({storage:imgStorage}).single("upload");
