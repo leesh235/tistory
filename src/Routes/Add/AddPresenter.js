@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import Editor from '../../components/Editor';
+import {Editor} from "../../components/Editor";
 
 const BodyStyle = styled.div`
     width: auto;
@@ -44,34 +42,16 @@ const SubmitIn = styled.button`
 `;
 
 
-const AddPresenter = ({title, contents, handlePicture, onSubmit, setPostData}) => {
+const AddPresenter = ({title, onSubmit, setPostData}) => {
+  
     return (
         <BodyStyle>
             <BoxStyle>
                 <ContentStyle>
                     <form onSubmit={onSubmit}>
                         <TitleIn placeholder={"  제목"} {...title} />
-                        <ImgIn type="file" onChange={handlePicture} />
-                        <SummaryIn placeholder={"  내용"} {...contents} />
+                        <Editor getFormData={setPostData} user={"test"} />
                         <SubmitIn>완료</SubmitIn>
-                        {/* <CKEditor
-                            editor={ClassicEditor}
-                            // data='<p>Hello from CKEditor 5!</p>'
-                            onChange={(event, editor) => {
-                                const data = editor.getData();
-                                setPostData(data);
-                                console.log(data);
-                            }}
-                        /> */}
-                        <Editor
-                            // data={content}
-                            // uploadFolder="Test"
-                            // onChange={(event, editor) => {
-                            // // const data = editor.getData();
-                            // // setContent(data);
-                            // console.log({ event, editor });
-                            // }}
-                        />
                     </form>
                 </ContentStyle>
             </BoxStyle>
