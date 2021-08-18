@@ -40,19 +40,19 @@ const DateStyle = styled.div`
     margin-left: 20px;
 `;
 
-function Contents({id, title, postId, createdAt }){
+function Contents({writer, title, postId, createdAt }){
     return(
         <TextDiv>
             <Link to={{
                 pathname: `/detail/${postId}`,
                 state:{
-                    id
+                    writer
                 }
             }}>
                 <AllPostsStyle key={postId}>
                     <PostData>
                         <TitleStyle>{title}</TitleStyle>
-                        <UserStyle>{id}</UserStyle>
+                        <UserStyle>{writer}</UserStyle>
                         <DateStyle>{moment(createdAt).format("YYYY-MM-DD / LT")}</DateStyle>
                     </PostData>
                 </AllPostsStyle>
