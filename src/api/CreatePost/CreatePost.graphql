@@ -1,9 +1,10 @@
-type ResPostId {
+type Response {
     postId: String
+    status: String
 }
 
 type Mutation {
-    createPost(title: String! contents: String): ResPostId
+    createPost(title: String! contents: String): Response!
 }
 
 type Query {
