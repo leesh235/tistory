@@ -12,42 +12,52 @@ export default {
                 if(exist){
 
                     const { postId } = args;
-                    const id = request.user.id;
+                    const userId = request.user.userId;
 
                     const user = await prisma.user.findUnique({
                         where:{
-                            id
+                            userId
                         }
                     })
 
                     const post = await prisma.post.findUnique({
                         where:{
-                            postId
+                            postId: Number(postId)
                         }
                     })
 
 
-                    if(user.userId === post.id){
+                    if(user.email === post.writer){
                         await prisma.post.delete({
                             where:{
-                                postId
+                                postId: Number(postId)
                             }
                         })
 
-                        return true;
+                        return {
+                            check: true,
+                            status: "success"
+                        };
                     }else{
-                        console.log("작성자가 아닙니다.");
-                        return false;
+                        return {
+                            check: false,
+                            status: "not writer"
+                        };
                     }
                     
 
                 }else{
-                    console.log("You need to log in to perform this action");
-                    return false;
+                    return {
+                        check: false,
+                        status: "not log in"
+                    };
                 }
             }catch(err){
                 console.log(err);
-                return false;
+                return {
+                    check: false,
+                    status: "server error"
+                };
             }
         }
     }

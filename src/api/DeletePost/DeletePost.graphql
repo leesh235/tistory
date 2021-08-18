@@ -1,3 +1,12 @@
+type Response{
+    check: Boolean
+    status: String
+}
+
 type Mutation{
-    DeletePost(postId: String): Boolean!
+    DeletePost(postId: String!): Response
+}
+
+type Query{
+    dummy: String
 }
