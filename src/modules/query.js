@@ -15,3 +15,12 @@ export const MODIFYPOSTIMG = gql`
         }
     }
 `;
+
+export const UPLOADTEXT = gql`
+    mutation uploadText($postId: String){
+        uploadText(postId: $postId){
+            check
+            status
+        }
+    }
+`;
