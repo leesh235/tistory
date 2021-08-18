@@ -7,18 +7,12 @@ import { SIGNUP } from "./SignUpQuery";
 
 export default () => {
 
-    const idInput = useInput("");
+    const nickNameInput = useInput("");
     const passInput = useInput("");
     const passConfirmInput = useInput("");
     const emailInput = useInput("");
 
-    const [signupMutation] = useMutation(SIGNUP, {
-        variables: {
-            userId: idInput.value,
-            password: passInput.value,
-            email: emailInput.value
-        }
-    });
+    const [signupMutation] = useMutation(SIGNUP);
 
     const  history = useHistory();
 
@@ -27,7 +21,7 @@ export default () => {
 
         try{
             if(
-                idInput.value !== "" &&
+                nickNameInput.value !== "" &&
                 passInput.value !== "" &&
                 passConfirmInput.value !== "" &&
                 emailInput.value !== ""
@@ -35,8 +29,14 @@ export default () => {
                 if(passInput.value !== passConfirmInput.value){
                     alert("비밀번호가 일치하지 않습니다.");
                 }else{
-                    const {data: create} = await signupMutation();
-                    if(create){
+                    const { data: { signUp: { check, status } } } = await signupMutation({
+                        variables: {
+                            nickName: nickNameInput.value,
+                            password: passInput.value,
+                            email: emailInput.value
+                        }
+                    });
+                    if(check){
                         alert("정상적으로 가입되었습니다.");
                         history.push("/login");
                     }
@@ -49,7 +49,7 @@ export default () => {
 
     return (
         <SignUpPresenter 
-            id={idInput}
+            nickName={nickNameInput}
             password={passInput}
             passConfirm={passConfirmInput}
             email={emailInput}
