@@ -9,17 +9,12 @@ import { setUserId } from "../../redux/actions/user";
 
 export default () => {
     
-    const idInput = useInput("");
-    const passInput = useInput("");
+    const emailInput = useInput("");
+    const passwordInput = useInput("");
 
     const dispatch = useDispatch();
 
-    const [loginMutation] = useMutation(LOGIN, {
-        variables: {
-            userId: idInput.value,
-            password: passInput.value
-        }
-    });
+    const [loginMutation] = useMutation(LOGIN);
     const [tokenMutation] = useMutation(TOKENLOGIN);
 
     const history = useHistory();
@@ -27,15 +22,26 @@ export default () => {
     const onSubmit = async(e) => {
         e.preventDefault();
         try{
-            if(idInput.value !== "" && passInput.value !== ""){
+            if(emailInput.value !== "" && passwordInput.value !== ""){
                 const {
-                    data: {login: {token, userId}}
-                } = await loginMutation();
+                    data: {login: {
+                        email,
+                        nickName,
+                        userRole,
+                        token,
+                        status
+                    }}
+                } = await loginMutation({
+                    variables: {
+                        userId: emailInput.value,
+                        password: passwordInput.value
+                    }
+                });
 
-                dispatch(setUserId(userId));
+                // dispatch(setUserId(userId));
 
-                if(token !== null || token !== null){
-                    dispatch(setUserId(userId));
+                if(token !== null){
+                    // dispatch(setUserId(userId));
 
                     await tokenMutation({
                         variables: {
@@ -59,8 +65,8 @@ export default () => {
 
     return (
         <LogInPresenter 
-            id={idInput} 
-            password={passInput} 
+            id={emailInput} 
+            password={passwordInput} 
             onSubmit={onSubmit}
         />
     );
