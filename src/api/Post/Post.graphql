@@ -1,12 +1,17 @@
 type Post {
     postId: String
+    writer: String
     title: String
-    id: String
     createdAt: DateTime
 }
 
+type Response {
+    posts: [Post]
+    status: String
+}
+
 type Query{
-    getAllPosts: [Post]!
+    getAllPosts: Response!
 }
 
 type Mutation{
