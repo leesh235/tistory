@@ -15,20 +15,34 @@ export default {
                     const userId = request.user.userId;
                     const newPost = await prisma.post.create({
                         data: {
-                            id: userId,
+                            writer: userId,
                             title,
-                            contents
                         }
                     })
-                    return {postId: newPost.postId};
+                    if(contents !== ""){
+                        return {
+                            postId: newPost.postId,
+                            status: "success"
+                        };
+                    }else{
+                        return {
+                            postId: null,
+                            status: "no contents"
+                        };
+                    }
                 }else{
-                    console.log("You need to log in to perform this action");
-                    return {postId: null};
+                    return {
+                        postId: null,
+                        status: "no exist"
+                    };
                 }
 
             } catch (error){
                 console.log(error);
-                return {postId: null};
+                return {
+                    postId: null,
+                    status: "server error"
+                };
             }
         }
     }
