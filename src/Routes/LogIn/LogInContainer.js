@@ -33,7 +33,7 @@ export default () => {
                     }}
                 } = await loginMutation({
                     variables: {
-                        userId: emailInput.value,
+                        email: emailInput.value,
                         password: passwordInput.value
                     }
                 });
