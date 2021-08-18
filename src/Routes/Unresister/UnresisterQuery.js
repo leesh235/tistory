@@ -1,7 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const UNRESISTER = gql`
-    mutation Unresister($userId: String!, $password: String!){
-        Unresister(userId: $userId, password: $password)
+    mutation Unresister($email: String!, $password: String!){
+        Unresister(email: $email, password: $password){
+            check
+            status
+        }
     }
 `;

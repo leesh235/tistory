@@ -20,13 +20,13 @@ const UnresisterContainer = ({props}) => {
             window.alert("비밀번호가 다릅니다.")
         }else{
             if(window.confirm("회원탈퇴를 하시겠습니다?")){
-                const { data : {Unresister} } = await setUnresister({
+                const { data : {Unresister : { check, status } } } = await setUnresister({
                     variables:{
-                        userId: state.userInfo.userId,
+                        email: state.userInfo.email,
                         password: password.value
                     }
                 })
-                if(Unresister){
+                if(check){
                     await tokenMutation();
                     window.location.replace("/");
                 }else{
