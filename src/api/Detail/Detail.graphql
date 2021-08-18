@@ -1,18 +1,20 @@
 type Post {
+    postId: String
+    writer: String
     title: String
     contents: String
     createdAt: DateTime
-    id: String
     postImgId: String
 }
 
-type ConfirmInfo{
+type Response{
     equal: Boolean
+    status: String
     Post: Post
 }
 
 type Query {
-    getPost(postId: String! id: String!): ConfirmInfo
+    getPostDetail(postId: String! email: String!): Response
 }
 
 type Mutation {
