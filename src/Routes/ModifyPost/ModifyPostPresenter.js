@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const BodyStyle = styled.div`
     width: auto;
@@ -46,15 +44,7 @@ export default ({ title, contents, onSubmit, handlePicture, setPostData }) => {
                         <input type="file" onChange={handlePicture} />
                         <TitleIn placeholder={"  제목"} {...title} />
                         <SummaryIn placeholder={"  내용"} {...contents} />
-                        <CKEditor
-                            editor={ClassicEditor}
-                            // data='<p>Hello from CKEditor 5!</p>'
-                            onChange={(event, editor) => {
-                                const data = editor.getData();
-                                setPostData(data);
-                                console.log(data);
-                            }}
-                        />
+
                         <SubmitIn onClick={onSubmit}>완료</SubmitIn>
                 </ContentStyle>
             </BoxStyle>
