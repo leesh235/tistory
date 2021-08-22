@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Editor} from "../../components/Editor";
 
 const BodyStyle = styled.div`
     width: auto;
@@ -41,10 +42,8 @@ export default ({ title, contents, onSubmit, handlePicture, setPostData }) => {
         <BodyStyle>
             <BoxStyle>
                 <ContentStyle>
-                        <input type="file" onChange={handlePicture} />
                         <TitleIn placeholder={"  제목"} {...title} />
-                        <SummaryIn placeholder={"  내용"} {...contents} />
-
+                        <Editor getFormData={setPostData} user={"test"} />
                         <SubmitIn onClick={onSubmit}>완료</SubmitIn>
                 </ContentStyle>
             </BoxStyle>
