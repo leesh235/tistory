@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {Editor} from "../../components/Editor";
+// import {Editor} from "../../components/Editor";
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
 
 const BodyStyle = styled.div`
     width: auto;
@@ -45,17 +47,27 @@ const SubmitIn = styled.button`
 const AddPresenter = ({title, onSubmit, setPostData}) => {
   
     return (
-        <BodyStyle>
-            <BoxStyle>
-                <ContentStyle>
-                    <form onSubmit={onSubmit}>
-                        <TitleIn placeholder={"  제목"} {...title} />
-                        <Editor getFormData={setPostData} user={"test"} />
-                        <SubmitIn>완료</SubmitIn>
-                    </form>
-                </ContentStyle>
-            </BoxStyle>
-        </BodyStyle>
+        // <BodyStyle>
+        //     <BoxStyle>
+        //         <ContentStyle>
+        //             <form onSubmit={onSubmit}>
+        //                 <TitleIn placeholder={"  제목"} {...title} />
+        //                 <Editor getFormData={setPostData} user={"test"} />
+        //                 <SubmitIn>완료</SubmitIn>
+        //             </form>
+        //         </ContentStyle>
+        //     </BoxStyle>
+        // </BodyStyle>
+        <form onSubmit={onSubmit}>
+            <TitleIn placeholder={"  제목"} {...title} />
+            <Editor
+                initialValue="hello react editor world!"
+                previewStyle="vertical"
+                height="600px"
+                initialEditType="wysiwyg"
+            />
+            <SubmitIn>완료</SubmitIn>
+        </form>
     );
 }
 
