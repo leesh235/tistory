@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useMutation } from "@apollo/client";
 import { ADD } from "./AddQuery";
 import AddPresenter from './AddPresenter';
@@ -7,15 +7,18 @@ import axios from "axios";
 
 const AddContainer = (props) => {
 
+    const editorRef = React.createRef();
+
     const titleInput = useInput("");
 
-    const [postData, setPostData] = useState("");
+    // const [postData, setPostData] = useState("");
 
     const [AddMutation] = useMutation(ADD);
 
     const onSubmit = async(e) => {
         e.preventDefault();
-
+        const postData = editorRef.current.getInstance().getHTML()
+        console.log(postData)
         try{
             if(titleInput.value !== ""){
                 const { data: { createPost : {postId, status} } } = await AddMutation({
@@ -24,10 +27,10 @@ const AddContainer = (props) => {
                         contents: postData
                     }
                 });
-                // console.log("postId: ", postId, status)
-                // alert("작성 완료");
-                // window.location.replace("/");
-                if(postId !== null){
+                console.log("postId: ", postId, status)
+                alert("작성 완료");
+                window.location.replace("/");
+                if(status){
                     const jwt = localStorage.getItem("token");
                     const formData = new FormData();
                     formData.append("postId", postId);
@@ -57,7 +60,8 @@ const AddContainer = (props) => {
         <AddPresenter 
             title={titleInput}
             onSubmit={onSubmit}
-            setPostData={setPostData}
+            // setPostData={setPostData}
+            editorRef={editorRef}
         />
  
     );
