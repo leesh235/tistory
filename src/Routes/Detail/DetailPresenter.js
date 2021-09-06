@@ -115,6 +115,7 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
                         pathname: `/modifyPost/${post.postId}`,
                         state:{
                             title: post.title,
+                            postId: post.postId
                         }
                     }}>
                         <PostBtn>수정</PostBtn>
