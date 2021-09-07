@@ -10,7 +10,7 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if(exist === true){
-                    const { postId, email } = args;
+                    const { postId } = args;
 
                     const post = await prisma.post.findUnique({
                         where: { 
@@ -20,7 +20,7 @@ export default {
                     
                     if(post !== null){
                         // console.log(post);
-                        if(request.user.email === email){
+                        if(request.user.email === post.writer){
                             return {
                                     equal: true,
                                     status: "success and writer",

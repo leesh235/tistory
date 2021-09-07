@@ -54,18 +54,32 @@ export default {
                     const userId = request.user.userId;
 
                     if(postId !== ""){
-                        const uploadText = await prisma.post.update({
-                            where: {
+                        
+                        const findPost = await prisma.post.findUnique({
+                            where:{
                                 postId: Number(postId)
-                            },
-                            data: {
-                                contents: "exist"
                             }
                         })
-                        return {
-                            check: true,
-                            status: "success"
-                        };
+
+                        if(findPost.contents !== "exist"){
+                            const uploadText = await prisma.post.update({
+                                where: {
+                                    postId: Number(postId)
+                                },
+                                data: {
+                                    contents: "exist"
+                                }
+                            })
+                            return {
+                                check: true,
+                                status: "success"
+                            };
+                        }else{
+                            return {
+                                check: true,
+                                status: "success Modify"
+                            }
+                        }
                     }else{
                         return {
                             check: false,

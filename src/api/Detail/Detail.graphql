@@ -14,7 +14,7 @@ type Response{
 }
 
 type Query {
-    getPostDetail(postId: String! email: String!): Response
+    getPostDetail(postId: String!): Response
 }
 
 type Mutation {

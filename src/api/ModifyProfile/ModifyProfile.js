@@ -49,29 +49,29 @@ export default {
                 if( exist === true ){
                 
                     const { userImg } = args;
-                    const id = request.user.id;
+                    const userId = request.user.userId;
                     // console.log(userImg)
                     const data = await prisma.user.update({
                         where:{
-                            id
+                            userId
                         },
                         data: {
-                            userImgId: id + "_profileImg"
+                            userImg: `${userId}` + "_profileImg"
                         }
                     })
 
                     // console.log("data: ", data)
                     // console.log(id + "_profileImg")
-                    return {userImgId:id + "_profileImg"};
+                    return {userImg:userId + "_profileImg"};
 
                 }else{
                     console.log("You need to log in to perform this action2");
-                    return {userImgId:""};
+                    return {userImg:""};
                 }
 
             } catch (error){
                 console.log(error);
-                return {userImgId:""};
+                return {userImg:""};
             }
         }
     }

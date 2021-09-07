@@ -1,11 +1,10 @@
-type ResPostId {
-    postImgId: String
+type Response {
+    check: Boolean
+    status: String
 }
 
-
 type Mutation {
-    ModifyPost(postId: String! title: String! contents: String): Boolean!
-    ModifyPostImg(postImg: String): ResPostId
+    ModifyPost(postId: Int! title: String!): Response!
 }
 
 type Query {
