@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const DETAIL = gql`
-    query getPostDetail($postId: String!, $email: String!){
-        getPostDetail(postId: $postId, email: $email){
+    query getPostDetail($postId: String!){
+        getPostDetail(postId: $postId){
             equal
             status
             Post{

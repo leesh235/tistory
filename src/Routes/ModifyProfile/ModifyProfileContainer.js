@@ -8,7 +8,8 @@ import axios from "axios";
 
 export default ({props}) => {
 
-    let userId = props.history.location.state.userId
+    let email = props.history.location.state.email
+    console.log(email)
     const passwordInput = useInput("");
     const passConfirmInput = useInput("");
     const [picture, setPicture] = useState("");
@@ -49,8 +50,7 @@ export default ({props}) => {
                 if(picture !== undefined && picture !== null){
                     const jwt = localStorage.getItem("token");
                     const formData = new FormData();
-                    console.log(userId)
-                    formData.append("user", userId);
+                    formData.append("user", email);
                     formData.append("streamfile", picture);
         
                     await axios({
@@ -73,10 +73,9 @@ export default ({props}) => {
     }
 
     useEffect(() => {
-        if(userId === ""){
+        if(email === ""){
             history.push("/profile");
         }
-        console.log(userId);
     },[])
 
     return (

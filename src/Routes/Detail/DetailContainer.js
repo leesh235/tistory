@@ -12,11 +12,9 @@ export default ({history, location}) => {
     const [postContents, setPostContents] = useState("");
 
     // console.log(postId);
-
     const {loading, data} = useQuery(DETAIL,{
         variables: {
-            postId: postId,
-            email: location.state.writer
+            postId: postId
         }
     });
     console.log(data)
@@ -68,11 +66,8 @@ export default ({history, location}) => {
     }
 
     useEffect(() => {
-        if(location.state.writer === undefined){
-            history.push(`/`);
-        }
         fileserver();
-    },[loading])
+    },[loading, data])
 
     return (
         <div>

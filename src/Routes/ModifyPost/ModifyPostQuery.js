@@ -1,7 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const MODIFYPOST = gql`
-    mutation ModifyPost($postId: String!, $title: String!, $contents: String){
-        ModifyPost(postId: $postId, title: $title, contents: $contents)
+    mutation ModifyPost($postId: Int!, $title: String!){
+        ModifyPost(postId: $postId, title: $title){
+            check
+            status
+        }
     }
 `;

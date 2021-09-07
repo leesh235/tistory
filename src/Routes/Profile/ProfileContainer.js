@@ -11,20 +11,22 @@ const ProfileContainer = () => {
     const [userImg, setUserImg] = useState("");
 
     const { loading, data } = useQuery(PROFILE);
+    console.log(data)
 
     const filesever = async() => {
 
-        if(data.getProfile.userImgId !== null){
+        if(data.getProfile.userImg !== null){
             const jwt = localStorage.getItem("token");
-            const userId = data.getProfile.userId;
+            const email = data.getProfile.email;
             const res = await axios({
                 method: "get",
-                url: `http://localhost:5000/profileImg/${userId}`,
+                url: `http://localhost:5000/profileImg/${email}`,
                 headers: {
                     Authorization: jwt,
                     "Content-Type": "multipart/form-data"
                 }
             })
+
             setUserImg(res.data.profileImg);
         }
     }
@@ -38,6 +40,7 @@ const ProfileContainer = () => {
                 filesever();
             }
         }
+
     },[loading,userInfo])
 
     return (

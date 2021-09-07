@@ -13,25 +13,19 @@ export default ({history, location}) => {
         if(history.location.state === ""){
             setHistory.goBack();
         }
-       console.log(history.location.state) 
+        init()
     },[])
-
-    const [postData, setPostData] = useState("");
+    
+    console.log(history.location) 
+    const editorRef = React.createRef();
 
     const {postId} = useParams();
 
     const titleInput = useInput(history.location.state.title);
-    const contentsInput = useInput(history.location.state.contents);
 
     const [postImg, setPostImg] = useState("");
 
-    const [setPostMutation] = useMutation(MODIFYPOST, {
-        variables: {
-            postId,
-            title: titleInput.value,
-            contents: contentsInput.value
-        }
-    })
+    const [setPostMutation] = useMutation(MODIFYPOST)
 
     const setHistory = useHistory();
 
@@ -43,57 +37,66 @@ export default ({history, location}) => {
     }
     
     const onSubmit = async(e) => {
-        e.preventDefault();
-
+        const postData = editorRef.current.getInstance().getHTML()
         try{
-
+            
             if(titleInput.value !== ""){
-                const { data: { ModifyPost } } = await setPostMutation();
-
-                if(ModifyPost){
+                const { data: { ModifyPost: {check, status} } } = await setPostMutation({
+                    variables: {
+                        postId: Number(postId),
+                        title: titleInput.value,
+                    }
+                });
+ 
+                if(check){
                     alert("내용이 변경되었습니다.")
-                    setTimeout(() => {
-                        setHistory.goBack()
-                    }, 500);
+                    window.location.replace(`/detail/${postId}`)
+                    const jwt = localStorage.getItem("token");
+                    const formData = new FormData();
+                    // console.log(postId)
+                    formData.append("postId", postId);
+                    formData.append("title", titleInput.value);
+                    formData.append("editor", postData);
+        
+                    await axios({
+                        method: "post",
+                        url: "http://localhost:5000/editor",
+                        data: formData,
+                        headers: {
+                            Authorization: jwt,
+                            "Content-Type": "multipart/form-data",
+                        }
+                    })
                 }
-
             }else{
                 alert("제목을 입력하세요.")
             }
 
-            if(postImg !== undefined && postImg !== null){
-                const jwt = localStorage.getItem("token");
-                const formData = new FormData();
-                // console.log(postId)
-                formData.append("user", postId);
-                formData.append("streamfile", postImg);
-                formData.append("editor", postData);
-    
-                await axios({
-                    method: "post",
-                    url: "http://localhost:5000/post",
-                    data: formData,
-                    headers: {
-                        Authorization: jwt,
-                        "Content-Type": "multipart/form-data",
-                    }
-                })
-                alert("사진이 변경되었습니다.");
-                setHistory.goBack();
-            }
 
         }catch(error){
             console.log(error);
         }
     }
 
+    const init = async() => {
+        const jwt = localStorage.getItem("token");
+        const {data} = await axios({
+            method: "get",
+            url: `http://localhost:5000/editor/${postId}`,
+            headers: {
+                Authorization: jwt,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        editorRef.current.getInstance().setHTML(data)
+    }
+
     return (
         <ModifyPostPresenter 
             title={titleInput}
-            contents={contentsInput}
             onSubmit={onSubmit}
             handlePicture={handlePicture}
-            setPostData={setPostData}
+            editorRef={editorRef}
         />
     );
 
