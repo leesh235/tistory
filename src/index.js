@@ -50,14 +50,14 @@ app.post("/profile", async(req, res) => {
     }
 })
 
-app.get("/profileImg/:userId", async(req, res) => {
+app.get("/profileImg/:email", async(req, res) => {
     try{
-        const userId = req.params.userId
-        const dirpath = `uploads/${userId}`;
+        const email = req.params.email
+        const dirpath = `uploads/${email}`;
         const filename = fs.readdirSync(dirpath)[0];
         if(filename){
             //uploads를 지정해줄 필요없음, 지정하면 오류발생
-            const uri = userId+ "/" + filename
+            const uri = email+ "/" + filename
             res.status(200).send({profileImg: uri});
         }else{
             res.status(404).send({message: "no such image"});
@@ -83,24 +83,29 @@ app.post("/editorImg", async(req, res) => {
     }
 })
 
-//editor를 통해 들어온 text 저장
+//editor
 app.post("/editor", async(req, res) => {
     try{
         upload(req, res, async(err) => {
             console.log("body: ",req.body)
-            // console.log("file: ",req.file)
+            console.log("file: ",req.file)
             const {data : { uploadText : { check, status } }} = await postContentsToDB(req);
             if(check){
                 const dirPath = `./uploads/${req.body.postId}`;
                 const fileData = req.body.editor
                 let fileContents = Buffer.from(fileData, "utf8");
 
-                if (fs.existsSync(dirPath)) {
-                    fs.removeSync(dirPath);
+                if(fs.existsSync(dirPath)) {
+                    const files = fs.readdirSync(dirPath)
+                    fs.removeSync(dirPath+"/"+files[0])
+                }else{
+                    fs.mkdirSync(dirPath);
                 }
 
-                fs.mkdirSync(dirPath);
                 fs.writeFile(dirPath+ "/" + req.body.title + ".html", fileContents)
+                
+
+                return true;
             }else{
                 console.log("실패")
                 return false;
@@ -144,46 +149,6 @@ app.get("/editor/:postId", async(req, res) => {
             res.status(200).download(uri, filename, (err) => {
                 console.log(err);
             });
-        }else{
-            res.status(404).send({message: "no such image"});
-        }
-    }catch(err){
-        res.status(500).send({message: `${err}`})
-    }
-})
-
-//post image
-app.post("/post", async(req, res) => {
-    try{
-        upload(req, res, async(err) => {
-            const {data} = await postToDB(req);
-
-            if(data.ModifyPostImg.postImgId === null){
-                return false;
-            }
-
-            if(req.file){
-                // console.log(req.file)
-                console.log("success!");
-            } else {
-                console.log("no such file");
-            }
-        })
-    }catch(error){
-        console.log("upload fail");
-        console.log(error);
-    }
-})
-
-app.get("/postImg/:postId", async(req, res) => {
-    try{
-        const postId = req.params.postId
-        const dirpath = `uploads/${postId}`;
-        const filename = fs.readdirSync(dirpath)[0];
-        if(filename){
-            //uploads를 지정해줄 필요없음, 지정하면 오류발생
-            const uri = postId+ "/" + filename
-            res.status(200).send({postImg: uri});
         }else{
             res.status(404).send({message: "no such image"});
         }
