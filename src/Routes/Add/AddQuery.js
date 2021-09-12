@@ -5,6 +5,7 @@ mutation createPost($title: String!, $contents:String){
     createPost(title: $title, contents: $contents){
         postId
         status
+        writer
     }
 }
 `;

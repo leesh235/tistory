@@ -21,19 +21,20 @@ const AddContainer = (props) => {
         console.log(postData)
         try{
             if(titleInput.value !== ""){
-                const { data: { createPost : {postId, status} } } = await AddMutation({
+                const { data: { createPost : {postId, status, writer} } } = await AddMutation({
                     variables: {
                         title: titleInput.value,
                         contents: postData
                     }
                 });
-                console.log("postId: ", postId, status)
+                console.log("postId: ", postId, status, writer)
                 alert("작성 완료");
                 window.location.replace("/");
                 if(status){
                     const jwt = localStorage.getItem("token");
                     const formData = new FormData();
                     formData.append("postId", postId);
+                    formData.append("writer", writer);
                     formData.append("title", titleInput.value);
                     formData.append("editor", postData);
                 
