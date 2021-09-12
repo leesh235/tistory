@@ -19,20 +19,24 @@ export default {
                             title,
                         }
                     })
+                    console.log(email)
                     if(contents !== ""){
                         return {
                             postId: newPost.postId,
+                            writer: email,
                             status: "success"
                         };
                     }else{
                         return {
                             postId: null,
+                            writer: null,
                             status: "no contents"
                         };
                     }
                 }else{
                     return {
                         postId: null,
+                        writer: null,
                         status: "no exist"
                     };
                 }
@@ -41,6 +45,7 @@ export default {
                 console.log(error);
                 return {
                     postId: null,
+                    writer: null,
                     status: "server error"
                 };
             }

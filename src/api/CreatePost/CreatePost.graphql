@@ -1,6 +1,7 @@
 type Response {
     postId: String
     status: String
+    writer: String
 }
 
 type UploadTextResponse {
