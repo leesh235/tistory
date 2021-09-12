@@ -25,10 +25,11 @@ export default ({history, location}) => {
         
         if(data?.getPostDetail?.Post?.contents === "exist"){
             try{
+                const writer = data.getPostDetail.Post.writer
                 const jwt = localStorage.getItem("token");
                 const res = await axios({
                     method: "get",
-                    url: `http://localhost:5000/editor/${postId}`,
+                    url: `http://localhost:5000/editor/${writer}/${postId}`,
                     headers: {
                         Authorization: jwt,
                         "Content-Type": "multipart/form-data"
@@ -52,10 +53,11 @@ export default ({history, location}) => {
             })
             if(check){
                 window.location.replace("/")
+                const writer = data.getPostDetail.Post.writer
                 const jwt = localStorage.getItem("token");
                 const res = await axios({
                     method: "get",
-                    url: `http://localhost:5000/editor/delete/${postId}`,
+                    url: `http://localhost:5000/editor/delete/${writer}/${postId}`,
                     headers: {
                         Authorization: jwt,
                         "Content-Type": "multipart/form-data"
