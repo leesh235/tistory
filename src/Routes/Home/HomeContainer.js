@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { POST } from "./HomeQuery";
 import HomePresenter from './HomePresenter';
+import { Loading } from "../../components/Loading";
 
 export default () => {
 
     const { loading, data } = useQuery(POST);
-    const [posts, setPosts] = useState([])
     
-    useEffect(() => {
-        console.log(data)
+    console.log(data)
 
-    },[loading])
-
-    return (
-        <div>
-            {!loading && <HomePresenter postList={data.getAllPosts.posts} />}
-        </div>
-    );
+    if(!loading){
+        return (
+            <HomePresenter postList={data.getAllPosts.posts} />
+        );
+    }else{
+        return (
+            <Loading />
+        );
+    }
 };
