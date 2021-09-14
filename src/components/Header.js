@@ -11,7 +11,7 @@ const Wrapper = styled.header`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 75px;
+    height: 100px;
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@ const Wrapper = styled.header`
     z-index: 1;
     background-color: white;
     box-shadow: 0 0.5px 3px gray;
-    padding: 10px 50px;
+    padding: 0px 50px;
 `;
 
 const Logo = styled.h1`
@@ -34,6 +34,8 @@ const LogOutStyle = styled.div`
 const Menu = styled.nav`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    height: 100%;
 `;
 
 const LinkStyle = styled.li`
@@ -41,7 +43,7 @@ const LinkStyle = styled.li`
     align-items: center;
     width: auto;
     height: 2.5rem;
-    margin: 2em;
+    margin: 0 2em;
     cursor:pointer;
 `;
 

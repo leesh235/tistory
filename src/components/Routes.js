@@ -23,7 +23,7 @@ import { TOKENINFO } from "../apollo/tokenQuery";
 const Wrapper = styled.main`
     width: 1180px;
     min-height: 80vh;
-    margin: 66px auto 0 auto;
+    margin: 100px auto 0 auto;
 `;
 
 const Routes = () => {
