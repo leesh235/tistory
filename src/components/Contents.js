@@ -2,62 +2,45 @@ import React from "react";
 import styled from 'styled-components';
 import moment from "moment"
 import { Link } from 'react-router-dom';
+import { Text } from "../components/Text";
 
-const TextDiv = styled.div`
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
-`;
-
-const AllPostsStyle = styled.div`
-    display: flex;
-    flex-direction: row;
+const Wrapper = styled.article`
     padding: 20px;
     border-bottom: 1px solid gray;
 `;
 
-const PostData = styled.div`
-    display: flex;
-    flex-direction: column;
+const TitleStyle = `
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
 `;
 
-const TitleStyle = styled.h4`
-    margin: 0;
+const UserStyle = `
+    font-size: 16px;
+    font-weight: normal;
     margin-bottom: 15px;
-    margin-left: 20px;
 `;
 
-const UserStyle = styled.div`
-    margin: 0;
+const DateStyle = `
+    font-size: 16px;
+    font-weight: normal;
     margin-bottom: 15px;
-    margin-left: 20px;
-`;
-
-const DateStyle = styled.div`
-    margin: 0;
-    margin-bottom: 15px;
-    margin-left: 20px;
 `;
 
 function Contents({writer, title, postId, createdAt }){
     return(
-        <TextDiv>
+        <Wrapper key={postId}>
             <Link to={{
                 pathname: `/detail/${postId}`,
                 state:{
                     writer
                 }
             }}>
-                <AllPostsStyle key={postId}>
-                    <PostData>
-                        <TitleStyle>{title}</TitleStyle>
-                        <UserStyle>{writer}</UserStyle>
-                        <DateStyle>{moment(createdAt).format("YYYY-MM-DD / LT")}</DateStyle>
-                    </PostData>
-                </AllPostsStyle>
+                <Text text={title} props={TitleStyle} />
+                <Text text={writer} props={UserStyle} />
+                <Text text={moment(createdAt).format("YYYY-MM-DD / LT")} props={DateStyle} />
             </Link>
-        </TextDiv>
+        </Wrapper>
     );
 }
 
