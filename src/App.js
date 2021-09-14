@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "./Style/GlobalStyle";
+import { theme } from "./Style/theme";
 import { BrowserRouter as Router} from 'react-router-dom';
-import "./App.css";
 import Routes from './components/Routes';
-import { useQuery } from '@apollo/client';
-import { TOKENINFO } from "./apollo/tokenQuery";
 import { Provider } from 'react-redux';
 import createStore from './redux/store';
 import reducers from "./redux/reducers/index";
@@ -14,11 +14,13 @@ const App = () => {
   
   return (
     <Provider store={store}>
-      <div className="App">
-        <Router>
-          <Routes />
-        </Router>
-      </div>
+      <ThemeProvider theme={theme}>
+          <GlobalStyle>
+            <Router>
+              <Routes />
+            </Router>
+          </GlobalStyle>
+        </ ThemeProvider>
     </Provider>
   )
 }
