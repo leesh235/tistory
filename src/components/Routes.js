@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import SearchIndex from '../Routes/Seach/index';
@@ -20,45 +20,37 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 import { TOKENINFO } from "../apollo/tokenQuery";
 
-const Wrapper = styled.div`
-    margin: 100px auto 100px auto;
+const Wrapper = styled.main`
     width: 1180px;
+    min-height: 80vh;
+    margin: 66px auto 0 auto;
 `;
 
 const Routes = () => {
 
-    const userData = useQuery(TOKENINFO);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-    const userInit = async() => {
-      const {data}= await userData;
-      setIsLoggedIn(data.isLoggedIn);
-      console.log(data.isLoggedIn)
-    }
-  
-    useEffect(() => {
-      userInit();
-    },[isLoggedIn])
+    const {data, loading} = useQuery(TOKENINFO);
 
     return(
         <Router>
             <Header />
-            <Wrapper>
-                <Route exact path="/search" component={SearchIndex} />
-                <Route exact path="/forget" component={ForgetIndex} />
-                <Route exact path="/mypost" component={MyPostIndex} />
-                <Route exact path="/profile" component={ProfileIndex} />
-                <Route exact path="/login" component={LogInIndex} />
-                <Route exact path="/signup" component={SignUpIndex} />
-                <Route exact path="/result" component={SearchList} />
-                <Route exact path="/detail/:postId" component={DetailIndex} />
-                <Route exact path="/" component={HomeIndex} />
-                <Route exact path="/page=:i" component={HomeIndex} />
-                <Route exact path="/add" component={AddIndex} />
-                <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
-                <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
-                <Route exact path="/profile/unresister" component={UnresisterIndex} />
-            </Wrapper>
+                <Wrapper>
+                    <Switch>
+                        <Route exact path="/search" component={SearchIndex} />
+                        <Route exact path="/forget" component={ForgetIndex} />
+                        <Route exact path="/mypost" component={MyPostIndex} />
+                        <Route exact path="/profile" component={ProfileIndex} />
+                        <Route exact path="/login" component={LogInIndex} />
+                        <Route exact path="/signup" component={SignUpIndex} />
+                        <Route exact path="/result" component={SearchList} />
+                        <Route exact path="/detail/:postId" component={DetailIndex} />
+                        <Route exact path="/" component={HomeIndex} />
+                        <Route exact path="/page=:i" component={HomeIndex} />
+                        <Route exact path="/add" component={AddIndex} />
+                        <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
+                        <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
+                        <Route exact path="/profile/unresister" component={UnresisterIndex} />
+                    </Switch>
+                </Wrapper>
             <Footer />
         </Router>
     );
