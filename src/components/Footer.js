@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const BodyStyle = styled.div`
-    min-width: 100%;
+    width: 100vw;
     height:200px;
     background-color: silver;
     box-shadow: 0px -0.5px 3px gray;

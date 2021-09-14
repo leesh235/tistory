@@ -2,31 +2,27 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { TOKENINFO, TOKENLOGOUT } from "../apollo/tokenQuery";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import ListBar from "./ListBar";
 
-const HeaderStyle = styled.div`
+const Wrapper = styled.header`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
     position: fixed;
     top: 0;
-    min-width: 100%;
-    z-index: 9999999999;
+    left: 0;
+    right: 0;
+    z-index: 1;
     background-color: white;
     box-shadow: 0 0.5px 3px gray;
-    justify-content: space-between;
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
-    
+    padding: 10px 50px;
 `;
 
-const LogoStyle = styled.h1`
-    margin-left: 30px;
-    margin-top: 20px;
-    margin-bottom: 30px;
+const Logo = styled.h1`
     color: red;
     cursor:pointer;
 `;
@@ -35,15 +31,18 @@ const LogOutStyle = styled.div`
 
 `;
 
-const MenusStyle = styled.div`
+const Menu = styled.nav`
     display: flex;
     flex-direction: row;
-    align-items: center;
-    margin-right: 50px;
+    justify-content: space-between;
+    width: 30%;
 `;
 
-const LinkStyle = styled.div`
-    margin: 0px 50px 0px 50px;
+const LinkStyle = styled.li`
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 2.5rem;
     cursor:pointer;
 `;
 
@@ -55,7 +54,6 @@ const ListWrapper = styled.div`
 `;
 
 const LinksStyle = styled.div`
-    cursor:pointer;
 `;
 
 const Header = () => {
@@ -91,9 +89,9 @@ const Header = () => {
     }
 
     return (
-        <HeaderStyle>
-            <LogoStyle onClick={onClick}>tistory</LogoStyle>
-            <MenusStyle>
+        <Wrapper>
+            <Logo onClick={onClick}>tistory</Logo>
+            <Menu>
                 <LinkStyle>
                     {!loading && isLoggedIn? <Link to="/profile">profile</Link> : ""}
                 </LinkStyle>
@@ -101,14 +99,14 @@ const Header = () => {
                     {!loading && isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
                 </LinkStyle>
 
-                <LinkStyle>
+                <LinkStyle onClick={onList}>
                     <ListWrapper>
-                        <LinksStyle onClick={onList}>List</LinksStyle>
+                        <LinksStyle>List</LinksStyle>
                         {open ? <ListBar diplay={"block"} /> : null }
                     </ListWrapper>
                 </LinkStyle>
-            </MenusStyle>
-        </HeaderStyle>
+            </Menu>
+        </Wrapper>
     );
 }
 
