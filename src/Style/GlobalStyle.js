@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
-const GStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     ${reset};
     body{
         margin: 0;
@@ -19,9 +19,3 @@ const GStyle = createGlobalStyle`
         color: inherit;
     }
 `;
-
-export const GlobalStyle = ({children}) => {
-    return(
-        <GStyle>{children}</GStyle>
-    );
-}

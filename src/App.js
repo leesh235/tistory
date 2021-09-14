@@ -15,11 +15,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-          <GlobalStyle>
-            <Router>
-              <Routes />
-            </Router>
-          </GlobalStyle>
+          <GlobalStyle />
+          <Router>
+            <Routes />
+          </Router>
         </ ThemeProvider>
     </Provider>
   )
