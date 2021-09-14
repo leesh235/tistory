@@ -34,8 +34,6 @@ const LogOutStyle = styled.div`
 const Menu = styled.nav`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 30%;
 `;
 
 const LinkStyle = styled.li`
@@ -43,6 +41,7 @@ const LinkStyle = styled.li`
     align-items: center;
     width: auto;
     height: 2.5rem;
+    margin: 2em;
     cursor:pointer;
 `;
 
@@ -51,9 +50,6 @@ const ListWrapper = styled.div`
     display: flex;
     flex-direction: column;
     background-color: white;
-`;
-
-const LinksStyle = styled.div`
 `;
 
 const Header = () => {
@@ -88,26 +84,28 @@ const Header = () => {
         }
     }
 
-    return (
-        <Wrapper>
-            <Logo onClick={onClick}>tistory</Logo>
-            <Menu>
-                <LinkStyle>
-                    {!loading && isLoggedIn? <Link to="/profile">profile</Link> : ""}
-                </LinkStyle>
-                <LinkStyle>
-                    {!loading && isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
-                </LinkStyle>
-
-                <LinkStyle onClick={onList}>
-                    <ListWrapper>
-                        <LinksStyle>List</LinksStyle>
-                        {open ? <ListBar diplay={"block"} /> : null }
-                    </ListWrapper>
-                </LinkStyle>
-            </Menu>
-        </Wrapper>
-    );
+    if(!loading){
+        return (
+            <Wrapper>
+                <Logo onClick={onClick}>tistory</Logo>
+                <Menu>
+                    <LinkStyle>
+                        {!loading && isLoggedIn? <Link to="/profile">profile</Link> : ""}
+                    </LinkStyle>
+                    <LinkStyle>
+                        {!loading && isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
+                    </LinkStyle>
+    
+                    <LinkStyle onClick={onList}>
+                        <ListWrapper>
+                            <>List</>
+                            {open ? <ListBar diplay={"block"} /> : null }
+                        </ListWrapper>
+                    </LinkStyle>
+                </Menu>
+            </Wrapper>
+        );
+    }
 }
 
 export default Header;
