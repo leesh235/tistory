@@ -27,7 +27,7 @@ const DateStyle = `
     margin-bottom: 15px;
 `;
 
-function Contents({writer, title, postId, createdAt }){
+export const Contents = ({writer, title, postId, createdAt }) => {
     return(
         <Wrapper key={postId}>
             <Link to={{
@@ -43,5 +43,3 @@ function Contents({writer, title, postId, createdAt }){
         </Wrapper>
     );
 }
-
-export default Contents

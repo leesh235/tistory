@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Contents from '../../components/Contents';
+import {Contents} from '../../components/Contents';
 
 const BodyStyle = styled.main`
     width: auto;

@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
-import Pages from "../Pages/Pages"
-import Contents from '../../components/Contents';
+import {Contents} from '../../components/Contents';
 
 const BodyStyle = styled.main`
     width: auto;
@@ -38,9 +37,6 @@ const SearchList = ({result}) => {
                     //}
                 )})
             )}
-        {/* <Pages getDate={(index) => {
-            setPageId(index)
-        }} pageNum={len}/> */}
         </BodyStyle>
     );
 }
