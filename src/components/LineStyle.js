@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    border-bottom: 1px solid gray;
-    ${prop => prop.props}
+    width: ${p=>p.w};
+    border-bottom: 1px solid ${p=>p.color};
 `;
 
-export const LineStyle = ({props}) => {
+export const LineStyle = ({w, color="gray"}) => {
     return(
-        <Wrapper props={props} />
+        <Wrapper w={w} color={color} />
     );
 }
