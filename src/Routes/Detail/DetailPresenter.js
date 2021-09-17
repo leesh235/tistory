@@ -2,8 +2,16 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import moment from "moment";
 import { Link } from 'react-router-dom';
+import { LineStyle } from "../../components/LineStyle";
+import { FlexWrapper } from "../../components/FlexWrapper";
+import { Gap } from "../../components/Gap";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
+    display: flex;
+    flex-direction: column;
+`;
+
+const MainContent = styled.article`
     display: flex;
     flex-direction: column;
     width: auto;
@@ -12,29 +20,8 @@ const Wrapper = styled.div`
     margin: 200px 0px;
 `;
 
-const Top = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 900px;
-`;
-
-const LineStyle = styled.div`
-    width: 100%;
-    border-bottom: 1px solid gray;
-    margin: 12px 0px;
-`;
-
 const TitleStyle = styled.h2`
 
-`;
-
-const ContentInfo = styled.div`
-    display: flex;
-    flex-direction: row-reverse;
-    >:nth-child(n){
-        margin-left: 12px;
-    }
 `;
 
 const DateStyle = styled.div`
@@ -61,22 +48,21 @@ const ImageStyle = styled.div`
     height: auto;
 `;
 
-const BtnWrapper = styled.div`
-    width: 800px;
-    display: flex;
-    flex-direction: row-reverse;
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
-    >:nth-child(n){
-        margin-left: 30px;
-    }
-`;
 
 const PostBtn = styled.div`
     cursor: pointer;
 `;
+
+const BtnStyle = {
+    w: "800px",
+    display: "flex",
+    fd: "row-reverse",
+}
+
+const ContentInfo = {
+    display: "flex",
+    fd: "row-reverse"
+}
 
 const DetailPresenter = ({postContents, post, equal, onClick}) => {
 
@@ -90,39 +76,44 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
 
     return(
         <Wrapper>
-            <Top>
-  
-                <TitleStyle>{post.title}</TitleStyle>
+            <MainContent>
+                <FlexWrapper>
+                    <TitleStyle>{post.title}</TitleStyle>
+                    
+                    <Gap h={"10px"}/>
 
-                <LineStyle></LineStyle>
+                    <LineStyle w={"800px"}/>
 
-                <ContentInfo>
-                    <DateStyle>{`작성일: ${moment(post.createdAt).format("YYYY-MM-DD LT")}`}</DateStyle>
-                    <UserNameStyle>{`작성자: ${post.writer}`}</UserNameStyle>
-                </ContentInfo>
+                    <Gap h={"10px"}/>
 
+                    <FlexWrapper props={ContentInfo}>
+                        <DateStyle>{`작성일: ${moment(post.createdAt).format("YYYY-MM-DD LT")}`}</DateStyle>
+                        <Gap w={"10px"}/>
+                        <UserNameStyle>{`작성자: ${post.writer}`}</UserNameStyle>
+                    </FlexWrapper>
+                </FlexWrapper>
 
-            </Top>
+                <ContentWrapper>
+                    {postContents && <div dangerouslySetInnerHTML={createMarkup()} />}
+                </ContentWrapper>
 
-            <ContentWrapper>
-                {postContents && <div dangerouslySetInnerHTML={createMarkup()} />}
-            </ContentWrapper>
-
-            <BtnWrapper>
-                {equal ? <PostBtn onClick={onClick}>삭제</PostBtn> : ""}
-                {equal ? 
-                    <Link to={{
-                        pathname: `/modifyPost/${post.postId}`,
-                        state:{
-                            title: post.title,
-                            postId: post.postId
-                        }
-                    }}>
-                        <PostBtn>수정</PostBtn>
-                    </Link> :
-                    ""
-                }
-            </BtnWrapper>
+                <FlexWrapper props={BtnStyle}>
+                    {equal ? <PostBtn onClick={onClick}>삭제</PostBtn> : ""}
+                    <Gap w={"30px"}/>
+                    {equal ? 
+                        <Link to={{
+                            pathname: `/modifyPost/${post.postId}`,
+                            state:{
+                                title: post.title,
+                                postId: post.postId
+                            }
+                        }}>
+                            <PostBtn>수정</PostBtn>
+                        </Link> :
+                        ""
+                    }
+                </FlexWrapper>
+            </MainContent>
         </Wrapper>
     );
 }

@@ -4,6 +4,7 @@ import { DETAIL, DELETEPOST } from "./DetailQuery";
 import { useParams } from "react-router-dom";
 import DetailPresenter from './DetailPresenter';
 import axios from "axios";
+import { Loading } from "../../components/Loading";
 
 export default ({history, location}) => {
 
@@ -11,7 +12,7 @@ export default ({history, location}) => {
 
     const [postContents, setPostContents] = useState("");
 
-    // console.log(postId);
+    console.log(postId);
     const {loading, data} = useQuery(DETAIL,{
         variables: {
             postId: postId
@@ -69,18 +70,20 @@ export default ({history, location}) => {
 
     useEffect(() => {
         fileserver();
-    },[loading, data])
-
-    return (
-        <div>
-            {!loading && data?.getPostDetail?.Post ? 
-                <DetailPresenter 
-                    postContents={postContents}
-                    post={data.getPostDetail.Post}
-                    equal={data.getPostDetail.equal}
-                    onClick={onClick}
-                /> : 
-            "loading..."}
-        </div>
-    );
+    },[])
+    console.log(data)
+    if(!loading){
+        return (
+            <DetailPresenter 
+                postContents={postContents}
+                post={data.getPostDetail.Post}
+                equal={data.getPostDetail.equal}
+                onClick={onClick}
+            />
+        );
+    }else{
+        return (
+            <Loading />
+        );
+    }
 };
