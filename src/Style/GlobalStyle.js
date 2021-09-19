@@ -3,7 +3,11 @@ import reset from "styled-reset";
 
 export const GlobalStyle = createGlobalStyle`
     ${reset};
+    html{
+        font-size: 62.5%;
+    }
     body{
+        font-size: 1.6em;
         margin: 0;
         padding: 0;
         width: 100vw;
