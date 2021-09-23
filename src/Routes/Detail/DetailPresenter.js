@@ -19,7 +19,7 @@ const MainContent = styled.section`
 const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 70vw;
+    width: 90%;
     min-height: 350px;
     margin: 50px 0px;
     >:nth-child(n){
@@ -32,10 +32,16 @@ const PostBtn = styled.div`
 `;
 
 const BtnStyle = {
-    w: "70vw",
+    w: "90%",
     display: "flex",
     fd: "row",
     jc: "flex-end"
+}
+
+const TitleInfo = {
+    display: "flex",
+    fd: "column",
+    w: "90%",
 }
 
 const ContentInfo = {
@@ -56,11 +62,11 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
 
     return(
         <MainContent>
-            <FlexWrapper>
+            <FlexWrapper props={TitleInfo}>
        
                 <Text text={`${post.title}`} type={"div"}/>
 
-                <LineStyle w={"80vw"} margin={"10px 0 10px 0"}/>
+                <LineStyle w={"100%"} margin={"10px 0 10px 0"}/>
 
                 <FlexWrapper props={ContentInfo}>
                     <Text text={`작성자: ${post.writer}`} margin={"0 10px 0 0"}/>

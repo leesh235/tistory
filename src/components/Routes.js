@@ -22,6 +22,7 @@ import { TOKENINFO } from "../apollo/tokenQuery";
 
 const Wrapper = styled.main`
     width: 100%;
+    max-width: 1180px;
     min-height: 70vh;
     margin: 100px auto 0 auto;
 `;
