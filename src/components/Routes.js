@@ -21,8 +21,8 @@ import { useQuery } from '@apollo/client';
 import { TOKENINFO } from "../apollo/tokenQuery";
 
 const Wrapper = styled.main`
-    width: 1180px;
-    min-height: 80vh;
+    width: 100%;
+    min-height: 70vh;
     margin: 100px auto 0 auto;
 `;
 
