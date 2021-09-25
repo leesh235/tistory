@@ -10,6 +10,7 @@ const Wrapper = styled.input`
     border-radius: 6px;
 
     color: ${prop => prop.color};
+    font-size: ${prop => prop.fs};
 
     ::placeholder{
         color: ${prop => prop.color};
@@ -18,10 +19,12 @@ const Wrapper = styled.input`
     ${prop => prop.props}
 `;
 
-export const Input = ({props, w, h, margin, padding, color, fcolor, placeholer, register, func}) => {
+export const Input = ({props, type, w, h, margin, padding, color, fs, fcolor, placeholer, register, func}) => {
     return(
         <Wrapper 
-            props={props} 
+            props={props}
+            type={type}
+            fs={fs}
             w={w} 
             h={h} 
             margin={margin} 
@@ -39,9 +42,13 @@ Input.defaultProps = {
     color: "gray",
     fcolor: "black",
     placeholer: "내용을 입력하세요",
+    fs: "1rem",
+    type: "text",
 }
 
 Input.LineStyle = {
+    type: PropTypes.string,
+    fs: PropTypes.string,
     color: PropTypes.string,
     fcolor: PropTypes.string,
     w: PropTypes.string,
