@@ -83,6 +83,7 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
                     <Link to={{
                         pathname: `/modifyPost/${post.postId}`,
                         state:{
+                            writer: post.writer,
                             title: post.title,
                             postId: post.postId
                         }

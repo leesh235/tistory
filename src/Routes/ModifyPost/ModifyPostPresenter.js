@@ -22,7 +22,7 @@ const SubmitIn = styled.div`
     height: 60px;
 `;
 
-export default ({ title, onSubmit, handlePicture, setPostData, editorRef }) => {
+export default ({ title, onSubmit, editorRef }) => {
     return (
         <Wrapper>
             <Input w={"80%"} h={"30px"} margin={"0 0 20px 0"} placeholder={"  제목"} func={title}/>

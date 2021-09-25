@@ -23,23 +23,14 @@ export default ({history, location}) => {
 
     const titleInput = useInput(history.location.state.title);
 
-    const [postImg, setPostImg] = useState("");
-
     const [setPostMutation] = useMutation(MODIFYPOST)
 
     const setHistory = useHistory();
 
-    const handlePicture = (e) => {
-        e.preventDefault();
-        const image = e.target.files[0];
-        // console.log(image);
-        setPostImg(image);
-    }
-    
     const onSubmit = async(e) => {
         const postData = editorRef.current.getInstance().getHTML()
         try{
-            
+            const writer = history.location.state.writer;
             if(titleInput.value !== ""){
                 const { data: { ModifyPost: {check, status} } } = await setPostMutation({
                     variables: {
@@ -54,6 +45,7 @@ export default ({history, location}) => {
                     const jwt = localStorage.getItem("token");
                     const formData = new FormData();
                     // console.log(postId)
+                    formData.append("writer", writer);
                     formData.append("postId", postId);
                     formData.append("title", titleInput.value);
                     formData.append("editor", postData);
@@ -95,7 +87,6 @@ export default ({history, location}) => {
         <ModifyPostPresenter 
             title={titleInput}
             onSubmit={onSubmit}
-            handlePicture={handlePicture}
             editorRef={editorRef}
         />
     );
