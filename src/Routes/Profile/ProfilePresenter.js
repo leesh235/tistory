@@ -1,80 +1,73 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Text } from "../../components/Text";
+import { Button } from "../../components/Button";
+import { Img } from "../../components/Img";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    >:nth-child(1){
-        margin-bottom: 20px;
-    }
+    margin: 150px 0 0 0;
+    width: 100%;
 `;
 
-const ProfileContainer = styled.div`
-    width: 800px;
-    min-height: 600px;
+const Contents = styled.article`
+    width: 70%;
+    min-height: 40rem;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    >:nth-child(n){
-        margin-bottom: 20px;
-    }
-`;
-
-const UserInfo = styled.div`
-    
-`;
-
-const ImageWrapper = styled.div`
-
+    border: solid 1px gray;
 `;
 
 const BtnWrapper = styled.div`
     display: flex;
-    flex-direction: row-reverse;
-    width: 800px;
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
-    >:nth-child(n){
-        margin-left: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 75%;
+    margin: 30px 0 90px 0;
+    >:nth-child(1){
+        margin-right: 15px;
     }
 `;
 
-const ProfileBtn = styled.div`
-
+const ImgWrapper = styled.div`
+    min-height: 150px;
 `;
 
 const ProfilePresenter = ({userImg, userInfo}) => {
     return (
         <Wrapper>
-            <ProfileContainer>
-                <ImageWrapper>
-                    {userImg ? <img src={`http://localhost:5000/${userImg}`} /> : ""}
-                </ImageWrapper>
-                <UserInfo>{`닉네임: ${userInfo.nickName}`}</UserInfo>
-                <UserInfo>{`email: ${userInfo.email}`}</UserInfo>
-                <UserInfo>{`등급: ${userInfo.userRole}`}</UserInfo>
-            </ProfileContainer>
+            <Contents>
+                <ImgWrapper>
+                    {userImg && <Img img={`http://localhost:5000/${userImg}`} />}
+                </ImgWrapper>
+                <Text text={`닉네임: ${userInfo.nickName}`}/>
+                <Text text={`email: ${userInfo.email}`}/>
+                <Text text={`등급: ${userInfo.userRole}`}/>
+            </Contents>
             
             <BtnWrapper>
-            <Link to={{
-                    pathname: "/profile/unresister",
-                    state: {
-                        userInfo: userInfo
-                    }
-                }}><ProfileBtn>회원탈퇴</ProfileBtn></Link>
-            
                 <Link to={{
                     pathname: "/modifyProfile",
                     state: {
                         email: userInfo.email
                     }
-                }}><ProfileBtn>수정</ProfileBtn></Link>
+                }}>
+                    <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} w={"9rem"} h={"3rem"}/>
+                </Link>
+            
+                <Link to={{
+                        pathname: "/profile/unresister",
+                        state: {
+                            userInfo: userInfo
+                        }
+                    }}>
+                        <Button text={"회원탈퇴"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"}/>
+                </Link>
             </BtnWrapper>
         </Wrapper>
     );

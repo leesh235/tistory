@@ -11,13 +11,13 @@ const Wrapper = styled.button`
     border-radius: 6px;
     background-color: ${prop => prop.color};
 
-    font-size: 1rem;
+    font-size: ${prop => prop.fs};
     color: ${prop => prop.fcolor};
 `;
 
-export const Button = ({props, text,w, h, m, p, color, fcolor, onClick}) => {
+export const Button = ({props, text,w, h, m, p, color, fcolor, onClick, fs}) => {
     return(
-        <Wrapper props={props} w={w} h={h} m={m} p={p} color={color} fcolor={fcolor} onClick={onClick}>{text}</Wrapper>
+        <Wrapper props={props} w={w} h={h} m={m} p={p} color={color} fcolor={fcolor} fs={fs} onClick={onClick}>{text}</Wrapper>
     );
 }
 
@@ -25,6 +25,7 @@ Button.defaultProps = {
     color: "green",
     fcolor: "white",
     placeholer: "내용을 입력하세요",
+    fs: "1rem"
 }
 
 Button.LineStyle = {
@@ -33,6 +34,7 @@ Button.LineStyle = {
     fcolor: PropTypes.string,
     w: PropTypes.string,
     h: PropTypes.string,
+    fs: PropTypes.string,
     margin: PropTypes.string,
     padding: PropTypes.string,
     onClick: PropTypes.func,
