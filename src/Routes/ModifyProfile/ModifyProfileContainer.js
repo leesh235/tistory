@@ -46,6 +46,8 @@ export default ({props}) => {
                         history.goBack();
                     }
                 }
+                alert("프로필 사진이 변경되었습니다.");
+                history.goBack();
                 
                 if(picture !== undefined && picture !== null){
                     const jwt = localStorage.getItem("token");
@@ -62,8 +64,6 @@ export default ({props}) => {
                             "Content-Type": "multipart/form-data",
                         }
                     })
-                    alert("프로필 사진이 변경되었습니다.");
-                    history.goBack();
                 }
             }
 
