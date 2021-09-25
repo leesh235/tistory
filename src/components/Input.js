@@ -49,6 +49,6 @@ Input.LineStyle = {
     margin: PropTypes.string,
     padding: PropTypes.string,
     placeholer: PropTypes.string,
-    placeholer: PropTypes.object,
-    placeholer: PropTypes.object,
+    register: PropTypes.object,
+    func: PropTypes.object,
 }

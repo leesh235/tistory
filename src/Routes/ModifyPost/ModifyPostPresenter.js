@@ -4,6 +4,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { FlexWrapper } from "../../components/FlexWrapper";
 
 const Wrapper = styled.section`
     display: flex;
@@ -17,10 +18,11 @@ const Box = styled.div`
     width: 80%;
 `;
 
-const SubmitIn = styled.div`
-    width: 60px;
-    height: 60px;
-`;
+const ButtonStyle = {
+    display: "flex",
+    jc: "flex-end",
+    w: "80%"
+}
 
 export default ({ title, onSubmit, editorRef }) => {
     return (
@@ -34,7 +36,10 @@ export default ({ title, onSubmit, editorRef }) => {
                     ref={editorRef}
                 />
             </Box>
-            <SubmitIn onClick={onSubmit}>완료</SubmitIn>
+
+            <FlexWrapper props={ButtonStyle}>
+                <Button text={"완료"} onClick={onSubmit} w={"7rem"} h={"4rem"} m={"30px 0 90px 0"}/>
+            </FlexWrapper>
         </Wrapper>
     );
 }
