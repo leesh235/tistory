@@ -3,10 +3,9 @@ import { useQuery } from '@apollo/client';
 import { PROFILE } from "./ProfileQuery";
 import ProfilePresenter from "./ProfilePresenter";
 import axios from "axios";
+import { Loading } from "../../components/Loading";
 
 const ProfileContainer = () => {
-    
-    const [userInfo, setUserInfo] = useState({});
 
     const [userImg, setUserImg] = useState("");
 
@@ -32,26 +31,24 @@ const ProfileContainer = () => {
     }
 
     useEffect(() => {
-        if(!loading && data){
-            console.log(data);
-            setUserInfo(data.getProfile)
-            if(data.getProfile){
-
-                filesever();
-            }
+        if(!loading && data.getProfile.userImg !== null){
+            filesever();
         }
+    },[loading])
 
-    },[loading,userInfo])
-
-    return (
-        <div>
-            {!loading && data.getProfile ? <ProfilePresenter 
+    if(!loading){
+        return (
+            <ProfilePresenter 
                 userInfo={data.getProfile} 
                 userImg={userImg}
-                /> 
-            : "loading..."}
-        </div>
-    );
+            /> 
+        );
+    }else{
+        return(
+            <Loading />
+        );
+    }
+
 }
 
 export default ProfileContainer;

@@ -49,7 +49,7 @@ export default () => {
                         }
                     });
                     setTimeout(() => {
-                        history.push("/")
+                        window.location.replace("/")
                     }, 500);
 
                 }else{
