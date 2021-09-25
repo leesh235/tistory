@@ -70,7 +70,7 @@ export default ({history, location}) => {
 
     useEffect(() => {
         fileserver();
-    },[])
+    },[loading])
     console.log(data)
     if(!loading){
         return (
