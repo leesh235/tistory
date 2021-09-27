@@ -2,18 +2,26 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Page = styled.div`
-
+    margin: 0 3px;
 `;
+
 const UpButton = styled.div`
-
+    margin: 0 0 0 3px;
+    cursor: pointer;
 `;
+
 const DownButton = styled.div`
-
+    margin: 0 3px 0 0;
+    cursor: pointer;
 `;
+
 export const Pages = ({ total = 0, each = 0, max = 1 }) => {
 
     const calculate = total / each + 1;
@@ -40,7 +48,7 @@ export const Pages = ({ total = 0, each = 0, max = 1 }) => {
         }
     }
     useEffect(() => {
-        
+
     },[])
 
     return(
