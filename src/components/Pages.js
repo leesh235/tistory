@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-
+    
 `;
 
 const Page = styled.div`
@@ -28,9 +28,24 @@ export const Pages = ({ total = 0, each = 0, max = 1 }) => {
         return arr;
     }
 
+    const upHandler = () => {
+        if(page < calculate){
+            setPage(pre => pre + 1)
+        }
+    }
+
+    const downHandler = () => {
+        if(page > 1){
+            setPage(pre => pre - 1)
+        }
+    }
+    useEffect(() => {
+        
+    },[])
+
     return(
         <Wrapper>
-            <UpButton>up</UpButton>
+            <UpButton onClick={upHandler}>up</UpButton>
             {pageHandler().map((idx) => {
                 if(idx <= max){
                     return(
@@ -38,7 +53,7 @@ export const Pages = ({ total = 0, each = 0, max = 1 }) => {
                     );
                 }
             })}
-            <DownButton>down</DownButton>
+            <DownButton onClick={downHandler}>down</DownButton>
         </Wrapper>
     );
 }
