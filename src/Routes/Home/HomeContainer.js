@@ -7,7 +7,7 @@ import { Pages } from "../../components/Pages"
 
 export default () => {
 
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(3);
     const [page, setPage] = useState(1);
 
     const { loading, data } = useQuery(POST, { 
@@ -25,7 +25,7 @@ export default () => {
         return (
             <>
                 <HomePresenter postList={data?.getAllPosts?.posts} />
-                <Pages page={page} setPage={setPage}/>
+                <Pages total={data?.getAllPosts?.postCnt} each={count} page={page} setPage={setPage} margin={"0 0 80px 0"}/>
             </>
         );
     }else{

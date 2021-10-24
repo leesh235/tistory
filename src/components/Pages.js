@@ -6,29 +6,33 @@ const Wrapper = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin: ${p => p.margin};
 `;
 
 const Page = styled.div`
-    margin: 0 3px;
+    margin: 0 10px;
+    cursor: pointer;
+    color: ${p => p.color};
 `;
 
 const UpButton = styled.div`
-    margin: 0 0 0 3px;
+    margin: 0 0 0 5px;
     cursor: pointer;
 `;
 
 const DownButton = styled.div`
-    margin: 0 3px 0 0;
+    margin: 0 10px 0 0;
     cursor: pointer;
 `;
 
-export const Pages = ({ total = 0, each = 0, max = 1 }) => {
+export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
 
-    const calculate = total / each + 1;
+    const calculate = Math.ceil(total / each);
+    console.log(margin)
 
-    const [page, setPage] = useState(max);
+    const [selected, setSelected] = useState(1);
 
-    const pageHandler = () => {
+    const pageCntHandelr = () => {
         let arr = [];
         for(let i = 1; i <= calculate; i++){
             arr.push(i);
@@ -36,32 +40,46 @@ export const Pages = ({ total = 0, each = 0, max = 1 }) => {
         return arr;
     }
 
+    const pageHandler = (val) => {
+        setPage(val)
+        setSelected(val)
+    }
+
     const upHandler = () => {
         if(page < calculate){
             setPage(pre => pre + 1)
+            setSelected(page + 1)
+        }else{
+            setPage(calculate)
+            setSelected(calculate)
         }
     }
 
     const downHandler = () => {
         if(page > 1){
             setPage(pre => pre - 1)
+            setSelected(page - 1)
+        }else{
+            setPage(1)
+            setSelected(1)
         }
-    }
-    useEffect(() => {
-
-    },[])
+    } 
 
     return(
-        <Wrapper>
-            <UpButton onClick={upHandler}>up</UpButton>
-            {pageHandler().map((idx) => {
-                if(idx <= max){
+        <Wrapper margin={margin}>
+            <DownButton onClick={downHandler}>{"<"}</DownButton>
+            {pageCntHandelr().map((val, idx) => {
+                if(val === selected){
                     return(
-                        <Page key={idx}>{idx}</Page>
+                        <Page key={idx} onClick={() => pageHandler(val)} color={"red"}>{val}</Page>
+                    );
+                }else{
+                    return(
+                        <Page key={idx} onClick={() => pageHandler(val)}>{val}</Page>
                     );
                 }
             })}
-            <DownButton onClick={downHandler}>down</DownButton>
+            <UpButton onClick={upHandler}>{">"}</UpButton>
         </Wrapper>
     );
 }

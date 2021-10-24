@@ -2,14 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import {Contents} from '../../components/Contents';
 
-const BodyStyle = styled.section`
+const Wrapper = styled.section`
     padding: 2em;
+    min-height: 500px;
 `;
 
 const HomePresenter = ({ postList }) => {
 
     return(//현재
-        <BodyStyle>
+        <Wrapper>
             {postList.map((post, index) => {
                 return <Contents
                     key={index}
@@ -19,7 +20,7 @@ const HomePresenter = ({ postList }) => {
                     writer={post.writer}
                 />
             })}
-        </BodyStyle>
+        </Wrapper>
     );
 }
 
