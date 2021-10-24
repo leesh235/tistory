@@ -8,7 +8,13 @@ export default {
             try {
                 const { count, page } = args;
                 console.log(count, page)
+
+                const totalPost = await prisma.post.findMany()
+
+                const postLen = totalPost.length;
+
                 const post = await prisma.post.findMany({
+                    
                     skip: (page - 1) * count,
                     take: count,
                     orderBy: {
@@ -19,11 +25,13 @@ export default {
                 if(post !== null){
                     return {
                         posts: post,
+                        postCnt: postLen,
                         status: "success"
                     };
                 }else{
                     return {
                         posts: null,
+                        postCnt: 0,
                         status: "no posts"
                     };
                 }
@@ -32,6 +40,7 @@ export default {
                 console.log(error);
                 return {
                     posts: null,
+                    postCnt: 0,
                     status: "server error"
                 };
             }
