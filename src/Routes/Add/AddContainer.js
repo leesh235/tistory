@@ -11,8 +11,6 @@ const AddContainer = (props) => {
 
     const titleInput = useInput("");
 
-    // const [postData, setPostData] = useState("");
-
     const [AddMutation] = useMutation(ADD);
 
     const onSubmit = async(e) => {
@@ -61,7 +59,6 @@ const AddContainer = (props) => {
         <AddPresenter 
             title={titleInput}
             onSubmit={onSubmit}
-            // setPostData={setPostData}
             editorRef={editorRef}
         />
  

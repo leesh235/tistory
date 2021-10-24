@@ -1,79 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// import {Editor} from "../../components/Editor";
-
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
+import { FlexWrapper } from "../../components/FlexWrapper";
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
-const BodyStyle = styled.div`
-    width: auto;
-    height: 400px;
-    margin: 30px 100px 50px 100px;
-`;
-
-const BoxStyle = styled.div`
-    height: 400px;
-    width: 500px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    border-radius: 10px;
-`;
-
-const ContentStyle = styled.div`
+const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 150px 0 0 0;
 `;
 
-const TitleIn = styled.input`
-    height: 30px;
+const Box = styled.div`
     width: 80%;
-    margin-bottom: 20px;
 `;
 
-const SummaryIn = styled.textarea`
-    height: 30px;
-    width: 80%;
-    margin-bottom: 20px;
-`;
-
-const ImgIn = styled.input`
-    margin-bottom: 20px;
-`;
-
-const SubmitIn = styled.button`
-    width: 60px;
-    height: 60px;
-`;
+const ButtonStyle = {
+    display: "flex",
+    jc: "flex-end",
+    w: "80%"
+}
 
 
 const AddPresenter = ({title, onSubmit, setPostData, editorRef}) => {
   
     return (
-        //ckeditor
-        // <BodyStyle>
-        //     <BoxStyle>
-        //         <ContentStyle>
-        //             <form onSubmit={onSubmit}>
-        //                 <TitleIn placeholder={"  제목"} {...title} />
-        //                 <Editor getFormData={setPostData} user={"test"} />
-        //                 <SubmitIn>완료</SubmitIn>
-        //             </form>
-        //         </ContentStyle>
-        //     </BoxStyle>
-        // </BodyStyle>
+        <Wrapper>
+            <Input w={"80%"} h={"30px"} margin={"0 0 20px 0"} placeholder={"  제목"} func={title}/>
+            <Box>
+                <Editor
+                    previewStyle="vertical"
+                    height="600px"
+                    initialEditType="wysiwyg"
+                    ref={editorRef}
+                />
+            </Box>
 
-        //toast ui editor
-        <form onSubmit={onSubmit}>
-            <TitleIn placeholder={"  제목"} {...title} />
-            <Editor
-                initialValue=""
-                previewStyle="vertical"
-                height="600px"
-                initialEditType="wysiwyg"
-                ref={editorRef}
-            />
-            <SubmitIn>완료</SubmitIn>
-        </form>
+            <FlexWrapper props={ButtonStyle}>
+                <Button text={"완료"} onClick={onSubmit} w={"7rem"} h={"4rem"} m={"30px 0 90px 0"}/>
+            </FlexWrapper>
+        </Wrapper>
     );
 }
 
