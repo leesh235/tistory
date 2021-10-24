@@ -2,13 +2,19 @@ scalar DateTime
 
 type Search {
     postId: String
+    writer: String
     title: String
-    id: String
     createdAt: DateTime
 }
 
+type Response {
+    search: [Search]
+    postCnt: Int
+    status: String
+}
+
 type Query{
-    getSearch(text: String): [Search]
+    getSearch(text: String): Response!
 }
 
 type Mutation{
