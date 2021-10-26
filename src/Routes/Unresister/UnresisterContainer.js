@@ -2,7 +2,7 @@ import React from 'react';
 import UnresisterPresenter from './UnresisterPresenter';
 import { useMutation } from '@apollo/client';
 import { UNRESISTER } from "./UnresisterQuery";
-import useInput from "../../Hooks/useInput";
+import { usePasswordInput } from "../../Hooks/useInput";
 import { TOKENLOGOUT } from "../../apollo/tokenQuery";
 import axios from "axios";
 
@@ -13,8 +13,8 @@ const UnresisterContainer = ({props}) => {
     const [setUnresister] = useMutation(UNRESISTER);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
 
-    const password = useInput("");
-    const passwordConfirm = useInput("");
+    const password = usePasswordInput("");
+    const passwordConfirm = usePasswordInput("");
 
     const onClick = async() => {
         if(password.value !== passwordConfirm.value){

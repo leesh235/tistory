@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useMutation } from "@apollo/client";
 import { ADD } from "./AddQuery";
 import AddPresenter from './AddPresenter';
-import useInput from '../../Hooks/useInput';
+import { useTextInput } from '../../Hooks/useInput';
 import axios from "axios";
 
 const AddContainer = (props) => {
 
     const editorRef = React.createRef();
 
-    const titleInput = useInput("");
+    const titleInput = useTextInput("");
 
     const [AddMutation] = useMutation(ADD);
 

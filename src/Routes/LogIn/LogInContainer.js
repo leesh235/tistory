@@ -2,15 +2,15 @@ import React from 'react';
 import { useMutation } from '@apollo/client';
 import LogInPresenter from './LogInPresenter';
 import { useHistory } from "react-router-dom";
-import useInput from "../../Hooks/useInput";
+import { useEmailInput, usePasswordInput } from '../../Hooks/useInput';
 import { LOGIN, TOKENLOGIN } from "./LogInQuery";
 import { useDispatch } from "react-redux";
 import { setUserId } from "../../redux/actions/user";
 
 export default () => {
     
-    const emailInput = useInput("");
-    const passwordInput = useInput("");
+    const emailInput = useEmailInput("");
+    const passwordInput = usePasswordInput("");
 
     const dispatch = useDispatch();
 

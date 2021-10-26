@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { MODIFYPROFILE } from "./ModifyProfileQuery";
 import ModifyProfilePresenter from './ModifyProfilePresenter';
-import useInput from "../../Hooks/useInput";
+import { usePasswordInput } from '../../Hooks/useInput';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -10,8 +10,8 @@ export default ({props}) => {
 
     let email = props.history.location.state.email
     console.log(email)
-    const passwordInput = useInput("");
-    const passConfirmInput = useInput("");
+    const passwordInput = usePasswordInput("");
+    const passConfirmInput = usePasswordInput("");
     const [picture, setPicture] = useState("");
 
     const [setProfileMutation] = useMutation(MODIFYPROFILE);
