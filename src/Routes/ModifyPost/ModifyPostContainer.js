@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { MODIFYPOST } from "./ModifyPostQuery";
 import ModifyPostPresenter from './ModifyPostPresenter';
-import useInput from "../../Hooks/useInput";
+import { useTextInput } from '../../Hooks/useInput';
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -21,7 +21,7 @@ export default ({history, location}) => {
 
     const {postId} = useParams();
 
-    const titleInput = useInput(history.location.state.title);
+    const titleInput = useTextInput(history.location.state.title);
 
     const [setPostMutation] = useMutation(MODIFYPOST)
 

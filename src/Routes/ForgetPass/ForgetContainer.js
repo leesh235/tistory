@@ -3,11 +3,11 @@ import { useMutation } from "@apollo/client";
 import { FORGET_PASS } from "./ForgetQuery";
 import { useHistory } from "react-router-dom";
 import ForgetPresenter from "./ForgetPresenter";
-import useInput from "../../Hooks/useInput";
+import {useEmailInput} from '../../Hooks/useInput';
 
 const ForgetContainer = () => {
 
-    const emailInput = useInput("");
+    const emailInput = useEmailInput("");
 
     const [forgetPassMutation] = useMutation(FORGET_PASS,{
         variables: {
