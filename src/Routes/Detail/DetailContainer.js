@@ -5,8 +5,17 @@ import { useParams } from "react-router-dom";
 import DetailPresenter from './DetailPresenter';
 import axios from "axios";
 import { Loading } from "../../components/Loading";
+import { getToken } from "../../utiles"
+import { useHistory } from 'react-router';
 
 export default ({history, location}) => {
+
+    const routeHistory = useHistory();
+
+    if(!getToken()){
+        window.alert("로그인이 필요합니다")
+        routeHistory.push("/login");
+    }
 
     const { postId } = useParams();
 
@@ -76,8 +85,8 @@ export default ({history, location}) => {
         return (
             <DetailPresenter 
                 postContents={postContents}
-                post={data.getPostDetail.Post}
-                equal={data.getPostDetail.equal}
+                post={data?.getPostDetail?.Post}
+                equal={data?.getPostDetail?.equal}
                 onClick={onClick}
             />
         );
