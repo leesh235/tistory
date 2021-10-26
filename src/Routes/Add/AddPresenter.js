@@ -25,7 +25,7 @@ const ButtonStyle = {
 }
 
 
-const AddPresenter = ({title, onSubmit, setPostData, editorRef}) => {
+const AddPresenter = ({title, onSubmit, editorRef}) => {
   
     return (
         <Wrapper>
