@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from "./SearchQuery";
 import SearchPresenter from './SearchPresenter';
-import SearchList from './SearchList';
+import HomePresenter from "../Home/HomePresenter";
+import { Loading } from "../../components/Loading";
 
 const SearchContainer = () => {
+    
     const [text, setText] = useState("");
     const {loading, data} = useQuery(SEARCH, {variables: {text:text}});
-    // console.log(data)
 
-    if(text === ""){
-        return (
-            <div>
+    if(!loading){
+        if(text === ""){
+            return (
                 <SearchPresenter setText={text => setText(text)} />
-            </div>
-        );
+            );
+        }else{
+            return (
+                <HomePresenter postList={data?.getSearch?.search} />
+            )
+        }
     }else{
-        return (
-            <div>
-                {!loading && data.getSearch ? <SearchList result={data.getSearch} /> : "loading..."}
-            </div>
-        )
+        return(
+            <Loading />
+        );
     }
 }
 
