@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import SearchIndex from '../Routes/Seach/index';
-import SearchList from '../Routes/Seach/SearchList';
 import HomeIndex from '../Routes/Home/index';
 import DetailIndex from '../Routes/Detail/index'
 import AddIndex from '../Routes/Add/index';
@@ -42,7 +41,6 @@ const Routes = () => {
                         <Route exact path="/profile" component={ProfileIndex} />
                         <Route exact path="/login" component={LogInIndex} />
                         <Route exact path="/signup" component={SignUpIndex} />
-                        <Route exact path="/result" component={SearchList} />
                         <Route exact path="/detail/:postId" component={DetailIndex} />
                         <Route exact path="/" component={HomeIndex} />
                         <Route exact path="/page=:i" component={HomeIndex} />
