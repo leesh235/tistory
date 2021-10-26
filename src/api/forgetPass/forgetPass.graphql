@@ -1,5 +1,10 @@
+type Response{
+    check: Boolean
+    status: String
+}
+
 type Mutation {
-    forgetPass(email: String!): Boolean!
+    forgetPass(email: String!): Response!
 }
 
 type Query{
