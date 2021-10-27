@@ -8,14 +8,6 @@ export const MODIFYUERIMG = gql`
     }
 `;
 
-export const MODIFYPOSTIMG = gql`
-    mutation ModifyUserImg($postImg: String){
-        ModifyPostImg(postImg: $postImg){
-            postImgId
-        }
-    }
-`;
-
 export const UPLOADTEXT = gql`
     mutation uploadText($postId: String){
         uploadText(postId: $postId){

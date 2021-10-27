@@ -11,16 +11,6 @@ export const profileToDB = async(req) => {
     });
 };
 
-export const postImageToDB = async(req) => {
-    const client = makeClient(req.headers.authorization);
-    return await client.mutate({
-        mutation: MODIFYPOSTIMG,
-        variables: {
-            postImg: req.body.user
-        }
-    });
-};
-
 export const postContentsToDB = async(req) => {
     const client = makeClient(req.headers.authorization);
     return await client.mutate({

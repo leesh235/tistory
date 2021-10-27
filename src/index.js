@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import path from "path";
 import fs from "fs-extra";
 import morgan from "morgan";
-import { profileToDB, postImageToDB, postContentsToDB } from "./modules/uploadImg"
+import { profileToDB, postContentsToDB } from "./modules/uploadImg"
 import { upload, imageUpload } from "./middleware/multer"
 
 const app = express();
@@ -65,22 +65,6 @@ app.get("/profileImg/:email", async(req, res) => {
         }
     }catch(err){
         res.status(500).send({message: `${err}`})
-    }
-})
-
-//editor
-//editor를 통해 들어온 image저장
-app.post("/editorImg", async(req, res) => {
-    try{
-        imageUpload(req, res, async(err) => {
-            console.log("body: ",req.body)
-            console.log("headers: ",req.headers)
-            console.log("file: ",req.file)
-            // const { data } = await postImageToDB(req)
-
-        })
-    }catch(err){
-        console.log(err)
     }
 })
 
