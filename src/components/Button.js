@@ -25,7 +25,9 @@ Button.defaultProps = {
     color: "green",
     fcolor: "white",
     placeholer: "내용을 입력하세요",
-    fs: "1rem"
+    fs: "1rem",
+    w: "300px",
+    h: "45px"
 }
 
 Button.LineStyle = {

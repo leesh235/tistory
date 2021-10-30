@@ -19,7 +19,7 @@ const Wrapper = styled.input`
     ${prop => prop.props}
 `;
 
-export const Input = ({props, type, w, h, margin, padding, color, fs, fcolor, placeholer, register, func}) => {
+export const Input = ({props, type, w, h, margin, padding, color, fs, fcolor, placeholder, register, func}) => {
     return(
         <Wrapper 
             props={props}
@@ -29,7 +29,7 @@ export const Input = ({props, type, w, h, margin, padding, color, fs, fcolor, pl
             h={h} 
             margin={margin} 
             padding={padding} 
-            placeholder={placeholer}
+            placeholder={placeholder}
             color={color}
             fcolor={fcolor}
             {...register}
@@ -41,9 +41,11 @@ export const Input = ({props, type, w, h, margin, padding, color, fs, fcolor, pl
 Input.defaultProps = {
     color: "gray",
     fcolor: "black",
-    placeholer: "내용을 입력하세요",
+    placeholder: "내용을 입력하세요",
     fs: "1rem",
     type: "text",
+    w: "356px",
+    h: "45px"
 }
 
 Input.LineStyle = {
@@ -55,7 +57,7 @@ Input.LineStyle = {
     h: PropTypes.string,
     margin: PropTypes.string,
     padding: PropTypes.string,
-    placeholer: PropTypes.string,
+    placeholder: PropTypes.string,
     register: PropTypes.object,
     func: PropTypes.object,
 }
