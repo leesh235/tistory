@@ -1,31 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 
-const Input = styled.input`
-    height: 40px;
-    background-color: #ffffff;
-    border: solid 1px #dadada;
-    margin-bottom: 15px;
-    font-size: 15px;
-    padding: 10px;
-`;
-
-const Button = styled.button`
-    width: 460px;
-    height: 60px;
-    background-color: #white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8e8e8e;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-`;
-
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,16 +24,16 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
-export default ({ nickName, password, passConfirm, email, onSubmit }) => {
+export default ({ register, handleSubmit, errors, onSubmit }) => {
     return (
         <Wrapper>
             <Container>
-                <form onSubmit={onSubmit}>
-                    <Input placeholder={"  email"} {...email}></Input>
-                    <Input placeholder={"  닉네임"} {...nickName}></Input>
-                    <Input placeholder={"  비밀번호"} {...password} type={"password"}></Input>
-                    <Input placeholder={"  비밀번호 확인"} {...passConfirm} type={"password"}></Input>
-                    <Button>가입하기</Button>                    
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input type={"text"} register={register("email")} placeholder={"  email"} />
+                    <Input type={"text"} register={register("nickName")} placeholder={"  닉네임"} />
+                    <Input type={"password"} register={register("password1")} placeholder={"  비밀번호"} />
+                    <Input type={"password"} register={register("password2")} placeholder={"  비밀번호 확인"} />
+                    <Button text={"가입하기"}/>               
                 </form>
             </Container>
         </Wrapper>
