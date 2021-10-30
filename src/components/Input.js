@@ -44,8 +44,9 @@ Input.defaultProps = {
     placeholder: "내용을 입력하세요",
     fs: "1rem",
     type: "text",
-    w: "356px",
-    h: "45px"
+    w: "298px",
+    h: "28px",
+    padding: "0"
 }
 
 Input.LineStyle = {
