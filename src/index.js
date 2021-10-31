@@ -108,7 +108,7 @@ app.post("/editor", async(req, res) => {
 })
 
 //post 불러오기
-app.get("/editor/:writer/:postId", async(req, res) => {
+app.get("/getPost/:writer/:postId", async(req, res) => {
     try{
         console.log(req.params)
         const writer = req.params.writer
