@@ -31,25 +31,6 @@ const PostBtn = styled.div`
     cursor: pointer;
 `;
 
-const BtnStyle = {
-    w: "90%",
-    display: "flex",
-    fd: "row",
-    jc: "flex-end"
-}
-
-const TitleInfo = {
-    display: "flex",
-    fd: "column",
-    w: "90%",
-}
-
-const ContentInfo = {
-    display: "flex",
-    fd: "row",
-    jc: "flex-end"
-}
-
 const DetailPresenter = ({postContents, post, equal, onClick}) => {
 
     const createMarkup = () => {
@@ -62,13 +43,13 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
 
     return(
         <MainContent>
-            <FlexWrapper props={TitleInfo}>
+            <FlexWrapper display={"flex"} fd={"column"} w={"90%"}>
        
                 <Text text={`${post.title}`} type={"div"}/>
 
                 <LineStyle w={"100%"} margin={"10px 0 10px 0"}/>
 
-                <FlexWrapper props={ContentInfo}>
+                <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"}>
                     <Text text={`작성자: ${post.writer}`} margin={"0 10px 0 0"}/>
                     <Text text={`작성일: ${moment(post.createdAt).format("YYYY-MM-DD")}`}/>
                 </FlexWrapper>
@@ -78,7 +59,7 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
                 {postContents && <div dangerouslySetInnerHTML={createMarkup()} />}
             </ContentWrapper>
 
-            <FlexWrapper props={BtnStyle}>
+            <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"} w={"90%"}>
                 {equal ? 
                     <Link to={{
                         pathname: `/modifyPost/${post.postId}`,
