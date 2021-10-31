@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const Wrapper = styled.input`
     width: ${prop => prop.w};
+    max-width: ${prop => prop.maxW};
     height: ${prop => prop.h};
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
@@ -14,17 +15,19 @@ const Wrapper = styled.input`
 
     ::placeholder{
         color: ${prop => prop.color};
+        padding: ${prop => prop.padding};
     }
 
     ${prop => prop.props}
 `;
 
-export const Input = ({props, type, w, h, margin, padding, color, fs, fcolor, placeholder, register, func}) => {
+export const Input = ({props, type, maxW, w, h, margin, padding, color, fs, fcolor, placeholder, register, func}) => {
     return(
         <Wrapper 
             props={props}
             type={type}
             fs={fs}
+            maxW={maxW}
             w={w} 
             h={h} 
             margin={margin} 
@@ -44,9 +47,10 @@ Input.defaultProps = {
     placeholder: "내용을 입력하세요",
     fs: "1rem",
     type: "text",
-    w: "298px",
-    h: "28px",
-    padding: "0"
+    maxW: "352px",
+    w: "282px",
+    h: "20px",
+    padding: "4px 8px"
 }
 
 Input.LineStyle = {
@@ -54,6 +58,7 @@ Input.LineStyle = {
     fs: PropTypes.string,
     color: PropTypes.string,
     fcolor: PropTypes.string,
+    maxW: PropTypes.string,
     w: PropTypes.string,
     h: PropTypes.string,
     margin: PropTypes.string,

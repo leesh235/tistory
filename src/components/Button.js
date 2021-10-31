@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const Wrapper = styled.button`
+    max-width: ${prop => prop.maxW};
     width: ${prop => prop.w};
     height: ${prop => prop.h};
     margin: ${prop => prop.margin};
@@ -15,10 +16,11 @@ const Wrapper = styled.button`
     color: ${prop => prop.fcolor};
 `;
 
-export const Button = ({props, text,w, h, margin, padding, color, fcolor, onClick, fs}) => {
+export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor, onClick, fs}) => {
     return(
         <Wrapper 
             props={props} 
+            maxW={maxW}
             w={w} 
             h={h} 
             margin={margin} 
@@ -36,6 +38,7 @@ Button.defaultProps = {
     fcolor: "white",
     placeholer: "내용을 입력하세요",
     fs: "1rem",
+    maxW: "370px",
     w: "300px",
     h: "30px",
     padding: "0"
@@ -45,6 +48,7 @@ Button.LineStyle = {
     text: PropTypes.string,
     color: PropTypes.string,
     fcolor: PropTypes.string,
+    maxW: PropTypes.string,
     w: PropTypes.string,
     h: PropTypes.string,
     fs: PropTypes.string,
