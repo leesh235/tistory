@@ -22,6 +22,7 @@ import { TOKENINFO } from "../apollo/tokenQuery";
 const Wrapper = styled.main`
     width: 100%;
     max-width: 1180px;
+    height: 100%;
     min-height: 70vh;
     margin: 100px auto 0 auto;
 `;
@@ -33,23 +34,23 @@ const Routes = () => {
     return(
         <Router>
             <Header />
-                <Wrapper>
-                    <Switch>
-                        <Route exact path="/search" component={SearchIndex} />
-                        <Route exact path="/forget" component={ForgetIndex} />
-                        <Route exact path="/mypost" component={MyPostIndex} />
-                        <Route exact path="/profile" component={ProfileIndex} />
-                        <Route exact path="/login" component={LogInIndex} />
-                        <Route exact path="/signup" component={SignUpIndex} />
-                        <Route exact path="/detail/:postId" component={DetailIndex} />
-                        <Route exact path="/" component={HomeIndex} />
-                        <Route exact path="/page=:i" component={HomeIndex} />
-                        <Route exact path="/add" component={AddIndex} />
-                        <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
-                        <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
-                        <Route exact path="/profile/unresister" component={UnresisterIndex} />
-                    </Switch>
-                </Wrapper>
+            <Wrapper>
+                <Switch>
+                    <Route exact path="/search" component={SearchIndex} />
+                    <Route exact path="/forget" component={ForgetIndex} />
+                    <Route exact path="/mypost" component={MyPostIndex} />
+                    <Route exact path="/profile" component={ProfileIndex} />
+                    <Route exact path="/login" component={LogInIndex} />
+                    <Route exact path="/signup" component={SignUpIndex} />
+                    <Route exact path="/detail/:postId" component={DetailIndex} />
+                    <Route exact path="/" component={HomeIndex} />
+                    <Route exact path="/page=:i" component={HomeIndex} />
+                    <Route exact path="/add" component={AddIndex} />
+                    <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
+                    <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
+                    <Route exact path="/profile/unresister" component={UnresisterIndex} />
+                </Switch>
+            </Wrapper>
             <Footer />
         </Router>
     );
