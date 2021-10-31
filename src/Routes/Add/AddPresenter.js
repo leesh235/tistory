@@ -8,40 +8,45 @@ import { Editor } from '@toast-ui/react-editor';
 
 const Wrapper = styled.section`
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    margin: 150px 0 0 0;
+    height: 100%;
 `;
 
-const Box = styled.div`
+const FormWrapper = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 80%;
+    height: auto;
+    margin: 50px 0;
 `;
 
-const ButtonStyle = {
-    display: "flex",
-    jc: "flex-end",
-    w: "80%"
-}
+const EditorWrapper = styled.article`
+    width: 100%;
+`;
 
-
-const AddPresenter = ({title, onSubmit, editorRef}) => {
+const AddPresenter = ({ register, handleSubmit, errors, onSubmit, editorRef }) => {
   
     return (
         <Wrapper>
-            <Input w={"80%"} h={"30px"} margin={"0 0 20px 0"} placeholder={"  제목"} func={title}/>
-            <Box>
-                <Editor
-                    previewStyle="vertical"
-                    height="600px"
-                    initialEditType="wysiwyg"
-                    ref={editorRef}
-                />
-            </Box>
+            <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+                <Input type={"text"} register={register("title",{require: true})} maxW={"60rem"} w={"100%"} margin={"0 0 20px 0"} placeholder={"제목"}/>
 
-            <FlexWrapper props={ButtonStyle}>
-                <Button text={"완료"} onClick={onSubmit} w={"7rem"} h={"4rem"} m={"30px 0 90px 0"}/>
-            </FlexWrapper>
+                <EditorWrapper>
+                    <Editor
+                        previewStyle="vertical"
+                        height="600px"
+                        initialEditType="wysiwyg"
+                        ref={editorRef}
+                    />
+                </EditorWrapper>
+
+                <FlexWrapper display={"flex"} jc={"flex-end"} w={"100%"}>
+                    <Button text={"완료"} w={"7rem"} h={"4rem"} margin={"30px 0 0 0"} />
+                </FlexWrapper>
+            </FormWrapper>
         </Wrapper>
     );
 }
