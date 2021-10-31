@@ -53,7 +53,7 @@ Input.defaultProps = {
     padding: "4px 8px"
 }
 
-Input.LineStyle = {
+Input.propTypes = {
     type: PropTypes.string,
     fs: PropTypes.string,
     color: PropTypes.string,

@@ -17,7 +17,7 @@ LineStyle.defaultProps = {
     color: "gray",
 }
 
-LineStyle.LineStyle = {
+LineStyle.propTypes = {
     color: PropTypes.string,
     w: PropTypes.string,
     margin: PropTypes.string,

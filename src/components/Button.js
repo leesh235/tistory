@@ -44,7 +44,7 @@ Button.defaultProps = {
     padding: "0"
 }
 
-Button.LineStyle = {
+Button.propTypes = {
     text: PropTypes.string,
     color: PropTypes.string,
     fcolor: PropTypes.string,

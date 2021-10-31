@@ -46,7 +46,7 @@ Text.defaultProps = {
     padding: "0 0 0 0",
 }
 
-Text.LineStyle = {
+Text.propTypes = {
     text: PropTypes.string,
     type: PropTypes.string,
     props: PropTypes.string,
