@@ -25,3 +25,4 @@ yarn-error.log*
 utiles.js
 routes.js
 axios.js
+api.js
