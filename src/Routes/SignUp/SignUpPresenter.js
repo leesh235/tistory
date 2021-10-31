@@ -2,40 +2,54 @@ import React from "react";
 import styled from "styled-components";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { Text } from "../../components/Text";
+import { ErrorMessage } from "../../components/ErrorMessage";
 
 const Wrapper = styled.section`
+    height: 70vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 100%;
-    form {
-        display: flex;
-        margin-bottom: 10px;
-        flex-direction: column;
-    }
 `;
 
-const Container = styled.div`
+const FormWrapper = styled.form`
+    max-width: 37rem;
+    width: 70vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
     flex-direction: column;
 `;
 
 export default ({ register, handleSubmit, errors, onSubmit }) => {
     return (
         <Wrapper>
-            <Container>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input type={"text"} register={register("email")} placeholder={"  email"} />
-                    <Input type={"text"} register={register("nickName")} placeholder={"  닉네임"} />
-                    <Input type={"password"} register={register("password1")} placeholder={"  비밀번호"} />
-                    <Input type={"password"} register={register("password2")} placeholder={"  비밀번호 확인"} />
-                    <Button text={"가입하기"}/>               
-                </form>
-            </Container>
+            <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+                <Input type={"text"} register={register("email",{required: true})} w={"100%"} placeholder={"email"} />
+                <ErrorMessage>
+                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} />}
+                </ErrorMessage>
+
+                <Input type={"text"} register={register("nickName",{required: true})} w={"100%"} placeholder={"닉네임"} />
+                <ErrorMessage>
+                    {errors.nickName?.type === "required" && <Text type={"p"} text={"닉네임을 입력해주세요"} />}
+                </ErrorMessage>
+
+                <Input type={"password"} register={register("password",{required: true})} w={"100%"} placeholder={"비밀번호"} />
+                <ErrorMessage>
+                    {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} />}
+                </ErrorMessage>
+
+                <Input type={"password"} register={register("confirmPassword",{required: true})} w={"100%"} placeholder={"비밀번호 확인"} />
+                <ErrorMessage>
+                    {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호를 한번 더 입력해주세요"} />}
+                </ErrorMessage>
+
+                <ErrorMessage>
+                    {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호가 다릅니다"} />}
+                </ErrorMessage>
+
+                <Button text={"가입하기"} w={"100%"}/>               
+            </FormWrapper>
         </Wrapper>
     );
 }
