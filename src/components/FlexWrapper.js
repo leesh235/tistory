@@ -6,11 +6,14 @@ const Wrapper = styled.div`
     flex-direction: ${p=>p.fd};
     align-items: ${p=>p.ai};
     justify-content: ${p=>p.jc};
+    max-width: ${p=>p.maxW};
     width: ${p=>p.w};
     height: ${p=>p.h};
+    margin: ${p=>p.m};
+    ${p=>p.props}
 `;
 
-export const FlexWrapper = ({children, props, display, fd, ai, jc, w, h, m}) => {
+export const FlexWrapper = ({children, props, display, fd, ai, jc, maxW, w, h, m}) => {
     return(
         <Wrapper 
             props={props}
@@ -18,6 +21,7 @@ export const FlexWrapper = ({children, props, display, fd, ai, jc, w, h, m}) => 
             fd={fd}
             ai={ai}
             jc={jc}
+            maxW={maxW}
             w={w}
             h={h}
             m={m}
@@ -31,7 +35,7 @@ FlexWrapper.defaultProps = {
     jc: "flex-start",
     w: "100%",
     h: "auto",
-    m: "0px"
+    m: "0px",
 }
 
 FlexWrapper.propTypes = {
@@ -43,4 +47,5 @@ FlexWrapper.propTypes = {
     w: PropTypes.string,
     h: PropTypes.string,
     m: PropTypes.string,
+    maxW: PropTypes.string
 }
