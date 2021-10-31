@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD } from "./AddQuery";
 import AddPresenter from './AddPresenter';
 import { useForm } from 'react-hook-form';
-import { writePost } from "../../api";
+import { writePostApi } from "../../api";
 
 const AddContainer = () => {
 
@@ -39,7 +39,7 @@ const AddContainer = () => {
                 formData.append("title", getValues("title"));
                 formData.append("editor", postData);
 
-                writePost(formData).then(
+                writePostApi(formData).then(
                     data => {
                         console.log(data);
                     },
@@ -49,7 +49,7 @@ const AddContainer = () => {
                 )
             }
             alert("작성 완료");
-            // window.location.replace("/");
+            window.location.replace("/");
         } catch(error){
             console.log(error);
         }

@@ -3,10 +3,10 @@ import { useQuery, useMutation } from '@apollo/client';
 import { DETAIL, DELETEPOST } from "./DetailQuery";
 import { useParams } from "react-router-dom";
 import DetailPresenter from './DetailPresenter';
-import axios from "axios";
 import { Loading } from "../../components/Loading";
 import { isLogedIn } from "../../utiles"
 import { useHistory } from 'react-router';
+import { getPostApi, deletePostApi } from "../../api";
 
 export default ({history, location}) => {
 
@@ -31,24 +31,17 @@ export default ({history, location}) => {
 
     const [deletePost] = useMutation(DELETEPOST);
 
-    const fileserver = async() => {
-        
+    const init = async() => {
         if(data?.getPostDetail?.Post?.contents === "exist"){
-            try{
-                const writer = data.getPostDetail.Post.writer
-                const jwt = localStorage.getItem("token");
-                const res = await axios({
-                    method: "get",
-                    url: `http://localhost:5000/editor/${writer}/${postId}`,
-                    headers: {
-                        Authorization: jwt,
-                        "Content-Type": "multipart/form-data"
-                    }
-                })
-                setPostContents(res.data);
-            }catch(err){
-                console.log(err.response);
+            const formData = {
+                writer: data.getPostDetail.Post.writer,
+                postId: postId
             }
+            getPostApi(formData).then(
+                data => {
+                    setPostContents(data.data);
+                }
+            )
         }else{
             console.log("실패")
         }
@@ -62,25 +55,24 @@ export default ({history, location}) => {
                 }
             })
             if(check){
-                window.location.replace("/")
-                const writer = data.getPostDetail.Post.writer
-                const jwt = localStorage.getItem("token");
-                const res = await axios({
-                    method: "get",
-                    url: `http://localhost:5000/editor/delete/${writer}/${postId}`,
-                    headers: {
-                        Authorization: jwt,
-                        "Content-Type": "multipart/form-data"
+                const formData = {
+                    writer: data.getPostDetail.Post.writer,
+                    postId: postId
+                }
+                console.log(formData)
+                deletePostApi(formData).then(
+                    data => {
+                        console.log(data)
                     }
-                })
+                )
             }
         }
     }
 
     useEffect(() => {
-        fileserver();
+        init();
     },[loading])
-    console.log(data)
+
     if(!loading){
         return (
             <DetailPresenter 
