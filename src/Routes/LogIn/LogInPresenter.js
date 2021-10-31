@@ -1,78 +1,57 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+import { ErrorMessage } from "../../components/ErrorMessage";
+import { Text } from "../../components/Text";
+import { FlexWrapper } from "../../components/FlexWrapper";
 
-const Input = styled.input`
-    height: 40px;
-    background-color: #ffffff;
-    border: solid 1px #dadada;
-    margin-bottom: 15px;
-    font-size: 15px;
-    padding: 10px;
-`;
-
-const Button = styled.button`
-    width: 460px;
-    height: 60px;
-    background-color: #white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8e8e8e;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+const Wrapper = styled.section`
+    height: 70vh;
     width: 100%;
-    form {
-        display: flex;
-        margin-bottom: 10px;
-        flex-direction: column;
-    }
-`;
-
-const Container = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+`;
+
+const FormWrapper = styled.form`
+    max-width: 37rem;
+    width: 70vw;
+    display: flex;
     flex-direction: column;
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
 `;
 
-const Text = styled.span`
-    font-size: 13px;
-    color: #8e8e8e;
-    text-decoration: none;
-`;
-
-export default ({ id, password, onSubmit }) => {
+export default ({ register, handleSubmit, errors, onSubmit }) => {
     return (
         <Wrapper>
-            <Container>
-                <form onSubmit={onSubmit}>
-                    <Input placeholder="  아이디" {...id}></Input>
-                    <Input placeholder="  비밀번호" {...password} type={"password"}></Input>
-                    <Button >로그인</Button>                
-                </form>
+            <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+                <Input type={"text"} register={register("email",{required: true})} w={"100%"} placeholder={"email"} />
+                <ErrorMessage>
+                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} />}
+                </ErrorMessage>
+
+                <Input type={"password"} register={register("password",{required: true})} w={"100%"} placeholder={"비밀번호"} />
+                <ErrorMessage>
+                    {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} />}
+                </ErrorMessage>
+
+                <Button text={"로그인"} w={"100%"}/>               
+            </FormWrapper>
+
+            <FlexWrapper fd={"column"} w={"auto"} ai={"center"} m={"30px 0 0 0"} props={`
+                >:nth-child(1){
+                    margin-bottom: 10px;
+                }
+            `}>
                 <Link to="/signup">
-                    <Text>회원가입</Text>
+                    <Text type={"p"} text={"회원가입"} />
                 </Link>
                 <Link to="/forget">
-                    <Text>비밀번호찾기</Text>
+                    <Text type={"p"} text={"비밀번호찾기"} />
                 </Link>
-            </Container>
+            </FlexWrapper>
         </Wrapper>
     );
 }
