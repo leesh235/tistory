@@ -20,21 +20,27 @@ export default {
                 //user가 없으면
                 if(!userInfo){
                     return {
-                        email: null,
-                        nickName: null,
-                        userRole: null,
-                        token: null,
-                        status: "noExist"
+                        status: "noExist",
+                        check: false,
+                        user: {
+                            email: null,
+                            nickName: null,
+                            userRole: null,
+                            token: null
+                        }
                     };
                 }
                 //password가 다르면
                 else if(userInfo.password !== generatPassword(password)){
                     return {
-                        email: null,
-                        nickName: null,
-                        userRole: null,
-                        token: null,
-                        status: "unmatchedPassword"
+                        status: "unmatchedPassword",
+                        check: false,
+                        user: {
+                            email: null,
+                            nickName: null,
+                            userRole: null,
+                            token: null
+                        }
                     };
                 }
                 //로그인 성공
@@ -43,21 +49,27 @@ export default {
                     const token = generatToken(userInfo.userId);
                     
                     return {
-                        email: userInfo.email,
-                        nickName: userInfo.nickName,
-                        userRole: userInfo.userRole,
-                        token: token,
-                        status: "success"
+                        status: "success",
+                        check: true,
+                        user: {
+                            email: userInfo.email,
+                            nickName: userInfo.nickName,
+                            userRole: userInfo.userRole,
+                            token: token
+                        }
                     };
                 }
             } catch(error) {
                 console.log(error);
                 return {
-                    email: null,
-                    nickName: null,
-                    userRole: null,
-                    token: null,
-                    status: "server error"
+                    status: "server error",
+                    check: false,
+                    user: {
+                        email: null,
+                        nickName: null,
+                        userRole: null,
+                        token: null
+                    }
                 };
             }
         }
