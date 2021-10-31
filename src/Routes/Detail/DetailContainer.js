@@ -5,14 +5,14 @@ import { useParams } from "react-router-dom";
 import DetailPresenter from './DetailPresenter';
 import axios from "axios";
 import { Loading } from "../../components/Loading";
-import { getToken } from "../../utiles"
+import { isLogedIn } from "../../utiles"
 import { useHistory } from 'react-router';
 
 export default ({history, location}) => {
 
     const routeHistory = useHistory();
 
-    if(!getToken()){
+    if(!isLogedIn()){
         window.alert("로그인이 필요합니다")
         routeHistory.push("/login");
     }
