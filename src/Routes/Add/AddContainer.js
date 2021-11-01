@@ -4,8 +4,17 @@ import { ADD } from "./AddQuery";
 import AddPresenter from './AddPresenter';
 import { useForm } from 'react-hook-form';
 import { writePostApi } from "../../api";
+import { isLogedIn } from "../../utiles";
+import { useHistory } from 'react-router';
 
 const AddContainer = () => {
+
+    const history = useHistory()
+
+    if(!isLogedIn()){
+        window.alert("로그인이 필요합니다")
+        history.push("/login");
+    }
 
     const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
 
