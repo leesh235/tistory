@@ -2,56 +2,53 @@ import React from 'react';
 import UnresisterPresenter from './UnresisterPresenter';
 import { useMutation } from '@apollo/client';
 import { UNRESISTER } from "./UnresisterQuery";
-import { usePasswordInput } from "../../Hooks/useInput";
 import { TOKENLOGOUT } from "../../apollo/tokenQuery";
-import axios from "axios";
+import { useForm } from 'react-hook-form';
+import { unregisterApi } from "../../api";
+import { routes } from '../../routes';
 
 const UnresisterContainer = ({props}) => {
 
     const { state } = props.history.location
     // console.log(state)
+
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+    
     const [setUnresister] = useMutation(UNRESISTER);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
 
-    const password = usePasswordInput("");
-    const passwordConfirm = usePasswordInput("");
-
-    const onClick = async() => {
-        if(password.value !== passwordConfirm.value){
-            window.alert("비밀번호가 다릅니다.")
-        }else{
-            if(window.confirm("회원탈퇴를 하시겠습니다?")){
-                const { data : {Unresister : { check, status } } } = await setUnresister({
-                    variables:{
-                        email: state.userInfo.email,
-                        password: password.value
-                    }
-                })
-                if(check){
-                    await tokenMutation();
-                    window.location.replace("/");
-                    const writer = state.userInfo.email
-                    const jwt = localStorage.getItem("token");
-                    const res = await axios({
-                        method: "get",
-                        url: `http://localhost:5000/unregister/${writer}`,
-                        headers: {
-                            Authorization: jwt,
-                            "Content-Type": "multipart/form-data"
-                        }
-                    })
-                }else{
-                    window.alert("비밀번호가 틀렸습니다.")
+    const onSubmit = async() => {
+        if(window.confirm("회원탈퇴를 하시겠습니다?")){
+            const { data : {Unresister : { check, status } } } = await setUnresister({
+                variables:{
+                    email: state.userInfo.email,
+                    password: getValues("password")
                 }
+            })
+            if(check){
+                await tokenMutation();
+                const writer = state.userInfo.email;
+                unregisterApi(writer).then(
+                    data => {
+                        console.log(data)
+                        window.location.replace(`${routes.home}`);
+                    },
+                    err => {
+                        console.log(err)
+                    }
+                )
+            }else{
+                window.alert("비밀번호가 틀렸습니다.")
             }
         }
     }
 
     return(
             <UnresisterPresenter 
-                password={password}
-                passwordConfirm={passwordConfirm}
-                onClick={onClick}
+                register={register}
+                handleSubmit={handleSubmit}
+                errors={errors}
+                onSubmit={onSubmit}
             />
     );
 }

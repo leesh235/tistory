@@ -1,64 +1,48 @@
 import React from 'react';
 import styled from "styled-components";
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
+import { Text } from "../../components/Text";
+import { ErrorMessage } from "../../components/ErrorMessage";
 
-const Input = styled.input`
-    height: 40px;
-    background-color: #ffffff;
-    border: solid 1px #dadada;
-    margin-bottom: 15px;
-    font-size: 15px;
-    padding: 10px;
-`;
-
-const Btn = styled.div`
-    width: 460px;
-    height: 60px;
-    background-color: #white;
+const Wrapper = styled.section`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #8e8e8e;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
     width: 100%;
+    height: 70vh;
 `;
-const FormWrapper = styled.div`
+
+const FormWrapper = styled.form`
+    max-width: 37rem;
+    width: 70vw;
     display: flex;
-    margin-bottom: 10px;
     flex-direction: column;
 `;
 
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-    flex-direction: column;
-`;
-
-const UnresisterPresenter = ({ password, passwordConfirm, onClick }) => {
+const UnresisterPresenter = ({ register, handleSubmit, errors, password, passwordConfirm, onSubmit }) => {
         return(
-            <form>
-                <Wrapper>
-                    <Container>
-                        <FormWrapper>
-                            <Input placeholder={"  비밀번호"} {...password} type={"password"}></Input>
-                            <Input placeholder={"  비밀번호 확인"} {...passwordConfirm} type={"password"}></Input>
-                            <Btn onClick={onClick}>회원탈퇴 하기</Btn>                   
-                        </FormWrapper> 
-                    </Container>
-                </Wrapper>
-            </form>
+            <Wrapper>
+                <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+
+                    <Input type={"password"} register={register("password",{ require: true })} w={"100%"} placeholder={"비밀번호"} />
+                    <ErrorMessage>
+                        {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} />}
+                    </ErrorMessage>
+
+                    <Input type={"password"} register={register("confirmPassword",{ require: true })} w={"100%"} placeholder={"비밀번호 확인"} />
+                    <ErrorMessage>
+                        {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호를 한번 더 입력해주세요"} />}
+                    </ErrorMessage>
+
+                    <ErrorMessage>
+                        {/* {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호가 다릅니다"} />} */}
+                    </ErrorMessage>
+
+                    <Button text={"변경하기"} w={"100%"}/>               
+                </FormWrapper>
+            </Wrapper>
         );
 }
 
