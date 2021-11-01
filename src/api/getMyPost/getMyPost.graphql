@@ -10,10 +10,11 @@ type myPost {
 type Response{
     status: String
     allMyPosts: [myPost]
+    postCnt: Int
 }
 
 type Query{
-    getMyPosts: Response
+    getMyPosts(count: Int! page: Int!): Response!
 }
 
 type Mutation{
