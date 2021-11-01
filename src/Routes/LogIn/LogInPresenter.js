@@ -29,12 +29,12 @@ export default ({ register, handleSubmit, errors, onSubmit }) => {
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
                 <Input type={"text"} register={register("email",{required: true})} w={"100%"} placeholder={"email"} />
                 <ErrorMessage>
-                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} />}
+                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <Input type={"password"} register={register("password",{required: true})} w={"100%"} placeholder={"비밀번호"} />
                 <ErrorMessage>
-                    {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} />}
+                    {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <Button text={"로그인"} w={"100%"}/>               

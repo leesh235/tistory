@@ -26,26 +26,26 @@ export default ({ register, handleSubmit, errors, onSubmit }) => {
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
                 <Input type={"text"} register={register("email",{required: true})} w={"100%"} placeholder={"email"} />
                 <ErrorMessage>
-                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} />}
+                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <Input type={"text"} register={register("nickName",{required: true})} w={"100%"} placeholder={"닉네임"} />
                 <ErrorMessage>
-                    {errors.nickName?.type === "required" && <Text type={"p"} text={"닉네임을 입력해주세요"} />}
+                    {errors.nickName?.type === "required" && <Text type={"p"} text={"닉네임을 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <Input type={"password"} register={register("password",{required: true})} w={"100%"} placeholder={"비밀번호"} />
                 <ErrorMessage>
-                    {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} />}
+                    {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <Input type={"password"} register={register("confirmPassword",{required: true})} w={"100%"} placeholder={"비밀번호 확인"} />
                 <ErrorMessage>
-                    {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호를 한번 더 입력해주세요"} />}
+                    {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호를 한번 더 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <ErrorMessage>
-                    {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호가 다릅니다"} />}
+                    {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호가 다릅니다"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
                 <Button text={"가입하기"} w={"100%"}/>               
