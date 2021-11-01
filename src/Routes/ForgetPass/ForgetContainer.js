@@ -3,35 +3,34 @@ import { useMutation } from "@apollo/client";
 import { FORGET_PASS } from "./ForgetQuery";
 import { useHistory } from "react-router-dom";
 import ForgetPresenter from "./ForgetPresenter";
-import {useEmailInput} from '../../Hooks/useInput';
+import { useForm } from 'react-hook-form';
 
 const ForgetContainer = () => {
 
-    const emailInput = useEmailInput("");
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
 
-    const [forgetPassMutation] = useMutation(FORGET_PASS,{
-        variables: {
-            email: emailInput.value
-        }
-    })
+    const [forgetPassMutation] = useMutation(FORGET_PASS)
 
     const  history = useHistory();
 
-    const onFn = async (e) => {
-        e.preventDefault()
+    const onSubmit = async () => {
         try{
-            if(emailInput !== ""){
-                const { data: forgetPass } = await forgetPassMutation();
-                console.log(forgetPass)
-                if(forgetPass){
-                    alert("비밀번호가 재발급 되었습니다.");
-
-                }else{
-                    alert("존재하지않는 email입니다.");
-                    setTimeout(() => {
-                        history.goBack();
-                    }, 4000);
+            const { data: {
+                forgetPass: {
+                    check,
+                    status
                 }
+            }} = await forgetPassMutation({
+                variables: {
+                    email: getValues("email")
+                }
+            });
+            console.log(check, status)
+            if(check){
+                alert("비밀번호가 재발급 되었습니다.");
+                history.goBack();
+            }else{
+                alert("존재하지않는 email입니다.");
             }
         }catch(error){
             console.log(error);
@@ -40,8 +39,10 @@ const ForgetContainer = () => {
 
     return (
         <ForgetPresenter 
-            email={emailInput}
-            onFn={onFn}
+            register={register}
+            handleSubmit={handleSubmit}
+            errors={errors}
+            onSubmit={onSubmit}
         />
     );
 }
