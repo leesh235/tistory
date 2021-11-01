@@ -14,7 +14,7 @@ type Response {
 }
 
 type Query{
-    getSearch(text: String): Response!
+    getSearch(text: String count: Int! page: Int!): Response!
 }
 
 type Mutation{
