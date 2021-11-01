@@ -24,7 +24,7 @@ const Wrapper = styled.main`
     max-width: 1180px;
     height: 100%;
     min-height: 70vh;
-    margin: 100px auto 0 auto;
+    margin: 100px auto 70px auto;
 `;
 
 const Routes = () => {

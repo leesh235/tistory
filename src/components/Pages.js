@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
     display: flex;
@@ -82,4 +83,12 @@ export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
             <UpButton onClick={upHandler}>{">"}</UpButton>
         </Wrapper>
     );
+}
+
+Pages.defaultProps = {
+    margin: "0 0 0 0",
+}
+
+Pages.propTypes = {
+    margin: PropTypes.string,
 }
