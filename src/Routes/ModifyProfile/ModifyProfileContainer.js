@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { MODIFYPROFILE } from "./ModifyProfileQuery";
 import ModifyProfilePresenter from './ModifyProfilePresenter';
-import { usePasswordInput } from '../../Hooks/useInput';
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import { useForm } from 'react-hook-form';
+import { uploadProfileImgApi } from "../../api";
+import { routes } from '../../routes';
 
 export default ({props}) => {
 
-    let email = props.history.location.state.email
-    console.log(email)
-    const passwordInput = usePasswordInput("");
-    const passConfirmInput = usePasswordInput("");
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+    
+    let email = props?.history?.location?.state?.email
+
     const [picture, setPicture] = useState("");
 
     const [setProfileMutation] = useMutation(MODIFYPROFILE);
@@ -25,46 +26,43 @@ export default ({props}) => {
 
 
     const history = useHistory();
-    const onSubmit = async(e) => {
-        e.preventDefault();
-
+    const onSubmit = async() => {
         try{     
-            if(passwordInput.value !== passConfirmInput.value){
+            if(getValues("password") !== getValues("confirmPassword")){
                 alert("비밀번호가 일치하지 않습니다.");
             } else{
 
-                if(passwordInput.value !== ""){
+                if(getValues("password") !== ""){
                     const { data: { ModifyProfile } } = await setProfileMutation({
                         variables: {
-                            password: passwordInput.value
+                            password: getValues("password")
                         }
                     });
                     // console.log(ModifyProfile)
     
-                    if(ModifyProfile){
-                        alert("비밀번호가 변경되었습니다.");
-                        history.goBack();
-                    }
+                    // if(ModifyProfile){
+                    //     alert("비밀번호가 변경되었습니다.");
+                    // }
                 }
-                alert("프로필 사진이 변경되었습니다.");
-                history.goBack();
                 
                 if(picture !== undefined && picture !== null){
-                    const jwt = localStorage.getItem("token");
+       
                     const formData = new FormData();
+
                     formData.append("user", email);
                     formData.append("streamfile", picture);
         
-                    await axios({
-                        method: "post",
-                        url: "http://localhost:5000/profile",
-                        data: formData,
-                        headers: {
-                            Authorization: jwt,
-                            "Content-Type": "multipart/form-data",
+                    uploadProfileImgApi(formData).then(
+                        data => {
+                            console.log(data);
+                        },
+                        err => {
+                            console.log(err);
                         }
-                    })
+                    )
                 }
+                alert("개인정보가 변경되었습니다");
+                window.location.replace(`${routes.profile}`)
             }
 
         } catch(error){
@@ -80,8 +78,9 @@ export default ({props}) => {
 
     return (
         <ModifyProfilePresenter 
-            password={passwordInput}
-            passConfirm={passConfirmInput}
+            register={register}
+            handleSubmit={handleSubmit}
+            errors={errors}
             handlePicture={handlePicture}
             onSubmit={onSubmit}
         />
