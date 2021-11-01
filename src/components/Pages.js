@@ -30,7 +30,7 @@ export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
     const calculate = Math.ceil(total / each);
     console.log(margin)
 
-    const [selected, setSelected] = useState(1);
+    const [selected, setSelected] = useState(page);
 
     const pageCntHandelr = () => {
         let arr = [];
