@@ -1,60 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
+import { Text } from "../../components/Text";
+import { ErrorMessage } from "../../components/ErrorMessage";
 
-const Input = styled.input`
-    height: 40px;
-    background-color: #ffffff;
-    border: solid 1px #dadada;
-    margin-bottom: 15px;
-    font-size: 15px;
-    padding: 10px;
-`;
-
-const Button = styled.button`
-    width: 460px;
-    height: 60px;
-    background-color: #white;
+const Wrapper = styled.section`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #8e8e8e;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
     width: 100%;
-    form {
-        display: flex;
-        margin-bottom: 10px;
-        flex-direction: column;
-    }
+    height: 70vh;
 `;
 
-const Container = styled.div`
+const FormWrapper = styled.form`
+    max-width: 37rem;
+    width: 70vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
     flex-direction: column;
 `;
 
-const ForgetPresenter = ({email, onFn}) => {
+const ForgetPresenter = ({register, handleSubmit, errors, onSubmit}) => {
     return (
         <Wrapper>
-            <Container>
-                <form onSubmit={onFn}>
-                    <Input placeholder={"  email"} {...email}></Input>
-                    <Button>보내기</Button>                    
-                </form>
-            </Container>
+            <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+                <Input type={"text"} register={register("email",{required: true})} w={"100%"} placeholder={"email"} />
+                <ErrorMessage>
+                    {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} fs={"1rem"} fc={"red"}/>}
+                </ErrorMessage>
+
+                <Button text={"보내기"} w={"100%"}/>               
+            </FormWrapper>
         </Wrapper>
     );
 }
