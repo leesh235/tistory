@@ -5,18 +5,27 @@ const PWrapper = styled.p`
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
     ${prop => prop.props}
+
+    font-size: 1.6rem;
+    color: ${prop => prop.fc};
 `;
 
 const SpanWrapper = styled.span`
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
     ${prop => prop.props}
+
+    font-size: 1.6rem;
+    color: ${prop => prop.fc};
 `;
 
 const DivWrapper = styled.div`
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
     ${prop => prop.props}
+
+    font-size: 1.6rem;
+    color: ${prop => prop.fc};
 `;
 
 
@@ -44,6 +53,7 @@ export const Text = ({props, text, type="p", margin, padding}) => {
 Text.defaultProps = {
     margin: "0 0 0 0",
     padding: "0 0 0 0",
+    fc: "black",
 }
 
 Text.propTypes = {
@@ -52,4 +62,5 @@ Text.propTypes = {
     props: PropTypes.string,
     margin: PropTypes.string,
     padding: PropTypes.string,
+    fc: PropTypes.string,
 }
