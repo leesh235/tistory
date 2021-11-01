@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { useQuery } from '@apollo/client';
 import { PROFILE } from "./ProfileQuery";
 import ProfilePresenter from "./ProfilePresenter";
-import axios from "axios";
 import { Loading } from "../../components/Loading";
+import { getProfileImgApi } from "../../api";
 
 const ProfileContainer = () => {
 
@@ -13,21 +13,17 @@ const ProfileContainer = () => {
     console.log(data)
 
     const filesever = async() => {
-
-        if(data.getProfile.userImg !== null){
-            const jwt = localStorage.getItem("token");
-            const email = data.getProfile.email;
-            const res = await axios({
-                method: "get",
-                url: `http://localhost:5000/profileImg/${email}`,
-                headers: {
-                    Authorization: jwt,
-                    "Content-Type": "multipart/form-data"
-                }
-            })
-
-            setUserImg(res.data.profileImg);
-        }
+        const email = data.getProfile.email;
+        console.log(email)
+        getProfileImgApi(email).then(
+            data => {
+                console.log(data)
+                setUserImg(data.data.profileImg);
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
     useEffect(() => {
