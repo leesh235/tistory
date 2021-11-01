@@ -4,8 +4,8 @@ import moment from "moment";
 import { Link } from 'react-router-dom';
 import { LineStyle } from "../../components/LineStyle";
 import { FlexWrapper } from "../../components/FlexWrapper";
-import { Gap } from "../../components/Gap";
 import { Text } from "../../components/Text";
+import { Button } from "../../components/Button";
 
 const MainContent = styled.section`
     display: flex;
@@ -69,12 +69,11 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
                             postId: post.postId
                         }
                     }}>
-                        <PostBtn>수정</PostBtn>
+                        <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} w={"9rem"} h={"3rem"}/>
                     </Link> :
                     ""
                 }
-                <Gap w={"30px"}/>
-                {equal ? <PostBtn onClick={onClick}>삭제</PostBtn> : ""}
+                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""}
             </FlexWrapper>
         </MainContent>
     );

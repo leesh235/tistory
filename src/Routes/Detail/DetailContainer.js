@@ -7,6 +7,7 @@ import { Loading } from "../../components/Loading";
 import { isLogedIn } from "../../utiles"
 import { useHistory } from 'react-router';
 import { getPostApi, deletePostApi } from "../../api";
+import { routes } from "../../routes"
 
 export default ({history, location}) => {
 
@@ -59,12 +60,13 @@ export default ({history, location}) => {
                     writer: data.getPostDetail.Post.writer,
                     postId: postId
                 }
-                console.log(formData)
+        
                 deletePostApi(formData).then(
                     data => {
                         console.log(data)
                     }
                 )
+                window.location.replace(`${routes.home}`)
             }
         }
     }
