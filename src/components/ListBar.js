@@ -90,7 +90,9 @@ const ListBar = ({diplay}) => {
 
                 <ListWrapper>
                     <ListMenu>
-                        <Link to="/search" >Search</Link>
+                        <div onClick={() => {
+                            window.location.replace(`search`)
+                        }}>Search</div>
                     </ListMenu>
                 </ListWrapper>
 
