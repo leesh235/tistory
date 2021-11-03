@@ -29,7 +29,10 @@ const Wrapper = styled.main`
 
 const Routes = () => {
 
-    const {data, loading} = useQuery(TOKENINFO);
+    const {loading, data:{
+        isLoggedIn
+    }} = useQuery(TOKENINFO);
+    console.log(isLoggedIn)
 
     return(
         <Router>

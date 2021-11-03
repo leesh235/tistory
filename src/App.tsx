@@ -8,19 +8,19 @@ import { Provider } from 'react-redux';
 import createStore from './redux/store';
 import reducers from "./redux/reducers/index";
 
-const store = createStore(reducers);
+// const store = createStore(reducers);
 
 const App = () => {
   
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Router>
             <Routes />
           </Router>
         </ ThemeProvider>
-    </Provider>
+    // </Provider>
   )
 }
 
