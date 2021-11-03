@@ -3,15 +3,11 @@ import { useMutation } from '@apollo/client';
 import LogInPresenter from './LogInPresenter';
 import { useHistory } from "react-router-dom";
 import { LOGIN, TOKENLOGIN } from "./LogInQuery";
-import { useDispatch } from "react-redux";
 import { useForm } from 'react-hook-form';
-import { setUserId } from '../../redux/actions/user';
 
 export default () => {
 
     const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
-
-    const dispatch = useDispatch();
  
     const [loginMutation] = useMutation(LOGIN);
     const [tokenMutation] = useMutation(TOKENLOGIN);
@@ -36,7 +32,6 @@ export default () => {
             });
 
             if(check){
-                dispatch(setUserId(user));
 
                 await tokenMutation({
                     variables: {

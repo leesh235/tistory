@@ -5,6 +5,7 @@ import { TOKENINFO, TOKENLOGOUT } from "../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import ListBar from "./ListBar";
+import { Loading } from "./Loading";
 
 const Wrapper = styled.header`
     display: flex;
@@ -56,9 +57,9 @@ const ListWrapper = styled.div`
 
 const Header = () => {
 
-    const { loading , data : {
-       isLoggedIn
-    } } = useQuery(TOKENINFO);
+    const { loading , data: {
+        isLoggedIn
+    }} = useQuery(TOKENINFO);
 
     const [open, setOpen] = useState(false);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
@@ -92,10 +93,10 @@ const Header = () => {
                 <Logo onClick={onClick}>tistory</Logo>
                 <Menu>
                     <LinkStyle>
-                        {!loading && isLoggedIn? <Link to="/profile">profile</Link> : ""}
+                        {isLoggedIn && <Link to="/profile">profile</Link>}
                     </LinkStyle>
                     <LinkStyle>
-                        {!loading && isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
+                        {isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
                     </LinkStyle>
     
                     <LinkStyle onClick={onList}>
@@ -107,6 +108,8 @@ const Header = () => {
                 </Menu>
             </Wrapper>
         );
+    }else{
+        return <Loading />
     }
 }
 
