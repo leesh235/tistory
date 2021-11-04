@@ -18,7 +18,7 @@ export const DetailContainer = ({history, location}: any) => {
         routeHistory.push("/login");
     }
 
-    const { postId }: any = useParams();
+    const { postId } = useParams<{postId: string}>();
 
     const [postContents, setPostContents] = useState<any>(null);
 
