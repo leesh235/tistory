@@ -8,11 +8,22 @@ const Wrapper = styled.section`
     min-height: 500px;
 `;
 
-const HomePresenter = ({ postList }) => {
+interface Post{
+    postId?: string,
+    title?: string,
+    createdAt?: string,
+    writer?: string,
+}
+
+interface Props extends Post{
+    postList: Array<Post>,
+}
+
+const HomePresenter = ({ postList }: Props) => {
     return(
         <Wrapper>
             {postList.length !== 0 ? 
-                postList.map((post, index) => {
+                postList.map((post , index) => {
                     return <Contents
                         key={index}
                         postId={post.postId}
