@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { MYPOST } from "./MyPostQuery";
-import MyPostPresenter from "./MyPostPresenter";
+import { MyPostPresenter } from "./MyPostPresenter";
 import { Loading } from "../../components/Loading";
 import { Pages } from "../../components/Pages";
 
-const MyPostContainer = () => {
+export const MyPostContainer = () => {
 
     const [count, setCount] = useState(3);
     const [page, setPage] = useState(1);
@@ -35,5 +35,3 @@ const MyPostContainer = () => {
         );
     }
 }
-
-export default MyPostContainer;
