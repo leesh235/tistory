@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { DETAIL, DELETEPOST } from "./DetailQuery";
 import { useParams } from "react-router-dom";
-import DetailPresenter from './DetailPresenter';
+import { DetailPresenter } from './DetailPresenter';
 import { Loading } from "../../components/Loading";
 import { isLogedIn } from "../../utiles"
 import { useHistory } from 'react-router';
 import { getPostApi, deletePostApi } from "../../api";
 import { routes } from "../../routes"
 
-export default ({history, location}) => {
+export const DetailContainer = ({history, location}: any) => {
 
     const routeHistory = useHistory();
 
@@ -18,9 +18,9 @@ export default ({history, location}) => {
         routeHistory.push("/login");
     }
 
-    const { postId } = useParams();
+    const { postId }: any = useParams();
 
-    const [postContents, setPostContents] = useState("");
+    const [postContents, setPostContents] = useState<any>(null);
 
     console.log(postId);
     const {loading, data} = useQuery(DETAIL,{

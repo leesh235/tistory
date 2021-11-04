@@ -27,11 +27,21 @@ const ContentWrapper = styled.div`
     }
 `;
 
-const PostBtn = styled.div`
-    cursor: pointer;
-`;
+interface Post {
+    writer: string,
+    title: string,
+    postId: string,
+    createdAt: string,
+}
 
-const DetailPresenter = ({postContents, post, equal, onClick}) => {
+interface Props {
+    equal: boolean,
+    onClick(): void,
+    postContents: any
+    post: Post
+}
+
+export const DetailPresenter = ({postContents, post, equal, onClick}: Props) => {
 
     const createMarkup = () => {
         return {__html: `${postContents}`};
@@ -78,5 +88,3 @@ const DetailPresenter = ({postContents, post, equal, onClick}) => {
         </MainContent>
     );
 }
-
-export default DetailPresenter;

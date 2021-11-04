@@ -1,9 +1,10 @@
-import React from 'react';
-import DetailContainer from './DetailContainer';
+import { RouteComponentProps } from "react-router-dom";
+import { DetailContainer } from './DetailContainer';
 
-const DetailIndex = (props) => {
+const DetailIndex = (props: RouteComponentProps) => {
+
         const {history, location} = props;
-        // console.log(location);
+
         return(
                 <DetailContainer history={history} location={location} />
         );
