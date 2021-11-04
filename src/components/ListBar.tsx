@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 //animation 주기
-const AaniFucntuin = styled.div`
+const AaniFucntuin = styled.div<KeyframesProps>`
     .block{
         animation-duration: 0.5s;
         animation-name: ${p=>p.showMenu}, ${p=>p.menuOn};
@@ -70,11 +70,22 @@ const ListMenu = styled.div`
 
 `;
 
-const ListBar = ({diplay}) => {
+interface StyleProps{
+    display: string,
+}
+
+interface KeyframesProps{
+    showMenu: any,
+    hideMenu: any,
+    menuOn: any,
+    menuOff: any,
+}
+
+export const ListBar = ({display}: StyleProps) => {
 
     return (
-        <AaniFucntuin showMenu={showMenu} hideMenu={hideMenu} menuOn={menuOn} menuOff={menuOff}>
-            <Wrapper showMenu={showMenu} hideMenu={hideMenu} className={diplay}>
+        <AaniFucntuin className={display} showMenu={showMenu} hideMenu={hideMenu} menuOn={menuOn} menuOff={menuOff}>
+            <Wrapper>
 
                 <ListWrapper>
                     <ListMenu>
@@ -106,5 +117,3 @@ const ListBar = ({diplay}) => {
         </AaniFucntuin>
     );
 }
-
-export default ListBar;

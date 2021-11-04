@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { TOKENINFO, TOKENLOGOUT } from "../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import ListBar from "./ListBar";
+import { ListBar } from "./ListBar";
 import { Loading } from "./Loading";
 
 const Wrapper = styled.header`
@@ -55,7 +55,7 @@ const ListWrapper = styled.div`
     background-color: white;
 `;
 
-const Header = () => {
+export const Header = () => {
 
     const { loading , data: {
         isLoggedIn
@@ -64,7 +64,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
 
-    const handleLogOut = async(e) => {
+    const handleLogOut = async(e: React.SyntheticEvent) => {
         e.preventDefault();
         if(window.confirm("really?")){
             await tokenMutation();
@@ -72,7 +72,7 @@ const Header = () => {
     }
 
     const history = useHistory();
-    const onClick = (e) => {
+    const onClick = (e: React.SyntheticEvent) => {
         e.preventDefault();
         setTimeout(() => {
             history.push("/")
@@ -102,7 +102,7 @@ const Header = () => {
                     <LinkStyle onClick={onList}>
                         <ListWrapper>
                             <>List</>
-                            {open ? <ListBar diplay={"block"} /> : null }
+                            {open ? <ListBar display={"block"} /> : null }
                         </ListWrapper>
                     </LinkStyle>
                 </Menu>
@@ -112,5 +112,3 @@ const Header = () => {
         return <Loading />
     }
 }
-
-export default Header;

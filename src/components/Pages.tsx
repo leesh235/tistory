@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<StyleProps>`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,12 +26,23 @@ const DownButton = styled.div`
     cursor: pointer;
 `;
 
-export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
+interface StyleProps{
+    margin?: string,
+}
 
-    const calculate = Math.ceil(total / each);
+interface Props extends StyleProps{
+    total: number,
+    each: number,
+    page: number,
+    setPage(val: number): number,
+}
+
+export const Pages = ({ total, each, page, setPage, margin }: Props) => {
+
+    const calculate: number = Math.ceil(total / each);
     console.log(margin)
 
-    const [selected, setSelected] = useState(page);
+    const [selected, setSelected] = useState<number>(page);
 
     const pageCntHandelr = () => {
         let arr = [];
@@ -41,14 +52,14 @@ export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
         return arr;
     }
 
-    const pageHandler = (val) => {
+    const pageHandler = (val: number) => {
         setPage(val)
         setSelected(val)
     }
 
     const upHandler = () => {
         if(page < calculate){
-            setPage(pre => pre + 1)
+            setPage(page + 1)
             setSelected(page + 1)
         }else{
             setPage(calculate)
@@ -58,7 +69,7 @@ export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
 
     const downHandler = () => {
         if(page > 1){
-            setPage(pre => pre - 1)
+            setPage(page - 1)
             setSelected(page - 1)
         }else{
             setPage(1)
@@ -87,8 +98,6 @@ export const Pages = ({ total = 0, each = 0, page, setPage, margin }) => {
 
 Pages.defaultProps = {
     margin: "0 0 0 0",
-}
-
-Pages.propTypes = {
-    margin: PropTypes.string,
+    total: 0, 
+    each: 1,
 }

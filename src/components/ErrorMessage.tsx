@@ -7,7 +7,15 @@ const Wrapper = styled.div`
     color: red;
 `;
 
-export const ErrorMessage = ({children}) => {
+interface StyleProps{
+
+}
+
+interface Props extends StyleProps{
+    children: React.ReactNode
+}
+
+export const ErrorMessage: React.FC<Props> = ({ children }) => {
     return(
         <Wrapper>{children}</Wrapper>
     );

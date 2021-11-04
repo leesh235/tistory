@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<StyleProps>`
     display: ${p=>p.display};
     flex-direction: ${p=>p.fd};
     align-items: ${p=>p.ai};
@@ -9,11 +8,29 @@ const Wrapper = styled.div`
     max-width: ${p=>p.maxW};
     width: ${p=>p.w};
     height: ${p=>p.h};
-    margin: ${p=>p.m};
+    margin: ${p=>p.margin};
+    padding: ${p=>p.padding};
     ${p=>p.props}
 `;
 
-export const FlexWrapper = ({children, props, display, fd, ai, jc, maxW, w, h, m}) => {
+interface StyleProps{
+    props?: string,
+    display?: string,
+    fd?: string,
+    ai?: string,
+    jc?: string,
+    maxW?: string,
+    w?: string,
+    h?: string,
+    margin?: string,
+    padding?: string
+}
+
+interface Props extends StyleProps{
+    children: React.ReactNode
+}
+
+export const FlexWrapper: React.FC<Props> = ({children, props, display, fd, ai, jc, maxW, w, padding, margin}) => {
     return(
         <Wrapper 
             props={props}
@@ -23,8 +40,8 @@ export const FlexWrapper = ({children, props, display, fd, ai, jc, maxW, w, h, m
             jc={jc}
             maxW={maxW}
             w={w}
-            h={h}
-            m={m}
+            margin={margin} 
+            padding={padding} 
         >{children}</Wrapper>
     );
 }
@@ -35,17 +52,6 @@ FlexWrapper.defaultProps = {
     jc: "flex-start",
     w: "100%",
     h: "auto",
-    m: "0px",
-}
-
-FlexWrapper.propTypes = {
-    props: PropTypes.string,
-    display: PropTypes.string,
-    fd: PropTypes.string,
-    ai: PropTypes.string,
-    jc: PropTypes.string,
-    w: PropTypes.string,
-    h: PropTypes.string,
-    m: PropTypes.string,
-    maxW: PropTypes.string
+    margin: "0px",
+    padding: "0px",
 }

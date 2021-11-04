@@ -2,9 +2,9 @@ import React from "react";
 import styled from 'styled-components';
 import moment from "moment"
 import { Link } from 'react-router-dom';
-import { Text } from "../components/Text";
+import { Text } from "./Text";
 
-const Wrapper = styled.article`
+const Wrapper = styled.article<StyleProps>`
     padding: 20px;
     border-bottom: 1px solid gray;
 `;
@@ -27,7 +27,18 @@ const DateStyle = `
     margin-bottom: 15px;
 `;
 
-export const Contents = ({writer, title, postId, createdAt }) => {
+interface StyleProps {
+    writer?: string,
+    title?: string,
+    postId?: string,
+    createdAt?: string,
+}
+
+interface Props extends StyleProps{
+
+}
+
+export const Contents = ({writer, title, postId, createdAt }: Props) => {
     return(
         <Wrapper key={postId}>
             <Link to={{
@@ -42,4 +53,8 @@ export const Contents = ({writer, title, postId, createdAt }) => {
             </Link>
         </Wrapper>
     );
+}
+
+Contents.defaultProps = {
+
 }

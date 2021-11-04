@@ -1,13 +1,22 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<StyleProps>`
     width: ${p=>p.w};
     border-bottom: 1px solid ${p=>p.color};
     margin: ${props => props.margin};
 `;
 
-export const LineStyle = ({w, color, margin}) => {
+interface StyleProps{
+    w: string,
+    color: string,
+    margin: string,
+}
+
+interface Props extends StyleProps{
+
+}
+
+export const LineStyle = ({w, color, margin}: Props) => {
     return(
         <Wrapper w={w} color={color} margin={margin} />
     );
@@ -15,10 +24,6 @@ export const LineStyle = ({w, color, margin}) => {
 
 LineStyle.defaultProps = {
     color: "gray",
-}
-
-LineStyle.propTypes = {
-    color: PropTypes.string,
-    w: PropTypes.string,
-    margin: PropTypes.string,
+    w: "100%",
+    margin: "5px 0",
 }

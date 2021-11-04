@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const Wrapper = styled.input`
+const Wrapper = styled.input<StyleProps>`
     width: ${prop => prop.w};
     max-width: ${prop => prop.maxW};
     height: ${prop => prop.h};
@@ -21,7 +20,26 @@ const Wrapper = styled.input`
     ${prop => prop.props}
 `;
 
-export const Input = ({props, type, maxW, w, h, margin, padding, color, fs, fcolor, placeholder, register, func}) => {
+interface StyleProps{
+    props?: string,
+    maxW?: string,
+    w?: string,
+    h?: string,
+    margin?: string,
+    padding?: string,
+    color?: string,
+    fs?: string,
+    fcolor?: string,
+}
+
+interface Props extends StyleProps{
+    type?: string,
+    placeholder?: string,
+    register?(): void,
+    func?(): void,
+}
+
+export const Input = ({props, type, maxW, w, h, margin, padding, color, fs, fcolor, placeholder, register, func}: Props) => {
     return(
         <Wrapper 
             props={props}
@@ -36,7 +54,7 @@ export const Input = ({props, type, maxW, w, h, margin, padding, color, fs, fcol
             color={color}
             fcolor={fcolor}
             {...register}
-            {...func}
+            onInput={func}
         />
     );
 }
@@ -51,19 +69,4 @@ Input.defaultProps = {
     w: "282px",
     h: "20px",
     padding: "4px 8px"
-}
-
-Input.propTypes = {
-    type: PropTypes.string,
-    fs: PropTypes.string,
-    color: PropTypes.string,
-    fcolor: PropTypes.string,
-    maxW: PropTypes.string,
-    w: PropTypes.string,
-    h: PropTypes.string,
-    margin: PropTypes.string,
-    padding: PropTypes.string,
-    placeholder: PropTypes.string,
-    register: PropTypes.object,
-    func: PropTypes.object,
 }

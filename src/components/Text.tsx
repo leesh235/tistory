@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const PWrapper = styled.p`
+const PWrapper = styled.p<StyleProps>`
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
     ${prop => prop.props}
@@ -10,7 +9,7 @@ const PWrapper = styled.p`
     color: ${prop => prop.fc};
 `;
 
-const SpanWrapper = styled.span`
+const SpanWrapper = styled.span<StyleProps>`
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
     ${prop => prop.props}
@@ -19,7 +18,7 @@ const SpanWrapper = styled.span`
     color: ${prop => prop.fc};
 `;
 
-const DivWrapper = styled.div`
+const DivWrapper = styled.div<StyleProps>`
     margin: ${prop => prop.margin};
     padding: ${prop => prop.padding};
     ${prop => prop.props}
@@ -28,8 +27,21 @@ const DivWrapper = styled.div`
     color: ${prop => prop.fc};
 `;
 
+interface StyleProps{
+    props?: string,
+    text?: string,
+    type?: string,
+    margin?: string,
+    padding?: string,
+    fc?: string,
+    fs?: string,
+}
 
-export const Text = ({props, text, type="p", margin, padding, fc, fs}) => {
+interface Props extends StyleProps{
+
+}
+
+export const Text = ({props, text, type, margin, padding, fc, fs} : Props) => {
     //p태그
     if(type === "p"){
         return(
@@ -43,7 +55,7 @@ export const Text = ({props, text, type="p", margin, padding, fc, fs}) => {
         );
     }
     //div태그
-    else if(type === "div"){
+    else{
         return(
             <DivWrapper props={props} margin={margin} padding={padding} fc={fc} fs={fs}>{text}</DivWrapper>
         );
@@ -55,14 +67,5 @@ Text.defaultProps = {
     padding: "0 0 0 0",
     fc: "black",
     fs: "1.6rem",
-}
-
-Text.propTypes = {
-    text: PropTypes.string,
-    type: PropTypes.string,
-    props: PropTypes.string,
-    margin: PropTypes.string,
-    padding: PropTypes.string,
-    fc: PropTypes.string,
-    fs: PropTypes.string,
+    type: "p",
 }

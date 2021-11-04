@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const Wrapper = styled.button`
+const Wrapper = styled.button<StyleProps>`
     max-width: ${prop => prop.maxW};
     width: ${prop => prop.w};
     height: ${prop => prop.h};
@@ -16,7 +15,24 @@ const Wrapper = styled.button`
     color: ${prop => prop.fcolor};
 `;
 
-export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor, onClick, fs}) => {
+interface StyleProps {
+    props?: string,
+    maxW?: string,
+    w?: string,
+    h?: string,
+    margin?: string,
+    padding?: string,
+    color?: string,
+    fcolor?: string,
+    fs?: string,
+}
+
+interface  Props extends StyleProps {
+    text?: string,
+    onClick?(): void,
+}
+
+export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor, onClick, fs}: Props) => {
     return(
         <Wrapper 
             props={props} 
@@ -28,7 +44,7 @@ export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor,
             color={color} 
             fcolor={fcolor} 
             fs={fs} 
-            onClick={onClick}
+            onClick={() => onClick}
         >{text}</Wrapper>
     );
 }
@@ -41,18 +57,6 @@ Button.defaultProps = {
     maxW: "370px",
     w: "300px",
     h: "30px",
-    padding: "0"
-}
-
-Button.propTypes = {
-    text: PropTypes.string,
-    color: PropTypes.string,
-    fcolor: PropTypes.string,
-    maxW: PropTypes.string,
-    w: PropTypes.string,
-    h: PropTypes.string,
-    fs: PropTypes.string,
-    margin: PropTypes.string,
-    padding: PropTypes.string,
-    onClick: PropTypes.func,
+    padding: "0",
+    margin: "0"
 }
