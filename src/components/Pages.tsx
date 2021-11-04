@@ -34,7 +34,7 @@ interface Props extends StyleProps{
     total: number,
     each: number,
     page: number,
-    setPage(val: number): number,
+    setPage(val: number): void,
 }
 
 export const Pages = ({ total, each, page, setPage, margin }: Props) => {
