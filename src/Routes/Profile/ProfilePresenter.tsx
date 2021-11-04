@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Text } from "../../components/Text";
@@ -35,10 +34,22 @@ const BtnWrapper = styled.div`
 `;
 
 const ImgWrapper = styled.div`
-    min-height: 150px;
+    max-width: 150px;
+    max-height: 150px;
 `;
 
-const ProfilePresenter = ({userImg, userInfo}) => {
+interface User{
+    nickName: string,
+    email: string,
+    userRole: string,
+}
+
+interface Porps{
+    userImg: any,
+    userInfo: User,
+}
+
+export const ProfilePresenter = ({userImg, userInfo}: Porps) => {
     return (
         <Wrapper>
             <Contents>
@@ -72,5 +83,3 @@ const ProfilePresenter = ({userImg, userInfo}) => {
         </Wrapper>
     );
 }
-
-export default ProfilePresenter;

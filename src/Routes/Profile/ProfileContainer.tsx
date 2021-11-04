@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { useQuery } from '@apollo/client';
 import { PROFILE } from "./ProfileQuery";
-import ProfilePresenter from "./ProfilePresenter";
+import { ProfilePresenter } from "./ProfilePresenter";
 import { Loading } from "../../components/Loading";
 import { getProfileImgApi } from "../../api";
 
-const ProfileContainer = () => {
+export const ProfileContainer = () => {
 
-    const [userImg, setUserImg] = useState("");
+    const [userImg, setUserImg] = useState<any>("");
 
     const { loading, data } = useQuery(PROFILE);
     console.log(data)
@@ -46,5 +46,3 @@ const ProfileContainer = () => {
     }
 
 }
-
-export default ProfileContainer;

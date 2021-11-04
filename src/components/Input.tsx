@@ -8,15 +8,12 @@ const Wrapper = styled.input<StyleProps>`
     padding: ${prop => prop.padding};
     border: solid 1px ${prop => prop.color};
     border-radius: 6px;
-
     color: ${prop => prop.color};
     font-size: ${prop => prop.fs};
-
     ::placeholder{
         color: ${prop => prop.color};
         padding: ${prop => prop.padding};
     }
-
     ${prop => prop.props}
 `;
 
