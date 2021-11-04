@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 `
 
-export const Editor = ({getFormData, user}) => {
+export const CKEditor = ({getFormData, user}) => {
   
   ClassicEditorBase.builtinPlugins = [
     Essentials,
