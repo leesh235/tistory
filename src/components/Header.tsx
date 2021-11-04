@@ -64,7 +64,7 @@ export const Header = () => {
     const [open, setOpen] = useState(false);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
 
-    const handleLogOut = async(e: React.SyntheticEvent) => {
+    const handleLogOut = async(e: React.MouseEvent) => {
         e.preventDefault();
         if(window.confirm("really?")){
             await tokenMutation();
@@ -72,7 +72,7 @@ export const Header = () => {
     }
 
     const history = useHistory();
-    const onClick = (e: React.SyntheticEvent) => {
+    const onClick = (e: React.MouseEvent) => {
         e.preventDefault();
         setTimeout(() => {
             history.push("/")
