@@ -7,8 +7,8 @@ import { Pages } from "../../components/Pages"
 
 export default () => {
 
-    const [count, setCount] = useState(3);
-    const [page, setPage] = useState(1);
+    const [count, setCount] = useState<number>(3);
+    const [page, setPage] = useState<number>(1);
 
     const { loading, data } = useQuery(POST, { 
         variables: { 
