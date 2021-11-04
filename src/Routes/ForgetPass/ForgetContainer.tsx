@@ -2,12 +2,16 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { FORGET_PASS } from "./ForgetQuery";
 import { useHistory } from "react-router-dom";
-import ForgetPresenter from "./ForgetPresenter";
+import { ForgetPresenter } from "./ForgetPresenter";
 import { useForm } from 'react-hook-form';
 
-const ForgetContainer = () => {
+interface User{
+    email: string
+}
 
-    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+export const ForgetContainer = () => {
+
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm<User>({ mode:"onBlur" });
 
     const [forgetPassMutation] = useMutation(FORGET_PASS)
 
@@ -46,5 +50,3 @@ const ForgetContainer = () => {
         />
     );
 }
-
-export default ForgetContainer;

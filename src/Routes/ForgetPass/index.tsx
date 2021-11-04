@@ -1,5 +1,5 @@
 import React from "react";
-import ForgetContainer from "./ForgetContainer";
+import { ForgetContainer } from "./ForgetContainer";
 
 const ForgetPassIndex = () => {
     return (

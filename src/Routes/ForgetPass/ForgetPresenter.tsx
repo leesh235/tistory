@@ -21,7 +21,14 @@ const FormWrapper = styled.form`
     flex-direction: column;
 `;
 
-const ForgetPresenter = ({register, handleSubmit, errors, onSubmit}) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+}
+
+export const ForgetPresenter = ({register, handleSubmit, errors, onSubmit}: Props) => {
     return (
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -35,5 +42,3 @@ const ForgetPresenter = ({register, handleSubmit, errors, onSubmit}) => {
         </Wrapper>
     );
 }
-
-export default ForgetPresenter;
