@@ -8,9 +8,9 @@ import { Pages } from "../../components/Pages";
 
 const SearchContainer = () => {
     
-    const [text, setText] = useState("");
-    const [count, setCount] = useState(3);
-    const [page, setPage] = useState(1);
+    const [text, setText] = useState<string>("");
+    const [count, setCount] = useState<number>(3);
+    const [page, setPage] = useState<number>(1);
 
     const {loading, data} = useQuery(SEARCH, {
         variables: {

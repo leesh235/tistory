@@ -28,16 +28,19 @@ const SeachBtn = styled.input`
     background-color: white;
 `;
 
+interface Props {
+    setText(val: string): void
+}
 
-const SearchPresenter = ({setText}) => {
-    const [initText, setInitText] = useState("");
+const SearchPresenter = ({setText}: Props) => {
+    const [initText, setInitText] = useState<string>("");
 
-    const handleText = (e) => {
+    const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {target:{value}} = e
         setInitText(value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setText(initText);
     }
