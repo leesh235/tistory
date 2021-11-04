@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInContainer from './LogInContainer';
+import { LogInContainer } from './LogInContainer';
 
 const LogInIndex = () => {
         return(

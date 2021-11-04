@@ -1,13 +1,18 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import LogInPresenter from './LogInPresenter';
+import { LogInPresenter } from './LogInPresenter';
 import { useHistory } from "react-router-dom";
 import { LOGIN, TOKENLOGIN } from "./LogInQuery";
 import { useForm } from 'react-hook-form';
 
-export default () => {
+interface LogIn {
+    email: string,
+    password: string,
+}
 
-    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+export const LogInContainer = () => {
+
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm<LogIn>({ mode:"onBlur" });
  
     const [loginMutation] = useMutation(LOGIN);
     const [tokenMutation] = useMutation(TOKENLOGIN);

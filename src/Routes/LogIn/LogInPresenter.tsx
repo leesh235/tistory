@@ -23,7 +23,14 @@ const FormWrapper = styled.form`
     flex-direction: column;
 `;
 
-export default ({ register, handleSubmit, errors, onSubmit }) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+}
+
+export const LogInPresenter = ({ register, handleSubmit, errors, onSubmit }: Props) => {
     return (
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -40,7 +47,7 @@ export default ({ register, handleSubmit, errors, onSubmit }) => {
                 <Button text={"로그인"} w={"100%"}/>               
             </FormWrapper>
 
-            <FlexWrapper fd={"column"} w={"auto"} ai={"center"} m={"30px 0 0 0"} props={`
+            <FlexWrapper fd={"column"} w={"auto"} ai={"center"} margin={"30px 0 0 0"} props={`
                 >:nth-child(1){
                     margin-bottom: 10px;
                 }
