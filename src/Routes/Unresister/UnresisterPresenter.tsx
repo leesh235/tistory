@@ -21,7 +21,14 @@ const FormWrapper = styled.form`
     flex-direction: column;
 `;
 
-const UnresisterPresenter = ({ register, handleSubmit, errors, onSubmit }) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+}
+
+export const UnresisterPresenter = ({ register, handleSubmit, errors, onSubmit }: Props) => {
         return(
             <Wrapper>
                 <FormWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -45,5 +52,3 @@ const UnresisterPresenter = ({ register, handleSubmit, errors, onSubmit }) => {
             </Wrapper>
         );
 }
-
-export default UnresisterPresenter;

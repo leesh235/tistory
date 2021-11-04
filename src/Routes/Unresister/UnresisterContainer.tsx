@@ -1,5 +1,5 @@
 import React from 'react';
-import UnresisterPresenter from './UnresisterPresenter';
+import { UnresisterPresenter } from './UnresisterPresenter';
 import { useMutation } from '@apollo/client';
 import { UNRESISTER } from "./UnresisterQuery";
 import { TOKENLOGOUT } from "../../apollo/tokenQuery";
@@ -7,12 +7,17 @@ import { useForm } from 'react-hook-form';
 import { unregisterApi } from "../../api";
 import { routes } from '../../routes';
 
-const UnresisterContainer = ({props}) => {
+interface User{
+    password: string,
+    confirmPassword: string,
+}
+
+export const UnresisterContainer = ({props}: any) => {
 
     const { state } = props.history.location
     // console.log(state)
 
-    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm<User>({ mode:"onBlur" });
     
     const [setUnresister] = useMutation(UNRESISTER);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
@@ -52,5 +57,3 @@ const UnresisterContainer = ({props}) => {
             />
     );
 }
-
-export default UnresisterContainer;
