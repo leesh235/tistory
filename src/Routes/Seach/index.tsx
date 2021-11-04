@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchContainer from './SearchContainer';
+import { SearchContainer } from './SearchContainer';
 
 const SearchIndex = () => {
         return(

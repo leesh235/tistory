@@ -5,7 +5,7 @@ import HomePresenter from './HomePresenter';
 import { Loading } from "../../components/Loading";
 import { Pages } from "../../components/Pages"
 
-export default () => {
+export const HomeContainer = () => {
 
     const [count, setCount] = useState<number>(3);
     const [page, setPage] = useState<number>(1);

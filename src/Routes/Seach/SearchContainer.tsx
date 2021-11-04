@@ -6,7 +6,7 @@ import HomePresenter from "../Home/HomePresenter";
 import { Loading } from "../../components/Loading";
 import { Pages } from "../../components/Pages";
 
-const SearchContainer = () => {
+export const SearchContainer = () => {
     
     const [text, setText] = useState<string>("");
     const [count, setCount] = useState<number>(3);
@@ -42,5 +42,3 @@ const SearchContainer = () => {
         );
     }
 }
-
-export default SearchContainer;
