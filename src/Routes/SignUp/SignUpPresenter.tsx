@@ -20,7 +20,14 @@ const FormWrapper = styled.form`
     flex-direction: column;
 `;
 
-export default ({ register, handleSubmit, errors, onSubmit }) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+}
+
+export const SignUpPresenter = ({ register, handleSubmit, errors, onSubmit }: Props) => {
     return (
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>

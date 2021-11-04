@@ -1,13 +1,20 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import SignUpPresenter from './SignUpPresenter';
+import { SignUpPresenter } from './SignUpPresenter';
 import { useHistory } from "react-router-dom";
 import { SIGNUP } from "./SignUpQuery";
 import { useForm } from 'react-hook-form';
 
-export default () => {
+interface SignUp {
+    email: string,
+    nickName: string,
+    password: string,
+    confirmPassword: string,
+}
 
-    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+export const SignUpContainer = () => {
+
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm<SignUp>({ mode:"onBlur" });
 
     const [signupMutation] = useMutation(SIGNUP);
 

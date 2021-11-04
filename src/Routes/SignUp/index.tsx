@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpContainer from './SingUpContainer';
+import { SignUpContainer } from './SignUpContainer';
 
 const SignUpIndex = () => {
         return(
