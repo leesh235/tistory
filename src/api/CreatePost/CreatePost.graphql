@@ -10,7 +10,7 @@ type Response {
 }
 
 type Mutation {
-    createPost(title: String! contents: String): Response!
+    createPost(title: String! contents: Boolean): Response!
 }
 
 type Query {

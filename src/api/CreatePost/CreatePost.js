@@ -21,8 +21,8 @@ export default {
                             title,
                         }
                     })
-                    console.log(email)
-                    if(contents !== ""){
+              
+                    if(contents){
                         return {
                             postInfo: {
                                 postId: newPost.postId,
