@@ -30,13 +30,13 @@ const ContentWrapper = styled.div`
 interface Post {
     writer: string,
     title: string,
-    postId: string,
+    postId: number,
     createdAt: string,
 }
 
 interface Props {
     equal: boolean,
-    onClick(): void,
+    onClick: () => void,
     postContents: any
     post: Post
 }
@@ -73,11 +73,6 @@ export const DetailPresenter = ({postContents, post, equal, onClick}: Props) => 
                 {equal ? 
                     <Link to={{
                         pathname: `/modifyPost/${post.postId}`,
-                        state:{
-                            writer: post.writer,
-                            title: post.title,
-                            postId: post.postId
-                        }
                     }}>
                         <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} w={"9rem"} h={"3rem"}/>
                     </Link> :

@@ -1,11 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const ADD = gql`
-mutation createPost($title: String!, $contents:String){
+mutation createPost($title: String!, $contents: Boolean){
     createPost(title: $title, contents: $contents){
-        postId
+        postInfo{
+            postId
+            writer
+        }
+        check
         status
-        writer
     }
 }
 `;

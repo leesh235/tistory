@@ -15,50 +15,49 @@ export const DetailContainer = ({history, location}: any) => {
 
     if(!isLogedIn()){
         window.alert("로그인이 필요합니다")
-        routeHistory.push("/login");
+        routeHistory.push(`${routes.login}`);
     }
 
     const { postId } = useParams<{postId: string}>();
 
     const [postContents, setPostContents] = useState<any>(null);
 
-    console.log(postId);
     const {loading, data} = useQuery(DETAIL,{
         variables: {
-            postId: postId
+            postId: Number(postId)
         }
     });
-    console.log(data)
+
+    const writer = data?.getPostDetail?.Post?.writer;
+    const contents = data?.getPostDetail?.Post?.contents;
 
     const [deletePost] = useMutation(DELETEPOST);
 
     const init = async() => {
-        if(data?.getPostDetail?.Post?.contents === "exist"){
+        if(contents){
             const formData = {
-                writer: data.getPostDetail.Post.writer,
-                postId: postId
+                writer: writer,
+                postId: Number(postId)
             }
             getPostApi(formData).then(
                 data => {
                     setPostContents(data.data);
                 }
             )
-        }else{
-            console.log("실패")
         }
     }
 
-    const onClick = async() => {
+    const deleteHandler = async() => {
         if(window.confirm("게시물을 삭제하시겠습니까?")){
             const {data: {DeletePost : {check, status}}} = await deletePost({
                 variables: {
-                    postId: postId
+                    postId: Number(postId)
                 }
             })
-            if(check){
+            if(check && contents){
                 const formData = {
-                    writer: data.getPostDetail.Post.writer,
-                    postId: postId
+                    writer: writer,
+                    postId: Number(postId)
                 }
         
                 deletePostApi(formData).then(
@@ -66,8 +65,8 @@ export const DetailContainer = ({history, location}: any) => {
                         console.log(data)
                     }
                 )
-                window.location.replace(`${routes.home}`)
             }
+            window.location.replace(`${routes.home}`);
         }
     }
 
@@ -81,7 +80,7 @@ export const DetailContainer = ({history, location}: any) => {
                 postContents={postContents}
                 post={data?.getPostDetail?.Post}
                 equal={data?.getPostDetail?.equal}
-                onClick={onClick}
+                onClick={deleteHandler}
             />
         );
     }else{

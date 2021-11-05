@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const DETAIL = gql`
-    query getPostDetail($postId: String!){
+    query getPostDetail($postId: Int!){
         getPostDetail(postId: $postId){
             equal
+            check
             status
             Post{
                 postId
@@ -11,14 +12,13 @@ export const DETAIL = gql`
                 title
                 contents
                 createdAt
-                postImgId
             }
         }
     }
 `;
 
 export const DELETEPOST = gql`
-    mutation DeletePost($postId: String!){
+    mutation DeletePost($postId: Int!){
         DeletePost(postId: $postId){
             check
             status

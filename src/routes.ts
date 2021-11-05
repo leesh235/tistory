@@ -1,6 +1,8 @@
 export const routes = {
     home: "/",
-    profile: "profile",
+    login: "/login",
+    detail: "/detail/",
+    profile: "/profile",
 }
 
 export const apies = {

@@ -2,7 +2,7 @@ import { fileserver } from "./axios";
 import { apies } from "./routes";
 
 export const writePostApi = (formData: {
-    postId: string,
+    postId: number,
     writer: string,
     title: string,
     editor: any,
@@ -17,7 +17,7 @@ export const writePostApi = (formData: {
 
 export const getPostApi = (formData: {
     writer: string,
-    postId: string
+    postId: number
 }) => {
     try{
         const res = fileserver.get(`${apies.getPost}${formData.writer}/${formData.postId}`);
@@ -29,7 +29,7 @@ export const getPostApi = (formData: {
 
 export const deletePostApi = (formData: {
     writer: string,
-    postId: string
+    postId: number
 }) => {
     try{
         const res = fileserver.get(`${apies.delete}${formData.writer}/${formData.postId}`);

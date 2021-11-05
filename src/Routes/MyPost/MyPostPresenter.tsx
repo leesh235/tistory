@@ -10,7 +10,7 @@ const Wrapper = styled.section`
 
 
 interface Post{
-    postId?: string,
+    postId?: number,
     title?: string,
     createdAt?: string,
     writer?: string,

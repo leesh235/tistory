@@ -9,7 +9,7 @@ const Wrapper = styled.section`
 `;
 
 interface Post{
-    postId?: string,
+    postId?: number,
     title?: string,
     createdAt?: string,
     writer?: string,
@@ -22,8 +22,8 @@ interface Props extends Post{
 const HomePresenter = ({ postList }: Props) => {
     return(
         <Wrapper>
-            {postList.length !== 0 ? 
-                postList.map((post , index) => {
+            {postList?.length !== 0 ? 
+                postList?.map((post , index) => {
                     return <Contents
                         key={index}
                         postId={post.postId}

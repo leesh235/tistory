@@ -31,20 +31,21 @@ const AddContainer = () => {
                 alert("제목을 입력하세요");
                 return;
             }
-            const { data: { createPost : {postId, status, writer} } } = await AddMutation({
+            const contents = postData !== "" ? true : false;
+            
+            const { data: { createPost : {postInfo, status, check} } } = await AddMutation({
                 variables: {
                     title: getValues("title"),
-                    contents: postData !== "" ? "exist" : ""
+                    contents: contents
                 }
             });
-            // console.log("postId: ", postId, status, writer);
 
-            if(postData !== "" && status === "success"){
+            if(postData !== "" && check){
 
                 const formData = new FormData();
 
-                formData.append("postId", postId);
-                formData.append("writer", writer);
+                formData.append("postId", postInfo.postId);
+                formData.append("writer", postInfo.writer);
                 formData.append("title", getValues("title"));
                 formData.append("editor", postData);
 

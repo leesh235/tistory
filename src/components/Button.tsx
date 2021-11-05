@@ -29,7 +29,7 @@ interface StyleProps {
 
 interface  Props extends StyleProps {
     text?: string,
-    onClick?(): void,
+    onClick?: () => void,
 }
 
 export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor, onClick, fs}: Props) => {
@@ -44,7 +44,7 @@ export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor,
             color={color} 
             fcolor={fcolor} 
             fs={fs} 
-            onClick={() => onClick}
+            onClick={onClick}
         >{text}</Wrapper>
     );
 }

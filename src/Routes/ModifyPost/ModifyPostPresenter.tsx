@@ -27,7 +27,15 @@ const EditorWrapper = styled.article`
     width: 100%;
 `;
 
-export default ({ register, handleSubmit, errors, onSubmit, editorRef }) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+    editorRef: any,
+}
+
+export const ModifyPostPresenter = ({ register, handleSubmit, errors, onSubmit, editorRef }: Props) => {
     return (
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>

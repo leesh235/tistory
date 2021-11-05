@@ -30,7 +30,7 @@ const DateStyle = `
 interface StyleProps {
     writer?: string,
     title?: string,
-    postId?: string,
+    postId?: number,
     createdAt?: string,
 }
 
