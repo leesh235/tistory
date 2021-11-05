@@ -11,23 +11,23 @@ export default {
 
                 if(exist){
                     const { count, page } = args;
+                    const userId = request.user.userId;
 
-                    const email = request.user.email
                     const totalPost = await prisma.post.findMany({
-                        where: { writer: email }
+                        where: { userId }
                     })
                     const postLen = totalPost.length;
+                    
                     const myPosts = await prisma.post.findMany({
                         skip: (page - 1) * count,
                         take: count,
                         where: { 
-                            writer: email 
+                            userId 
                         },
                         orderBy: {
                             createdAt:"desc"
                         }
                     })
-                    console.log(myPosts);
 
                     if(myPosts !== null){
                         return {

@@ -1,10 +1,10 @@
-type ResUserId {
-    userImgId: String
+type Response{
+    check: Boolean
+    status: String
 }
 
 type Mutation {
-    ModifyProfile(password: String): Boolean!
-    ModifyUserImg(userImg: String): ResUserId
+    ModifyProfile(password: String): Response!
 }
 
 type Query {

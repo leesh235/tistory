@@ -7,7 +7,6 @@ export default {
         getAllPosts: async(_,args) => {
             try {
                 const { count, page } = args;
-                console.log(count, page)
 
                 const totalPost = await prisma.post.findMany()
 

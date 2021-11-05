@@ -15,7 +15,9 @@ export default {
 
                     const userInfo = await prisma.user.findUnique({
                         where:{
-                            email
+                            AND:[
+                                {email},{userId}
+                            ]
                         }
                     })
 
@@ -38,7 +40,7 @@ export default {
                         //작성한 게시글 모두 삭제
                         await prisma.post.deleteMany({
                             where: {
-                                writer: email
+                                userId
                             }
                         });
                         //회원탈퇴
@@ -47,7 +49,6 @@ export default {
                                 userId
                             }
                         });
-                        console.log("완료")
                         return {
                             check: true,
                             status: "회원탈퇴 완료"

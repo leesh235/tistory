@@ -9,40 +9,45 @@ export default {
             try{
                 
                 const exist = isAuthenticated(request);
-                // console.log(request.user);
-                if( exist === true ){
+           
+                if(exist){
                     const { postId, title } = args;
-                    console.log(postId, title )
-                    const email = request.user.email;
-                    // console.log(postId);
-                    const existPost = await prisma.post.findFirst({
+                    const userId = request.user.userId;
+           
+                    const existPost = await prisma.post.findUnique({
                         where:{
-                            AND:[
-                                {writer: email}, {postId: Number(postId)}
-                            ]
+                            postId
                         }
                     })
                     
-                    if(existPost.contents !== "exist"){
-                        console.log("1")
+                    if(userId === postId.postId){
+                        if(existPost.title === title){
+                            return {
+                                check: true,
+                                status: "didn't change the title"
+                            };
+                        }else{
+                            await prisma.post.update({
+                                where:{
+                                    AND:[
+                                        {userId}, {postId}
+                                    ]
+                                },
+                                data: {
+                                    title
+                                }
+                            })
+                            return {
+                                check: true,
+                                status: "success"
+                            };
+                        }
+                    }else{
                         return {
                             check: false,
-                            status: "not exist"
+                            status: "You're not the author of this post."
                         };
                     }
-                    console.log("2")
-                    await prisma.post.update({
-                        where:{
-                            postId: Number(postId)
-                        },
-                        data: {
-                            title
-                        }
-                    })
-                    return {
-                        check: true,
-                        status: "success"
-                    };
                 }else{
                     console.log("You need to log in to perform this action");
                     return {
@@ -50,7 +55,6 @@ export default {
                         status: "Is not log in"
                     };
                 }
-
             } catch (error){
                 console.log(error);
                 return {

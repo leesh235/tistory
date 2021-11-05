@@ -11,51 +11,55 @@ export default {
 
                 if(exist === true){
                     const { postId } = args;
+                    const userId= request.user.userId;
 
                     const post = await prisma.post.findUnique({
                         where: { 
-                            postId: Number(postId)
+                            postId
                         }
                     })
                     
                     if(post !== null){
-                        // console.log(post);
-                        if(request.user.email === post.writer){
+                        if(userId === post.userId){
                             return {
+                                    Post: post,
                                     equal: true,
+                                    check: true,
                                     status: "success and writer",
-                                    Post: post
                                 };
                         }else{
                             return {
+                                Post: post,
                                 equal: false,
+                                check: true,
                                 status: "success",
-                                Post: post
                             };
                         }
                     }else{
                         return {
+                            Post: null,
                             equal: false,
+                            check: false,
                             status: "no post",
-                            Post: null
                         };
                     }
-
                 }else{
                     console.log("You need to log in to perform this action");
                     return {
+                        Post: null,
                         equal: false,
+                        check: false,
                         status: "not log in",
-                        Post: null
                     };
                 }
 
             }catch(error){
                 console.log(error.reponse);
                 return {
+                    Post: null,
                     equal: false,
+                    check: false,
                     status: "server error",
-                    Post: null
                 };
             }
         }

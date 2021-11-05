@@ -1,17 +1,16 @@
-type Response {
+type PostInfo{
     postId: String
-    status: String
     writer: String
 }
 
-type UploadTextResponse {
+type Response {
+    postInfo: PostInfo
     check: Boolean
     status: String
 }
 
 type Mutation {
     createPost(title: String! contents: String): Response!
-    uploadText(postId: String): UploadTextResponse!
 }
 
 type Query {

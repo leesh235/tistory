@@ -1,8 +1,13 @@
-type Response{
+type User {
     email: String
     nickName: String
     userRole:  String
-    userImgId: String
+    userImg: Boolean
+}
+
+type Response{
+    user: User
+    check: Boolean
     status: String
 }
 

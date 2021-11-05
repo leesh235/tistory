@@ -2,15 +2,15 @@ type Post {
     postId: String
     writer: String
     title: String
-    contents: String
+    contents: Boolean
     createdAt: DateTime
-    postImgId: String
 }
 
 type Response{
-    equal: Boolean
-    status: String
     Post: Post
+    equal: Boolean
+    check: Boolean
+    status: String
 }
 
 type Query {

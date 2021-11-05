@@ -9,12 +9,14 @@ export default {
             try{
                 
                 const exist = isAuthenticated(request);
-                // console.log(request.user);
+         
                 if( exist === true ){
                     const { title, contents } = args;
+                    const userId = request.user.userId
                     const email = request.user.email;
                     const newPost = await prisma.post.create({
                         data: {
+                            userId,
                             writer: email,
                             title,
                         }
@@ -22,84 +24,40 @@ export default {
                     console.log(email)
                     if(contents !== ""){
                         return {
-                            postId: newPost.postId,
-                            writer: email,
+                            postInfo: {
+                                postId: newPost.postId,
+                                writer: email,
+                            },
+                            check: true,
                             status: "success"
                         };
                     }else{
                         return {
-                            postId: null,
-                            writer: null,
-                            status: "no contents"
-                        };
-                    }
-                }else{
-                    return {
-                        postId: null,
-                        writer: null,
-                        status: "no exist"
-                    };
-                }
-
-            } catch (error){
-                console.log(error);
-                return {
-                    postId: null,
-                    writer: null,
-                    status: "server error"
-                };
-            }
-        },
-        uploadText: async (_, args, { request } ) => {
-            try{
-                const exist = isAuthenticated(request);
-                console.log(request.user);
-                if( exist === true ){
-                    const { postId } = args;
-                    const userId = request.user.userId;
-
-                    if(postId !== ""){
-                        
-                        const findPost = await prisma.post.findUnique({
-                            where:{
-                                postId: Number(postId)
-                            }
-                        })
-
-                        if(findPost.contents !== "exist"){
-                            const uploadText = await prisma.post.update({
-                                where: {
-                                    postId: Number(postId)
-                                },
-                                data: {
-                                    contents: "exist"
-                                }
-                            })
-                            return {
-                                check: true,
-                                status: "success"
-                            };
-                        }else{
-                            return {
-                                check: true,
-                                status: "success Modify"
-                            }
-                        }
-                    }else{
-                        return {
+                            postInfo: {
+                                postId: newPost.postId,
+                                writer: email,
+                            },
                             check: false,
                             status: "no contents"
                         };
                     }
                 }else{
                     return {
+                        postInfo: {
+                            postId: null,
+                            writer: null,
+                        },
                         check: false,
-                        status: "no exist"
+                        status: "is not log in"
                     };
                 }
-            }catch(err){   
-                console.log(err);
+
+            } catch (error){
                 return {
+                    postInfo: {
+                        postId: null,
+                        writer: null,
+                    },
                     check: false,
                     status: "server error"
                 };

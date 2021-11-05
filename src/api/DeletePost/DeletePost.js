@@ -10,27 +10,21 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if(exist){
-
                     const { postId } = args;
                     const userId = request.user.userId;
 
-                    const user = await prisma.user.findUnique({
-                        where:{
-                            userId
-                        }
-                    })
-
                     const post = await prisma.post.findUnique({
                         where:{
-                            postId: Number(postId)
+                            postId
                         }
                     })
 
-
-                    if(user.email === post.writer){
+                    if(post.userId === userId){
                         await prisma.post.delete({
                             where:{
-                                postId: Number(postId)
+                                AND:[
+                                    {postId}, {userId}
+                                ]
                             }
                         })
 
@@ -41,15 +35,13 @@ export default {
                     }else{
                         return {
                             check: false,
-                            status: "not writer"
+                            status: "You're not the author of this post."
                         };
-                    }
-                    
-
+                    }            
                 }else{
                     return {
                         check: false,
-                        status: "not log in"
+                        status: "is not log in"
                     };
                 }
             }catch(err){

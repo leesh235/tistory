@@ -8,22 +8,22 @@ datasource db {
 }
 
 model User {
-  userId    String  @id @default(cuid())
-  email     String  @unique
+  userId    String   @id @default(cuid())
+  email     String   @unique
   password  String
   nickName  String
-  userRole  String
-  userImg   String?
+  userRole  String   @default("member")
+  userImg   Boolean  @default(false)
 }
 
 model Post {
-  postId    Int   @id @default(autoincrement())
+  postId    Int      @id @default(autoincrement())
+  userId    String
   writer    String
   title     String
   createdAt DateTime @default(now())
-  contents  String?
-  postImg   String?
-  comment   Int?      @default(0)
+  contents  Boolean  @default(false)
+  comment   Int      @default(0)
 }
 
 model Comment {
