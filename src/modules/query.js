@@ -9,7 +9,7 @@ export const MODIFYUERIMG = gql`
 `;
 
 export const UPLOADTEXT = gql`
-    mutation uploadText($postId: String){
+    mutation uploadText($postId: Int){
         uploadText(postId: $postId){
             check
             status

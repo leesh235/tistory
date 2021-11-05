@@ -16,7 +16,7 @@ export const postContentsToDB = async(req) => {
     return await client.mutate({
         mutation: UPLOADTEXT,
         variables: {
-            postId: req.body.postId
+            postId: Number(req.body.postId)
         }
     });
 };

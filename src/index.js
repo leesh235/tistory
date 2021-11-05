@@ -72,9 +72,11 @@ app.get("/profileImg/:email", async(req, res) => {
 app.post("/editor", async(req, res) => {
     try{
         upload(req, res, async(err) => {
-            console.log("body: ",req.body)
-            console.log("file: ",req.file)
+
+            console.log(req.body)
+            
             const {data : { uploadText : { check, status } }} = await postContentsToDB(req);
+
             if(check){
                 const uerDirPath = `./uploadPosts/${req.body.writer}`;
 
@@ -108,7 +110,7 @@ app.post("/editor", async(req, res) => {
 })
 
 //post 불러오기
-app.get("/getPost/:writer/:postId", async(req, res) => {
+app.get("/getPost/:postId", async(req, res) => {
     try{
         console.log(req.params)
         const writer = req.params.writer
