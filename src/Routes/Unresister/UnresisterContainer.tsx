@@ -30,6 +30,7 @@ export const UnresisterContainer = ({props}: any) => {
                     password: getValues("password")
                 }
             })
+            window.location.replace(`${routes.home}`);
             if(check){
                 await tokenMutation();
                 const writer = state.userInfo.email;

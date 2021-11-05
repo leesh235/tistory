@@ -33,7 +33,10 @@ export default ({props}) => {
             } else{
 
                 if(getValues("password") !== ""){
-                    const { data: { ModifyProfile } } = await setProfileMutation({
+                    const { data: { ModifyProfile: {
+                        check,
+                        status
+                    } } } = await setProfileMutation({
                         variables: {
                             password: getValues("password")
                         }

@@ -34,8 +34,8 @@ const BtnWrapper = styled.div`
 `;
 
 const ImgWrapper = styled.div`
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
 `;
 
 interface User{

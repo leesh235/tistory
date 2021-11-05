@@ -10,11 +10,9 @@ export const ProfileContainer = () => {
     const [userImg, setUserImg] = useState<any>("");
 
     const { loading, data } = useQuery(PROFILE);
-    console.log(data)
 
     const filesever = async() => {
-        const email = data.getProfile.email;
-        console.log(email)
+        const email = data.getProfile.user.email;
         getProfileImgApi(email).then(
             data => {
                 console.log(data)
@@ -27,15 +25,15 @@ export const ProfileContainer = () => {
     }
 
     useEffect(() => {
-        if(!loading && data.getProfile.userImg !== null){
+        if(data?.getProfile?.user?.userImg){
             filesever();
         }
-    },[loading])
+    },[])
 
     if(!loading){
         return (
             <ProfilePresenter 
-                userInfo={data.getProfile} 
+                userInfo={data?.getProfile?.user} 
                 userImg={userImg}
             /> 
         );
