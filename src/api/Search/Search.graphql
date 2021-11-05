@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Search {
-    postId: String
+    postId: Int
     writer: String
     title: String
     createdAt: DateTime

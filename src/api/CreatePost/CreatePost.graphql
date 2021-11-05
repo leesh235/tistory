@@ -1,5 +1,5 @@
 type PostInfo{
-    postId: String
+    postId: Int
     writer: String
 }
 

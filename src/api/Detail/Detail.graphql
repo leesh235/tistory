@@ -1,5 +1,5 @@
 type Post {
-    postId: String
+    postId: Int
     writer: String
     title: String
     contents: Boolean
@@ -14,7 +14,7 @@ type Response{
 }
 
 type Query {
-    getPostDetail(postId: String!): Response
+    getPostDetail(postId: Int!): Response
 }
 
 type Mutation {

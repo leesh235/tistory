@@ -13,7 +13,6 @@ export default {
                 const postLen = totalPost.length;
 
                 const post = await prisma.post.findMany({
-                    
                     skip: (page - 1) * count,
                     take: count,
                     orderBy: {
