@@ -5,6 +5,6 @@ export const fileserver = axios.create({
     baseURL: "http://localhost:5000/",
     headers: {
         Authorization: `${getToken()}`,
-        "Content-Type": "multipart/form-data"
+        // "Content-Type": "multipart/form-data"
     }
 })

@@ -8,11 +8,13 @@ import { useForm } from 'react-hook-form';
 import { writePostApi, getPostApi } from "../../api";
 import { DETAIL } from "../Detail/DetailQuery";
 import { Loading } from "../../components/Loading";
+import axios from 'axios';
+import { getToken } from "../../utiles";
 
 export const ModifyPostContainer = () => {
 
     const {postId} = useParams<{ postId: string }>();
-
+console.log(postId)
     const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
     
     const {loading, data} = useQuery(DETAIL,{
@@ -49,6 +51,12 @@ export const ModifyPostContainer = () => {
                 });
  
                 if(postData !== "" && check){
+                    const formData = new FormData();
+
+                    // formData.append("writer", writer)
+                    // formData.append("postId", postId)
+                    // formData.append("title", title)
+                    // formData.append("editor", postData)
                     const formValue: {
                         writer: string,
                         postId: number,
@@ -60,7 +68,7 @@ export const ModifyPostContainer = () => {
                         title: title,
                         editor: postData,
                     }
-
+                    console.log(formValue)
                     writePostApi(formValue).then(
                         data => {
                             console.log(data)
@@ -69,9 +77,20 @@ export const ModifyPostContainer = () => {
                             console.log(err)
                         }
                     )
+                    // await axios({
+                    //     url: 'http://localhost:5000/editor',
+                    //     method: 'post',
+                    //     data: {
+                    //         foo: formValue
+                    //     },
+                    //     headers: {
+                    //         Authorization: `${getToken()}`,
+                    //         // "Content-Type": "multipart/form-data"
+                    //     }
+                    // })
                 }
                 alert("내용이 변경되었습니다.");
-                window.location.replace(`${routes.detail}${postId}`);
+                // window.location.replace(`${routes.detail}${postId}`);
             }else{
                 alert("제목을 입력하세요.");
             }

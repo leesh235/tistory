@@ -1,68 +1,70 @@
 import { fileserver } from "./axios";
 import { apies } from "./routes";
 
-export const writePostApi = (formData: {
+interface Props{
     postId: number,
     writer: string,
     title: string,
     editor: any,
-}) => {
+}
+
+export const writePostApi = async(formData: Props) => {
     try{
-        const res = fileserver.post(`${apies.editor}`, formData);
+        const res = await fileserver.post(`${apies.editor}`, formData);
         return res;
     }catch(error){
         throw error;
     }
 }
 
-export const getPostApi = (formData: {
+export const getPostApi = async(formData: {
     writer: string,
     postId: number
 }) => {
     try{
-        const res = fileserver.get(`${apies.getPost}${formData.writer}/${formData.postId}`);
+        const res = await fileserver.get(`${apies.getPost}${formData.writer}/${formData.postId}`);
         return res;
     }catch(error){
         throw error;
     }
 }
 
-export const deletePostApi = (formData: {
+export const deletePostApi = async(formData: {
     writer: string,
     postId: number
 }) => {
     try{
-        const res = fileserver.get(`${apies.delete}${formData.writer}/${formData.postId}`);
+        const res = await fileserver.get(`${apies.delete}${formData.writer}/${formData.postId}`);
         return res;
     }catch(error){
         throw error;
     }
 }
 
-export const uploadProfileImgApi = (formData: {
+export const uploadProfileImgApi = async(formData: {
     email: string,
     streamfile: any
 }) => {
     try{
-        const res = fileserver.post(`${apies.profile}`, formData);
+        const res = await fileserver.post(`${apies.profile}`, formData);
         return res;
     }catch(err){
         throw err;
     }
 }
 
-export const getProfileImgApi = (email: string) => {
+export const getProfileImgApi = async(email: string) => {
     try{
-        const res = fileserver.get(`${apies.profileImg}${email}`)
+        const res = await fileserver.get(`${apies.profileImg}${email}`)
         return res;
     }catch(err){
         throw err;
     }
 }
 
-export const unregisterApi = (email: string) => {
+export const unregisterApi = async(email: string) => {
     try{
-        const res = fileserver.get(`${apies.unregister}${email}`)
+        const res = await fileserver.get(`${apies.unregister}${email}`)
         return res;
     }catch(err){
         throw err;
