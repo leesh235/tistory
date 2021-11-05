@@ -22,14 +22,26 @@ export default {
                     if(post !== null){
                         if(userId === post.userId){
                             return {
-                                    Post: post,
+                                    Post: {
+                                        postId: post.postId,
+                                        writer: post.writer,
+                                        title: post.title,
+                                        contents: post.contents,
+                                        createdAt: post.createdAt,
+                                    },
                                     equal: true,
                                     check: true,
                                     status: "success and writer",
                                 };
                         }else{
                             return {
-                                Post: post,
+                                Post: {
+                                    postId: post.postId,
+                                    writer: post.writer,
+                                    title: post.title,
+                                    contents: post.contents,
+                                    createdAt: post.createdAt,
+                                },
                                 equal: false,
                                 check: true,
                                 status: "success",
@@ -37,7 +49,13 @@ export default {
                         }
                     }else{
                         return {
-                            Post: null,
+                            Post: {
+                                postId: null,
+                                writer: null,
+                                title: null,
+                                contents: null,
+                                createdAt: null,
+                            },
                             equal: false,
                             check: false,
                             status: "no post",
@@ -46,7 +64,13 @@ export default {
                 }else{
                     console.log("You need to log in to perform this action");
                     return {
-                        Post: null,
+                        Post: {
+                            postId: null,
+                            writer: null,
+                            title: null,
+                            contents: null,
+                            createdAt: null,
+                        },
                         equal: false,
                         check: false,
                         status: "not log in",
@@ -56,7 +80,13 @@ export default {
             }catch(error){
                 console.log(error.reponse);
                 return {
-                    Post: null,
+                    Post: {
+                        postId: null,
+                        writer: null,
+                        title: null,
+                        contents: null,
+                        createdAt: null,
+                    },
                     equal: false,
                     check: false,
                     status: "server error",

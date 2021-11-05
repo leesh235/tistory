@@ -22,9 +22,7 @@ export default {
                     if(post.userId === userId){
                         await prisma.post.delete({
                             where:{
-                                AND:[
-                                    {postId}, {userId}
-                                ]
+                                postId
                             }
                         })
 

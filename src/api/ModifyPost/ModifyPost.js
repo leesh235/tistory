@@ -20,7 +20,7 @@ export default {
                         }
                     })
                     
-                    if(userId === postId.postId){
+                    if(userId === existPost.userId){
                         if(existPost.title === title){
                             return {
                                 check: true,
@@ -29,9 +29,7 @@ export default {
                         }else{
                             await prisma.post.update({
                                 where:{
-                                    AND:[
-                                        {userId}, {postId}
-                                    ]
+                                    postId
                                 },
                                 data: {
                                     title
