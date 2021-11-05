@@ -10,14 +10,12 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if(exist){
-                    const { email, password } = args;
+                    const { password } = args;
                     const userId = request.user.userId;
 
                     const userInfo = await prisma.user.findUnique({
                         where:{
-                            AND:[
-                                {email},{userId}
-                            ]
+                            userId
                         }
                     })
 

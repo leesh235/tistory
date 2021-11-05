@@ -15,11 +15,16 @@ export default {
 
                     const findPost = await prisma.post.findUnique({
                         where:{
-                            AND:[
-                                {userId}, {postId}
-                            ]
+                            postId
                         }
                     })
+
+                    if(userId !== findPost.userId){
+                        return {
+                            check: false,
+                            status: "you`re not author of this post "
+                        };
+                    }
 
                     if(!findPost.contents){
                         const uploadText = await prisma.post.update({
