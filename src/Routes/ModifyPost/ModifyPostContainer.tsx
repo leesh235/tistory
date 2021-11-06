@@ -51,12 +51,6 @@ console.log(postId)
                 });
  
                 if(postData !== "" && check){
-                    const formData = new FormData();
-
-                    // formData.append("writer", writer)
-                    // formData.append("postId", postId)
-                    // formData.append("title", title)
-                    // formData.append("editor", postData)
                     const formValue: {
                         writer: string,
                         postId: number,
@@ -68,7 +62,6 @@ console.log(postId)
                         title: title,
                         editor: postData,
                     }
-                    console.log(formValue)
                     writePostApi(formValue).then(
                         data => {
                             console.log(data)
@@ -77,20 +70,9 @@ console.log(postId)
                             console.log(err)
                         }
                     )
-                    // await axios({
-                    //     url: 'http://localhost:5000/editor',
-                    //     method: 'post',
-                    //     data: {
-                    //         foo: formValue
-                    //     },
-                    //     headers: {
-                    //         Authorization: `${getToken()}`,
-                    //         // "Content-Type": "multipart/form-data"
-                    //     }
-                    // })
                 }
                 alert("내용이 변경되었습니다.");
-                // window.location.replace(`${routes.detail}${postId}`);
+                window.location.replace(`${routes.detail}${postId}`);
             }else{
                 alert("제목을 입력하세요.");
             }
