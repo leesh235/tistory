@@ -28,7 +28,15 @@ const ImgIn = styled.input`
     margin-bottom: 20px;
 `;
 
-export default ({ register, handleSubmit, errors, handlePicture, onSubmit }) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+    handlePicture: (e: React.ChangeEvent<HTMLInputElement>) => any,
+}
+
+export const ModifyProfilePresenter = ({ register, handleSubmit, errors, handlePicture, onSubmit }: Props) => {
     return (
         <Wrapper>
 

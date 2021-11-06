@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import { useMutation } from "@apollo/client";
 import { ADD } from "./AddQuery";
-import AddPresenter from './AddPresenter';
+import { AddPresenter } from './AddPresenter';
 import { useForm } from 'react-hook-form';
 import { writePostApi } from "../../api";
 import { isLogedIn } from "../../utiles";
 import { useHistory } from 'react-router';
 
-const AddContainer = () => {
+export const AddContainer = () => {
 
     const history = useHistory()
 
@@ -18,14 +18,13 @@ const AddContainer = () => {
 
     const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
 
-    const editorRef = useRef();
+    const editorRef = useRef<any>();
 
     const [AddMutation] = useMutation(ADD);
 
     const onSubmit = async() => {
      
         const postData = editorRef.current.getInstance().getHTML();
-        // console.log(postData);
         try{
             if(getValues("title") === ""){
                 alert("제목을 입력하세요");
@@ -41,15 +40,21 @@ const AddContainer = () => {
             });
 
             if(postData !== "" && check){
+                const title = getValues("title");
 
-                const formData = new FormData();
+                const formValue: {
+                    writer: string,
+                    postId: number,
+                    title: string,
+                    editor: any,
+                } = {
+                    writer: postInfo.writer,
+                    postId: Number(postInfo.postId),
+                    title: title,
+                    editor: postData,
+                }
 
-                formData.append("postId", postInfo.postId);
-                formData.append("writer", postInfo.writer);
-                formData.append("title", getValues("title"));
-                formData.append("editor", postData);
-
-                writePostApi(formData).then(
+                writePostApi(formValue).then(
                     data => {
                         console.log(data);
                     },
@@ -77,5 +82,3 @@ const AddContainer = () => {
  
     );
 }
-
-export default AddContainer;

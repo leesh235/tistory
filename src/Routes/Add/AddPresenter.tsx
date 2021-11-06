@@ -27,7 +27,15 @@ const EditorWrapper = styled.article`
     width: 100%;
 `;
 
-const AddPresenter = ({ register, handleSubmit, errors, onSubmit, editorRef }) => {
+interface Props {
+    register: any,
+    handleSubmit: any,
+    errors: any,
+    onSubmit: any,
+    editorRef: any,
+}
+
+export const AddPresenter = ({ register, handleSubmit, errors, onSubmit, editorRef }: Props) => {
   
     return (
         <Wrapper>
@@ -50,5 +58,3 @@ const AddPresenter = ({ register, handleSubmit, errors, onSubmit, editorRef }) =
         </Wrapper>
     );
 }
-
-export default AddPresenter;

@@ -43,6 +43,7 @@ export const deletePostApi = async(formData: {
 
 export const uploadProfileImgApi = async(formData: {
     email: string,
+    contents: Boolean,
     streamfile: any
 }) => {
     try{
