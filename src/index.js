@@ -34,20 +34,18 @@ app.post("/profile", async(req, res) => {
             const {data} = await profileToDB(req);
             // console.log("data: ", data.ModifyUserImg.userImgId);
 
-            if(data.ModifyUserImg.userImgId === null){
+            if(data.ModifyUserImg.userImg === null){
                 return false;
             }
 
             if(req.file){
-                // console.log(req.file)
-                console.log("success!");
+                res.status(200).send({message: "success!"});
             } else {
-                console.log("no such file");
+                res.status(404).send({message: "no such file"});
             }
         })
     }catch(error){
-        console.log("upload fail");
-        console.log(error);
+        res.status(500).send({message: `${err}`})
     }
 })
 
@@ -72,9 +70,7 @@ app.get("/profileImg/:email", async(req, res) => {
 app.post("/editor", async(req, res) => {
     try{
         upload(req, res, async(err) => {
-
-            console.log(req.body)
-            
+           
             const {data : { uploadText : { check, status } }} = await postContentsToDB(req);
 
             if(check){
@@ -98,19 +94,18 @@ app.post("/editor", async(req, res) => {
                 fs.writeFile(dirPath+ "/" + req.body.title + ".html", fileContents)
                 
 
-                return true;
+                res.status(200).send({message: `success`});
             }else{
-                console.log("실패")
-                return false;
+                res.status(404).send({message: `${status}`});
             }
         })
     }catch(error){
-        console.log(error);
+        res.status(500).send({message: `${err}`});
     }
 })
 
 //post 불러오기
-app.get("/getPost/:postId", async(req, res) => {
+app.get("/getPost/:writer/:postId", async(req, res) => {
     try{
         console.log(req.params)
         const writer = req.params.writer
@@ -121,8 +116,6 @@ app.get("/getPost/:postId", async(req, res) => {
         if(filename){
             //uploadPosts를 지정해줄 필요없음, 지정하면 오류발생
             const uri = dirpath+ "/" + filename
-            console.log(uri)
-            // res.status(200).sendFile(filename.toString(),{root:__dirname});
             res.status(200).download(uri, filename, (err) => {
                 console.log(err);
             });
@@ -130,7 +123,7 @@ app.get("/getPost/:postId", async(req, res) => {
             res.status(404).send({message: "no such image"});
         }
     }catch(err){
-        res.status(500).send({message: `${err}`})
+        res.status(500).send({message: `${err}`});
     }
 })
 
@@ -162,7 +155,6 @@ app.get("/unregister/:writer", async(req, res) => {
         const uerDirPath = `uploadPosts/${writer}`;
         const uerProfilePath = `uploads/${writer}`;
 
-        //fs.rmdirSync("directoryPath", { recursive: true });
         //디렉토리를 삭제하면 빈 폴더가 남지않는다
         if(fs.existsSync(uerProfilePath)){
             fs.removeSync(uerProfilePath);
