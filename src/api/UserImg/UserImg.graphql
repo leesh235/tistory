@@ -4,7 +4,7 @@ type Response{
 }
 
 type Mutation {
-    ModifyUserImg(userImg: String): Response!
+    ModifyUserImg(userImg: Boolean): Response!
 }
 
 type Query {
