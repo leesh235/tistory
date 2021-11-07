@@ -1,29 +1,31 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
 const Wrapper = styled.article`
-    width: 100%;
+    width: "100%";
+    height: auto;
 `;
 
 interface Props {
-
+    editorRef: any,
+    height?: string,
 }
 
-export const ToastEditor = ({}: Props) => {
+export const ToastEditor = ({editorRef, height}: Props) => {
     return(
         <Wrapper>
             <Editor
                 previewStyle="vertical"
-                height="600px"
+                height={height}
                 initialEditType="wysiwyg"
+                ref={editorRef}
             />
         </Wrapper>
     );
 }
 
 ToastEditor.defaultProps = {
-
+    height: "600px",
 }
