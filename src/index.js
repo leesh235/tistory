@@ -31,10 +31,12 @@ app.use(express.static('uploadPosts'));
 app.post("/profile", async(req, res) => {
     try{
         upload(req, res, async(err) => {
-            const {data} = await profileToDB(req);
+            const {data: {ModifyUserImg: {
+                check, status
+            }}} = await profileToDB(req);
             // console.log("data: ", data.ModifyUserImg.userImgId);
 
-            if(data.ModifyUserImg.userImg === null){
+            if(!check){
                 return false;
             }
 

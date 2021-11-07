@@ -6,7 +6,7 @@ export const profileToDB = async(req) => {
     return await client.mutate({
         mutation: MODIFYUERIMG,
         variables: {
-            userImg: req.body.user
+            userImg: req.body.contents
         }
     });
 };
