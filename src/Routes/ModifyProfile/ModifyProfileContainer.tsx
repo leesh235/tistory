@@ -20,7 +20,6 @@ export const ModifyProfileContainer = ({props}: any) => {
     const handlePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const image: any = e.target.files;
-        // console.log(image[0]);
         setPicture(image[0]);
     }
 
@@ -44,12 +43,10 @@ export const ModifyProfileContainer = ({props}: any) => {
                 }
                 
                 if(picture !== undefined && picture !== null){
-                    const formData = {
-                        email,
-                        contents: true,
-                        streamfile: picture
-                    }
-                    console.log(formData)
+                    const formData = new FormData();
+
+                    formData.append("user", email);
+                    formData.append("streamfile", picture);
         
                     uploadProfileImgApi(formData).then(
                         data => {

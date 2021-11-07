@@ -41,11 +41,7 @@ export const deletePostApi = async(formData: {
     }
 }
 
-export const uploadProfileImgApi = async(formData: {
-    email: string,
-    contents: Boolean,
-    streamfile: any
-}) => {
+export const uploadProfileImgApi = async(formData: any) => {
     try{
         const res = await fileserver.post(`${apies.profile}`, formData);
         return res;
