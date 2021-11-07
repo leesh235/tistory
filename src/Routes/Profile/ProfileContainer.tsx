@@ -28,7 +28,7 @@ export const ProfileContainer = () => {
         if(data?.getProfile?.user?.userImg){
             filesever();
         }
-    },[])
+    },[loading])
 
     if(!loading){
         return (
