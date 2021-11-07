@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { MODIFYPROFILE } from "./ModifyProfileQuery";
-import ModifyProfilePresenter from './ModifyProfilePresenter';
+import { ModifyProfilePresenter } from './ModifyProfilePresenter';
 import { useHistory } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { uploadProfileImgApi } from "../../api";
 import { routes } from '../../routes';
 
-export default ({props}) => {
+export const ModifyProfileContainer = ({props}: any) => {
 
     const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
     
@@ -17,11 +17,11 @@ export default ({props}) => {
 
     const [setProfileMutation] = useMutation(MODIFYPROFILE);
 
-    const handlePicture = (e) => {
+    const handlePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        const image = e.target.files[0];
-        // console.log(image);
-        setPicture(image);
+        const image: any = e.target.files;
+        // console.log(image[0]);
+        setPicture(image[0]);
     }
 
 
@@ -41,19 +41,15 @@ export default ({props}) => {
                             password: getValues("password")
                         }
                     });
-                    // console.log(ModifyProfile)
-    
-                    // if(ModifyProfile){
-                    //     alert("비밀번호가 변경되었습니다.");
-                    // }
                 }
                 
                 if(picture !== undefined && picture !== null){
-       
-                    const formData = new FormData();
-
-                    formData.append("user", email);
-                    formData.append("streamfile", picture);
+                    const formData = {
+                        email,
+                        contents: true,
+                        streamfile: picture
+                    }
+                    console.log(formData)
         
                     uploadProfileImgApi(formData).then(
                         data => {
@@ -65,7 +61,7 @@ export default ({props}) => {
                     )
                 }
                 alert("개인정보가 변경되었습니다");
-                window.location.replace(`${routes.profile}`)
+                window.location.replace(`${routes.profile}`);
             }
 
         } catch(error){
