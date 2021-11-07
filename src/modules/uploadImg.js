@@ -3,12 +3,21 @@ import  {makeClient}  from "../client.js";
 
 export const profileToDB = async(req) => {
     const client = makeClient(req.headers.authorization);
-    return await client.mutate({
-        mutation: MODIFYUERIMG,
-        variables: {
-            userImg: req.body.contents
-        }
-    });
+    if(req.body.contents === "true"){
+        return await client.mutate({
+            mutation: MODIFYUERIMG,
+            variables: {
+                userImg: true
+            }
+        });
+    }else{
+        return await client.mutate({
+            mutation: MODIFYUERIMG,
+            variables: {
+                userImg: false
+            }
+        });
+    }
 };
 
 export const postContentsToDB = async(req) => {

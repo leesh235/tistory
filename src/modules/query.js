@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const MODIFYUERIMG = gql`
-    mutation ModifyUserImg($userImg: String){
+    mutation ModifyUserImg($userImg: Boolean){
         ModifyUserImg(userImg: $userImg){
             check
             status

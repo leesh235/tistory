@@ -31,6 +31,7 @@ app.use(express.static('uploadPosts'));
 app.post("/profile", async(req, res) => {
     try{
         upload(req, res, async(err) => {
+            console.log(req.body)
             const {data: {ModifyUserImg: {
                 check, status
             }}} = await profileToDB(req);
