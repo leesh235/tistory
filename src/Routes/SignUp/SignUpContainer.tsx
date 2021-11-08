@@ -50,6 +50,7 @@ export const SignUpContainer = () => {
             onSubmit={onSubmit}
             register={register}
             handleSubmit={handleSubmit}
+            getValues={getValues}
             errors={errors}
         />
     );
