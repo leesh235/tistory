@@ -5,7 +5,7 @@ import schema from "./schema";
 import "./passport";
 import { authenticateJwt } from "./passport";
 
-const PORT = 4000;
+const PORT = parseInt(process.env.PORT);
 
 const server = new GraphQLServer({
   schema,
@@ -22,4 +22,4 @@ server.express.use(authenticateJwt);
 
 server.start({
   port:PORT
-},() => console.log("Graphql Server Running"));
+},() => console.log(`Graphql Server Running`));
