@@ -1,20 +1,19 @@
 import express from "express";
 import cors from "cors";
-import multer from "multer";
-import bodyParser from "body-parser";
-import path from "path";
 import fs from "fs-extra";
 import morgan from "morgan";
-import { profileToDB, postContentsToDB } from "./modules/uploadImg"
-import { upload, imageUpload } from "./middleware/multer"
+import { profileToDB, postContentsToDB } from "./modules/uploadImg";
+import { upload } from "./middleware/multer";
+import "./env";
 
 const app = express();
-const PORT = 5000;
+const PORT = parseInt(process.env.PORT);
+const origin = `${process.env.BASEURI}:${process.env.CLIENT_PORT}`;
 
 //cors설정
 const corsOptions = {
     exposedHeaders: "Content-Disposition",
-    origin: "http://localhost:3000",
+    origin: origin,
 };
 
 //middleware 등록
@@ -177,5 +176,5 @@ app.get("/unregister/:writer", async(req, res) => {
 
 //서버 실행알림
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+    console.log(`${process.env.BASEURI}:${PORT}`);
 })
