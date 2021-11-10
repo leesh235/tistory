@@ -1,5 +1,5 @@
 // import ApolloClient from "apollo-boost";
-import { ApolloClient, InMemoryCache }from '@apollo/client';
+import { ApolloClient, InMemoryCache, createHttpLink }from '@apollo/client';
 import { resolvers } from "./LocalState";
 
 //LocalState.ts의 11번줄, defaults와 비슷
@@ -17,9 +17,13 @@ const cache: InMemoryCache = new InMemoryCache({
   },
 })
 
+const link = createHttpLink({
+  uri: "http://localhost:4000"
+})
+
 const client =  new ApolloClient({
-  uri: "http://localhost:4000",
   credentials: "same-origin",
+  link: link,
   cache,
   resolvers: resolvers,
   headers: {
