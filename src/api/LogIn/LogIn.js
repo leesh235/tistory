@@ -23,10 +23,10 @@ export default {
                         status: "noExist",
                         check: false,
                         user: {
-                            email: null,
-                            nickName: null,
-                            userRole: null,
-                            token: null
+                            email: "",
+                            nickName: "",
+                            userRole: "",
+                            token: ""
                         }
                     };
                 }
@@ -36,10 +36,10 @@ export default {
                         status: "unmatchedPassword",
                         check: false,
                         user: {
-                            email: null,
-                            nickName: null,
-                            userRole: null,
-                            token: null
+                            email: "",
+                            nickName: "",
+                            userRole: "",
+                            token: ""
                         }
                     };
                 }
@@ -65,10 +65,10 @@ export default {
                     status: "server error",
                     check: false,
                     user: {
-                        email: null,
-                        nickName: null,
-                        userRole: null,
-                        token: null
+                        email: "",
+                        nickName: "",
+                        userRole: "",
+                        token: ""
                     }
                 };
             }
