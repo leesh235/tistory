@@ -17,13 +17,16 @@ const cache: InMemoryCache = new InMemoryCache({
   },
 })
 
-const link = createHttpLink({
-  uri: "http://localhost:4000"
+const uri = process.env.REACT_APP_SERVER;
+
+const httpLink = createHttpLink({
+  uri
 })
 
 const client =  new ApolloClient({
+  uri,
   credentials: "same-origin",
-  link: link,
+  // link: httpLink,
   cache,
   resolvers: resolvers,
   headers: {
