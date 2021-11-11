@@ -7,8 +7,8 @@ import { upload } from "./middleware/multer";
 import "./env";
 
 const app = express();
-const PORT = parseInt(process.env.PORT);
-const origin = `${process.env.BASEURI}:${process.env.CLIENT_PORT}`;
+const PORT = process.env.PORT;
+const origin = `${process.env.CLIENT}`;
 
 //cors설정
 const corsOptions = {
@@ -176,5 +176,5 @@ app.get("/unregister/:writer", async(req, res) => {
 
 //서버 실행알림
 app.listen(PORT, () => {
-    console.log(`${process.env.BASEURI}:${PORT}`);
+    console.log(`fileserver:${PORT}`);
 })
