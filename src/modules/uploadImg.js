@@ -3,7 +3,7 @@ import  {makeClient}  from "../client.js";
 
 export const profileToDB = async(req) => {
     const client = makeClient(req.headers.authorization);
-    if(req.body.contents === "true"){
+    if(req.body.streamfile !== ""){
         return await client.mutate({
             mutation: MODIFYUERIMG,
             variables: {
@@ -25,7 +25,7 @@ export const postContentsToDB = async(req) => {
     return await client.mutate({
         mutation: UPLOADTEXT,
         variables: {
-            postId: Number(req.body.postId)
+            postId: req.body.postId
         }
     });
 };

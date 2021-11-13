@@ -59,7 +59,7 @@ app.get("/profileImg/:email", async(req, res) => {
         const filename = fs.readdirSync(dirpath)[0];
         if(filename){
             //uploads를 지정해줄 필요없음, 지정하면 오류발생
-            const uri = email+ "/" + filename
+            const uri = process.env.FILESERVER + "/" + email + "/" + filename
             res.status(200).send({profileImg: uri});
         }else{
             res.status(404).send({message: "no such image"});
