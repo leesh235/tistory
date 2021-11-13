@@ -13,7 +13,7 @@ export const makeClient = (token) => {
       })
 
     const httpLink = new createHttpLink({
-        uri: "http://localhost:4000/",
+        uri: `${process.env.SERVER}`,
         fetch
     });
 
