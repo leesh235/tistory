@@ -45,16 +45,16 @@ interface User{
 }
 
 interface Porps{
-    userImg: any,
+    userImgUrl: string,
     userInfo: User,
 }
 
-export const ProfilePresenter = ({userImg, userInfo}: Porps) => {
+export const ProfilePresenter = ({userImgUrl, userInfo}: Porps) => {
     return (
         <Wrapper>
             <Contents>
                 <ImgWrapper>
-                    {userImg && <Img img={`http://localhost:5000/${userImg}`} />}
+                    {userImgUrl && <Img img={userImgUrl} />}
                 </ImgWrapper>
                 <Text text={`닉네임: ${userInfo.nickName}`}/>
                 <Text text={`email: ${userInfo.email}`}/>

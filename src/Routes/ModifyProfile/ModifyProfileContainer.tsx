@@ -42,7 +42,7 @@ export const ModifyProfileContainer = ({props}: any) => {
                     });
                 }
                 
-                if(picture !== undefined && picture !== null){
+                if(picture !== ""){
                     const formData = new FormData();
 
                     formData.append("user", email);

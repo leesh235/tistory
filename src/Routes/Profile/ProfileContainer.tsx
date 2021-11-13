@@ -7,7 +7,7 @@ import { getProfileImgApi } from "../../api";
 
 export const ProfileContainer = () => {
 
-    const [userImg, setUserImg] = useState<any>("");
+    const [userImgUrl, setUserImgUrl] = useState<any>("");
 
     const { loading, data } = useQuery(PROFILE);
 
@@ -15,11 +15,10 @@ export const ProfileContainer = () => {
         const email = data.getProfile.user.email;
         getProfileImgApi(email).then(
             data => {
-                console.log(data)
-                setUserImg(data.data.profileImg);
+                setUserImgUrl(data.data.profileImg);
             },
             err => {
-                console.log(err);
+                console.log("err: ", err);
             }
         )
     }
@@ -34,7 +33,7 @@ export const ProfileContainer = () => {
         return (
             <ProfilePresenter 
                 userInfo={data?.getProfile?.user} 
-                userImg={userImg}
+                userImgUrl={userImgUrl}
             /> 
         );
     }else{

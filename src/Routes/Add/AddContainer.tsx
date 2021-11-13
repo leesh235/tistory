@@ -31,7 +31,7 @@ export const AddContainer = () => {
                 return;
             }
             const contents = postData !== "" ? true : false;
-            
+            console.log(contents)
             const { data: { createPost : {postInfo, status, check} } } = await AddMutation({
                 variables: {
                     title: getValues("title"),
@@ -39,7 +39,7 @@ export const AddContainer = () => {
                 }
             });
 
-            if(postData !== "" && check){
+            if(contents){
                 const title = getValues("title");
 
                 const formValue: {
@@ -59,7 +59,7 @@ export const AddContainer = () => {
                         console.log(data);
                     },
                     err => {
-                        console.log(err)
+                        console.log(err);
                     }
                 )
             }
