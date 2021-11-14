@@ -2,3 +2,5 @@ node_modules/
 uploads/
 uploadPosts/
 .env
+.env.dev
+.env.prod
