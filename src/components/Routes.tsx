@@ -14,6 +14,7 @@ import ForgetIndex from '../Routes/ForgetPass/index';
 import ModifyProfileIndex from '../Routes/ModifyProfile/index';
 import ModifyPostIndex from '../Routes/ModifyPost/index';
 import UnresisterIndex from '../Routes/Unresister/index';
+import { Page404 } from './Page404';
 import styled from 'styled-components';
 
 import { useQuery } from '@apollo/client';
@@ -32,7 +33,6 @@ const Routes = () => {
     const {loading, data:{
         isLoggedIn
     }} = useQuery(TOKENINFO);
-    console.log(isLoggedIn)
 
     return(
         <Router>
@@ -52,6 +52,7 @@ const Routes = () => {
                     <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
                     <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
                     <Route exact path="/profile/unresister" component={UnresisterIndex} />
+                    <Route component={Page404}/>
                 </Switch>
             </Wrapper>
             <Footer />
