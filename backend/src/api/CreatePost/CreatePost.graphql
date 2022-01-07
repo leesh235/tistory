@@ -1,0 +1,18 @@
+type PostInfo{
+    postId: Int
+    writer: String
+}
+
+type Response {
+    postInfo: PostInfo
+    check: Boolean
+    status: String
+}
+
+type Mutation {
+    createPost(title: String! contents: Boolean): Response!
+}
+
+type Query {
+    dummy: String
+}

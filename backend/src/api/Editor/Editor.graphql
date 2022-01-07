@@ -1,0 +1,12 @@
+type Response {
+    check: Boolean
+    status: String
+}
+
+type Mutation {
+    uploadText(postId: Int): Response!
+}
+
+type Query {
+    dummy: String
+}

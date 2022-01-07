@@ -1,0 +1,22 @@
+type Post {
+    postId: Int
+    writer: String
+    title: String
+    contents: Boolean
+    createdAt: DateTime
+}
+
+type Response{
+    Post: Post
+    equal: Boolean
+    check: Boolean
+    status: String
+}
+
+type Query {
+    getPostDetail(postId: Int!): Response
+}
+
+type Mutation {
+    dummy: String
+}

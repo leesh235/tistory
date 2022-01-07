@@ -1,0 +1,20 @@
+type Post {
+    postId: Int
+    writer: String
+    title: String
+    createdAt: DateTime
+}
+
+type Response {
+    posts: [Post]
+    postCnt: Int
+    status: String
+}
+
+type Query{
+    getAllPosts(count: Int! page: Int!): Response!
+}
+
+type Mutation{
+    dummy: String
+}

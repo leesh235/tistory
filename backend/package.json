@@ -1,0 +1,36 @@
+{
+  "name": "tistory_backend",
+  "version": "1.0.0",
+  "description": "backend for tistory",
+  "main": "index.js",
+  "repository": "https://github.com/leesh235/tistory_backend",
+  "author": "leesh235 <leeshgh235@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.3.2",
+    "@graphql-tools/merge": "^6.2.14",
+    "@prisma/client": "^2.23.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "global": "^4.4.0",
+    "graphql-tools": "^7.0.5",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.6.1",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node src/app.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
+    "@babel/preset-env": "^7.14.4",
+    "prisma": "^2.23.0"
+  }
+}

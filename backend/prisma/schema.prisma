@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId    String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  nickName  String
+  userRole  String   @default("member")
+  userImg   Boolean  @default(false)
+}
+
+model Post {
+  postId    Int      @id @default(autoincrement())
+  userId    String
+  writer    String
+  title     String
+  createdAt DateTime @default(now())
+  contents  Boolean  @default(false)
+  comment   Int      @default(0)
+}
+
+model Comment {
+  Id        String   @id @default(cuid())
+}

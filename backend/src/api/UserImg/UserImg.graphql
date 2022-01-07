@@ -1,0 +1,12 @@
+type Response{
+    check: Boolean
+    status: String
+}
+
+type Mutation {
+    ModifyUserImg(userImg: Boolean): Response!
+}
+
+type Query {
+    dummy: String
+}

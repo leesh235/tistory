@@ -1,0 +1,22 @@
+scalar DateTime
+
+type Search {
+    postId: Int
+    writer: String
+    title: String
+    createdAt: DateTime
+}
+
+type Response {
+    search: [Search]
+    postCnt: Int
+    status: String
+}
+
+type Query{
+    getSearch(text: String count: Int! page: Int!): Response!
+}
+
+type Mutation{
+ dummy: String
+}

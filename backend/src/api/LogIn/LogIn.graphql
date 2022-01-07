@@ -1,0 +1,20 @@
+type User {
+    email: String
+    nickName: String
+    userRole: String
+    token: String
+}
+
+type Response {
+    user: User
+    check: Boolean
+    status: String
+}
+
+type Mutation {
+    login(email: String! password: String!): Response!
+}
+
+type Query {
+    dummy: String
+}

@@ -1,0 +1,22 @@
+scalar DateTime
+
+type myPost {
+    postId: Int
+    writer: String
+    title: String
+    createdAt: DateTime
+}
+
+type Response{
+    status: String
+    allMyPosts: [myPost]
+    postCnt: Int
+}
+
+type Query{
+    getMyPosts(count: Int! page: Int!): Response!
+}
+
+type Mutation{
+    dummy: String
+}
