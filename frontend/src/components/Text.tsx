@@ -7,6 +7,7 @@ const PWrapper = styled.p<StyleProps>`
 
     font-size: ${prop => prop.fs};
     color: ${prop => prop.fc};
+    font-family: "EliceDigitalBaeum_Regular";
 `;
 
 const SpanWrapper = styled.span<StyleProps>`
@@ -16,6 +17,7 @@ const SpanWrapper = styled.span<StyleProps>`
 
     font-size: ${prop => prop.fs};
     color: ${prop => prop.fc};
+    font-family: "EliceDigitalBaeum_Regular";
 `;
 
 const DivWrapper = styled.div<StyleProps>`
@@ -25,6 +27,7 @@ const DivWrapper = styled.div<StyleProps>`
 
     font-size: ${prop => prop.fs};
     color: ${prop => prop.fc};
+    font-family: "EliceDigitalBaeum_Regular";
 `;
 
 interface StyleProps{

@@ -30,13 +30,30 @@ export const GlobalStyle = createGlobalStyle`
     h1{
         font-size: 30px;
         font-weight: bold;
+        font-family: "EliceDigitalBaeum_Bold";
     }
     h2{
         font-size: 24px;
         font-weight: bold;
+        font-family: "EliceDigitalBaeum_Bold";
     }
     h3{
         font-size: 18px;
         font-weight: bold;
+        font-family: "EliceDigitalBaeum_Bold";
+    }
+
+    @font-face {
+        font-family: 'EliceDigitalBaeum_Regular';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'EliceDigitalBaeum_Bold';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
     }
 `;
