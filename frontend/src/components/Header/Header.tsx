@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { TOKENINFO, TOKENLOGOUT } from "../apollo/tokenQuery";
+import { TOKENINFO, TOKENLOGOUT } from "../../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { ListBar } from "./ListBar";
-import { Loading } from "./Loading";
+import { ListBar } from "../ListBar";
+import { Loading } from "../Loading";
 
 const Wrapper = styled.header`
     display: flex;

@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Header } from './Header';
+import { Header } from './Header/Header';
 import { Footer } from './Footer';
-import Search from '../Routes/Seach/index';
-import Home from '../Routes/Home/index';
-import Detail from '../Routes/Detail/index'
-import Add from '../Routes/Add/index';
-import LogIn from '../Routes/LogIn/index';
-import SignUp from '../Routes/SignUp/index';
-import Profile from '../Routes/Profile/index';
-import MyPost from '../Routes/MyPost/index';
-import Forget from '../Routes/ForgetPass/index';
-import ModifyProfile from '../Routes/ModifyProfile/index';
-import ModifyPost from '../Routes/ModifyPost/index';
-import Unresister from '../Routes/Unresister/index';
-import { Page404 } from './Page404';
+import Search from '../routers/Seach/index';
+import Home from '../routers/Home/index';
+import Detail from '../routers/Detail/index'
+import Add from '../routers/Add/index';
+import LogIn from '../routers/LogIn/index';
+import SignUp from '../routers/SignUp/index';
+import Profile from '../routers/Profile/index';
+import MyPost from '../routers/MyPost/index';
+import Forget from '../routers/ForgetPass/index';
+import ModifyProfile from '../routers/ModifyProfile/index';
+import ModifyPost from '../routers/ModifyPost/index';
+import Unresister from '../routers/Unresister/index';
+import { Page404 } from '../routers/Page404';
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
