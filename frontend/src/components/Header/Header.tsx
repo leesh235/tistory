@@ -12,7 +12,7 @@ const Wrapper = styled.header`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 100px;
+    height: 80px;
     position: fixed;
     top: 0;
     left: 0;
