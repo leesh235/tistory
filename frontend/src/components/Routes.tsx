@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import { Header } from './Header/Header';
 import { Footer } from './Footer';
 import Search from '../routers/Seach/index';
@@ -14,13 +15,13 @@ import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
 import { Page404 } from '../routers/Page404';
-import styled from 'styled-components';
+import SideMenu from './SideMenu';
 
 const Wrapper = styled.main`
     width: 100%;
-    max-width: 1180px;
+    max-width: 1024px;
     height: 100%;
-    min-height: 70vh;
+    min-height: 75vh;
     margin: 100px auto 50px auto;
 `;
 
@@ -29,6 +30,7 @@ const Routes = () => {
     return(
         <Router>
             <Header />
+            <SideMenu />
             <Wrapper>
                 <Switch>
                     <Route exact path="/search" component={Search} />
