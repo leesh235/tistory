@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./Style/GlobalStyle";
-import { theme } from "./Style/theme";
+import { GlobalStyle } from "./styles/GlobalStyle";
+import { theme } from "./styles/theme";
 import { BrowserRouter as Router} from 'react-router-dom';
 import Routes from './components/Routes';
 import { Provider } from 'react-redux';
