@@ -1,57 +1,49 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import SearchIndex from '../Routes/Seach/index';
-import HomeIndex from '../Routes/Home/index';
-import DetailIndex from '../Routes/Detail/index'
-import AddIndex from '../Routes/Add/index';
-import LogInIndex from '../Routes/LogIn/index';
-import SignUpIndex from '../Routes/SignUp/index';
-import ProfileIndex from '../Routes/Profile/index';
-import MyPostIndex from '../Routes/MyPost/index';
-import ForgetIndex from '../Routes/ForgetPass/index';
-import ModifyProfileIndex from '../Routes/ModifyProfile/index';
-import ModifyPostIndex from '../Routes/ModifyPost/index';
-import UnresisterIndex from '../Routes/Unresister/index';
+import Search from '../Routes/Seach/index';
+import Home from '../Routes/Home/index';
+import Detail from '../Routes/Detail/index'
+import Add from '../Routes/Add/index';
+import LogIn from '../Routes/LogIn/index';
+import SignUp from '../Routes/SignUp/index';
+import Profile from '../Routes/Profile/index';
+import MyPost from '../Routes/MyPost/index';
+import Forget from '../Routes/ForgetPass/index';
+import ModifyProfile from '../Routes/ModifyProfile/index';
+import ModifyPost from '../Routes/ModifyPost/index';
+import Unresister from '../Routes/Unresister/index';
 import { Page404 } from './Page404';
 import styled from 'styled-components';
-
-import { useQuery } from '@apollo/client';
-import { TOKENINFO } from "../apollo/tokenQuery";
 
 const Wrapper = styled.main`
     width: 100%;
     max-width: 1180px;
     height: 100%;
     min-height: 70vh;
-    margin: 100px auto 70px auto;
+    margin: 100px auto 50px auto;
 `;
 
 const Routes = () => {
-
-    const {loading, data:{
-        isLoggedIn
-    }} = useQuery(TOKENINFO);
 
     return(
         <Router>
             <Header />
             <Wrapper>
                 <Switch>
-                    <Route exact path="/search" component={SearchIndex} />
-                    <Route exact path="/forget" component={ForgetIndex} />
-                    <Route exact path="/mypost" component={MyPostIndex} />
-                    <Route exact path="/profile" component={ProfileIndex} />
-                    <Route exact path="/login" component={LogInIndex} />
-                    <Route exact path="/signup" component={SignUpIndex} />
-                    <Route exact path="/detail/:postId" component={DetailIndex} />
-                    <Route exact path="/" component={HomeIndex} />
-                    <Route exact path="/page=:i" component={HomeIndex} />
-                    <Route exact path="/add" component={AddIndex} />
-                    <Route exact path="/modifyProfile" component={ModifyProfileIndex} />
-                    <Route exact path="/modifyPost/:postId" component={ModifyPostIndex} />
-                    <Route exact path="/profile/unresister" component={UnresisterIndex} />
+                    <Route exact path="/search" component={Search} />
+                    <Route exact path="/forget" component={Forget} />
+                    <Route exact path="/mypost" component={MyPost} />
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/login" component={LogIn} />
+                    <Route exact path="/signup" component={SignUp} />
+                    <Route exact path="/detail/:postId" component={Detail} />
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/page=:i" component={Home} />
+                    <Route exact path="/add" component={Add} />
+                    <Route exact path="/modifyProfile" component={ModifyProfile} />
+                    <Route exact path="/modifyPost/:postId" component={ModifyPost} />
+                    <Route exact path="/profile/unresister" component={Unresister} />
                     <Route component={Page404}/>
                 </Switch>
             </Wrapper>

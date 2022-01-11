@@ -8,18 +8,23 @@ import { Provider } from 'react-redux';
 import createStore from './redux/store';
 import reducers from "./redux/reducers/index";
 
+import { useQuery } from '@apollo/client';
+import { TOKENINFO } from "./apollo/tokenQuery";
+
 // const store = createStore(reducers);
 
 const App = () => {
+
+  const {loading, data:{
+    isLoggedIn
+  }} = useQuery(TOKENINFO);
   
   return (
     // <Provider store={store}>
       <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Router>
-            <Routes />
-          </Router>
-        </ ThemeProvider>
+        <GlobalStyle />
+        <Routes />
+      </ ThemeProvider>
     // </Provider>
   )
 }

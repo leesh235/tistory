@@ -1,32 +1,26 @@
 import styled from "styled-components";
 
-const BodyStyle = styled.div`
-    width: 100vw;
-    height:200px;
-    background-color: silver;
+const Wrapper = styled.section`
+    width: 100%;
+    height: 60px;
+    background-color: #f0f0f0;
     box-shadow: 0px -0.5px 3px gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const FooterStyle = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const SelectStyle = styled.div`
-
-`;
-
-const AddressStyle = styled.div`
-
+    width: 90%;
+    height: auto;
 `;
 
 export const Footer = () => {
     return(
-        <BodyStyle>
+        <Wrapper>
             <FooterStyle>
-                <SelectStyle>select</SelectStyle>
-                <AddressStyle>address</AddressStyle>
+                gdgd
             </FooterStyle>
-        </BodyStyle>
+        </Wrapper>
     );
 }
