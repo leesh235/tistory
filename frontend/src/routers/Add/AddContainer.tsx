@@ -4,7 +4,7 @@ import { ADD } from "./AddQuery";
 import { AddPresenter } from './AddPresenter';
 import { useForm } from 'react-hook-form';
 import { writePostApi } from "../../api";
-import { isLogedIn } from "../../utiles";
+import { isLogedIn } from "../../utils/auth";
 import { useHistory } from 'react-router';
 
 export const AddContainer = () => {

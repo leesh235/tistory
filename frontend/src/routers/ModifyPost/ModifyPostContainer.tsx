@@ -9,7 +9,7 @@ import { writePostApi, getPostApi } from "../../api";
 import { DETAIL } from "../Detail/DetailQuery";
 import { Loading } from "../../components/Loading";
 import axios from 'axios';
-import { getToken } from "../../utiles";
+import { getToken } from "../../utils/auth";
 
 export const ModifyPostContainer = () => {
 

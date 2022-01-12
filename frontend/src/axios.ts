@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./utiles";
+import { getToken } from "./utils/auth";
 
 const baseURL = `${process.env.REACT_APP_FILESERVER}`;
 

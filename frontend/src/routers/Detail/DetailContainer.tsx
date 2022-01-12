@@ -4,7 +4,7 @@ import { DETAIL, DELETEPOST } from "./DetailQuery";
 import { useParams } from "react-router-dom";
 import { DetailPresenter } from './DetailPresenter';
 import { Loading } from "../../components/Loading";
-import { isLogedIn } from "../../utiles"
+import { isLogedIn } from "../../utils/auth"
 import { useHistory } from 'react-router';
 import { getPostApi, deletePostApi } from "../../api";
 import { routes } from "../../routes"
