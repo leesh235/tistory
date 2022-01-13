@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Header } from './Header/Header';
 import { Footer } from './Footer';
 import Search from '../routers/Seach/index';
-import Home from '../routers/Home/index';
+import Home from '../pages/Home';
 import Detail from '../routers/Detail/index'
 import Add from '../routers/Add/index';
 import LogIn from '../routers/LogIn/index';
@@ -15,7 +15,6 @@ import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
 import { Page404 } from '../routers/Page404';
-import SideMenu from './SideMenu';
 
 const Wrapper = styled.main`
     width: 100%;
@@ -30,7 +29,6 @@ const Routes = () => {
     return(
         <Router>
             <Header />
-            <SideMenu />
             <Wrapper>
                 <Switch>
                     <Route exact path="/search" component={Search} />

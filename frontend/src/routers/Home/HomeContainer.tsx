@@ -5,7 +5,7 @@ import HomePresenter from './HomePresenter';
 import { Loading } from "../../components/Loading";
 import { Pages } from "../../components/Pages"
 
-export const HomeContainer = () => {
+const HomeContainer = () => {
 
     const [count, setCount] = useState<number>(3);
     const [page, setPage] = useState<number>(1);
@@ -25,7 +25,7 @@ export const HomeContainer = () => {
         return (
             <>
                 <HomePresenter postList={data?.getAllPosts?.posts} />
-                <Pages total={data?.getAllPosts?.postCnt} each={count} page={page} setPage={setPage} margin={"0 0 80px 0"}/>
+                {/* <Pages total={data?.getAllPosts?.postCnt} each={count} page={page} setPage={setPage} margin={"0 0 80px 0"}/> */}
             </>
         );
     }else{
@@ -34,3 +34,5 @@ export const HomeContainer = () => {
         );
     }
 };
+
+export default HomeContainer;
