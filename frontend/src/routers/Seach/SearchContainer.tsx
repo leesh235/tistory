@@ -30,10 +30,9 @@ export const SearchContainer = () => {
             );
         }else{
             return (
-                <>
+                <Pages total={data?.getSearch?.postCnt} each={count} page={page} setPage={setPage}>
                     <HomePresenter postList={data?.getSearch?.search} />
-                    <Pages total={data?.getSearch?.postCnt} each={count} page={page} setPage={setPage} margin={"0 0 80px 0"}/>
-                </>
+                </Pages>
             )
         }
     }else{

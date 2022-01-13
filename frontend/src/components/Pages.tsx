@@ -2,12 +2,16 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const Wrapper = styled.div<StyleProps>`
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const PageWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: ${p => p.margin};
 `;
 
 const Page = styled.div`
@@ -26,21 +30,17 @@ const DownButton = styled.div`
     cursor: pointer;
 `;
 
-interface StyleProps{
-    margin?: string,
-}
-
-interface Props extends StyleProps{
+interface Props{
     total: number,
     each: number,
     page: number,
     setPage(val: number): void,
-}
+    children: JSX.Element
+};
 
-export const Pages = ({ total, each, page, setPage, margin }: Props) => {
+export const Pages = ({ total, each, page, setPage, children}: Props) => {
 
     const calculate: number = Math.ceil(total / each);
-    console.log(margin)
 
     const [selected, setSelected] = useState<number>(page);
 
@@ -78,26 +78,23 @@ export const Pages = ({ total, each, page, setPage, margin }: Props) => {
     } 
 
     return(
-        <Wrapper margin={margin}>
-            <DownButton onClick={downHandler}>{"<"}</DownButton>
-            {pageCntHandelr().map((val, idx) => {
-                if(val === selected){
-                    return(
-                        <Page key={idx} onClick={() => pageHandler(val)} color={"red"}>{val}</Page>
-                    );
-                }else{
-                    return(
-                        <Page key={idx} onClick={() => pageHandler(val)}>{val}</Page>
-                    );
-                }
-            })}
-            <UpButton onClick={upHandler}>{">"}</UpButton>
+        <Wrapper>
+            {children}
+            <PageWrapper>
+                <DownButton onClick={downHandler}>{"<"}</DownButton>
+                {pageCntHandelr().map((val, idx) => {
+                    if(val === selected){
+                        return(
+                            <Page key={idx} onClick={() => pageHandler(val)} color={"red"}>{val}</Page>
+                        );
+                    }else{
+                        return(
+                            <Page key={idx} onClick={() => pageHandler(val)}>{val}</Page>
+                        );
+                    }
+                })}
+                <UpButton onClick={upHandler}>{">"}</UpButton>
+            </PageWrapper>
         </Wrapper>
     );
-}
-
-Pages.defaultProps = {
-    margin: "0 0 0 0",
-    total: 0, 
-    each: 1,
-}
+};

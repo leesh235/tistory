@@ -24,10 +24,9 @@ export const MyPostContainer = () => {
 
     if(!loading){
         return (
-            <>
+            <Pages total={data?.getMyPosts?.postCnt} each={count} page={page} setPage={setPage}>
                 <MyPostPresenter myposts={data.getMyPosts.allMyPosts} />
-                <Pages total={data?.getMyPosts?.postCnt} each={count} page={page} setPage={setPage} margin={"0 0 80px 0"}/>
-            </>
+            </Pages>
         );
     }else{
         return (
