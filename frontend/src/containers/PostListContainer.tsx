@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { POSTLIST } from '../querys/PostListQuery';
-import { PostList } from '../components/Home/PostList';
+import { PostList } from '../components/Post/PostList';
 import { Pages } from "../components/Pages";
 import { useHistory } from 'react-router-dom';
 
