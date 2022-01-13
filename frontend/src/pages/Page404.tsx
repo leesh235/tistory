@@ -10,7 +10,7 @@ const Wrapper = styled.section`
     height: 100%;
 `;
 
-export const Page404 = () => {
+const Page404 = () => {
     return(
         <Wrapper>
             <Text type={"p"} text={"404"} fc={"red"} fs={"2rem"}/>
@@ -18,3 +18,5 @@ export const Page404 = () => {
         </Wrapper>
     );
 }
+
+export default Page404;
