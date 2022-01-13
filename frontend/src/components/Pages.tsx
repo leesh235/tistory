@@ -1,20 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import styled from "styled-components";
-import PropTypes from "prop-types";
+import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
 `;
 
-const PageWrapper = styled.div`
+const PageWrapper = styled.ul`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 `;
 
-const Page = styled.div`
+const Page = styled.li`
     margin: 0 10px;
     cursor: pointer;
     color: ${p => p.color};
@@ -40,6 +41,8 @@ interface Props{
 
 export const Pages = ({ total, each, page, setPage, children}: Props) => {
 
+    const history = useHistory();
+
     const calculate: number = Math.ceil(total / each);
 
     const [selected, setSelected] = useState<number>(page);
@@ -53,29 +56,32 @@ export const Pages = ({ total, each, page, setPage, children}: Props) => {
     }
 
     const pageHandler = (val: number) => {
-        setPage(val)
-        setSelected(val)
+        setPage(val);
+        setSelected(val);
+        window.history.pushState({}, '', window.origin + (val === 1 ? `` : `/page=${val}`));
     }
 
     const upHandler = () => {
         if(page < calculate){
-            setPage(page + 1)
-            setSelected(page + 1)
+            setPage(page + 1);
+            setSelected(page + 1);
+            window.history.pushState({}, '', window.origin + `/page=${page + 1}`);
         }else{
-            setPage(calculate)
-            setSelected(calculate)
+            setPage(calculate);
+            setSelected(calculate);
         }
     }
 
     const downHandler = () => {
         if(page > 1){
-            setPage(page - 1)
-            setSelected(page - 1)
+            setPage(page - 1);
+            setSelected(page - 1);
+            window.history.pushState({}, '', window.origin + (page - 1 === 1 ? `` : `/page=${page - 1}`));
         }else{
-            setPage(1)
-            setSelected(1)
+            setPage(1);
+            setSelected(1);
         }
-    } 
+    }
 
     return(
         <Wrapper>
@@ -85,11 +91,15 @@ export const Pages = ({ total, each, page, setPage, children}: Props) => {
                 {pageCntHandelr().map((val, idx) => {
                     if(val === selected){
                         return(
-                            <Page key={idx} onClick={() => pageHandler(val)} color={"red"}>{val}</Page>
+                            <Page key={idx} onClick={() => pageHandler(val)} color={"red"}>
+                                {val}
+                            </Page>
                         );
                     }else{
                         return(
-                            <Page key={idx} onClick={() => pageHandler(val)}>{val}</Page>
+                            <Page key={idx} onClick={() => pageHandler(val)}>
+                                {val}
+                            </Page>
                         );
                     }
                 })}
@@ -97,4 +107,4 @@ export const Pages = ({ total, each, page, setPage, children}: Props) => {
             </PageWrapper>
         </Wrapper>
     );
-};
+}
