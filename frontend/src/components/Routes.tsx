@@ -4,7 +4,7 @@ import { Header } from './Header/Header';
 import { Footer } from './Footer';
 import Search from '../routers/Seach/index';
 import Home from '../pages/Home';
-import Detail from '../routers/Detail/index'
+import Post from '../pages/Post';
 import Add from '../routers/Add/index';
 import LogIn from '../routers/LogIn/index';
 import SignUp from '../routers/SignUp/index';
@@ -14,7 +14,7 @@ import Forget from '../routers/ForgetPass/index';
 import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
-import { Page404 } from '../routers/Page404';
+import Page404 from '../pages/Page404';
 
 const Wrapper = styled.main`
     width: 100%;
@@ -37,7 +37,7 @@ const Routes = () => {
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/signup" component={SignUp} />
-                    <Route exact path="/detail/:postId" component={Detail} />
+                    <Route exact path="/detail/:postId" component={Post} />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/page=:i" component={Home} />
                     <Route exact path="/add" component={Add} />
