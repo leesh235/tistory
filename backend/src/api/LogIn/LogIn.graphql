@@ -1,7 +1,7 @@
 type Data {
     email: String
     nickName: String
-    userRole: String
+    role: String
     token: String
 }
 

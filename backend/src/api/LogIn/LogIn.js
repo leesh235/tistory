@@ -20,27 +20,17 @@ export default {
                 //user가 없으면
                 if(!userInfo){
                     return {
-                        status: "noExist",
-                        check: false,
-                        user: {
-                            email: "",
-                            nickName: "",
-                            userRole: "",
-                            token: ""
-                        }
+                        status: 404,
+                        message: "존재하지 않는 이메일입니다.",
+                        data: {}
                     };
                 }
                 //password가 다르면
                 else if(userInfo.password !== generatPassword(password)){
                     return {
-                        status: "unmatchedPassword",
-                        check: false,
-                        user: {
-                            email: "",
-                            nickName: "",
-                            userRole: "",
-                            token: ""
-                        }
+                        status: 409,
+                        message: "비밀번호가 틀렸습니다",
+                        data: {}
                     };
                 }
                 //로그인 성공
@@ -49,12 +39,12 @@ export default {
                     const token = generatToken(userInfo.userId);
                     
                     return {
-                        status: "success",
-                        check: true,
-                        user: {
+                        status: 200,
+                        message: "로그인 성공",
+                        data: {
                             email: userInfo.email,
                             nickName: userInfo.nickName,
-                            userRole: userInfo.userRole,
+                            role: userInfo.role,
                             token: token
                         }
                     };
@@ -62,14 +52,9 @@ export default {
             } catch(error) {
                 console.log(error);
                 return {
-                    status: "server error",
-                    check: false,
-                    user: {
-                        email: "",
-                        nickName: "",
-                        userRole: "",
-                        token: ""
-                    }
+                    status: 500,
+                    message: "server error",
+                    data: {}
                 };
             }
         }
