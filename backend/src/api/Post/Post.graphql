@@ -5,10 +5,8 @@ type Post {
     createdAt: DateTime
 }
 
-type Response {
-    posts: [Post]
-    postCnt: Int
-    status: String
+type Data {
+    postList: [Post]
 }
 
 type Query{

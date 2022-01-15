@@ -7,10 +7,8 @@ type Search {
     createdAt: DateTime
 }
 
-type Response {
-    search: [Search]
-    postCnt: Int
-    status: String
+type Data {
+    SearchList:[Search]
 }
 
 type Query{

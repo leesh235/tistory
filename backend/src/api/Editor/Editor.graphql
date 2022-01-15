@@ -1,7 +1,4 @@
-type Response {
-    check: Boolean
-    status: String
-}
+
 
 type Mutation {
     uploadText(postId: Int): Response!

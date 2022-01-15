@@ -1,7 +1,3 @@
-type Response{
-    check: Boolean
-    status: String
-}
 
 type Mutation{
     DeletePost(postId: Int!): Response!

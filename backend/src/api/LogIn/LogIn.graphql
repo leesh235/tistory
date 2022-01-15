@@ -1,14 +1,8 @@
-type User {
+type Data {
     email: String
     nickName: String
     userRole: String
     token: String
-}
-
-type Response {
-    user: User
-    check: Boolean
-    status: String
 }
 
 type Mutation {

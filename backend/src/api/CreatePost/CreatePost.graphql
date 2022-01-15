@@ -1,12 +1,6 @@
-type PostInfo{
+type Data{
     postId: Int
     writer: String
-}
-
-type Response {
-    postInfo: PostInfo
-    check: Boolean
-    status: String
 }
 
 type Mutation {

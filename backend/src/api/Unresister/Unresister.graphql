@@ -1,7 +1,4 @@
-type Response{
-    check: Boolean
-    status: String
-}
+
 
 type Mutation{
     Unresister(email: String! password: String!): Response!
