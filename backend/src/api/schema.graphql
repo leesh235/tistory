@@ -7,3 +7,7 @@ type Response{
 type Query {
     dummy: String
 }
+
+type Mutation {
+    dummy: String
+}
