@@ -1,12 +1,8 @@
-type Response{
-    check: Boolean
-    status: String
+type Data {
+    email: String
+    nickName: String
 }
 
 type Mutation {
-    signUp(email: String! password: String! nickName: String!): Response!
-}
-
-type Query {
-    dummy: String
+    signUp(email: String! password: String! nickName: String!): Response
 }

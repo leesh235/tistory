@@ -1,8 +1,7 @@
-type User{
-    id: Int!
-    userId: String!
-    email: String!
-    password: String!
+type Response{
+    status: Int
+    message: String
+    data: Data
 }
 
 type Query {

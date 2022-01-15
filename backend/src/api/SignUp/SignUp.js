@@ -20,15 +20,23 @@ export default {
                 //exist가 true면 중복 존재로 error 발생
                 if(exist){
                     return {
-                        check: false,
-                        status: "exist"
+                        status: 409,
+                        message: "이미 가입한 이메일입니다.",
+                        data: {
+                            email: "String",
+                            nickName: "String"
+                        }
                     };
                 }
                 //하나라도 공백이면 가입 실패
                 else if( nickName === "" || email === "" || password === "" ){
                     return {
-                        check: false,
-                        status: "필수 입력칸을 모두 채워주세요"
+                        status: 400,
+                        message: "필수 항목을 채워주세요",
+                        data: {
+                            email: "String",
+                            nickName: "String"
+                        }
                     };
                 }
                 //회원가입 성공
@@ -39,19 +47,26 @@ export default {
                             nickName,
                             email, 
                             password:generatPassword(password),
-                            userRole: "member"
                         }
                     });
                     return {
-                        check: true,
-                        status: "sign up success"
+                        status: 200,
+                        message: "회원 가입 성공",
+                        data: {
+                            email: email,
+                            nickName: nickName
+                        }
                     };
                 }
             } catch(error) {
                 console.log(error);
                 return {
-                    check: false,
-                    status: "server error"
+                    status: 500,
+                    message: "server error",
+                    data: {
+                        email: "String",
+                        nickName: "String"
+                    }
                 };
             }
         }
