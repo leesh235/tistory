@@ -22,10 +22,7 @@ export default {
                     return {
                         status: 409,
                         message: "이미 가입한 이메일입니다.",
-                        data: {
-                            email: "String",
-                            nickName: "String"
-                        }
+                        data: {}
                     };
                 }
                 //하나라도 공백이면 가입 실패
@@ -33,10 +30,7 @@ export default {
                     return {
                         status: 400,
                         message: "필수 항목을 채워주세요",
-                        data: {
-                            email: "String",
-                            nickName: "String"
-                        }
+                        data: {}
                     };
                 }
                 //회원가입 성공
@@ -63,10 +57,7 @@ export default {
                 return {
                     status: 500,
                     message: "server error",
-                    data: {
-                        email: "String",
-                        nickName: "String"
-                    }
+                    data: {}
                 };
             }
         }
