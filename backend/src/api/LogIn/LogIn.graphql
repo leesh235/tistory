@@ -8,7 +8,3 @@ type Data {
 type Mutation {
     login(email: String! password: String!): Response!
 }
-
-type Query {
-    dummy: String
-}

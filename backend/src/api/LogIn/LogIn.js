@@ -36,7 +36,7 @@ export default {
                 //로그인 성공
                 else{
                     //토큰생성
-                    const token = generatToken(userInfo.userId);
+                    const token = generatToken(userInfo.id);
                     
                     return {
                         status: 200,
