@@ -15,7 +15,7 @@ const verifyUser = async(payload, done) => {
     try {
       //payload.id는 고정
         const user = await prisma.user.findUnique({
-            where: { userId: payload.id },
+            where: { id: payload.id },
         });
         if (user !== null) {
           return done(null, user);
