@@ -13,7 +13,7 @@ model User {
   password    String
   nickName    String
   createAt    DateTime      @default(now())
-  deleteAt    DateTime
+  deleteAt    DateTime?
   imageUrl    String?
   role        Role          @default(USER)
   posts       Post[]
@@ -35,8 +35,8 @@ model Post {
   authorId        Int
   title           String
   createAt        DateTime    @default(now())
-  modifyAt        DateTime
-  deleteAt        DateTime
+  modifyAt        DateTime?
+  deleteAt        DateTime?
   contentsUrl     String?
   comments        Comment[]
   categories      Category   @relation(fields: [categoryId], references: [id])
@@ -54,8 +54,8 @@ model Comment {
   sequence    Int
   parent      Int
   createAt    DateTime    @default(now())
-  modifyAt    DateTime
-  deleteAt    DateTime
+  modifyAt    DateTime?
+  deleteAt    DateTime?
 }
 
 enum Role {
