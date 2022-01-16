@@ -1,9 +1,13 @@
+type Data{
+    deleteAt: DateTime
+}
 
+type Response{
+    status: Int
+    message: String
+    data: Data
+}
 
 type Mutation{
     Unresister(email: String! password: String!): Response!
-}
-
-type Query {
-    dummy: String
 }
