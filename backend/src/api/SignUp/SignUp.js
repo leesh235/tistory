@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { generatPassword } from "../../utile";
 import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
-import { REQUIREDINPUT, EXISTUSER, SUCCESSSIGNUP } from "../../constants/message";
+import { REQUIRED_INPUT, EXIST_USER, SUCCESS_SIGNUP } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +24,7 @@ export default {
                     return {
                         __typename: "SignUpFailure",
                         status: ERROR,
-                        message: EXISTUSER,
+                        message: EXIST_USER,
                     };
                 }
 
@@ -33,7 +33,7 @@ export default {
                     return {
                         __typename: "SignUpFailure",
                         status: ERROR,
-                        message: REQUIREDINPUT,
+                        message: REQUIRED_INPUT,
                     };
                 }
 
@@ -45,11 +45,11 @@ export default {
                         password:generatPassword(password),
                     }
                 });
-                
+
                 return {
                     __typename: "SignUpSuccess",
                     status: SUCCESS,
-                    message: SUCCESSSIGNUP,
+                    message: SUCCESS_SIGNUP,
                     data: {
                         email: email,
                         nickName: nickName
