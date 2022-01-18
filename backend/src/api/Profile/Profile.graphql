@@ -1,15 +1,24 @@
-type Data {
-    email: String
-    nickName: String
-    userRole:  String
-    userImg: Boolean
+type Profile {
+    email: String!
+    nickName: String!
+    createAt: DateTime!
+    role:  String!
+    imageUrl: Boolean
 }
 
+type ProfileSuccess {
+    status: String!
+    message: String!
+    data: Profile!
+}
+
+type ProfileFailure {
+    status: String!
+    message: String!
+}
+
+union ProfileResult = ProfileSuccess | ProfileFailure
 
 type Query{
-    getProfile: Response!
-}
-
-type Mutation{
-    dummy: String
+    getProfile: ProfileResult!
 }

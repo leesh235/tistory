@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { isAuthenticated } from "../../utile"
+import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
+import { SUCCESS_PROFILE, REQUIRED_LOGIN, EXIST_DELETE } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -10,59 +12,38 @@ export default {
                 const exist = isAuthenticated(request);
 
                 if(exist){
-                    const userId = request.user.userId;
+                    const { id } = request.user;
 
                     const user = await prisma.user.findUnique({
-                        where: { userId }
+                        where: { id }
                     })
 
-                    if(user){
+                    if(user.deleteAt !== null){
                         return {
-                            user: {
-                                email: user.email,
-                                nickName: user.nickName,
-                                userRole:  user.userRole,
-                                userImg: user.userImg,
-                            },
-                            check: true,
-                            status: "success",
-                        };
-                    }else{
-                        return {
-                            user: {
-                                email: null,
-                                nickName: null,
-                                userRole:  null,
-                                userImg: null,
-                            },
-                            check: false,
-                            status: "no exist",
+                            __typename: "ProfileFailure",
+                            status: ERROR,
+                            message: EXIST_DELETE
                         };
                     }
+
+                    return {
+                        __typename: "ProfileSuccess",
+                        status: SUCCESS,
+                        message: SUCCESS_PROFILE,
+                        data: {
+                            ...user
+                        }
+                    };
+
                 } else{
                     return {
-                        user: {
-                            email: null,
-                            nickName: null,
-                            userRole:  null,
-                            userImg: null,
-                        },
-                        check: false,
-                        status: "Is not log in",
+                        __typename: "ProfileFailure",
+                        status: ERROR,
+                        message: REQUIRED_LOGIN
                     };
                 }
             } catch(error) {
-                console.log(error);
-                return {
-                    user: {
-                        email: null,
-                        nickName: null,
-                        userRole:  null,
-                        userImg: null,
-                    },
-                    check: false,
-                    status: "server error",
-                };
+                throw new Error(SERVER_ERROR);
             }
         }
     }
