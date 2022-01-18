@@ -1,21 +1,21 @@
 type SignUp {
-    email: String
-    nickName: String
+    email: String!
+    nickName: String!
 }
 
 type SignUpSuccess {
-    status: String
-    message: String
-    data: SignUp
+    status: String!
+    message: String!
+    data: SignUp!
 }
 
 type SignUpFailure {
-    status: String
-    message: String
+    status: String!
+    message: String!
 }
 
 union SignUpResult = SignUpSuccess | SignUpFailure
 
 type Mutation {
-    signUp(email: String! password: String! nickName: String!): SignUpResult
+    signUp(email: String! password: String! nickName: String!): SignUpResult!
 }
