@@ -1,13 +1,20 @@
-type Data{
-    deleteAt: DateTime
+type Unresister{
+    deleteAt: DateTime!
 }
 
-type Response{
-    status: Int
-    message: String
-    data: Data
+type UnresisterSuccess {
+    status: String!
+    message: String!
+    data: Unresister!
 }
+
+type UnresisterFailure {
+    status: String!
+    message: String!
+}
+
+union UnresisterResult = UnresisterSuccess | UnresisterFailure
 
 type Mutation{
-    Unresister(email: String! password: String!): Response!
+    unresister(email: String! password: String!): UnresisterResult!
 }
