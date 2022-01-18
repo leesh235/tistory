@@ -1,10 +1,23 @@
-type Data {
-    email: String
-    nickName: String
-    role: String
-    token: String
+type LogIn {
+    email: String!
+    nickName: String!
+    role: String!
+    token: String!
 }
 
+type LogInSuccess {
+    status: String!
+    message: String!
+    data: LogIn!
+}
+
+type LogInFailure {
+    status: String!
+    message: String!
+}
+
+union LogInResult = LogInSuccess | LogInFailure
+
 type Mutation {
-    login(email: String! password: String!): Response!
+    login(email: String! password: String!): LogInResult!
 }

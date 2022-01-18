@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { generatToken, generatPassword } from "../../utile";
+import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
+import { REQUIRED_INPUT, NOT_EXIST_USER, PASSWORD_ERROR, SUCCESS_LOGIN } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -9,6 +11,15 @@ export default {
             try {
                 
                 const { email, password } = args;
+
+                //빈칸 여부
+                if(email === "" || password === ""){
+                    return {
+                        __typename: "LogInFailure",
+                        status: ERROR,
+                        message: REQUIRED_INPUT,
+                    };
+                }
 
                 //email존재 여부확인
                 const userInfo = await prisma.user.findUnique({
@@ -20,42 +31,38 @@ export default {
                 //user가 없으면
                 if(!userInfo){
                     return {
-                        status: 404,
-                        message: "존재하지 않는 이메일입니다.",
-                        data: {}
+                        __typename: "LogInFailure",
+                        status: ERROR,
+                        message: NOT_EXIST_USER,
                     };
                 }
+
                 //password가 다르면
-                else if(userInfo.password !== generatPassword(password)){
+                if(userInfo.password !== generatPassword(password)){
                     return {
-                        status: 409,
-                        message: "비밀번호가 틀렸습니다",
-                        data: {}
+                        __typename: "LogInFailure",
+                        status: ERROR,
+                        message: PASSWORD_ERROR,
                     };
                 }
-                //로그인 성공
-                else{
-                    //토큰생성
-                    const token = generatToken(userInfo.id);
-                    
-                    return {
-                        status: 200,
-                        message: "로그인 성공",
-                        data: {
-                            email: userInfo.email,
-                            nickName: userInfo.nickName,
-                            role: userInfo.role,
-                            token: token
-                        }
-                    };
-                }
-            } catch(error) {
-                console.log(error);
+         
+                //토큰생성
+                const token = generatToken(userInfo.id);
+                
                 return {
-                    status: 500,
-                    message: "server error",
-                    data: {}
+                    __typename: "LogInSuccess",
+                    status: SUCCESS,
+                    message: SUCCESS_LOGIN,
+                    data: {
+                        email: userInfo.email,
+                        nickName: userInfo.nickName,
+                        role: userInfo.role,
+                        token: token
+                    }
                 };
+
+            } catch(error) {
+                throw new Error(SERVER_ERROR);
             }
         }
     }
