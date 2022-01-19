@@ -1,0 +1,20 @@
+type WriteCategory {
+    name: String!
+}
+
+type WriteCategorySuccess {
+    status: String!
+    message: String!
+    data: WriteCategory!
+}
+
+type WriteCategoryFailure {
+    status: String!
+    message: String!
+}
+
+union WriteCategoryResult = WriteCategorySuccess | WriteCategoryFailure
+
+type Mutation{
+    writeCategory(name: String! parent: Int! sequence: Int! depth: Int!): WriteCategoryResult!
+}
