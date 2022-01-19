@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { isAuthenticated } from "../../utile"
 import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
-import { REQUIRED_LOGIN, SUCCESS_WRITE_CATEGORY, ADDMIN_ERROR } from "../../constants/message";
+import { REQUIRED_LOGIN, SUCCESS_WRITE_CATEGORY, ADDMIN_ERROR, EXIST_CATEGORY } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -26,6 +26,20 @@ export default {
                             __typename: "WriteCategoryFailure",
                             status: ERROR,
                             message: ADDMIN_ERROR
+                        };
+                    }
+
+                    const existCategory = await prisma.category.findFirst({
+                        where:{
+                            name
+                        }
+                    })
+
+                    if(existCategory){
+                        return {
+                            __typename: "WriteCategoryFailure",
+                            status: ERROR,
+                            message: EXIST_CATEGORY
                         };
                     }
                     
