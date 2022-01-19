@@ -10,17 +10,17 @@ export default {
         writeCategory: async(_, args, {request}) => {
             try {
                 const exist = isAuthenticated(request);
-
+                console.log(exist)
                 if(exist){
                     const { id } = request.user;
-                    const { name, parent, sequence, depth } = args;
-
+                    const { name, categoryId } = args;
+                    
                     const user = await prisma.user.findUnique({
                         where: { 
                             id
                         }
                     })
-
+                    
                     if(user.role !== "ADMIN"){
                         return {
                             __typename: "WriteCategoryFailure",
@@ -29,12 +29,32 @@ export default {
                         };
                     }
 
+                    const setCategoryId = 0;
+
+                    if(categoryId !== null){
+                        setCategoryId = categoryId;
+                    }
+
+                    const lastCategory = await prisma.category.findFirst({
+                        where:{
+                            parent: setCategoryId
+                        },
+                        orderBy:{
+                            sequence: 'asc'
+                        }
+                    })
+                    
+                    console.log(lastCategory.depth)
+                    //depth = parent의 depth + 1
+                    //sequence = parent의 sequence 최댓값 + 1
+                    //parnet = 해당 카테고리의 id
+                    
                     await prisma.category.create({
                         data:{
                             name,
-                            parent,
-                            sequence,
-                            depth
+                            parent: setCategoryId,
+                            sequence: lastCategory.sequence + 1,
+                            depth: lastCategory.depth + 1
                         }
                     })
 
