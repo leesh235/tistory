@@ -1,0 +1,20 @@
+type WritePost{
+    postId: Int!
+}
+
+type WritePostSuccess {
+    status: String!
+    message: String!
+    data: WritePost!
+}
+
+type WritePostFailure {
+    status: String!
+    message: String!
+}
+
+union WritePostResult = WritePostSuccess | WritePostFailure
+
+type Mutation {
+    writePost(title: String! contents: Boolean): WritePostResult!
+}
