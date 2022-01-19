@@ -1,0 +1,27 @@
+type Category{
+    id: Int!
+    name: String!
+}
+
+type CategoryList {
+    id: Int!
+    name: String!
+    sub: [Category]
+}
+
+type CategoryListSuccess {
+    status: String!
+    message: String!
+    data: [CategoryList]!
+}
+
+type CategoryListFailure {
+    status: String!
+    message: String!
+}
+
+union DeleteCategoryResult = CategoryListSuccess | CategoryListFailure
+
+type Query{
+    getCategoryList: CategoryListResult!
+}
