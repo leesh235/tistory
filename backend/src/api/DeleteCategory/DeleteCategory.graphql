@@ -1,0 +1,20 @@
+type DeleteCategory {
+    name: String!
+}
+
+type DeleteCategorySuccess {
+    status: String!
+    message: String!
+    data: DeleteCategory!
+}
+
+type DeleteCategoryFailure {
+    status: String!
+    message: String!
+}
+
+union DeleteCategoryResult = DeleteCategorySuccess | DeleteCategoryFailure
+
+type Mutation{
+    deleteCategory(name: String! categoryId: Int!): DeleteCategoryResult!
+}
