@@ -44,7 +44,6 @@ export default {
                         }
                     })
                     
-                    console.log(lastCategory.depth)
                     //depth = parent의 depth + 1
                     //sequence = parent의 sequence 최댓값 + 1
                     //parnet = 해당 카테고리의 id
