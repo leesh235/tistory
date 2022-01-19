@@ -10,7 +10,7 @@ export default {
         writeCategory: async(_, args, {request}) => {
             try {
                 const exist = isAuthenticated(request);
-                console.log(exist)
+                
                 if(exist){
                     const { id } = request.user;
                     const { name, categoryId } = args;
@@ -28,32 +28,34 @@ export default {
                             message: ADDMIN_ERROR
                         };
                     }
-
-                    const setCategoryId = 0;
-
-                    if(categoryId !== null){
-                        setCategoryId = categoryId;
-                    }
-
-                    const lastCategory = await prisma.category.findFirst({
+                    
+                    const parentCategory = await prisma.category.findFirst({
                         where:{
-                            parent: setCategoryId
-                        },
-                        orderBy:{
-                            sequence: 'asc'
+                            id: categoryId
                         }
                     })
-                    
+                   
+                    const lastCategory = await prisma.category.findFirst({
+                        where:{
+                            parent: categoryId
+                        },
+                        orderBy:{
+                            sequence: "desc"
+                        }
+                    })
+
                     //depth = parent의 depth + 1
                     //sequence = parent의 sequence 최댓값 + 1
-                    //parnet = 해당 카테고리의 id
-                    
+                    //parnet = 해당 카테고리의 id *최상위 category parent = 0
+                    let setSequence = lastCategory !== null ? lastCategory.sequence + 1 : 0;
+                    let setDepth = parentCategory !== null ? parentCategory.depth +  1 : 0;
+
                     await prisma.category.create({
                         data:{
                             name,
-                            parent: setCategoryId,
-                            sequence: lastCategory.sequence + 1,
-                            depth: lastCategory.depth + 1
+                            parent: categoryId,
+                            sequence: setSequence,
+                            depth: setDepth
                         }
                     })
 
