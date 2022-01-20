@@ -20,7 +20,7 @@ type CategoryListFailure {
     message: String!
 }
 
-union DeleteCategoryResult = CategoryListSuccess | CategoryListFailure
+union CategoryListResult = CategoryListSuccess | CategoryListFailure
 
 type Query{
     getCategoryList: CategoryListResult!

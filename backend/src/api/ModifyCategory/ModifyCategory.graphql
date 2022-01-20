@@ -13,7 +13,7 @@ type ModifyCategoryFailure {
     message: String!
 }
 
-union DeleteCategoryResult = ModifyCategorySuccess | ModifyCategoryFailure
+union ModifyCategoryResult = ModifyCategorySuccess | ModifyCategoryFailure
 
 type Mutation{
     modifyCategory(name: String! categoryId: Int!): ModifyCategoryResult!
