@@ -9,13 +9,18 @@ export const SUCCESS_WRITE_CATEGORY = "카테고리 추가 완료";
 export const SUCCESS_DELETE_CATEGORY = "카테고리 삭제 완료";
 export const SUCCESS_GET_CATEGORY = "카테고리 가져오기 성공";
 export const SUCCESS_WRITE_POST = "게시글 작성 성공";
+export const SUCCESS_GET_POST = "게시글 가져오기 성공";
+export const SUCCESS_GET_POSTLIST = "게시글 목록 가져오기 성공";
 
 export const EXIST_USER = "이미 가입한 이메일입니다.";
-export const NOT_EXIST_USER = "존재하지 않는 이메일입니다.";
 export const EXIST_DELETE = "이미 탈퇴한 이메일입니다.";
 export const EXIST_CATEGORY = "이미 존재하는 카테고리입니다.";
 export const EXIST_CATEGORY_POST = "해당 카테고리에 게시글이 존재합니다.";
+
+export const NOT_EXIST_USER = "존재하지 않는 이메일입니다.";
 export const NOT_EXIST_CATEGORY = "카테고리가 존재하지 않습니다.";
+export const NOT_EXIST_POST = "해당 게시글이 존재하지 않습니다.";
+export const NOT_EXIST_POSTLIST = "게시글이 존재하지 않습니다.";
 
 export const PASSWORD_ERROR = "비밀번호가 틀렸습니다.";
 

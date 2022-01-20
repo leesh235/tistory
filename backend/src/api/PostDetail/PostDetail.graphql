@@ -1,0 +1,25 @@
+type Post {
+    title: String!
+    contentsUrl: String
+    author: String!
+    createAt: DateTime!
+    hits: Int!
+    category: String!
+}
+
+type PostSuccess {
+    status: String!
+    message: String!
+    data: Post!
+}
+
+type PostFailure {
+    status: String!
+    message: String!
+}
+
+union PostResult = PostSuccess | PostFailure
+
+type Query {
+    getPostDetail(postId: Int!): PostResult!
+}
