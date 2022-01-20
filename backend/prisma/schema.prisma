@@ -38,6 +38,7 @@ model Post {
   modifyAt        DateTime?
   deleteAt        DateTime?
   contentsUrl     String?
+  hits            Int        @default(0)
   comments        Comment[]
   categories      Category   @relation(fields: [categoryId], references: [id])
   categoryId      Int
