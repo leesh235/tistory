@@ -1,5 +1,8 @@
 type WritePost{
-    postId: Int!
+    id: Int!
+    category: String!
+    author: String!
+    createAt: DateTime!
 }
 
 type WritePostSuccess {
@@ -16,5 +19,5 @@ type WritePostFailure {
 union WritePostResult = WritePostSuccess | WritePostFailure
 
 type Mutation {
-    writePost(title: String! contents: Boolean): WritePostResult!
+    writePost(categoryId: Int! title: String!): WritePostResult!
 }

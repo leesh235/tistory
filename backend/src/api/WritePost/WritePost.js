@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { isAuthenticated } from "../../utile"
+import { isAuthenticated } from "../../utile";
+import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
+import { SUCCESS_WRITE_POST, NOT_EXIST_CATEGORY, ADDMIN_ERROR } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -10,57 +12,68 @@ export default {
                 
                 const exist = isAuthenticated(request);
          
-                if( exist === true ){
-                    const { title, contents } = args;
-                    const userId = request.user.userId
-                    const email = request.user.email;
-                    const newPost = await prisma.post.create({
+                if(exist){
+                    const { categoryId, title } = args;
+                    const { id } = request.user;
+
+                    const author = await prisma.user.findUnique({
+                        where: {
+                            id
+                        }
+                    })
+                   
+                    if(author.role !== "ADMIN"){
+                        return{
+                            __typename: "WritePostFailure",
+                            status: ERROR,
+                            message: ADDMIN_ERROR
+                        }
+                    }
+
+                    const category = await prisma.category.findUnique({
+                        where:{
+                            id: categoryId
+                        }
+                    })
+
+                    if(!category){
+                        return{
+                            __typename: "WritePostFailure",
+                            status: ERROR,
+                            message: NOT_EXIST_CATEGORY
+                        }
+                    }
+                   
+                    const post = await prisma.post.create({
                         data: {
-                            userId,
-                            writer: email,
-                            title,
+                            authorId: id,
+                            categoryId,
+                            title
                         }
                     })
               
-                    if(contents){
-                        return {
-                            postInfo: {
-                                postId: newPost.postId,
-                                writer: email,
-                            },
-                            check: true,
-                            status: "success"
-                        };
-                    }else{
-                        return {
-                            postInfo: {
-                                postId: newPost.postId,
-                                writer: email,
-                            },
-                            check: false,
-                            status: "no contents"
-                        };
+                    return {
+                        __typename: "WritePostSuccess",
+                        status: SUCCESS,
+                        message: SUCCESS_WRITE_POST,
+                        data:{
+                            id: post.id,
+                            createAt: post.createAt,
+                            category: category.name,
+                            author: author.email
+                        }
                     }
+
                 }else{
                     return {
-                        postInfo: {
-                            postId: null,
-                            writer: null,
-                        },
-                        check: false,
-                        status: "is not log in"
+                        __typename: "WritePostFailure",
+                        status: ERROR,
+                        message: ADDMIN_ERROR
                     };
                 }
 
             } catch (error){
-                return {
-                    postInfo: {
-                        postId: null,
-                        writer: null,
-                    },
-                    check: false,
-                    status: "server error"
-                };
+                throw new Error(SERVER_ERROR);
             }
         }
     }
