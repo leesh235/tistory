@@ -1,0 +1,25 @@
+type PostList {
+    postId: Int!
+    author: String!
+    title: String!
+    createAt: DateTime!
+    hits: Int!
+    thumbnail: String
+}
+
+type PostListSuccess {
+    status: String!
+    message: String!
+    data: [PostList]!
+}
+
+type PostListFailure {
+    status: String!
+    message: String!
+}
+
+union PostListResult = PostListSuccess | PostListFailure
+
+type Query {
+    getPostList(categoryId:Int! count: Int! page: Int!): PostListResult!
+}
