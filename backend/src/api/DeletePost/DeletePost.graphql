@@ -1,8 +1,20 @@
-
-type Mutation{
-    DeletePost(postId: Int!): Response!
+type DeletePost {
+    deleteAt: DateTime!
 }
 
-type Query{
-    dummy: String
+type DeletePostSuccess {
+    status: String!
+    message: String!
+    data: DeletePost!
+}
+
+type DeletePostFailure {
+    status: String!
+    message: String!
+}
+
+union DeletePostResult = DeletePostSuccess | DeletePostFailure
+
+type Mutation {
+    deletePost(postId: Int!): DeletePostResult!
 }
