@@ -1,0 +1,23 @@
+type WriteComment{
+    id: Int!
+    writer: String!
+    createAt: DateTime!
+    contents: String!
+}
+
+type WriteCommentSuccess {
+    status: String!
+    message: String!
+    data: WriteComment!
+}
+
+type WriteCommentFailure {
+    status: String!
+    message: String!
+}
+
+union WriteCommentResult = WriteCommentSuccess | WriteCommentFailure
+
+type Mutation {
+    writeComment(postId: Int! commentId: Int! contents: String!): WriteCommentResult!
+}
