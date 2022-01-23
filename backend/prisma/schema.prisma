@@ -59,6 +59,15 @@ model Comment {
   deleteAt    DateTime?
 }
 
+model notice {
+  id          Int         @id @default(autoincrement())
+  title       String
+  contents    String
+  createAt    DateTime    @default(now())
+  modifyAt    DateTime?
+  deleteAt    DateTime?
+}
+
 enum Role {
   ADMIN
   USER
