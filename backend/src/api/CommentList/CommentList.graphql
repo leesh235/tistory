@@ -1,0 +1,23 @@
+type CommentList {
+    commentId: Int!
+    writer: String
+    comment: String
+    createAt: DateTime
+}
+
+type CommentListSuccess {
+    status: String!
+    message: String!
+    data: [CommentList]!
+}
+
+type CommentListFailure {
+    status: String!
+    message: String!
+}
+
+union CommentListResult = CommentListSuccess | CommentListFailure
+
+type Query {
+    getCommentList(postId: Int!): CommentListResult!
+}
