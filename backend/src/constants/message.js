@@ -26,6 +26,7 @@ export const NOT_EXIST_POST = "해당 게시글이 존재하지 않습니다.";
 export const NOT_EXIST_POSTLIST = "게시글이 존재하지 않습니다.";
 
 export const ALREADY_DELETE_POST = "이미 삭제된 게시글입니다.";
+export const ALREADY_DELETE_COMMENT = "이미 삭제된 댓글입니다.";
 
 export const INCRRECT_AUTHOR = "작성자가 아닙니다.";
 export const PASSWORD_ERROR = "비밀번호가 틀렸습니다.";
