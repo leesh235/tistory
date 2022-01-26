@@ -1,0 +1,23 @@
+type NoticeList {
+    id: Int!
+    title: String!
+    contents: String!
+    createAt: DateTime!
+}
+
+type NoticeListSuccess {
+    status: String!
+    message: String!
+    data: [NoticeList]!
+}
+
+type NoticeListFailure {
+    status: String!
+    message: String!
+}
+
+union NoticeListResult = NoticeListSuccess | NoticeListFailure
+
+type Query {
+    getNoticeList(count: Int! page: Int!): NoticeListResult!
+}
