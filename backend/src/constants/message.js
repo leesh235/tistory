@@ -15,6 +15,7 @@ export const SUCCESS_DELETE_POSTLIST = "게시글 삭제하기 성공";
 export const SUCCESS_WRITE_WRITE = "댓글 작성 성공";
 export const SUCCESS_GET_COMMENTLIST = "댓글 리스트 가져오기 성공";
 export const SUCCESS_MODIFY_COMMENT = "댓글 수정 성공";
+export const SUCCESS_WRITE_NOTICE = "공지사항 작성 성공";
 
 export const EXIST_USER = "이미 가입한 이메일입니다.";
 export const EXIST_DELETE = "이미 탈퇴한 이메일입니다.";

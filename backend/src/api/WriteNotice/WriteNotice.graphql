@@ -1,0 +1,23 @@
+type WriteNotice {
+    id: Int!
+    title: String!
+    contents: String!
+    createAt: DateTime!
+}
+
+type WriteNoticeSuccess {
+    status: String!
+    message: String!
+    data: WriteNotice!
+}
+
+type WriteNoticeFailure {
+    status: String!
+    message: String!
+}
+
+union WriteNoticeResult = WriteNoticeSuccess | WriteNoticeFailure
+
+type Mutation {
+    writeNotice(title: String! contents: String!): WriteNoticeResult
+}
