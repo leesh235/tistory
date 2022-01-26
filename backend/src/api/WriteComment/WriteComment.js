@@ -33,42 +33,56 @@ export default {
                             message: WRONG_ACCESS
                         };
                     }
-                   
-                    const post = await prisma.post.findFirst({
-                        where: {
-                            id: postId
-                        },
-                        select: {
-                            comments: {
-                                where: {
-                                    parent: commentId
-                                },
-                                orderBy: {
-                                    createAt: "desc"
-                                },
-                                select: {
-                                    sequence: true,
-                                    depth: true
-                                }
-                            }
-                        }
-                    })
 
                     let sequence = 0;
                     let depth = 0;
                     let setParent = 0;
+                   
+                    if(commentId !== null){
+                        const comment = await prisma.comment.findFirst({
+                            where: {
+                                AND: [
+                                    {
+                                        postId
+                                    },
+                                    {
+                                        parent: commentId
+                                    }
+                                ]
+                            },
+                            orderBy: {
+                                createAt: "desc"
+                            },
+                            select: {
+                                sequence: true,
+                                depth: true
+                            }
+                        })
 
-                    if(post){
-                        sequence = post.comments.sequence;
-                        depth = post.comments.depth;
-                        setParent = parent;
+                        const parentComment = await prisma.comment.findUnique({
+                            where: {       
+                                id: commentId 
+                            },
+                            select: {
+                                depth: true
+                            }
+                        })
+
+                        if(comment){
+                            sequence = comment.sequence;
+                            depth = comment.depth;
+                        }else{
+                            depth = parentComment.depth + 1;
+                        }
+                        setParent = commentId;
                     }
 
                     const result = await prisma.comment.create({
                         data: {
+                            postId,
+                            userId: id,
                             sequence,
                             depth,
-                            id,
                             parent: setParent,
                             contents
                         }

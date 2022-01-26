@@ -19,5 +19,5 @@ type WriteCommentFailure {
 union WriteCommentResult = WriteCommentSuccess | WriteCommentFailure
 
 type Mutation {
-    writeComment(postId: Int! commentId: Int! contents: String!): WriteCommentResult!
+    writeComment(postId: Int! commentId: Int contents: String!): WriteCommentResult!
 }
