@@ -1,0 +1,23 @@
+type NoticeDetail{
+    id: Int!
+    title: String!
+    contents: String!
+    createAt: DateTime!
+}
+
+type NoticeDetailSuccess {
+    status: String!
+    message: String!
+    data: NoticeDetail!
+}
+
+type NoticeDetailFailure {
+    status: String!
+    message: String!
+}
+
+union NoticeDetailResult = NoticeDetailSuccess | NoticeDetailFailure
+
+type Query {
+    getNoticeDetail(noticeId: Int!): NoticeDetailResult!
+}

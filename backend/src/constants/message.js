@@ -21,6 +21,7 @@ export const SUCCESS_WRITE_NOTICE = "공지사항 작성 성공";
 export const SUCCESS_GET_NOTICELIST = "공지사항 목록 가져오기 성공";
 export const SUCCESS_DELETE_NOTICELIST = "공지사항 삭제 성공";
 export const SUCCESS_MODIFY_NOTICELIST = "공지사항 수정 성공";
+export const SUCCESS_GET_NOTICE = "공지사항 작성 성공";
 
 export const EXIST_USER = "이미 가입한 이메일입니다.";
 export const EXIST_DELETE = "이미 탈퇴한 이메일입니다.";
@@ -32,6 +33,7 @@ export const NOT_EXIST_CATEGORY = "카테고리가 존재하지 않습니다.";
 export const NOT_EXIST_POST = "해당 게시글이 존재하지 않습니다.";
 export const NOT_EXIST_POSTLIST = "게시글이 존재하지 않습니다.";
 export const NOT_EXIST_NOTICELIST = "공지사항이 존재하지 않습니다.";
+export const NOT_EXIST_NOTICE = "해당 공지사항이 존재하지 않습니다.";
 
 export const ALREADY_DELETE_POST = "이미 삭제된 게시글입니다.";
 export const ALREADY_DELETE_COMMENT = "이미 삭제된 댓글입니다.";
