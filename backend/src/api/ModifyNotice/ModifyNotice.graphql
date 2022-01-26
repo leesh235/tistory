@@ -1,0 +1,23 @@
+type ModifyNotice {
+    id: Int!
+    title: String!
+    contents: String!
+    modifyAt: DateTime!
+}
+
+type ModifyNoticeSuccess {
+    status: String!
+    message: String!
+    data: ModifyNotice!
+}
+
+type ModifyNoticeFailure {
+    status: String!
+    message: String!
+}
+
+union ModifyNoticeResult = ModifyNoticeSuccess | ModifyNoticeFailure
+
+type Mutation {
+    modifyNotice(noticeId: Int! title: String contents: String): ModifyNoticeResult
+}
