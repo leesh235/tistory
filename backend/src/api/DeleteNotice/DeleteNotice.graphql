@@ -1,0 +1,20 @@
+type DeleteNotice {
+    deleteAt: DateTime!
+}
+
+type DeleteNoticeSuccess {
+    status: String!
+    message: String!
+    data: DeleteNotice!
+}
+
+type DeleteNoticeFailure {
+    status: String!
+    message: String!
+}
+
+union DeleteNoticeResult = DeleteNoticeSuccess | DeleteNoticeFailure
+
+type Mutation {
+    deleteNotice(noticeId: Int!): DeleteNoticeResult!
+}

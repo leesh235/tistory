@@ -17,6 +17,7 @@ export const SUCCESS_GET_COMMENTLIST = "댓글 리스트 가져오기 성공";
 export const SUCCESS_MODIFY_COMMENT = "댓글 수정 성공";
 export const SUCCESS_WRITE_NOTICE = "공지사항 작성 성공";
 export const SUCCESS_GET_NOTICELIST = "공지사항 목록 가져오기 성공";
+export const SUCCESS_DELETE_NOTICELIST = "공지사항 삭제 성공";
 
 export const EXIST_USER = "이미 가입한 이메일입니다.";
 export const EXIST_DELETE = "이미 탈퇴한 이메일입니다.";
@@ -31,6 +32,7 @@ export const NOT_EXIST_NOTICELIST = "공지사항이 존재하지 않습니다."
 
 export const ALREADY_DELETE_POST = "이미 삭제된 게시글입니다.";
 export const ALREADY_DELETE_COMMENT = "이미 삭제된 댓글입니다.";
+export const ALREADY_DELETE_NOTICE = "이미 삭제된 공지사항입니다.";
 
 export const INCRRECT_AUTHOR = "작성자가 아닙니다.";
 export const PASSWORD_ERROR = "비밀번호가 틀렸습니다.";
