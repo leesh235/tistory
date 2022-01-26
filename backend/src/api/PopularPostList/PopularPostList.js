@@ -54,7 +54,7 @@ export default {
                         title: `[${popularPostList[i].categories.name}]`+popularPostList[i].title,
                         createAt: popularPostList[i].createAt,
                         hits: popularPostList[i].hits,
-                        thumbnail: ""
+                        thumbnail: popularPostList[i].thumbnail
                     })
                 }
 
