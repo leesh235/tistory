@@ -11,33 +11,31 @@ export default {
             try{
 
                 const { postId } = args;
-         
-                const commentList = await prisma.post.findMany({
+
+                const commentList = await prisma.comment.findMany({
                     where: {
                         AND: [
                             {
-                                id: postId
-                            },
-                            {
-                                deleteAt: null
+                                postId
                             }
                         ]
                     },
+                    orderBy: [
+                        {
+                            depth: "asc",
+                        },
+                        {
+                            sequence: "asc"
+                        }
+                    ],
                     select: {
-                        comments: {
-                            orderBy:{
-                                createAt: "asc"                       
-                            },
+                        id: true,
+                        contents: true,
+                        createAt: true,
+                        deleteAt: true,
+                        users: {
                             select: {
-                                id: true,
-                                contents: true,
-                                createAt: true,
-                                deleteAt: true,
-                                users: {
-                                    select: {
-                                        nickName: true
-                                    }
-                                }
+                                nickName: true
                             }
                         }
                     }
@@ -48,18 +46,18 @@ export default {
                 for(let i = 0; i < commentList.length; i++){
                     if(commentList[i].deleteAt === null){
                         result.push({
-                            commentId: commentList[i].comments.id,
-                            writer: commentList[i].comments.users.nickName,
-                            comment: commentList[i].comments.contents,
-                            createAt: commentList[i].comments.createAt,
+                            commentId: commentList[i].id,
+                            writer: commentList[i].users.nickName,
+                            comment: commentList[i].contents,
+                            createAt: commentList[i].createAt,
                         })
                     }else{
                         result.push({
-                            commentId: commentList[i].comments.id
+                            commentId: commentList[i].id
                         })
                     }
                 }
-
+                console.log(result)
                 return {
                     __typename: "CommentListSuccess",
                     status: SUCCESS,
