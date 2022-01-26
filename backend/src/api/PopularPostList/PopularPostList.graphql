@@ -1,0 +1,25 @@
+type PopularPostList {
+    postId: Int!
+    author: String!
+    title: String!
+    createAt: DateTime!
+    hits: Int!
+    thumbnail: String
+}
+
+type PopularPostListSuccess {
+    status: String!
+    message: String!
+    data: [PopularPostList]!
+}
+
+type PopularPostListFailure {
+    status: String!
+    message: String!
+}
+
+union PopularPostListResult = PopularPostListSuccess | PopularPostListFailure
+
+type Query {
+    getPopularPostList: PopularPostListResult!
+}
