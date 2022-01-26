@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default {
     Mutation: {
-        deletePost: async(_, args, {request}) => {
+        deleteComment: async(_, args, {request}) => {
             try{
                 const exist = isAuthenticated(request);
 
@@ -49,14 +49,7 @@ export default {
 
                     const result = await prisma.comment.update({
                         where:{
-                            AND: [
-                                {
-                                    id: commentId
-                                },
-                                {
-                                    userId: id
-                                }
-                            ]
+                            id: commentId
                         },
                         data: {
                             deleteAt: new Date()
