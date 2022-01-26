@@ -1,0 +1,23 @@
+type ModifyComment{
+    id: Int
+    writer: String
+    modifyAt: DateTime
+    contents: String
+}
+
+type ModifyCommentSuccess {
+    status: String!
+    message: String!
+    data: ModifyComment!
+}
+
+type ModifyCommentFailure {
+    status: String!
+    message: String!
+}
+
+union ModifyCommentResult = ModifyCommentSuccess | ModifyCommentFailure
+
+type Mutation {
+    modifyComment(commentId: Int! contents: String!): ModifyCommentResult!
+}
