@@ -69,7 +69,7 @@ export default {
                         })
 
                         if(comment){
-                            sequence = comment.sequence;
+                            sequence = comment.sequence + 1;
                             depth = comment.depth;
                         }else{
                             depth = parentComment.depth + 1;
