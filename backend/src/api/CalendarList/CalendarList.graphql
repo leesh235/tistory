@@ -1,0 +1,22 @@
+type CalendarList {
+    id: Int!
+    title: String!
+    creatAt: DateTime!
+}
+
+type CalendarListSuccess {
+    status: String!
+    message: String!
+    data: [CalendarList]!
+}
+
+type CalendarListFailure {
+    status: String!
+    message: String!
+}
+
+union CalendarListResult = CalendarListSuccess | CalendarListFailure
+
+type Query {
+    getCalendarList: CalendarListResult!
+}
