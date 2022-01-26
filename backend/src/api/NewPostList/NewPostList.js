@@ -1,21 +1,21 @@
 import { PrismaClient } from "@prisma/client";
 import { SUCCESS, ERROR } from "../../constants/statusCode";
-import { SUCCESS_GET_POPULARPOSTLIST, NOT_EXIST_POSTLIST } from "../../constants/message";
+import { SUCCESS_GET_NEWPOSTLIST, NOT_EXIST_POSTLIST } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
 export default {
     Query: {
-        getPopularPostList: async(_,args) => {
+        getNewPostList: async(_,args) => {
             try {
 
-                const popularPostList = await prisma.post.findMany({
+                const newPostList = await prisma.post.findMany({
                     where: {
                         deleteAt: null
                     },
                     take: 5,
                     orderBy: {
-                        hits: "desc"
+                        createAt: "desc"
                     },
                     select: {
                         id: true,
@@ -36,11 +36,11 @@ export default {
                     }
                 });
 
-                const postLen = popularPostList.length;
+                const postLen = newPostList.length;
 
                 if(postLen === 0){
                     return {
-                        __typename: "PopularPostListFailure",
+                        __typename: "NewPostListFailure",
                         status: ERROR,
                         message:NOT_EXIST_POSTLIST
                     };
@@ -49,19 +49,19 @@ export default {
                 let result = [];
                 for(let i = 0; i < postLen; i++){
                     result.push({
-                        postId: popularPostList[i].id,
-                        author: popularPostList[i].author.email,
-                        title: `[${popularPostList[i].categories.name}]`+popularPostList[i].title,
-                        createAt: popularPostList[i].createAt,
-                        hits: popularPostList[i].hits,
+                        postId: newPostList[i].id,
+                        author: newPostList[i].author.email,
+                        title: `[${newPostList[i].categories.name}]`+newPostList[i].title,
+                        createAt: newPostList[i].createAt,
+                        hits: newPostList[i].hits,
                         thumbnail: ""
                     })
                 }
 
                 return {
-                    __typename: "PopularPostListSuccess",
+                    __typename: "NewPostListSuccess",
                     status: SUCCESS,
-                    message:SUCCESS_GET_POPULARPOSTLIST,
+                    message:SUCCESS_GET_NEWPOSTLIST,
                     data: result
                 };
 

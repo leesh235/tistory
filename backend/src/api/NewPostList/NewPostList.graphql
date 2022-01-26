@@ -1,0 +1,25 @@
+type NewPostList {
+    postId: Int!
+    author: String!
+    title: String!
+    createAt: DateTime!
+    hits: Int!
+    thumbnail: String
+}
+
+type NewPostListSuccess {
+    status: String!
+    message: String!
+    data: [NewPostList]!
+}
+
+type NewPostListFailure {
+    status: String!
+    message: String!
+}
+
+union NewPostListResult = NewPostListSuccess | NewPostListFailure
+
+type Query {
+    getNewPostList: NewPostListResult!
+}
