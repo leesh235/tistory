@@ -1,7 +1,7 @@
 type CalendarList {
-    id: Int!
-    title: String!
-    creatAt: DateTime!
+    id: Int
+    title: String
+    creatAt: DateTime
 }
 
 type CalendarListSuccess {
