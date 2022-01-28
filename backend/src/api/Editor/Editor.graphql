@@ -1,9 +1,22 @@
-
-
-type Mutation {
-    uploadText(postId: Int): Response!
+type Editor {
+    id: Int!
+    title: String!
+    contentsUrl: String!
 }
 
-type Query {
-    dummy: String
+type EditorSuccess {
+    status: String!
+    message: String!
+    data: Editor!
+}
+
+type EditorFailure {
+    status: String!
+    message: String!
+}
+
+union EditorResult = EditorSuccess | EditorFailure
+
+type Mutation {
+    writeEditor(postId: Int! contentsUrl: String!): EditorResult!
 }

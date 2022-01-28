@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { isAuthenticated } from "../../utile"
+import { isAuthenticated } from "../../utile";
+import { SUCCESS, ERROR } from "../../constants/statusCode";
+import { SUCCESS_WRITE_CONTENTSURL, REQUIRED_LOGIN, ADDMIN_ERROR, REQUIRED_INPUT } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -9,55 +11,59 @@ export default {
             try{
                 const exist = isAuthenticated(request);
             
-                if( exist === true ){
-                    const { postId } = args;
-                    const userId = request.user.userId;
+                if(exist){
+                    const { postId, contentsUrl } = args;
+                    const { id, role } = request.user;
 
-                    const findPost = await prisma.post.findUnique({
-                        where:{
-                            postId
+                    if(role !== "ADMIN"){
+                        return {
+                            __typename: "EditorFailure",
+                            status: ERROR,
+                            message: ADDMIN_ERROR
+                        };
+                    }
+    
+                    if(contentsUrl !== ""){
+                        return {
+                            __typename: "EditorFailure",
+                            status: ERROR,
+                            message: REQUIRED_INPUT
+                        };
+                    }
+
+                    const result = await prisma.post.update({
+                        where: {
+                            id: postId
+                        },
+                        data: {
+                            contentsUrl
+                        },
+                        select: {
+                            id: true,
+                            title: true,
+                            contentsUrl: true
                         }
                     })
 
-                    if(userId !== findPost.userId){
-                        return {
-                            check: false,
-                            status: "you`re not author of this post "
-                        };
-                    }
-
-                    if(!findPost.contents){
-                        const uploadText = await prisma.post.update({
-                            where: {
-                                postId
-                            },
-                            data: {
-                                contents: true
-                            }
-                        })
-                        return {
-                            check: true,
-                            status: "success"
-                        };
-                    }else{
-                        return {
-                            check: true,
-                            status: "success Modify"
+                    return {
+                        __typename: "EditorSuccess",
+                        status: SUCCESS,
+                        message: SUCCESS_WRITE_CONTENTSURL,
+                        data: {
+                            ...result
                         }
-                    }
+                    };
                 
                 }else{
                     return {
-                        check: false,
-                        status: "is not log in"
+                        __typename: "EditorFailure",
+                        status: ERROR,
+                        message: REQUIRED_LOGIN
                     };
                 }
-            }catch(err){   
-                console.log(err);
-                return {
-                    check: false,
-                    status: "server error"
-                };
+
+            } catch (error){
+                throw error;
             }
         }
     }
