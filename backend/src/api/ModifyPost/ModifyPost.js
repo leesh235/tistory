@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { isAuthenticated } from "../../utile"
+import { isAuthenticated } from "../../utile";
+import { SUCCESS, ERROR } from "../../constants/statusCode";
+import { SUCCESS_MODIFY_POST, REQUIRED_LOGIN, ADDMIN_ERROR, REQUIRED_INPUT } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -12,53 +14,60 @@ export default {
            
                 if(exist){
                     const { postId, title } = args;
-                    const userId = request.user.userId;
-           
-                    const existPost = await prisma.post.findUnique({
-                        where:{
-                            postId
-                        }
-                    })
-                    
-                    if(userId === existPost.userId){
-                        if(existPost.title === title){
-                            return {
-                                check: true,
-                                status: "didn't change the title"
-                            };
-                        }else{
-                            await prisma.post.update({
-                                where:{
-                                    postId
-                                },
-                                data: {
-                                    title
-                                }
-                            })
-                            return {
-                                check: true,
-                                status: "success"
-                            };
-                        }
-                    }else{
+                    const { id, role } = request.user;
+
+                    if(role !== "ADMIN"){
                         return {
-                            check: false,
-                            status: "You're not the author of this post."
+                            __typename: "ModifyPostFailure",
+                            status: ERROR,
+                            message: ADDMIN_ERROR
                         };
                     }
-                }else{
-                    console.log("You need to log in to perform this action");
+
+                    let setData = {};
+
+                    if(title !== ""){
+                        setData = {
+                            title,
+                            modifyAt: new Date()
+                        }
+                    }else{
+                        setData = {
+                            modifyAt: new Date()
+                        }
+                    }
+
+                    const result = await prisma.post.update({
+                        where: {
+                            id: postId
+                        },
+                        data: setData,
+                        select: {
+                            id: true,
+                            title: true,
+                            modifyAt: true
+                        }
+                    })
+
                     return {
-                        check: false,
-                        status: "Is not log in"
+                        __typename: "ModifyPostSuccess",
+                        status: ERROR,
+                        message: SUCCESS_MODIFY_POST,
+                        data: {
+                            ...result
+                        }
+                    };         
+
+                }else{
+                    return {
+                        __typename: "ModifyPostFailure",
+                        status: ERROR,
+                        message: REQUIRED_LOGIN
                     };
                 }
+
             } catch (error){
-                console.log(error);
-                return {
-                    check: false,
-                    status: "error"
-                };
+                throw error;
             }
         }
     }

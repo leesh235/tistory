@@ -1,8 +1,22 @@
-
-type Mutation {
-    ModifyPost(postId: Int! title: String!): Response!
+type ModifyPost{
+    id: Int!
+    title: String!
+    modifyAt: DateTime!
 }
 
-type Query {
-    dummy: String
+type ModifyPostSuccess {
+    status: String!
+    message: String!
+    data: ModifyPost!
+}
+
+type ModifyPostFailure {
+    status: String!
+    message: String!
+}
+
+union ModifyPostResult = ModifyPostSuccess | ModifyPostFailure
+
+type Mutation {
+    modifyPost(postId: Int! title: String): ModifyPostResult!
 }

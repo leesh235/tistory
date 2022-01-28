@@ -25,6 +25,7 @@ export const SUCCESS_GET_NOTICE = "공지사항 작성 성공";
 export const SUCCESS_GET_CALENDARLIST = "달력 가져오기 성공";
 export const SUCCESS_WRITE_USERIMAGE = "유저 이미지 저장 성공";
 export const SUCCESS_WRITE_CONTENTSURL = "게시글 url 저장 성공";
+export const SUCCESS_MODIFY_POST = "게시글 수정 성공";
 
 export const EXIST_USER = "이미 가입한 이메일입니다.";
 export const EXIST_DELETE = "이미 탈퇴한 이메일입니다.";
