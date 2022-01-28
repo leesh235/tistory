@@ -1,9 +1,22 @@
-
-
-type Mutation {
-    ModifyProfile(password: String): Response!
+type ModifyProfile{
+    id: Int!
+    nickName: String!
+    modifyAt: DateTime!
 }
 
-type Query {
-    dummy: String
+type ModifyProfileSuccess {
+    status: String!
+    message: String!
+    data: ModifyProfile!
+}
+
+type ModifyProfileFailure {
+    status: String!
+    message: String!
+}
+
+union ModifyProfileResult = ModifyProfileSuccess | ModifyProfileFailure
+
+type Mutation {
+    modifyProfile(nickName: String): ModifyProfileResult!
 }

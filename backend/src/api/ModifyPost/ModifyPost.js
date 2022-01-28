@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { isAuthenticated } from "../../utile";
 import { SUCCESS, ERROR } from "../../constants/statusCode";
-import { SUCCESS_MODIFY_POST, REQUIRED_LOGIN, ADDMIN_ERROR, REQUIRED_INPUT } from "../../constants/message";
+import { SUCCESS_MODIFY_POST, REQUIRED_LOGIN, ADDMIN_ERROR } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -51,7 +51,7 @@ export default {
 
                     return {
                         __typename: "ModifyPostSuccess",
-                        status: ERROR,
+                        status: SUCCESS,
                         message: SUCCESS_MODIFY_POST,
                         data: {
                             ...result

@@ -1,54 +1,65 @@
 import { PrismaClient } from "@prisma/client";
-import { isAuthenticated, generatPassword } from "../../utile"
+import { isAuthenticated, generatPassword } from "../../utile";
+import { SUCCESS, ERROR } from "../../constants/statusCode";
+import { SUCCESS_MODIFY_PROFILE, REQUIRED_LOGIN } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
 export default {
     Mutation: {
-        ModifyProfile: async (_, args, { request } ) => {
+        modifyProfile: async (_, args, { request } ) => {
             try{
                 
                 const exist = isAuthenticated(request);
      
                 if(exist){
-                    const { password } = args;
-                    const userId = request.user.userId;  
+                    const { nickName } = args;
+                    const { id } = request.user;
 
-                    if(password !== undefined && password !== null){
-                        await prisma.user.update({
-                            where:{
-                                userId
-                            },
-                            data: {
-                                password:generatPassword(password)
-                            }
-                        })
+                    let setData = {};
 
-                        return {
-                            check: true,
-                            status: "success",
-                        };
-                    } else{
-                        return {
-                            check: false,
-                            status: "not modify password",
-                        };
+                    if(nickName !== ""){
+                        setData = {
+                            nickName,
+                            modifyAt: new Date()
+                        }
+                    }else{
+                        setData = {
+                            modifyAt: new Date()
+                        }
                     }
 
-                }else{
-                    console.log("You need to log in to perform this action1");
+                    const result = await prisma.user.update({
+                        where: {
+                            id
+                        },
+                        data: setData,
+                        select: {
+                            id: true,
+                            nickName: true,
+                            modifyAt: true
+                        }
+                    })
+
                     return {
-                        check: false,
-                        status: "is mot log in",
+                        __typename: "ModifyProfileSuccess",
+                        status: SUCCESS,
+                        message: SUCCESS_MODIFY_PROFILE,
+                        data: {
+                            ...result
+                        }
+                    };                    
+
+                }else{
+                    return {
+                        __typename: "ModifyProfileFailure",
+                        status: ERROR,
+                        message: REQUIRED_LOGIN
                     };
                 }
 
             } catch (error){
-                console.log(error);
-                return {
-                    check: false,
-                    status: "error",
-                };
+                throw error;
             }
         }
     }
