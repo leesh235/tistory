@@ -36,12 +36,13 @@ export default {
                             id: postId
                         },
                         data: {
-                            contentsUrl
+                            contentsUrl,
                         },
                         select: {
                             id: true,
                             title: true,
-                            contentsUrl: true
+                            contentsUrl: true,
+                            modifyAt: true
                         }
                     })
 

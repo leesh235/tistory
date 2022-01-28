@@ -2,6 +2,7 @@ type Editor {
     id: Int!
     title: String!
     contentsUrl: String!
+    modifyAt: DateTime!
 }
 
 type EditorSuccess {
