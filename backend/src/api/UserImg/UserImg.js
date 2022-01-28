@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { isAuthenticated, generatPassword } from "../../utile"
+import { isAuthenticated, generatPassword } from "../../utile";
+import { SUCCESS, ERROR } from "../../constants/statusCode";
+import { SUCCESS_WRITE_USERIMAGE, REQUIRED_LOGIN, ADDMIN_ERROR, REQUIRED_INPUT } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -9,40 +11,58 @@ export default {
             try{
                 const exist = isAuthenticated(request);
 
-                if( exist ){
+                if(exist){
                 
-                    const { userImg } = args;
-                    const userId = request.user.userId;
-    
-                    if(userImg){
-                        const data = await prisma.user.update({
-                            where:{
-                                userId
-                            },
-                            data: {
-                                userImg: true
-                            }
-                        })
-    
+                    const { imageUrl } = args;
+                    const { id, role } = request.user;
+
+                    if(role !== "ADMIN"){
                         return {
-                            check: true,
-                            status: "success",
+                            __typename: "UserImageFailure",
+                            status: ERROR,
+                            message: ADDMIN_ERROR
                         };
-                    }else{
+                    }
+    
+                    if(imageUrl !== ""){
                         return {
-                            check: false,
-                            status: "no exist img",
+                            __typename: "UserImageFailure",
+                            status: ERROR,
+                            message: REQUIRED_INPUT
                         };
                     }
 
+                    const result = await prisma.user.update({
+                        where: {
+                            id
+                        },
+                        data: {
+                            imageUrl
+                        },
+                        select: {
+                            id: true,
+                            nickName: true,
+                            imageUrl: true
+                        }
+                    })
+
+                    return {
+                        __typename: "UserImageSuccess",
+                        status: SUCCESS,
+                        message: SUCCESS_WRITE_USERIMAGE,
+                        data: result
+                    };
+
                 }else{
-                    console.log("You need to log in to perform this action2");
-                    return {userImg:""};
+                    return {
+                        __typename: "UserImageFailure",
+                        status: ERROR,
+                        message: REQUIRED_LOGIN
+                    };
                 }
 
             } catch (error){
-                console.log(error);
-                return {userImg:""};
+                throw error;
             }
         }
     }

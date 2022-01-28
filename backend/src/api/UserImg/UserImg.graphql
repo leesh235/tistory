@@ -1,8 +1,22 @@
-
-type Mutation {
-    ModifyUserImg(userImg: Boolean): Response!
+type UserImage {
+    id: Int!
+    nickName: String!
+    imageUrl: String!
 }
 
-type Query {
-    dummy: String
+type UserImageSuccess {
+    status: String!
+    message: String!
+    data: UserImage!
+}
+
+type UserImageFailure {
+    status: String!
+    message: String!
+}
+
+union UserImageResult = UserImageSuccess | UserImageFailure
+
+type Mutation {
+    writeUserImage(imageUrl: String!): UserImageResult!
 }
