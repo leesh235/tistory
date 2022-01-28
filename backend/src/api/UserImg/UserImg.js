@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default {
     Mutation: {
-        ModifyUserImg: async(_, args, { request } ) => {
+        writeUserImage: async(_, args, { request } ) => {
             try{
                 const exist = isAuthenticated(request);
 

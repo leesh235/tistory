@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default {
     Mutation: {
-        uploadText: async (_, args, { request } ) => {
+        writeEditor: async (_, args, { request } ) => {
             try{
                 const exist = isAuthenticated(request);
             

@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default {
     Mutation: {
-        ModifyPost: async (_, args, { request } ) => {
+        modifyPost: async (_, args, { request } ) => {
             try{
                 
                 const exist = isAuthenticated(request);
