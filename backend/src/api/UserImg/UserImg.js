@@ -50,7 +50,9 @@ export default {
                         __typename: "UserImageSuccess",
                         status: SUCCESS,
                         message: SUCCESS_WRITE_USERIMAGE,
-                        data: result
+                        data: {
+                            ...result
+                        }
                     };
 
                 }else{
