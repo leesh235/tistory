@@ -3,7 +3,7 @@ type Profile {
     nickName: String!
     createAt: DateTime!
     role:  String!
-    imageUrl: Boolean
+    imageUrl: String
 }
 
 type ProfileSuccess {
