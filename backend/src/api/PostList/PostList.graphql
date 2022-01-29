@@ -1,4 +1,4 @@
-type PostList {
+type Posts {
     postId: Int!
     author: String!
     title: String!
@@ -7,10 +7,15 @@ type PostList {
     thumbnail: String
 }
 
+type PostList {
+    posts: [Posts]!
+    postsQuantity: Int!
+}
+
 type PostListSuccess {
     status: String!
     message: String!
-    data: [PostList]!
+    data: PostList!
 }
 
 type PostListFailure {

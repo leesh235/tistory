@@ -76,9 +76,9 @@ export default {
                     }
                 })
 
-                let result = [];
+                let posts = [];
                 for(let i = 0; i < postList.length; i++){
-                    result.push({
+                    posts.push({
                         postId: postList[i].id,
                         author: postList[i].author.email,
                         title: `[${postList[i].categories.name}]`+postList[i].title,
@@ -86,6 +86,11 @@ export default {
                         hits: postList[i].hits,
                         thumbnail: postList[i].thumbnail
                     })
+                }
+
+                const result = {
+                    posts,
+                    postsQuantity: postLen
                 }
 
                 return {
