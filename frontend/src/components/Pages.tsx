@@ -39,7 +39,7 @@ interface Props{
     children: JSX.Element
 };
 
-export const Pages = ({ total, each, page, setPage, children}: Props) => {
+export const Pages = ({ total = 1, each, page, setPage, children}: Props) => {
 
     const history = useHistory();
 
