@@ -23,6 +23,7 @@ export default {
                         ]
                     },
                     select: {
+                        id: true,
                         title: true,
                         contentsUrl: true,
                         hits: true,

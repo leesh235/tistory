@@ -1,4 +1,5 @@
 type Post {
+    id: Int!
     title: String!
     contentsUrl: String
     author: String!
