@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import { Text } from './Text';
 
@@ -25,59 +26,53 @@ const Wrapper = styled.section`
     border-radius: 9px;
 `;
 
-const Profile = styled.article`
-    width: 200px;
-    height: 200px;
-    border: 1px solid black;
+const Category = styled.ul`
 `;
 
-const Category = styled.article`
+const ButtonWrapper = styled.li`
+    cursor: pointer;
 `;
-
-const Tag = styled.article`
-`;
-
-interface Category{
-    categoryId: number,
-    categoryName: string
-}
 
 interface SubCategory{
-    subCategoryId: number,
-    categoryId: number,
-    subCategoryName: string
+    id: number,
+    name: string
+}
+
+interface Category{
+    id: number,
+    name: string,
+    sub: Array<SubCategory>
 }
 
 interface Props{
     category: Array<Category>,
-    subCategory: Array<SubCategory>
+    handleClickCategory: (id: number) => void
 }
 
+export const CategoryList = ({ category, handleClickCategory }: Props) => {
 
-export const CategoryList = ({ category, subCategory }: Props) => {
+    const store_categoryId = useSelector((state: any) => state.category.categoryId);
 
     return(
         <Wrapper>
-            {/* <Profile>자기소개</Profile> */}
-
             <Category>
                 {category.map((val, idx) => {
                     return(
                         <>
-                            <Text fs={"18px"} text={val.categoryName} key={val.categoryId}  margin={"10px 0px 10px 0px"}/>
-                            {subCategory.map((subVal, subIdx) => {
-                                if(subVal.categoryId === val.categoryId){
-                                    return(
-                                        <Text fs={"18px"} text={`-${subVal.subCategoryName}`} key={subVal.subCategoryId} margin={"10px 0px 10px 3px"}/>
-                                    );
-                                }
+                            <ButtonWrapper onClick={() => handleClickCategory(val.id)}>
+                                <Text fs={"18px"} text={val.name} key={val.id} fc={store_categoryId === val.id ? "red" : "black"} margin={"10px 0px 10px 0px"}/>
+                            </ButtonWrapper>
+                            {val.sub.map((subVal) => {
+                                return(
+                                    <ButtonWrapper onClick={() => handleClickCategory(subVal.id)}>
+                                        <Text fs={"18px"} text={`-${subVal.name}`} key={subVal.id} fc={store_categoryId === subVal.id ? "red" : "black"} margin={"10px 0px 10px 3px"}/>
+                                    </ButtonWrapper>
+                                );
                             })}
                         </>
                     );
                 })}
             </Category>
-
-            <Tag>태그</Tag>
         </Wrapper>
     );
 }

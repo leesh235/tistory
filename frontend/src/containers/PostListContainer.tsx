@@ -5,15 +5,18 @@ import { PostList } from '../components/Post/PostList';
 import { Pages } from "../components/Pages";
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
+import { useSelector } from "react-redux";
 
 export const PostListContainer = () => {
 
     const [count, setCount] = useState<number>(6);
     const [page, setPage] = useState<number>(1);
 
+    const store_categoryId = useSelector((state: any) => state.category.categoryId);
+
     const { loading, error, data } = useQuery(POSTLIST, { 
         variables: {
-            categoryId: 1,
+            categoryId: store_categoryId,
             count,
             page
         }
