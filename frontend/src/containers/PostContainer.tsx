@@ -72,9 +72,10 @@ export const PostContainer = () => {
     }
 
     useEffect(() => {
-        // init();
-        // console.log(error)
-    },[loading])
+        if(data?.getPostDetail?.__typename !== "PostSuccess"){
+            alert(data?.getPostDetail?.message);
+        }
+    },[])
 
     if(loading) return <Loading /> 
     else if(error) return <Error />
