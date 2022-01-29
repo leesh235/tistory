@@ -1,8 +1,6 @@
-import React from 'react';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/theme";
-import { BrowserRouter as Router} from 'react-router-dom';
 import Routes from './components/Routes';
 import { Provider } from 'react-redux';
 import createStore from './redux/store';
@@ -11,7 +9,7 @@ import reducers from "./redux/reducers/index";
 import { useQuery } from '@apollo/client';
 import { TOKENINFO } from "./apollo/tokenQuery";
 
-// const store = createStore(reducers);
+const store = createStore(reducers);
 
 const App = () => {
 
@@ -20,12 +18,12 @@ const App = () => {
   }} = useQuery(TOKENINFO);
   
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes />
       </ ThemeProvider>
-    // </Provider>
+    </Provider>
   )
 }
 

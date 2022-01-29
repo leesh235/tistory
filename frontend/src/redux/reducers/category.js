@@ -1,15 +1,15 @@
-import * as userAtion from "../actions/user";
+import * as categoryAtion from "../actions/category";
 
 const initState = {
-    user: ""
+    categoryId: null
 }
 
 const reducers = (state = initState, action) => {
     const { type, data } = action;
     switch(type){
-        case userAtion.USER_ACTION_TYPE: {
+        case categoryAtion.CATEGORY_ACTION_TYPE: {
             return {
-                user: data
+                categoryId: data
             }
         }
         default: {
