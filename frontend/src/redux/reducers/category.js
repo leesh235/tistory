@@ -1,7 +1,7 @@
 import * as categoryAtion from "../actions/category";
 
 const initState = {
-    categoryId: null
+    categoryId: 1
 }
 
 const reducers = (state = initState, action) => {
