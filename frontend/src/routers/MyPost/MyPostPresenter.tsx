@@ -12,8 +12,8 @@ const Wrapper = styled.section`
 interface Post{
     postId?: number,
     title?: string,
-    createdAt?: string,
-    writer?: string,
+    createAt?: string,
+    author?: string,
 }
 
 interface Props extends Post{
@@ -30,8 +30,8 @@ export const MyPostPresenter = ({myposts}: Props) => {
                         key={index}
                         postId={mypost.postId}
                         title={mypost.title}
-                        createdAt={mypost.createdAt}
-                        writer={mypost.writer}
+                        createAt={mypost.createAt}
+                        author={mypost.author}
                     />
                 })
             : 

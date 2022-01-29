@@ -18,7 +18,7 @@ const ListWrapper = styled.section`
 interface Post{
     postId?: number,
     title?: string,
-    createdAt?: string,
+    createAt?: string,
     writer?: string,
 }
 
@@ -36,8 +36,8 @@ const HomePresenter = ({ postList }: Props) => {
                         key={index}
                         postId={post.postId}
                         title={post.title}
-                        createdAt={post.createdAt}
-                        writer={post.writer}
+                        createAt={post.createAt}
+                        
                         />
                     })
                     : 

@@ -11,25 +11,30 @@ const Wrapper = styled.section`
 interface Post{
     postId?: number,
     title?: string,
-    createdAt?: string,
-    writer?: string,
+    createAt?: string,
+    author?: string,
+    hits?: number,
+    thumbnail?: string,
 }
 
 interface Props extends Post{
     postList: Array<Post>,
+    postsQuantity: number
 }
 
-export const PostList = ({ postList }: Props) => {
+export const PostList = ({ postList, postsQuantity = 0 }: Props) => {
     return(
         <Wrapper>
-            {postList?.length !== 0 ? 
-                postList?.map((post , index) => {
+            {postsQuantity !== 0 ? 
+                postList?.map((post) => {
                     return <Contents
-                    key={index}
-                    postId={post.postId}
-                    title={post.title}
-                    createdAt={post.createdAt}
-                    writer={post.writer}
+                        key={post.postId}
+                        postId={post.postId}
+                        title={post.title}
+                        createAt={post.createAt}
+                        author={post.author}
+                        hits={post.hits}
+                        thumbnail={post.thumbnail}
                     />
                 })
                 : 

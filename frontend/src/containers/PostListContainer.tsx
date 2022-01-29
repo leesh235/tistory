@@ -3,23 +3,19 @@ import { useQuery } from '@apollo/client';
 import { POSTLIST } from '../querys/PostListQuery';
 import { PostList } from '../components/Post/PostList';
 import { Pages } from "../components/Pages";
-import { useHistory } from 'react-router-dom';
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
 
 export const PostListContainer = () => {
 
-    const history = useHistory();
-
-    let currentPage = +window.location.pathname.split("page=")[1];
-
-    const [count, setCount] = useState<number>(3);
+    const [count, setCount] = useState<number>(6);
     const [page, setPage] = useState<number>(1);
 
     const { loading, error, data } = useQuery(POSTLIST, { 
-        variables: { 
-            count: 3,
-            page: page
+        variables: {
+            categoryId: 1,
+            count,
+            page
         }
     });
 
@@ -32,12 +28,18 @@ export const PostListContainer = () => {
         }
     }
 
-    if(loading) return <Loading /> 
+    useEffect(() => {
+        if(data?.getPostList?.__typename !== "PostListSuccess"){
+            console.log(data?.getPostList?.message);
+        }
+    }, [data])
+
+    if(loading) return <Loading />
     else if(error) return <Error />
     else{
         return(
-            <Pages total={data?.getAllPosts?.postCnt} each={count} page={page} setPage={setPage}>
-                <PostList postList={data?.getAllPosts?.posts} />
+            <Pages total={data?.getPostList?.data?.postsQuantity} each={count} page={page} setPage={setPage}>
+                <PostList postList={data?.getPostList?.data?.posts} postsQuantity={data?.getPostList?.data?.postsQuantity} />
             </Pages>
         );
     }

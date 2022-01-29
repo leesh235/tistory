@@ -4,7 +4,7 @@ import moment from "moment"
 import { Link } from 'react-router-dom';
 import { Text } from "./Text";
 
-const Wrapper = styled.article<StyleProps>`
+const Wrapper = styled.article`
     padding: 20px;
     border-bottom: 1px solid gray;
 `;
@@ -27,29 +27,27 @@ const DateStyle = `
     margin-bottom: 15px;
 `;
 
-interface StyleProps {
-    writer?: string,
+interface Props {
+    author?: string,
     title?: string,
     postId?: number,
-    createdAt?: string,
+    createAt?: string,
+    hits?: number,
+    thumbnail?: string,
 }
 
-interface Props extends StyleProps{
-
-}
-
-export const Contents = ({writer, title, postId, createdAt }: Props) => {
+export const Contents = ({author, title, postId, createAt, hits, thumbnail }: Props) => {
     return(
         <Wrapper key={postId}>
             <Link to={{
                 pathname: `/detail/${postId}`,
                 state:{
-                    writer
+                    author
                 }
             }}>
                 <Text text={title} props={TitleStyle} />
-                <Text text={writer} props={UserStyle} />
-                <Text text={moment(createdAt).format("YYYY-MM-DD / LT")} props={DateStyle} />
+                <Text text={author} props={UserStyle} />
+                <Text text={moment(createAt).format("YYYY-MM-DD / LT")} props={DateStyle} />
             </Link>
         </Wrapper>
     );
