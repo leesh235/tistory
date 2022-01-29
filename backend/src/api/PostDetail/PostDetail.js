@@ -64,6 +64,7 @@ export default {
                     status: SUCCESS,
                     message: SUCCESS_GET_POST,
                     data: {
+                        id: post.id,
                         title: post.title,
                         contentsUrl: post.contentsUrl,
                         author: post.author.email,
