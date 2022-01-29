@@ -29,10 +29,10 @@ export const PostContainer = () => {
         }
     });
 
-    const writer = data?.getPostDetail?.Post?.writer;
-    const contents = data?.getPostDetail?.Post?.contents;
+    const writer = data?.getPostDetail?.data?.writer;
+    const contents = data?.getPostDetail?.data?.contents;
 
-    const [deletePost] = useMutation(DELETEPOST);
+    // const [deletePost] = useMutation(DELETEPOST);
 
     const init = async() => {
         if(contents){
@@ -50,30 +50,30 @@ export const PostContainer = () => {
 
     const deleteHandler = async() => {
         if(window.confirm("게시물을 삭제하시겠습니까?")){
-            const {data: {DeletePost : {check, status}}} = await deletePost({
-                variables: {
-                    postId: Number(postId)
-                }
-            })
-            if(check && contents){
-                const formData = {
-                    writer: writer,
-                    postId: Number(postId)
-                }
+            // const {data: {DeletePost : {check, status}}} = await deletePost({
+            //     variables: {
+            //         postId: Number(postId)
+            //     }
+            // })
+            // if(check && contents){
+            //     const formData = {
+            //         writer: writer,
+            //         postId: Number(postId)
+            //     }
         
-                deletePostApi(formData).then(
-                    data => {
-                        console.log(data)
-                    }
-                )
-            }
+            //     deletePostApi(formData).then(
+            //         data => {
+            //             console.log(data)
+            //         }
+            //     )
+            // }
             window.location.replace(`${routes.home}`);
         }
     }
 
     useEffect(() => {
-        init();
-        console.log(error)
+        // init();
+        // console.log(error)
     },[loading])
 
     if(loading) return <Loading /> 
@@ -81,9 +81,9 @@ export const PostContainer = () => {
     else{
         return (
             <PostDetail 
-                postContents={postContents}
-                post={data?.getPostDetail?.Post}
-                equal={data?.getPostDetail?.equal}
+                postContents={"postContents"}
+                post={data?.getPostDetail?.data}
+                equal={true}
                 onClick={deleteHandler}
             />
         );

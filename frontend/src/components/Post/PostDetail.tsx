@@ -28,10 +28,13 @@ const ContentWrapper = styled.div`
 `;
 
 interface Post {
-    writer: string,
+    id: number,
     title: string,
-    postId: number,
-    createdAt: string,
+    contentsUrl: string,
+    author: string,
+    createAt: string,
+    hits: number,
+    category: string,
 }
 
 interface Props {
@@ -41,15 +44,11 @@ interface Props {
     post: Post
 }
 
-export const PostDetail = ({postContents, post, equal, onClick}: Props) => {
+export const PostDetail = ({post, onClick}: Props) => {
 
     const createMarkup = () => {
-        return {__html: `${postContents}`};
+        return {__html: `${post.contentsUrl}`};
     }
-
-    useEffect(() => {
-
-    },[postContents])
 
     return(
         <MainContent>
@@ -60,17 +59,17 @@ export const PostDetail = ({postContents, post, equal, onClick}: Props) => {
                 <LineStyle w={"100%"} margin={"10px 0 10px 0"}/>
 
                 <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"}>
-                    <Text text={`작성자: ${post.writer}`} margin={"0 10px 0 0"}/>
-                    <Text text={`작성일: ${moment(post.createdAt).format("YYYY-MM-DD")}`}/>
+                    <Text text={`작성자: ${post.author}`} margin={"0 10px 0 0"}/>
+                    <Text text={`작성일: ${moment(post.createAt).format("YYYY-MM-DD")}`}/>
                 </FlexWrapper>
             </FlexWrapper>
 
             <ContentWrapper>
-                {postContents && <div dangerouslySetInnerHTML={createMarkup()} />}
+                <div dangerouslySetInnerHTML={createMarkup()} />
             </ContentWrapper>
 
             <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"} w={"90%"}>
-                {equal ? 
+                {/* {equal ? 
                     <Link to={{
                         pathname: `/modifyPost/${post.postId}`,
                     }}>
@@ -78,7 +77,7 @@ export const PostDetail = ({postContents, post, equal, onClick}: Props) => {
                     </Link> :
                     ""
                 }
-                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""}
+                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""} */}
             </FlexWrapper>
         </MainContent>
     );

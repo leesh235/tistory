@@ -3,15 +3,22 @@ import { gql } from '@apollo/client';
 export const POST = gql`
     query getPostDetail($postId: Int!){
         getPostDetail(postId: $postId){
-            equal
-            check
-            status
-            Post{
-                postId
-                writer
-                title
-                contents
-                createdAt
+            ...on PostSuccess{
+                status
+                message
+                data{
+                    id
+                    title
+                    contentsUrl
+                    author
+                    createAt
+                    hits
+                    category
+                }
+            }
+            ...on PostFailure{
+                status
+                message
             }
         }
     }
