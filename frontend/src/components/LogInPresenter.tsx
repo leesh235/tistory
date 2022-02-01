@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { LogInContainer } from "../containers/LogInContainer";
 
 const Wrapper = styled.section`
     display: flex;
@@ -8,10 +7,11 @@ const Wrapper = styled.section`
     justify-content: center;
 `;
 
-export const LogIn = () => {
+export const LogInPresenter = () => {
     return (
         <Wrapper>
-            <LogInContainer />
+            <div>github로 로그인</div>
+            <div>google로 로그인</div>
         </Wrapper>
     );
 }
