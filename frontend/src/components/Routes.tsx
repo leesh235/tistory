@@ -2,11 +2,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from './Header/Header';
 import { Footer } from './Footer';
-import Search from '../routers/Seach/index';
+
 import Home from '../pages/Home';
 import Post from '../pages/Post';
+import LogIn from '../pages/LogIn';
+import Page404 from '../pages/Page404';
+
+import Search from '../routers/Seach/index';
 import Add from '../routers/Add/index';
-import LogIn from '../routers/LogIn/index';
 import SignUp from '../routers/SignUp/index';
 import Profile from '../routers/Profile/index';
 import MyPost from '../routers/MyPost/index';
@@ -14,7 +17,6 @@ import Forget from '../routers/ForgetPass/index';
 import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
-import Page404 from '../pages/Page404';
 
 const Wrapper = styled.main`
     width: 100%;
