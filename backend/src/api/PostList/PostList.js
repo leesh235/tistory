@@ -13,7 +13,7 @@ export default {
                 let conditions;
 
                 //전체보기
-                if(categoryId === 0){
+                if(categoryId === 1){
                     conditions = { 
                         deleteAt: null 
                     }
