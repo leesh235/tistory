@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/common/Button";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { Text } from "../../components/Text";
 import { FlexWrapper } from "../../components/FlexWrapper";

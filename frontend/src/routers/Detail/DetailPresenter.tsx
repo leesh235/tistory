@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { LineStyle } from "../../components/LineStyle";
 import { FlexWrapper } from "../../components/FlexWrapper";
 import { Text } from "../../components/Text";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/common/Button";
 
 const MainContent = styled.section`
     display: flex;

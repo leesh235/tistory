@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Input } from "./Input";
-import { Button } from "./Button";
+import { Button } from "./common/Button";
 import { ErrorMessage } from "./ErrorMessage";
 import { Text } from "./Text";
 import { FlexWrapper } from "./FlexWrapper";

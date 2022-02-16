@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/common/Button";
 import { Input } from "../../components/Input";
 import { FlexWrapper } from "../../components/FlexWrapper";
 import { Text } from "../../components/Text";
