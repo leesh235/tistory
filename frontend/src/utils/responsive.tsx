@@ -11,11 +11,11 @@ export const PC = ({children} : Props) => {
 }
 
 export const Tablet = ({children} : Props) => {
-	const isTablet = useMediaQuery({query:"(max-width: 64em) and (min-width: 22.5em)"})
+	const isTablet = useMediaQuery({query:"(max-width: 63.94em) and (min-width: 22.5em)"})
 	return isTablet ? <React.Fragment>{children}</React.Fragment> : null
 }
 
 export const Mobile = ({children} : Props) => {
-	const isMobile = useMediaQuery({query:"(max-width: 22.5em)"})
+	const isMobile = useMediaQuery({query:"(max-width: 22.44em)"})
 	return isMobile ? <React.Fragment>{children}</React.Fragment> : null
 }
