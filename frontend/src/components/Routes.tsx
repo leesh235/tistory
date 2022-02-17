@@ -12,8 +12,6 @@ import Search from '../routers/Seach/index';
 import Add from '../routers/Add/index';
 import SignUp from '../routers/SignUp/index';
 import Profile from '../routers/Profile/index';
-import MyPost from '../routers/MyPost/index';
-import Forget from '../routers/ForgetPass/index';
 import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
@@ -34,8 +32,6 @@ const Routes = () => {
             <Wrapper>
                 <Switch>
                     <Route exact path="/search" component={Search} />
-                    <Route exact path="/forget" component={Forget} />
-                    <Route exact path="/mypost" component={MyPost} />
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/signup" component={SignUp} />
