@@ -1,13 +1,1 @@
-type Response{
-    status: Int
-    message: String
-    data: Data
-}
-
-type Query {
-    dummy: String
-}
-
-type Mutation {
-    dummy: String
-}
+scalar DateTime
