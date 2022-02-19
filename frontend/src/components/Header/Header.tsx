@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { TOKENINFO, TOKENLOGOUT } from "../../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { ListBar } from "../ListBar";
-import { Loading } from "../Loading";
+import { Text } from "../Text";
+import { PC, Tablet, Mobile } from "../../utils/responsive";
 
 const Wrapper = styled.header`
     display: flex;
@@ -28,31 +28,15 @@ const Logo = styled.h1`
     cursor:pointer;
 `;
 
-const LogOutStyle = styled.div`
-
-`;
-
-const Menu = styled.nav`
+const Menu = styled.ul`
     display: flex;
     flex-direction: row;
-    align-items: center;
-    height: 100%;
-`;
-
-const LinkStyle = styled.li`
-    display: flex;
-    align-items: center;
-    width: auto;
-    height: 2.5rem;
-    margin: 0 2em;
-    cursor:pointer;
-`;
-
-const ListWrapper = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
+    >:nth-child(1){
+        margin-right: 20px;
+    }
+    >:nth-child(2){
+        margin-left: 20px;
+    }
 `;
 
 export const Header = () => {
@@ -61,7 +45,6 @@ export const Header = () => {
         isLoggedIn
     }} = useQuery(TOKENINFO);
 
-    const [open, setOpen] = useState(false);
     const [tokenMutation] = useMutation(TOKENLOGOUT);
 
     const handleLogOut = async(e: React.MouseEvent) => {
@@ -79,36 +62,48 @@ export const Header = () => {
         }, 500);
     }
 
-    const onList = () => {
-        if(open === true){
-            setOpen(false);
-        }else{
-            setOpen(true);
-        }
-    }
-
-    if(!loading){
-        return (
-            <Wrapper>
+    return (
+        <Wrapper>
+            <PC>
                 <Logo onClick={onClick}>tistory</Logo>
                 <Menu>
-                    <LinkStyle>
-                        {isLoggedIn && <Link to="/profile">profile</Link>}
-                    </LinkStyle>
-                    <LinkStyle>
-                        {isLoggedIn ? <LogOutStyle onClick={handleLogOut}>Log out</LogOutStyle> : <Link to="/login">Log in</Link>}
-                    </LinkStyle>
-    
-                    <LinkStyle onClick={onList}>
-                        <ListWrapper>
-                            <>List</>
-                            {open ? <ListBar display={"block"} /> : null }
-                        </ListWrapper>
-                    </LinkStyle>
+                    <li>
+                        <Text text={"검색"}/>
+                    </li>
+                    <li>
+                        {isLoggedIn ? 
+                                <div onClick={handleLogOut}>
+                                    <Text text={"로그아웃"}/>
+                                </div> 
+                            : 
+                                <Link to="/login">
+                                    <Text text={"로그인"}/>
+                                </Link>}
+                    </li>
                 </Menu>
-            </Wrapper>
-        );
-    }else{
-        return <Loading />
-    }
+            </PC>
+
+            <Tablet>
+                <Logo onClick={onClick}>tistory</Logo>
+                <Menu>
+                    <li>
+                        {isLoggedIn ? 
+                                <div onClick={handleLogOut}>
+                                    <Text text={"로그아웃"}/>
+                                </div> 
+                            : 
+                                <Link to="/login">
+                                    <Text text={"로그인"}/>
+                                </Link>}
+                    </li>
+                </Menu>
+            </Tablet>
+
+            <Mobile>
+                <Text text={"메뉴"}/>
+                <Logo onClick={onClick}>tistory</Logo>
+                <Text text={"검색"}/>
+            </Mobile>
+        </Wrapper>
+    );
 }

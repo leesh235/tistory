@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { PostListContainer } from '../containers/PostListContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
+import { PC, Tablet, Mobile } from '../utils/responsive';
 
 const Wrapper = styled.main`
     display: flex;
@@ -8,11 +9,26 @@ const Wrapper = styled.main`
     width: 100%;
 `;
 
+const ListButton = styled.div`
+    cursor: pointer;
+`;
+
 const Home = () => {
     return(
         <Wrapper>
-            <CategoryContainer />
-            <PostListContainer />
+            <PC>
+                <CategoryContainer />
+                <PostListContainer />
+            </PC>
+
+            <Tablet>
+                <ListButton>버튼</ListButton>
+                <PostListContainer />
+            </Tablet>
+
+            <Mobile>
+                <PostListContainer />
+            </Mobile>
         </Wrapper>
     );
 }
