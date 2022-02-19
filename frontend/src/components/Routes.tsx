@@ -17,11 +17,10 @@ import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
 
 const Wrapper = styled.main`
-    width: 100%;
+    width: 100vw;
     max-width: 1024px;
-    height: 100%;
-    min-height: 75vh;
-    margin: 100px auto 50px auto;
+    height: calc(100vh - 140px);
+    margin: 80px auto 0 auto;
 `;
 
 const Routes = () => {
