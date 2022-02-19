@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import { PostListContainer } from '../containers/PostListContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
 import { PC, Tablet, Mobile } from '../utils/responsive';
+import { ListButton } from '../components/ListButton';
 
 const Wrapper = styled.main`
     display: flex;
     flex-direction: row;
     width: 100%;
-`;
-
-const ListButton = styled.div`
-    cursor: pointer;
 `;
 
 const Home = () => {
@@ -22,7 +19,7 @@ const Home = () => {
             </PC>
 
             <Tablet>
-                <ListButton>버튼</ListButton>
+                <ListButton />
                 <PostListContainer />
             </Tablet>
 

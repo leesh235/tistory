@@ -6,6 +6,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { Text } from "../Text";
 import { PC, Tablet, Mobile } from "../../utils/responsive";
+import { ListButton } from "../ListButton";
+import { Search } from "../../assets/svg/Search";
 
 const Wrapper = styled.header`
     display: flex;
@@ -68,7 +70,7 @@ export const Header = () => {
                 <Logo onClick={onClick}>tistory</Logo>
                 <Menu>
                     <li>
-                        <Text text={"검색"}/>
+                        <Search />
                     </li>
                     <li>
                         {isLoggedIn ? 
@@ -100,9 +102,9 @@ export const Header = () => {
             </Tablet>
 
             <Mobile>
-                <Text text={"메뉴"}/>
+                <ListButton />
                 <Logo onClick={onClick}>tistory</Logo>
-                <Text text={"검색"}/>
+                <Search />
             </Mobile>
         </Wrapper>
     );
