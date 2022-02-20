@@ -7,27 +7,59 @@ import { useHistory } from "react-router-dom";
 import { Text } from "../Text";
 import { PC, Tablet, Mobile } from "../../utils/responsive";
 import { ListButton } from "../ListButton";
-import { Search } from "../../assets/svg/Search";
+import { SearchInput } from "../SearchInput";
 
 const Wrapper = styled.header`
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
-    position: fixed;
+    background-color: white;
+    box-shadow: 0 0.5px 3px gray;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
-    background-color: white;
-    box-shadow: 0 0.5px 3px gray;
-    padding: 0px 50px;
+    height: 80px;
+
+    @media screen and (min-width: 64em){
+        >:nth-child(1){
+            margin: 0 0 0 50px;
+        }
+
+        >:nth-child(2){
+            margin: 0 50px 0 0;
+        }
+    }
+
+    @media screen and (max-width: 22.44em){
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 65px;
+
+        >:nth-child(1){
+            margin: 0 0 0 20px;
+        }
+
+        >:nth-child(3){
+            margin: 0 20px 0 0;
+        }
+    }
+
 `;
 
 const Logo = styled.h1`
     color: red;
     cursor:pointer;
+    margin-bottom: 8px;
+
+    @media screen and (max-width: 22.44em){
+        font-size: 24px;
+    }
 `;
 
 const Menu = styled.ul`
@@ -37,6 +69,7 @@ const Menu = styled.ul`
         margin-right: 20px;
     }
     >:nth-child(2){
+        margin-top: 3px;
         margin-left: 20px;
     }
 `;
@@ -67,10 +100,10 @@ export const Header = () => {
     return (
         <Wrapper>
             <PC>
-                <Logo onClick={onClick}>tistory</Logo>
+                <Logo onClick={onClick}>Leesh</Logo>
                 <Menu>
                     <li>
-                        <Search />
+                        <SearchInput />
                     </li>
                     <li>
                         {isLoggedIn ? 
@@ -86,7 +119,7 @@ export const Header = () => {
             </PC>
 
             <Tablet>
-                <Logo onClick={onClick}>tistory</Logo>
+                <Logo onClick={onClick}>Leesh</Logo>
                 <Menu>
                     <li>
                         {isLoggedIn ? 
@@ -103,8 +136,8 @@ export const Header = () => {
 
             <Mobile>
                 <ListButton />
-                <Logo onClick={onClick}>tistory</Logo>
-                <Search />
+                <Logo onClick={onClick}>Leesh</Logo>
+                <SearchInput />
             </Mobile>
         </Wrapper>
     );
