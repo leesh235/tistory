@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import moment from "moment"
 import { Link } from 'react-router-dom';
 import { Text } from "./Text";
+import { LineStyle } from './LineStyle';
 
 const Wrapper = styled.article`
-    padding: 20px;
+    width: 100%;
+    padding: 20px 0;
     border-bottom: 1px solid gray;
 `;
 
