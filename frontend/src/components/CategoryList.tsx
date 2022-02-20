@@ -3,29 +3,30 @@ import styled from 'styled-components';
 import { Text } from './Text';
 import { PC, Tablet, Mobile } from '../utils/responsive';
 
-const Wrapper = styled.section`
+const Wrapper = styled.section<StyleProps>`
     @media screen and (min-width: 64em){
-        width: 20%;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
         border: 1px solid gray;
         border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 20px 0;
     }
 
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){
-        position: fixed;
-        left: -1px;
-        top: 100px;
-        border: 0;
-        background-color: green;
-        border-radius: 0 10px 10px 0;
-        height: 150px;
-        width: 50px;
+        width: 170px;
+        height: auto;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        border-radius: 0px 0 10px 0px;
+        border-left: 0px;
         padding: 20px 0;
+        background-color: white;
+        box-shadow: 3px 3px 8px gray;
+        position: fixed;
+        top: 110px;
+        left: ${props => props.left};
     }
 
     @media screen and (max-width: 22.44em){
@@ -34,17 +35,20 @@ const Wrapper = styled.section`
 `;
 
 const Category = styled.ul`
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 30px 0 0 0;
 `;
 
 const ButtonWrapper = styled.li`
     cursor: pointer;
     margin: 5px 0;
 `;
+
+interface StyleProps{
+    left: string,
+}
 
 interface SubCategory{
     id: number,
@@ -65,9 +69,10 @@ interface Props{
 export const CategoryList = ({ category, handleClickCategory }: Props) => {
 
     const store_categoryId = useSelector((state: any) => state.category.categoryId);
+    const store_sideMemu = useSelector((state: any) => state.sideMenu.sideBar);
 
     return(
-        <Wrapper>
+        <Wrapper left={store_sideMemu ? "0" : "-170px"}>
             <Category>
                 {category.map((val, idx) => {
                     return(

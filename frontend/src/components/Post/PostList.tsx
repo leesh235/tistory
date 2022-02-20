@@ -3,9 +3,17 @@ import { Contents } from '../Contents';
 import { Text } from '../Text';
 
 const Wrapper = styled.section`
-    width: 100%;
-    padding: 2em;
-    min-height: 500px;
+    @media screen and (min-width: 64em){
+        width: 100%;
+    }
+
+    @media screen and (max-width: 63.94em) and (min-width: 22.5em){
+        width: 95%;
+    }
+
+    @media screen and (max-width: 22.44em){
+        width: 98%;
+    }
 `;
 
 interface Post{
