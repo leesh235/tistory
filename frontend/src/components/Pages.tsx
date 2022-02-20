@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
 `;
 
@@ -13,6 +14,7 @@ const PageWrapper = styled.ul`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
 `;
 
 const Page = styled.li`
