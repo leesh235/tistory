@@ -33,6 +33,16 @@ const Wrapper = styled.header`
         }
     }
 
+    @media screen and (max-width: 63.94em) and (min-width: 22.5em){
+        >:nth-child(1){
+            margin: 0 0 0 20px;
+        }
+
+        >:nth-child(2){
+            margin: 0 20px 0 0;
+        }
+    }
+
     @media screen and (max-width: 22.44em){
         position: fixed;
         top: 0;
@@ -132,6 +142,7 @@ export const Header = () => {
                                 </Link>}
                     </li>
                 </Menu>
+                <SearchInput />
             </Tablet>
 
             <Mobile>

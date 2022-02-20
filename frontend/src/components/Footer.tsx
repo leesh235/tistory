@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Text } from "./Text";
 
 const Wrapper = styled.section`
     width: 100%;
@@ -19,7 +20,7 @@ export const Footer = () => {
     return(
         <Wrapper>
             <FooterStyle>
-                gdgd
+                <Text text={"Leesh's tistory"} fc={"gray"} />
             </FooterStyle>
         </Wrapper>
     );
