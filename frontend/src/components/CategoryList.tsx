@@ -110,18 +110,18 @@ export const CategoryList = ({ category, handleClickCategory, scrollY }: Props) 
                 <Category>
                     {category.map((val, idx) => {
                         return(
-                            <>
+                            <Category key={val.id}>
                                 <ButtonWrapper onClick={() => handleClickCategory(val.id)}>
                                     <Text fs={"18px"} text={val.name} key={val.id} fc={store_categoryId === val.id ? "red" : "black"}/>
                                 </ButtonWrapper>
                                 {val.sub.map((subVal) => {
                                     return(
-                                        <ButtonWrapper onClick={() => handleClickCategory(subVal.id)}>
+                                        <ButtonWrapper onClick={() => handleClickCategory(subVal.id)} key={subVal.id}>
                                             <Text fs={"18px"} text={`-${subVal.name}`} key={subVal.id} fc={store_categoryId === subVal.id ? "red" : "black"}/>
                                         </ButtonWrapper>
                                     );
                                 })}
-                            </>
+                            </Category>
                         );
                     })}
                 </Category>
