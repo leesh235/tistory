@@ -16,9 +16,6 @@ const FlexWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin: 10px 0 0 0;
-    >:nth-child(2){
-        margin-right: 30px;
-    }
 `;
 
 interface Props {

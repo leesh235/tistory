@@ -14,7 +14,7 @@ const Wrapper = styled.main`
         column-gap: 20px;
     }
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){
-        grid-template-columns: 70px auto 70px;
+        grid-template-columns: 50px auto 50px;
     }
     @media screen and (max-width: 22.44em){
         padding-top: 10px;
