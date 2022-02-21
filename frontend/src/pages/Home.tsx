@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { PostListContainer } from '../containers/PostListContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
 import { PC, Tablet, Mobile } from '../utils/responsive';
-import { ListButton } from '../components/ListButton';
 
 const Wrapper = styled.main`
     width: 100%;
@@ -34,7 +33,6 @@ const Home = () => {
 
             <Tablet>
                 <CategoryContainer />
-                <ListButton />
                 <div></div>
                 <PostListContainer />
             </Tablet>
