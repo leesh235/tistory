@@ -5,7 +5,7 @@ export function useScroll() {
   const [scrollY, setScrollY] = useState<number>(0);
 
   const listener = () => {
-    if(window.pageYOffset < 101){
+    if(window.pageYOffset < 200){
         setScrollY(window.pageYOffset);
     }
   };
