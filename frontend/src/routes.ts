@@ -3,6 +3,9 @@ export const routes = {
     login: "/login",
     detail: "/detail/",
     profile: "/profile",
+    writeCategory: "/writeCategory",
+    writePost: "/writePost",
+    writeNotice: "/writeNotice",
 }
 
 export const apies = {
