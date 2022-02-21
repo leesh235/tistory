@@ -25,7 +25,7 @@ const Wrapper = styled.section<StyleProps>`
         background-color: white;
         box-shadow: 3px 3px 8px gray;
         position: fixed;
-        top: 110px;
+        top: ${props => props.top};
         left: ${props => props.left};
     }
 
@@ -47,6 +47,7 @@ const ButtonWrapper = styled.li`
 `;
 
 interface StyleProps{
+    top: string,
     left: string,
 }
 
@@ -63,16 +64,17 @@ interface Category{
 
 interface Props{
     category: Array<Category>,
-    handleClickCategory: (id: number) => void
+    handleClickCategory: (id: number) => void,
+    scrollY: number
 }
 
-export const CategoryList = ({ category, handleClickCategory }: Props) => {
+export const CategoryList = ({ category, handleClickCategory, scrollY }: Props) => {
 
     const store_categoryId = useSelector((state: any) => state.category.categoryId);
     const store_sideMemu = useSelector((state: any) => state.sideMenu.sideBar);
 
     return(
-        <Wrapper left={store_sideMemu ? "0" : "-170px"}>
+        <Wrapper left={store_sideMemu ? "0" : "-170px"} top={scrollY !== 0 ? "50px" : "110px"}>
             <Category>
                 {category.map((val, idx) => {
                     return(

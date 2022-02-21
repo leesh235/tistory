@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { MenuLine } from '../assets/svg/MenuLine';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setSideBar } from "../redux/actions/sideMenu";
+import { useScroll } from '../hooks/useScroll';
 
 const Wrapper = styled.div<StyleProps>`
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){
@@ -17,6 +18,7 @@ const Wrapper = styled.div<StyleProps>`
         box-shadow: 3px 1px 3px gray;
 
         position: fixed;
+        top: ${props => props.top};
         left: ${props => props.left};
     }
 
@@ -29,12 +31,14 @@ const Wrapper = styled.div<StyleProps>`
 `;
 
 interface StyleProps{
+    top: string,
     left: string,
 }
 
 export const ListButton = () => {
 
     const dispatch = useDispatch();
+    const y = useScroll();
 
     const store_sideMemu = useSelector((state: any) => state.sideMenu.sideBar);
 
@@ -42,8 +46,12 @@ export const ListButton = () => {
         dispatch(setSideBar(!store_sideMemu));
     }
 
+    useEffect(() => {
+        
+    },[y.scrollY])
+
     return(
-        <Wrapper onClick={handleOnclick} left={store_sideMemu ? "170px" : "0px"}>
+        <Wrapper onClick={handleOnclick} left={store_sideMemu ? "170px" : "0px"} top={y.scrollY !== 0 ? "50px" : "110px"}>
             <MenuLine />
         </Wrapper>
     );

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Search, WhiteSearch } from '../assets/svg/Search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PC, Tablet, Mobile } from '../utils/responsive';
+import { useScroll } from '../hooks/useScroll';
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<StyleProps>`
     @media screen and (min-width: 64em){
         width: auto;
         height: auto;
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
         border-radius: 20px;
         background-color: orangered;
         position: fixed;
-        top: 110px;
+        top: ${props => props.top};
         right: 20px;
     }
 `;
@@ -30,7 +31,7 @@ const EventWarpper = styled.div`
     cursor: pointer;
 `;
 
-const InputWarpper = styled.div`
+const InputWarpper = styled.div<StyleProps>`
     width: 200px;
     height: 24px;
     margin-right: 5px;
@@ -61,14 +62,19 @@ const InputWarpper = styled.div`
 
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){
         position: fixed;
-        top: 115px;
+        top: ${props => props.top};
         right: 60px;
     }
 `;
 
+interface StyleProps {
+    top: string,
+}
+
 export const SearchInput = () => {
 
     const [open, setOpen] = useState<Boolean>(false);
+    const y = useScroll();
 
     const handleOnClick = () => {
         setOpen(!open);
@@ -82,10 +88,14 @@ export const SearchInput = () => {
         }
     }
 
+    useEffect(() => {
+        
+    },[y.scrollY])
+
     return(
-        <Wrapper>
+        <Wrapper top={y.scrollY !== 0 ? "50px" : "110px"}>
             {open && 
-                <InputWarpper>
+                <InputWarpper top={y.scrollY !== 0 ? "50px" : "115px"}>
                     <input type="text" placeholder='검색어를 입력해주세요.'/>
                     <EventWarpper onClick={handleOnClick}>
                         x
