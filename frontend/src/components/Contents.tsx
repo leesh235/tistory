@@ -2,30 +2,23 @@ import styled from 'styled-components';
 import moment from "moment"
 import { Link } from 'react-router-dom';
 import { Text } from "./Text";
-import { LineStyle } from './LineStyle';
 
 const Wrapper = styled.article`
-    width: 100%;
-    padding: 20px 0;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
     border-bottom: 1px solid gray;
 `;
 
-const TitleStyle = `
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-`;
-
-const UserStyle = `
-    font-size: 16px;
-    font-weight: normal;
-    margin-bottom: 15px;
-`;
-
-const DateStyle = `
-    font-size: 16px;
-    font-weight: normal;
-    margin-bottom: 15px;
+const FlexWrapper = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0 0 0;
+    >:nth-child(2){
+        margin-right: 30px;
+    }
 `;
 
 interface Props {
@@ -46,9 +39,11 @@ export const Contents = ({author, title, postId, createAt, hits, thumbnail }: Pr
                     author
                 }
             }}>
-                <Text text={title} props={TitleStyle} />
-                <Text text={author} props={UserStyle} />
-                <Text text={moment(createAt).format("YYYY-MM-DD / LT")} props={DateStyle} />
+                <h3>{title}</h3>
+                <FlexWrapper>
+                    <Text text={moment(createAt).format("YYYY.MM.DD. HH:MM")} fs={"1.4rem"}/>
+                    <Text text={`${hits}`} fs={"1.4rem"}/>
+                </FlexWrapper>
             </Link>
         </Wrapper>
     );

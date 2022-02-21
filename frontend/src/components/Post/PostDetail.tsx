@@ -1,27 +1,41 @@
-import { useEffect } from 'react';
 import styled from 'styled-components'
 import moment from "moment";
 import { Link } from 'react-router-dom';
 import { LineStyle } from "../../components/LineStyle";
-import { FlexWrapper } from "../../components/FlexWrapper";
 import { Text } from "../../components/Text";
 import { Button } from "../common/Button";
 
-const MainContent = styled.section`
+const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
     height: auto;
     align-items: center;
-    margin: 200px 0px;
 `;
 
-const ContentWrapper = styled.div`
+const FlexWrapper = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0 0 0;
+    >:nth-child(2){
+        margin-right: 30px;
+    }
+`;
+
+const TopWrapper = styled.article`
+    width: 95%;
+    height: auto;
+    margin: 20px 0 0 0;
+`;
+
+const ContentWrapper = styled.article`
     display: flex;
     flex-direction: column;
-    width: 90%;
-    min-height: 350px;
-    margin: 50px 0px;
+    width: 95%;
+    height: auto;
     >:nth-child(n){
         margin-bottom: 50px;
     }
@@ -51,25 +65,24 @@ export const PostDetail = ({post, onClick}: Props) => {
     }
 
     return(
-        <MainContent>
-            <FlexWrapper display={"flex"} fd={"column"} w={"90%"}>
-       
-                <Text text={`${post.title}`} type={"div"}/>
-
-                <LineStyle w={"100%"} margin={"10px 0 10px 0"}/>
-
-                <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"}>
-                    <Text text={`작성자: ${post.author}`} margin={"0 10px 0 0"}/>
-                    <Text text={`작성일: ${moment(post.createAt).format("YYYY-MM-DD")}`}/>
+        <Wrapper>
+            
+            <TopWrapper>
+                <h2>{post.title}</h2>
+                <FlexWrapper>
+                    <Text text={`${post.category}`} fc={"#3db39e"}/>
+                    <Text text={`Leesh | ${moment(post.createAt).format("YYYY-MM-DD")}`} fs={"1.3rem"} fc={"gray"}/>
                 </FlexWrapper>
-            </FlexWrapper>
+            </TopWrapper>
+
+            <LineStyle w={"98%"} margin={"20px 0"}/>
 
             <ContentWrapper>
                 <div dangerouslySetInnerHTML={createMarkup()} />
             </ContentWrapper>
 
-            <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"} w={"90%"}>
-                {/* {equal ? 
+            {/* <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"} w={"90%"}>
+                {equal ? 
                     <Link to={{
                         pathname: `/modifyPost/${post.postId}`,
                     }}>
@@ -77,8 +90,8 @@ export const PostDetail = ({post, onClick}: Props) => {
                     </Link> :
                     ""
                 }
-                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""} */}
-            </FlexWrapper>
-        </MainContent>
+                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""}
+            </FlexWrapper> */}
+        </Wrapper>
     );
 }

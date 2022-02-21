@@ -5,7 +5,6 @@ import { PostDetail } from '../components/Post/PostDetail';
 import { useParams } from "react-router-dom";
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
-import { isLogedIn } from "../utils/auth"
 import { useHistory } from 'react-router';
 import { getPostApi, deletePostApi } from "../api";
 import { routes } from "../routes"
@@ -13,11 +12,6 @@ import { routes } from "../routes"
 export const PostContainer = () => {
 
     const routeHistory = useHistory();
-
-    if(!isLogedIn()){
-        window.alert("로그인이 필요합니다")
-        routeHistory.push(`${routes.login}`);
-    }
 
     const { postId } = useParams<{postId: string}>();
 
@@ -73,7 +67,7 @@ export const PostContainer = () => {
 
     useEffect(() => {
         if(data?.getPostDetail?.__typename !== "PostSuccess"){
-            alert(data?.getPostDetail?.message);
+            // alert(data?.getPostDetail?.message);
         }
     },[])
 
