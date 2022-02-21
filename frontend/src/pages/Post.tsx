@@ -14,7 +14,7 @@ const Wrapper = styled.main`
         column-gap: 20px;
     }
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){
-        grid-template-columns: 70px auto;
+        grid-template-columns: 70px auto 70px;
     }
     @media screen and (max-width: 22.44em){
         padding-top: 10px;
@@ -33,6 +33,7 @@ const Home = () => {
                 <CategoryContainer />
                 <div></div>
                 <PostContainer />
+                <div></div>
             </Tablet>
 
             <Mobile>
