@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { TOKENINFO, TOKENLOGOUT } from "../../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 import { Text } from "../Text";
-import { PC, Tablet, Mobile } from "../../utils/responsive";
+import { PC, Tablet, Mobile, PCTablet } from "../../utils/responsive";
 import { ListButton } from "../ListButton";
 import { SearchInput } from "../SearchInput";
+import { routes } from "../../routes";
+import { ListBar } from "../ListBar";
 
 const Wrapper = styled.header`
     width: 100%;
@@ -62,6 +63,13 @@ const Wrapper = styled.header`
 
 `;
 
+const FlexWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+`;
+
 const Logo = styled.h1`
     color: red;
     cursor:pointer;
@@ -75,12 +83,14 @@ const Logo = styled.h1`
 const Menu = styled.ul`
     display: flex;
     flex-direction: row;
-    >:nth-child(1){
-        margin-right: 20px;
+    >li{
+        cursor: pointer;
+        margin: 0 15px;
     }
-    >:nth-child(2){
-        margin-top: 3px;
-        margin-left: 20px;
+    @media screen and (min-width: 64em){
+        >:nth-child(n+2){
+            margin-top: 3px;
+        }
     }
 `;
 
@@ -91,6 +101,7 @@ export const Header = () => {
     }} = useQuery(TOKENINFO);
 
     const [tokenMutation] = useMutation(TOKENLOGOUT);
+    const [open, setOpen] = useState<boolean>(false);
 
     const handleLogOut = async(e: React.MouseEvent) => {
         e.preventDefault();
@@ -99,55 +110,58 @@ export const Header = () => {
         }
     }
 
-    const history = useHistory();
-    const onClick = (e: React.MouseEvent) => {
+    const handleLogo = (e: React.MouseEvent) => {
         e.preventDefault();
         setTimeout(() => {
-            history.push("/")
+            window.location.replace(`${routes.home}`);
         }, 500);
     }
 
+    const handleOnClick = () => {
+        setOpen(!open);
+    }
+
+    useEffect(() => {
+        return() => setOpen(false);
+    },[])
+
     return (
         <Wrapper>
-            <PC>
-                <Logo onClick={onClick}>Leesh</Logo>
+            <PCTablet>
+                <Logo onClick={handleLogo}>Leesh</Logo>
                 <Menu>
-                    <li>
-                        <SearchInput />
-                    </li>
+                    <PC>
+                        <li>
+                            <SearchInput />
+                        </li>
+                    </PC>
                     <li>
                         {isLoggedIn ? 
-                                <div onClick={handleLogOut}>
-                                    <Text text={"로그아웃"}/>
-                                </div> 
+                            <>
+                                <FlexWrapper onClick={handleOnClick}>
+                                    <Text text={"프로필"}/> 
+                                </FlexWrapper>
+                                {open ? <ListBar /> : ""}               
+                            </>
+                        : ""}
+                    </li>
+                    <li onClick={isLoggedIn && handleLogOut}>
+                        {isLoggedIn ? 
+                                <Text text={"로그아웃"}/>
                             : 
                                 <Link to="/login">
                                     <Text text={"로그인"}/>
                                 </Link>}
                     </li>
                 </Menu>
-            </PC>
-
-            <Tablet>
-                <Logo onClick={onClick}>Leesh</Logo>
-                <Menu>
-                    <li>
-                        {isLoggedIn ? 
-                                <div onClick={handleLogOut}>
-                                    <Text text={"로그아웃"}/>
-                                </div> 
-                            : 
-                                <Link to="/login">
-                                    <Text text={"로그인"}/>
-                                </Link>}
-                    </li>
-                </Menu>
-                <SearchInput />
-            </Tablet>
+                <Tablet>
+                    <SearchInput />
+                </Tablet>
+            </PCTablet>
 
             <Mobile>
                 <ListButton />
-                <Logo onClick={onClick}>Leesh</Logo>
+                <Logo onClick={handleLogo}>Leesh</Logo>
                 <SearchInput />
             </Mobile>
         </Wrapper>
