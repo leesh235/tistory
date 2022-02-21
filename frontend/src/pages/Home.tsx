@@ -5,8 +5,6 @@ import { PC, Tablet, Mobile } from '../utils/responsive';
 
 const Wrapper = styled.main`
     width: 100%;
-    height: 1800px;
-    padding-top: 30px;
     display: grid;
 
     @media screen and (min-width: 64em){
