@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     input{
         outline: none;
+        font-family: "EliceDigitalBaeum_Regular";
     }
     a{
         text-decoration: none;
