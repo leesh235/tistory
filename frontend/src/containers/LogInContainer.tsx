@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { LogInForm } from '../components/LogInForm';
+import { LogInForm } from '../components/Form/LogInForm';
 import { LOGIN, TOKENLOGIN } from "../querys/LogInQuery";
 import { useForm } from 'react-hook-form';
 

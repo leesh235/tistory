@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Input } from "./Input";
-import { Button } from "./common/Button";
-import { ErrorMessage } from "./ErrorMessage";
-import { Text } from "./Text";
-import { FlexWrapper } from "./FlexWrapper";
-import { emailPattern, passwordPattern } from "../regex";
+import { Input } from "../Input";
+import { Button } from "../common/Button";
+import { ErrorMessage } from "../ErrorMessage";
+import { Text } from "../Text";
+import { FlexWrapper } from "../FlexWrapper";
+import { emailPattern, passwordPattern } from "../../regex";
 
 const Wrapper = styled.article`
     display: flex;
