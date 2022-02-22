@@ -33,12 +33,12 @@ export const UnresisterPresenter = ({ register, handleSubmit, errors, onSubmit }
             <Wrapper>
                 <FormWrapper onSubmit={handleSubmit(onSubmit)}>
 
-                    <Input type={"password"} register={register("password",{ require: true })} w={"100%"} placeholder={"비밀번호"} />
+                    <Input type={"password"} register={register("password",{ require: true })} width={"100%"} placeholder={"비밀번호"} />
                     <ErrorMessage>
                         {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                     </ErrorMessage>
 
-                    <Input type={"password"} register={register("confirmPassword",{ require: true })} w={"100%"} placeholder={"비밀번호 확인"} />
+                    <Input type={"password"} register={register("confirmPassword",{ require: true })} width={"100%"} placeholder={"비밀번호 확인"} />
                     <ErrorMessage>
                         {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호를 한번 더 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                     </ErrorMessage>

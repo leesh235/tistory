@@ -37,7 +37,7 @@ export const ModifyPostPresenter = ({ register, handleSubmit, errors, onSubmit, 
     return (
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-                <Input type={"text"} register={register("title",{require: true})} maxW={"60rem"} w={"100%"} margin={"0 0 20px 0"} placeholder={"제목"}/>
+                <Input type={"text"} register={register("title",{require: true})} maxW={"60rem"} width={"100%"} placeholder={"제목"}/>
 
                 <ToastEditor editorRef={editorRef}/>
 

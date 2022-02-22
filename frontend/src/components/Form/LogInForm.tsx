@@ -32,13 +32,13 @@ export const LogInForm = ({ register, handleSubmit, errors, onSubmit }: Props) =
     return (
         <Wrapper>
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-                <Input type={"text"} register={register("email",{required: true, pattern: emailPattern})} w={"100%"} placeholder={"email"} />
+                <Input type={"text"} register={register("email",{required: true, pattern: emailPattern})} width={"100%"} placeholder={"email"} />
                 <ErrorMessage>
                     {errors.email?.type === "required" && <Text type={"p"} text={"이메일을 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                     {errors.email?.type === "pattern" && <Text type={"p"} text={"이메일 형식이 아닙니다"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
-                <Input type={"password"} register={register("password",{required: true, pattern: passwordPattern})} w={"100%"} placeholder={"비밀번호"} />
+                <Input type={"password"} register={register("password",{required: true, pattern: passwordPattern})} width={"100%"} placeholder={"비밀번호"} />
                 <ErrorMessage>
                     {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                     {errors.password?.type === "pattern" && <Text type={"p"} text={"8~16자 이내로 입력해주세요"} fs={"1rem"} fc={"red"}/>}

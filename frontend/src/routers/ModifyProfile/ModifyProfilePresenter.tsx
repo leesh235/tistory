@@ -43,12 +43,12 @@ export const ModifyProfilePresenter = ({ register, handleSubmit, errors, handleP
             <ImgIn type="file" onChange={handlePicture} />
             <FormWrapper onSubmit={handleSubmit(onSubmit)}>
 
-                <Input type={"password"} register={register("password")} w={"100%"} placeholder={"비밀번호"} />
+                <Input type={"password"} register={register("password")} width={"100%"} placeholder={"비밀번호"} />
                 <ErrorMessage>
                     {/* {errors.password?.type === "required" && <Text type={"p"} text={"비밀번호를 입력해주세요"} />} */}
                 </ErrorMessage>
 
-                <Input type={"password"} register={register("confirmPassword")} w={"100%"} placeholder={"비밀번호 확인"} />
+                <Input type={"password"} register={register("confirmPassword")} width={"100%"} placeholder={"비밀번호 확인"} />
                 <ErrorMessage>
                     {/* {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호를 한번 더 입력해주세요"} />} */}
                 </ErrorMessage>
