@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Input } from "../Input";
+import { Input } from "../common/Input";
 import { Button } from "../common/Button";
 import { ErrorMessage } from "../ErrorMessage";
-import { Text } from "../Text";
+import { Text } from "../common/Text";
 import { FlexWrapper } from "../FlexWrapper";
 import { emailPattern, passwordPattern } from "../../regex";
 

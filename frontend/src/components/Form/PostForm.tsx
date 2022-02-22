@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { PC, Tablet, Mobile } from '../../utils/responsive';
 import { ToastEditor } from '../ToastEditor';
-import { Input } from '../Input';
+import { Input } from '../common/Input';
 
 const Wrapper = styled.section`
     width: 100%;

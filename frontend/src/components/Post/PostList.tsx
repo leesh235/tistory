@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Contents } from '../Contents';
-import { Text } from '../Text';
+import { Text } from '../common/Text';
 
 const Wrapper = styled.section`
     @media screen and (min-width: 64em){

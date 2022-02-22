@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { TOKENINFO, TOKENLOGOUT } from "../../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
-import { Text } from "../Text";
+import { Text } from "../common/Text";
 import { PC, Tablet, Mobile, PCTablet } from "../../utils/responsive";
 import { ListButton } from "../ListButton";
 import { SearchInput } from "../SearchInput";

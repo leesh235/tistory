@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import moment from "moment"
 import { Link } from 'react-router-dom';
-import { Text } from "./Text";
+import { Text } from "./common/Text";
 
 const Wrapper = styled.article`
     width: calc(100% - 60px);

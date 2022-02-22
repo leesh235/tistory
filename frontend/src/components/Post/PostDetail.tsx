@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import moment from "moment";
 import { Link } from 'react-router-dom';
 import { LineStyle } from "../../components/LineStyle";
-import { Text } from "../../components/Text";
+import { Text } from "../common/Text";
 import { Button } from "../common/Button";
 
 const Wrapper = styled.section`

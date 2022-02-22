@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from 'styled-components';
-import { Text } from './Text';
+import { Text } from './common/Text';
 import { PC, Tablet, Mobile } from '../utils/responsive';
 import { ListButton } from './ListButton';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import { Button } from "../../components/common/Button";
-import { Input } from "../../components/Input";
-import { Text } from "../../components/Text";
+import { Input } from "../../components/common/Input";
+import { Text } from "../../components/common/Text";
 import { ErrorMessage } from "../../components/ErrorMessage";
 
 const Wrapper = styled.section`

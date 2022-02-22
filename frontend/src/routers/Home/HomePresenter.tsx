@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {Contents} from '../../components/Contents';
-import { Text } from '../../components/Text';
+import { Text } from '../../components/common/Text';
 
 const Wrapper = styled.section`
     width: 100%;

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/common/Button";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/common/Input";
 import { FlexWrapper } from "../../components/FlexWrapper";
-import { Text } from "../../components/Text";
+import { Text } from "../../components/common/Text";
 import { ErrorMessage } from "../../components/ErrorMessage";
 
 const Wrapper = styled.section`

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../components/common/Button";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/common/Input";
 import { FlexWrapper } from "../../components/FlexWrapper";
 import { ToastEditor } from '../../components/ToastEditor';
 

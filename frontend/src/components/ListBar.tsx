@@ -1,7 +1,7 @@
 import { routes } from '../routes';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { Text } from "./Text";
+import { Text } from "./common/Text";
 
 const Wrapper = styled.ul`
     display: block;
