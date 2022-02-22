@@ -7,9 +7,12 @@ import Home from '../pages/Home';
 import Post from '../pages/Post';
 import LogIn from '../pages/LogIn';
 import Page404 from '../pages/Page404';
+import WritePost from '../pages/WritePost';
+import WriteCategory from '../pages/WriteCategory';
+import WriteNotice from '../pages/WriteNotice';
 
-import Search from '../routers/Seach/index';
 import Add from '../routers/Add/index';
+import Search from '../routers/Seach/index';
 import SignUp from '../routers/SignUp/index';
 import Profile from '../routers/Profile/index';
 import ModifyProfile from '../routers/ModifyProfile/index';
@@ -38,7 +41,9 @@ const Routes = () => {
                     <Route exact path="/detail/:postId" component={Post} />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/page=:i" component={Home} />
-                    <Route exact path="/add" component={Add} />
+                    <Route exact path="/WritePost" component={WritePost} />
+                    <Route exact path="/WriteCategory" component={WriteCategory} />
+                    <Route exact path="/WriteNotice" component={WriteNotice} />
                     <Route exact path="/modifyProfile" component={ModifyProfile} />
                     <Route exact path="/modifyPost/:postId" component={ModifyPost} />
                     <Route exact path="/profile/unresister" component={Unresister} />
