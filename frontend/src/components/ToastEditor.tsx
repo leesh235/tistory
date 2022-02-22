@@ -4,7 +4,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
 const Wrapper = styled.article`
-    width: "100%";
+    width: 100%;
     height: auto;
 `;
 
