@@ -9,6 +9,7 @@ import { ListButton } from "../ListButton";
 import { SearchInput } from "../SearchInput";
 import { routes } from "../../routes";
 import { ListBar } from "../ListBar";
+import { useHistory, useLocation } from 'react-router-dom';
 
 const Wrapper = styled.header`
     width: 100%;
@@ -99,6 +100,8 @@ export const Header = () => {
     const { loading , data: {
         isLoggedIn
     }} = useQuery(TOKENINFO);
+    const history = useHistory();
+    const location = useLocation();
 
     const [tokenMutation] = useMutation(TOKENLOGOUT);
     const [open, setOpen] = useState<boolean>(false);
@@ -122,8 +125,14 @@ export const Header = () => {
     }
 
     useEffect(() => {
-        return() => setOpen(false);
-    },[])
+        // if(
+        //     history.location.pathname === routes.writeCategory ||
+        //     history.location.pathname === routes.writeNotice ||
+        //     history.location.pathname === routes.writePost
+        // ){
+            setOpen(false);
+        // }
+    },[location])
 
     return (
         <Wrapper>

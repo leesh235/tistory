@@ -18,7 +18,6 @@ const ListWrapper = styled.li`
 `;
 
 export const ListBar = () => {
-    console.log("listbar")
     return (
         <Wrapper>
 
