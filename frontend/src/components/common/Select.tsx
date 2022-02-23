@@ -24,7 +24,19 @@ const SelectWrapper = styled.div<StyleProps>`
     width: calc(100% - 2px);
     height: calc(100% - 2px);
     cursor: pointer;
-
+    input{
+        width: calc(100% - 24px);
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        color: ${props => props.fc};
+        font-size: ${props => props.fs};
+        ::placeholder {
+            color: ${props => props.fc};
+        }
+        cursor: pointer;
+    }
 `;
 
 const OptionWrapper = styled.ul<StyleProps>`
@@ -57,32 +69,36 @@ const ArrowWrapper = styled.div`
 interface StyleProps{
     width?: string,
     height?: string,
-    display?: string
+    display?: string,
+    fc?: string,
+    fs?: string,
 }
 
 interface Props extends StyleProps{
     option: Array<string>,
     defaultOption: string,
+    inputName?: string,
+    register?: () => void,
+    setValue?: any
 }
 
-export const Select = ({width, height, defaultOption, option}: Props) => {
+export const Select = ({width, height, fc, fs, defaultOption, option, inputName, register, setValue}: Props) => {
 
     const [open, setOpen] = useState<boolean>(false);
-    const [select, setselect] = useState<string>(defaultOption);
 
     const handleOpen = () => {
         setOpen(!open);
     }
 
     const handleSelect = (val: string) => {
-        setselect(val);
+        setValue(`${inputName}`, val, {shouldValidate: true})
         setOpen(false);
     }
 
     return(
         <Wrapper width={width} height={height}>
-            <SelectWrapper onClick={handleOpen}>
-                <Text text={select} fc={"gray"} fs={"1.4rem"}/>
+            <SelectWrapper onClick={handleOpen} fs={fs} fc={fc}>
+                <input type="text" readOnly={true} {...register} placeholder={defaultOption}/>
                 <ArrowWrapper>
                     {open ? <ArrowUp /> : <ArrowDown />}
                 </ArrowWrapper>
@@ -105,4 +121,6 @@ Select.defaultProps = {
     height: "30px",
     defaultOption: "카테고리를 선택해주세요",
     option: ["공지사항"],
+    fc: "gray",
+    fs: "1.4rem",
 }
