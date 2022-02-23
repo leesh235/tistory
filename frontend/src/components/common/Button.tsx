@@ -47,7 +47,7 @@ Button.defaultProps = {
     fc: "white",
     placeholer: "내용을 입력하세요",
     fs: "1.4rem",
-    maxW: "370px",
-    width: "282px",
+    maxW: "100%",
+    width: "284px",
     height: "30px",
 }

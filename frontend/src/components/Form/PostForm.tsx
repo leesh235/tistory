@@ -32,10 +32,10 @@ export const PostForm = ({ register, setValue, handleSubmit, errors, onSubmit, e
     return(
         <Wrapper>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Input type={"text"} register={register("title",{require: true})} maxW={"100%"} width={"100%"} placeholder={"제목"}/>
+                <Input type={"text"} register={register("title",{require: true})} width={"100%"} placeholder={"제목"}/>
                 <Select  width={"100%"} inputName={"category"} register={register("category",{require: true})} setValue={setValue}/>
                 <ToastEditor editorRef={editorRef}/>
-                <Button text={"완료"}/>
+                <Button text={"완료"} width={"100%"}/>
             </form>
         </Wrapper>
     );
