@@ -22,7 +22,7 @@ import Unresister from '../routers/Unresister/index';
 const Wrapper = styled.main`
     width: 100vw;
     max-width: 1024px;
-    height: calc(100vh - 170px);
+    min-height: calc(100vh - 170px);
     margin: 80px auto 0 auto;
     padding-top: 30px;
 `;
