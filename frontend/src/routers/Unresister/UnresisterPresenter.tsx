@@ -47,7 +47,7 @@ export const UnresisterPresenter = ({ register, handleSubmit, errors, onSubmit }
                         {/* {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호가 다릅니다"} />} */}
                     </ErrorMessage>
 
-                    <Button text={"변경하기"} w={"100%"}/>               
+                    <Button text={"변경하기"} width={"100%"}/>               
                 </FormWrapper>
             </Wrapper>
         );

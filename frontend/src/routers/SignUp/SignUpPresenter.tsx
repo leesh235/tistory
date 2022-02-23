@@ -56,7 +56,7 @@ export const SignUpPresenter = ({ register, handleSubmit, errors, onSubmit, getV
                     {errors.confirmPassword?.type === "required" && <Text type={"p"} text={"비밀번호가 일치하지 않습니다"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
-                <Button text={"가입하기"} w={"100%"}/>               
+                <Button text={"가입하기"} width={"100%"}/>               
             </FormWrapper>
         </Wrapper>
     );

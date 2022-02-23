@@ -43,7 +43,7 @@ export const AddPresenter = ({ register, handleSubmit, errors, onSubmit, editorR
                 <ToastEditor editorRef={editorRef}/>
 
                 <FlexWrapper display={"flex"} jc={"flex-end"} w={"100%"}>
-                    <Button text={"완료"} w={"7rem"} h={"4rem"} margin={"30px 0 0 0"} />
+                    <Button text={"완료"} width={"7rem"} height={"4rem"}/>
                 </FlexWrapper>
             </FormWrapper>
         </Wrapper>

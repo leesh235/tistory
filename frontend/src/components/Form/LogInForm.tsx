@@ -44,7 +44,7 @@ export const LogInForm = ({ register, handleSubmit, errors, onSubmit }: Props) =
                     {errors.password?.type === "pattern" && <Text type={"p"} text={"8~16자 이내로 입력해주세요"} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
-                <Button text={"로그인"} w={"100%"}/>               
+                <Button text={"로그인"} width={"100%"}/>               
             </FormWrapper>
 
             <FlexWrapper fd={"column"} w={"auto"} ai={"center"} margin={"30px 0 0 0"} props={`

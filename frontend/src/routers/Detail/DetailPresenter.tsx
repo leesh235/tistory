@@ -74,11 +74,11 @@ export const DetailPresenter = ({postContents, post, equal, onClick}: Props) => 
                     <Link to={{
                         pathname: `/modifyPost/${post.postId}`,
                     }}>
-                        <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} w={"9rem"} h={"3rem"}/>
+                        <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} width={"9rem"} height={"3rem"}/>
                     </Link> :
                     ""
                 }
-                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""}
+                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} width={"9rem"} height={"3rem"} onClick={onClick} /> : ""}
             </FlexWrapper>
         </MainContent>
     );

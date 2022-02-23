@@ -68,7 +68,7 @@ export const ProfilePresenter = ({userImgUrl, userInfo}: Porps) => {
                         email: userInfo.email
                     }
                 }}>
-                    <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} w={"9rem"} h={"3rem"}/>
+                    <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} width={"9rem"} height={"3rem"}/>
                 </Link>
             
                 <Link to={{
@@ -77,7 +77,7 @@ export const ProfilePresenter = ({userImgUrl, userInfo}: Porps) => {
                             userInfo: userInfo
                         }
                     }}>
-                        <Button text={"회원탈퇴"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"}/>
+                        <Button text={"회원탈퇴"} fs={"1.5rem"} color={"pink"} width={"9rem"} height={"3rem"}/>
                 </Link>
             </BtnWrapper>
         </Wrapper>

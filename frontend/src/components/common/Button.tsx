@@ -1,29 +1,25 @@
 import styled from "styled-components";
 
 const Wrapper = styled.button<StyleProps>`
-    max-width: ${prop => prop.maxW};
-    width: ${prop => prop.w};
-    height: ${prop => prop.h};
-    margin: ${prop => prop.margin};
-    padding: ${prop => prop.padding};
-    ${prop => prop.props}
+    max-width: ${props => props.maxW};
+    width: ${props => props.width};
+    height: ${props => props.height};
+    margin: 0px;
+    padding: 0px;
     border: 0px;
     border-radius: 6px;
-    background-color: ${prop => prop.color};
+    background-color: ${propss => propss.color};
 
-    font-size: ${prop => prop.fs};
-    color: ${prop => prop.fcolor};
+    font-size: ${props => props.fs};
+    color: ${props => props.fc};
 `;
 
 interface StyleProps {
-    props?: string,
     maxW?: string,
-    w?: string,
-    h?: string,
-    margin?: string,
-    padding?: string,
+    width?: string,
+    height?: string,
     color?: string,
-    fcolor?: string,
+    fc?: string,
     fs?: string,
 }
 
@@ -32,17 +28,14 @@ interface  Props extends StyleProps {
     onClick?: () => void,
 }
 
-export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor, onClick, fs}: Props) => {
+export const Button = ({text, maxW, width, height, color, fc, onClick, fs}: Props) => {
     return(
         <Wrapper 
-            props={props} 
             maxW={maxW}
-            w={w} 
-            h={h} 
-            margin={margin} 
-            padding={padding} 
+            width={width} 
+            height={height} 
             color={color} 
-            fcolor={fcolor} 
+            fc={fc} 
             fs={fs} 
             onClick={onClick}
         >{text}</Wrapper>
@@ -51,12 +44,10 @@ export const Button = ({props, text, maxW, w, h, margin, padding, color, fcolor,
 
 Button.defaultProps = {
     color: "green",
-    fcolor: "white",
+    fc: "white",
     placeholer: "내용을 입력하세요",
-    fs: "1rem",
+    fs: "1.4rem",
     maxW: "370px",
-    w: "300px",
-    h: "30px",
-    padding: "0",
-    margin: "0"
+    width: "282px",
+    height: "30px",
 }
