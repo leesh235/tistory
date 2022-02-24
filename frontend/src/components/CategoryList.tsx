@@ -108,7 +108,7 @@ export const CategoryList = ({ category, handleClickCategory, scrollY }: Props) 
         <AnimationWrapper left={store_sideMemu ? "0" : "-170px"} top={scrollY !== 0 ? "50px" : "110px"} open={store_sideMemu}>
             <Wrapper>
                 <Category>
-                    {category.map((val, idx) => {
+                    {category?.map((val, idx) => {
                         return(
                             <Category key={val.id}>
                                 <ButtonWrapper onClick={() => handleClickCategory(val.id)}>
