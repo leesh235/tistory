@@ -22,6 +22,20 @@ type CategoryListFailure {
 
 union CategoryListResult = CategoryListSuccess | CategoryListFailure
 
+type BagicCategoryListSuccess {
+    status: String!
+    message: String!
+    data: [Category]!
+}
+
+type BagicCategoryListFailure {
+    status: String!
+    message: String!
+}
+
+union BagicCategoryListResult = BagicCategoryListSuccess | BagicCategoryListFailure
+
 type Query{
-    getCategoryList: CategoryListResult!
+    getCategoryList: CategoryListResult!,
+    getBagicCategoryList: BagicCategoryListResult
 }

@@ -60,6 +60,39 @@ export default {
             }catch(error){
                 throw new Error(SERVER_ERROR);
             }
+        },
+        getBagicCategoryList: async(_, args, {request}) => {
+            try{
+                const bagicCategoryList = await prisma.category.findMany({
+                    // skip: 1,
+                    orderBy: {
+                        sequence: 'asc'
+                    },
+                    select:{
+                        id: true,
+                        name: true
+                    }
+                });
+
+                if(bagicCategoryList.length === 0){
+                    return {
+                        __typename: "BagicCategoryListFailure",
+                        status: ERROR,
+                        message: NOT_EXIST_CATEGORY,
+                    };
+                }
+
+                return {
+                    __typename: "BagicCategoryListSuccess",
+                    status: SUCCESS,
+                    message: SUCCESS_GET_CATEGORY,
+                    data: bagicCategoryList
+                };
+
+
+            }catch(error){
+                throw new Error(SERVER_ERROR);
+            }
         }
     }
 }
