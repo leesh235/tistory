@@ -19,5 +19,5 @@ type WritePostFailure {
 union WritePostResult = WritePostSuccess | WritePostFailure
 
 type Mutation {
-    writePost(categoryId: Int! title: String!): WritePostResult!
+    writePost(categoryName: String! title: String!): WritePostResult!
 }

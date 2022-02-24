@@ -13,7 +13,7 @@ export default {
                 const exist = isAuthenticated(request);
          
                 if(exist){
-                    const { categoryId, title } = args;
+                    const { categoryName, title } = args;
                     const { id } = request.user;
 
                     const author = await prisma.user.findUnique({
@@ -32,7 +32,7 @@ export default {
 
                     const category = await prisma.category.findUnique({
                         where:{
-                            id: categoryId
+                            name: categoryName
                         }
                     })
 
@@ -47,7 +47,7 @@ export default {
                     const post = await prisma.post.create({
                         data: {
                             authorId: id,
-                            categoryId,
+                            categoryId: category.id,
                             title
                         }
                     })
