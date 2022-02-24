@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PC, Tablet, Mobile } from '../utils/responsive';
+import { WriteNoticeContainer } from '../containers/WriteNoticeContainer';
 
 const Wrapper = styled.main`
 
@@ -8,7 +9,7 @@ const Wrapper = styled.main`
 const WriteNotice = () => {
     return(
         <Wrapper>
-            WriteNotice
+            <WriteNoticeContainer />
         </Wrapper>
     );
 }
