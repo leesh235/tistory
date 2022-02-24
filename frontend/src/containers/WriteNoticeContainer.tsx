@@ -19,7 +19,7 @@ export const WriteNoticeContainer = () => {
                 }
             });
 
-            if(data?.writePost?.__typename === "WriteNoticeSuccess"){
+            if(data?.writeNotice?.__typename === "WriteNoticeSuccess"){
                 alert("작성 완료");
                 window.location.replace("/");
             }
