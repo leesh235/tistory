@@ -25,12 +25,14 @@ interface StyleProps {
 
 interface  Props extends StyleProps {
     text?: string,
+    type: "button" | "submit" | "reset",
     onClick?: () => void,
 }
 
-export const Button = ({text, maxW, width, height, color, fc, onClick, fs}: Props) => {
+export const Button = ({text, type, maxW, width, height, color, fc, onClick, fs}: Props) => {
     return(
         <Wrapper 
+            type={type}
             maxW={maxW}
             width={width} 
             height={height} 
@@ -50,4 +52,5 @@ Button.defaultProps = {
     maxW: "100%",
     width: "284px",
     height: "30px",
+    type: "submit",
 }
