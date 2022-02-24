@@ -1,35 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { WRITEPOST } from '../querys/WritePostQuery';
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useForm } from 'react-hook-form';
 import { PostForm } from '../components/Form/PostForm';
+import { BAGICCATEGORYLIST } from '../querys/CategoryQuery';
 import { writePostApi } from "../api";
 
 export const WritePostContainer = () => {
 
-    const [postMutation] = useMutation(WRITEPOST);
-    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
+    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onChange" });
     const editorRef = useRef<any>();
+    
+    const { loading, data, error } = useQuery(BAGICCATEGORYLIST);
+    const [postMutation] = useMutation(WRITEPOST);
+    
+    const [categoryList, setCategoryList] = useState<Array<string>>();
 
     const onSubmit = async() => {
-        console.log("submit post");
-
-        const postData = editorRef.current.getInstance().getHTML();
         try{
-            if(getValues("title") === ""){
-                alert("제목을 입력하세요");
-                return;
-            }
-            const contents = postData !== "" ? true : false;
-            console.log(contents)
-            const { data: { createPost : {postInfo, status, check} } } = await postMutation({
+            const postData = editorRef.current.getInstance().getHTML();
+            
+            const { data } = await postMutation({
                 variables: {
                     title: getValues("title"),
-                    contents: contents
+                    categoryName: getValues("category")
                 }
             });
 
-            if(contents){
+            if(postData !== "" && data.writePost.__typename === "WritePostSuccess"){
                 const title = getValues("title");
 
                 const formValue: {
@@ -38,20 +36,20 @@ export const WritePostContainer = () => {
                     title: string,
                     editor: any,
                 } = {
-                    writer: postInfo.writer,
-                    postId: Number(postInfo.postId),
+                    writer: data.writePost.data.author,
+                    postId: Number(data.writePost.data.id),
                     title: title,
                     editor: postData,
                 }
 
-                writePostApi(formValue).then(
-                    data => {
-                        console.log(data);
-                    },
-                    err => {
-                        console.log(err);
-                    }
-                )
+                // writePostApi(formValue).then(
+                //     data => {
+                //         console.log(data);
+                //     },
+                //     err => {
+                //         console.log(err);
+                //     }
+                // )
             }
             alert("작성 완료");
             window.location.replace("/");
@@ -59,6 +57,15 @@ export const WritePostContainer = () => {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        if(data?.getBagicCategoryList?.__typename === "BagicCategoryListSuccess"){
+            let arr: Array<string> = data?.getBagicCategoryList?.data.map((val: any) => {
+                return val["name"];
+            })
+            setCategoryList(arr);
+        }
+    },[loading])
 
     return(
         <PostForm 
@@ -68,6 +75,7 @@ export const WritePostContainer = () => {
             onSubmit={onSubmit}
             editorRef={editorRef}
             setValue={setValue}
+            categoryList={categoryList}
         />
     );
 }

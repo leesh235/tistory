@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const WRITEPOST =gql`
-    mutation writePost($categoryId: Int!, $title: String!){
-        writePost(categoryId: $categoryId, title: $title){
+    mutation writePost($categoryName: String!, $title: String!){
+        writePost(categoryName: $categoryName, title: $title){
             ...on WritePostSuccess{
                 status
                 message
