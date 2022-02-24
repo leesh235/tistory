@@ -22,3 +22,22 @@ export const CATEGORYLIST = gql`
         }
     }
 `;
+
+export const BAGICCATEGORYLIST = gql`
+    query getBagicCategoryList{
+        getBagicCategoryList{
+            ... on BagicCategoryListSuccess{
+                status
+                message
+                data{
+                    id
+                    name
+                }
+            }
+            ... on BagicCategoryListFailure{
+                status
+                message
+            }
+        }
+    }
+`;
