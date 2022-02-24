@@ -27,7 +27,7 @@ const SelectWrapper = styled.div<StyleProps>`
     input{
         width: calc(100% - 24px);
         height: 100%;
-        margin: 0px;
+        margin: 0px 10px;
         padding: 0px;
         border: 0px;
         color: ${props => props.fc};
@@ -56,7 +56,7 @@ const OptionWrapper = styled.ul<StyleProps>`
         width: 100%;
         height: 30px;
         cursor: pointer;
-        margin: 5px 0;
+        margin: 5px 10px;
     }
 `;
 
