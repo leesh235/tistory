@@ -13,7 +13,7 @@ export default {
                 
                 if(exist){
                     const { id } = request.user;
-                    const { name, categoryId } = args;
+                    const { name, parentCategoryName } = args;
                     
                     const user = await prisma.user.findUnique({
                         where: { 
@@ -42,21 +42,30 @@ export default {
                             message: EXIST_CATEGORY
                         };
                     }
-                    
-                    const parentCategory = await prisma.category.findFirst({
-                        where:{
-                            id: categoryId
-                        }
-                    })
+
+                    let parentCategory;
+                    let lastCategory;
+
+                    if(parentCategory !== ""){
+                        parentCategory = await prisma.category.findFirst({
+                            where:{
+                                name: parentCategoryName
+                            }
+                        })
+
+                        lastCategory = await prisma.category.findFirst({
+                            where:{
+                                parent: parentCategory.id
+                            },
+                            orderBy:{
+                                sequence: "desc"
+                            }
+                        })
+                    }else{
+                        parentCategory = null;
+                        lastCategory = null;
+                    }
                    
-                    const lastCategory = await prisma.category.findFirst({
-                        where:{
-                            parent: categoryId
-                        },
-                        orderBy:{
-                            sequence: "desc"
-                        }
-                    })
 
                     //depth = parent의 depth + 1
                     //sequence = parent의 sequence 최댓값 + 1

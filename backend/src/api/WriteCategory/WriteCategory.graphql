@@ -16,5 +16,5 @@ type WriteCategoryFailure {
 union WriteCategoryResult = WriteCategorySuccess | WriteCategoryFailure
 
 type Mutation{
-    writeCategory(name: String! categoryId: Int): WriteCategoryResult!
+    writeCategory(name: String! parentCategoryName: String): WriteCategoryResult!
 }
