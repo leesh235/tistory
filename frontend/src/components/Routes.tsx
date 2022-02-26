@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from './Header/Header';
 import { Footer } from './Footer';
+import { routes } from '../routes';
 
 import Home from '../pages/Home';
 import Post from '../pages/Post';
@@ -11,6 +12,7 @@ import WritePost from '../pages/WritePost';
 import WriteCategory from '../pages/WriteCategory';
 import WriteNotice from '../pages/WriteNotice';
 import Notice from '../pages/Notice';
+import NoticeList from '../pages/NoticeHome';
 
 import Search from '../routers/Seach/index';
 import SignUp from '../routers/SignUp/index';
@@ -35,16 +37,17 @@ const Routes = () => {
             <Wrapper>
                 <Switch>
                     <Route exact path="/search" component={Search} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/login" component={LogIn} />
+                    <Route exact path={`${routes.profile}`} component={Profile} />
+                    <Route exact path={`${routes.login}`} component={LogIn} />
                     <Route exact path="/signup" component={SignUp} />
-                    <Route exact path="/detail/:postId" component={Post} />
-                    <Route exact path="/" component={Home} />
+                    <Route exact path={`${routes.detail}:postId`} component={Post} />
+                    <Route exact path={`${routes.home}`} component={Home} />
                     <Route exact path="/page=:i" component={Home} />
-                    <Route exact path="/Notice/:id" component={Notice} />
-                    <Route exact path="/WritePost" component={WritePost} />
-                    <Route exact path="/WriteCategory" component={WriteCategory} />
-                    <Route exact path="/WriteNotice" component={WriteNotice} />
+                    <Route exact path={`${routes.notice}:id`} component={Notice} />
+                    <Route exact path={`${routes.noticeList}`} component={NoticeList} />
+                    <Route exact path={`${routes.writePost}`} component={WritePost} />
+                    <Route exact path={`${routes.writeCategory}`} component={WriteCategory} />
+                    <Route exact path={`${routes.writeNotice}`} component={WriteNotice} />
                     <Route exact path="/modifyProfile" component={ModifyProfile} />
                     <Route exact path="/modifyPost/:postId" component={ModifyPost} />
                     <Route exact path="/profile/unresister" component={Unresister} />

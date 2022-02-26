@@ -3,9 +3,11 @@ export const routes = {
     login: "/login",
     detail: "/detail/",
     profile: "/profile",
-    writeCategory: "/writeCategory",
-    writePost: "/writePost",
-    writeNotice: "/writeNotice",
+    writeCategory: "/write-category",
+    writePost: "/write-post",
+    writeNotice: "/write-notice",
+    noticeList: "/notice-list",
+    notice: "/notice/",
 }
 
 export const apies = {
