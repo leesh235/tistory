@@ -40,9 +40,7 @@ export const CategoryForm = ({ register, setValue, handleSubmit, errors, onSubmi
                     {errors.name?.type === "required" && <Text text={"카테고리 이름을 입력해주세요."} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
-                <Select  width={"100%"} inputName={"parentCategory"} register={register("parentCategory",{required: true})} setValue={setValue} option={categoryList}/>
-                
-                {/* <ErrorMessage></ErrorMessage> */}
+                <Select  width={"100%"} inputName={"parentCategory"} register={register("parentCategory")} setValue={setValue} option={categoryList}/>
 
                 <Button text={"완료"} type={"submit"} width={"100%"} height={"45px"}/>
             </form>
