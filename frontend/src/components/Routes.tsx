@@ -10,8 +10,8 @@ import Page404 from '../pages/Page404';
 import WritePost from '../pages/WritePost';
 import WriteCategory from '../pages/WriteCategory';
 import WriteNotice from '../pages/WriteNotice';
+import Notice from '../pages/Notice';
 
-import Add from '../routers/Add/index';
 import Search from '../routers/Seach/index';
 import SignUp from '../routers/SignUp/index';
 import Profile from '../routers/Profile/index';
@@ -41,6 +41,7 @@ const Routes = () => {
                     <Route exact path="/detail/:postId" component={Post} />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/page=:i" component={Home} />
+                    <Route exact path="/Notice/:id" component={Notice} />
                     <Route exact path="/WritePost" component={WritePost} />
                     <Route exact path="/WriteCategory" component={WriteCategory} />
                     <Route exact path="/WriteNotice" component={WriteNotice} />
