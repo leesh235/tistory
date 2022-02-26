@@ -14,6 +14,9 @@ export default {
                 const totalNotice = await prisma.notice.findMany({
                     where: {
                         deleteAt: null
+                    },
+                    select: {
+                        id: true,
                     }
                 });
 
@@ -45,11 +48,16 @@ export default {
                     }
                 })
 
+                const result = {
+                    notice: noticeList,
+                    noticeQuantity: NoticeLen
+                }
+
                 return {
                     __typename: "NoticeListSuccess",
                     status: SUCCESS,
                     message: SUCCESS_GET_NOTICELIST,
-                    data: noticeList
+                    data: result
                 };
 
             }catch (error){

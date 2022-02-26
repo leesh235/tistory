@@ -1,14 +1,19 @@
-type NoticeList {
+type Notice {
     id: Int!
     title: String!
     contents: String!
     createAt: DateTime!
 }
 
+type NoticeList{
+    notice: [Notice]!
+    noticeQuantity: Int!
+}
+
 type NoticeListSuccess {
     status: String!
     message: String!
-    data: [NoticeList]!
+    data: NoticeList!
 }
 
 type NoticeListFailure {
