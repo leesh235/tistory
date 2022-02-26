@@ -16,6 +16,10 @@ const Wrapper = styled.section`
         width: 100%;
         height: auto;
         margin-bottom: 30px;
+
+        >:nth-child(6){
+            margin-top: 15px;
+        }
     }
 `;
 
@@ -41,7 +45,6 @@ export const PostForm = ({ register, setValue, handleSubmit, errors, onSubmit, e
 
                 <Select  width={"100%"} inputName={"category"} register={register("category",{required: true})} setValue={setValue} option={categoryList}/>
 
-                
                 <ErrorMessage>
                     {errors.category?.type === "required" && <Text text={"카테고리를 선택해주세요."} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>

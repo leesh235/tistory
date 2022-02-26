@@ -14,6 +14,10 @@ const Wrapper = styled.section`
         width: 100%;
         height: auto;
         margin-bottom: 30px;
+
+        >:nth-child(4){
+            margin-top: 15px;
+        }
     }
 `;
 
@@ -38,6 +42,8 @@ export const CategoryForm = ({ register, setValue, handleSubmit, errors, onSubmi
 
                 <Select  width={"100%"} inputName={"parentCategory"} register={register("parentCategory",{required: true})} setValue={setValue} option={categoryList}/>
                 
+                {/* <ErrorMessage></ErrorMessage> */}
+
                 <Button text={"완료"} type={"submit"} width={"100%"} height={"45px"}/>
             </form>
         </Wrapper>
