@@ -3,6 +3,7 @@ import { WRITENOTICE } from '../querys/WriteNoticeQuery';
 import { useMutation } from "@apollo/client";
 import { useForm } from 'react-hook-form';
 import { NoitceForm } from '../components/Form/NoitceForm';
+import { routes } from '../routes';
 
 export const WriteNoticeContainer = () => {
 
@@ -21,7 +22,7 @@ export const WriteNoticeContainer = () => {
 
             if(data?.writeNotice?.__typename === "WriteNoticeSuccess"){
                 alert("작성 완료");
-                window.location.replace("/");
+                window.location.replace(`${routes.noticeList}`);
             }
         } catch(error){
             console.log(error);
