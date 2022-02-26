@@ -46,7 +46,7 @@ export default {
                     let parentCategory;
                     let lastCategory;
 
-                    if(parentCategory !== ""){
+                    if(parentCategoryName !== ""){
                         parentCategory = await prisma.category.findFirst({
                             where:{
                                 name: parentCategoryName
@@ -72,11 +72,12 @@ export default {
                     //parnet = 해당 카테고리의 id *최상위 category parent = 0
                     let setSequence = lastCategory !== null ? lastCategory.sequence + 1 : 0;
                     let setDepth = parentCategory !== null ? parentCategory.depth +  1 : 0;
+                    let parent = parentCategory !== null ? parentCategory.id : 0;
 
                     await prisma.category.create({
                         data:{
                             name,
-                            parent: categoryId,
+                            parent: parent,
                             sequence: setSequence,
                             depth: setDepth
                         }
@@ -99,7 +100,7 @@ export default {
                     };
                 }
             } catch(error) {
-                throw new Error(SERVER_ERROR);
+                throw error;
             }
         }
     }
