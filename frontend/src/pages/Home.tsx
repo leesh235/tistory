@@ -26,7 +26,7 @@ const Wrapper = styled.main`
 const Home = () => {
 
     const store_categoryId = useSelector((state: any) => state.category.categoryId);
-
+    
     return(
         <Wrapper>
             <PC>
@@ -37,13 +37,13 @@ const Home = () => {
             <Tablet>
                 <CategoryContainer />
                 <div></div>
-                <PostListContainer />
+                {store_categoryId !== -1 ? <PostListContainer />: <NoticeListContainer />}
                 <div></div>
             </Tablet>
 
             <Mobile>
                 <CategoryContainer />
-                <PostListContainer />
+                {store_categoryId !== -1 ? <PostListContainer />: <NoticeListContainer />}
             </Mobile>
         </Wrapper>
     );

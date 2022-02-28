@@ -126,13 +126,13 @@ export const CategoryList = ({ category, handleClickCategory, scrollY }: Props) 
                             </Category>
                         );
                     })}
-                    {/* <Link to={{
+                    <Link to={{
                         pathname: `${routes.noticeList}`
-                    }}> */}
+                    }}>
                         <ButtonWrapper onClick={() => handleClickCategory(-1)}>
                             <Text fs={"18px"} text={`공지사항`} fc={store_categoryId === -1 ? "red" : "black"}/>
                         </ButtonWrapper>
-                    {/* </Link> */}
+                    </Link>
                 </Category>
             </Wrapper>
             <Tablet>

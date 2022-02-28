@@ -12,7 +12,6 @@ import WritePost from '../pages/WritePost';
 import WriteCategory from '../pages/WriteCategory';
 import WriteNotice from '../pages/WriteNotice';
 import Notice from '../pages/Notice';
-import NoticeList from '../pages/NoticeHome';
 
 import SignUp from '../routers/SignUp/index';
 import Profile from '../routers/Profile/index';
@@ -40,9 +39,9 @@ const Routes = () => {
                     <Route exact path="/signup" component={SignUp} />
                     <Route exact path={`${routes.detail}:postId`} component={Post} />
                     <Route exact path={`${routes.home}`} component={Home} />
+                    <Route exact path={`${routes.noticeList}`} component={Home} />
                     <Route exact path="/page=:i" component={Home} />
                     <Route exact path={`${routes.notice}:id`} component={Notice} />
-                    <Route exact path={`${routes.noticeList}`} component={NoticeList} />
                     <Route exact path={`${routes.writePost}`} component={WritePost} />
                     <Route exact path={`${routes.writeCategory}`} component={WriteCategory} />
                     <Route exact path={`${routes.writeNotice}`} component={WriteNotice} />

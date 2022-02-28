@@ -2,7 +2,7 @@ import { CategoryList } from '../components/CategoryList';
 import { useQuery } from '@apollo/client';
 import { CATEGORYLIST } from '../querys/CategoryQuery';
 import { Error } from '../components/common/Error';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId } from "../redux/actions/category";
 import { useScroll } from '../hooks/useScroll';
 import { useEffect } from 'react';
@@ -16,6 +16,7 @@ export const CategoryContainer = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const store_categoryId = useSelector((state: any) => state.category.categoryId);
 
     const handleClickCategory = (id: number) => {
         dispatch(setCategoryId(id));
@@ -25,7 +26,10 @@ export const CategoryContainer = () => {
     }
 
     useEffect(() => {
-
+        if(window.location.pathname === routes.noticeList){
+            handleClickCategory(-1);
+            window.history.pushState({}, '', window.origin + `${routes.noticeList}`);
+        }
     },[y.scrollY])
 
     if(error) return <Error />
