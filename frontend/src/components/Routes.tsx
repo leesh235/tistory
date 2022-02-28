@@ -14,7 +14,6 @@ import WriteNotice from '../pages/WriteNotice';
 import Notice from '../pages/Notice';
 import NoticeList from '../pages/NoticeHome';
 
-import Search from '../routers/Seach/index';
 import SignUp from '../routers/SignUp/index';
 import Profile from '../routers/Profile/index';
 import ModifyProfile from '../routers/ModifyProfile/index';
@@ -36,7 +35,6 @@ const Routes = () => {
             <Header />
             <Wrapper>
                 <Switch>
-                    <Route exact path="/search" component={Search} />
                     <Route exact path={`${routes.profile}`} component={Profile} />
                     <Route exact path={`${routes.login}`} component={LogIn} />
                     <Route exact path="/signup" component={SignUp} />

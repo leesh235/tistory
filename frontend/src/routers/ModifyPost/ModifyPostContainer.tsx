@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { routes } from "../../routes"
 import { useForm } from 'react-hook-form';
 import { writePostApi, getPostApi } from "../../api";
-import { DETAIL } from "../Detail/DetailQuery";
+import { POST } from "../../querys/PostQuery";
 import { Loading } from "../../components/Loading";
 import axios from 'axios';
 import { getToken } from "../../utils/auth";
@@ -17,7 +17,7 @@ export const ModifyPostContainer = () => {
 console.log(postId)
     const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm({ mode:"onBlur" });
     
-    const {loading, data} = useQuery(DETAIL,{
+    const {loading, data} = useQuery(POST,{
         variables: {
             postId: Number(postId)
         }
