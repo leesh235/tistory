@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Text } from './common/Text';
 import { PC, Tablet, Mobile } from '../utils/responsive';
 import { ListButton } from './ListButton';
+import { Link } from "react-router-dom";
+import { routes } from "../routes";
 
 const Wrapper = styled.section`
     @media screen and (min-width: 64em){
@@ -124,6 +126,13 @@ export const CategoryList = ({ category, handleClickCategory, scrollY }: Props) 
                             </Category>
                         );
                     })}
+                    {/* <Link to={{
+                        pathname: `${routes.noticeList}`
+                    }}> */}
+                        <ButtonWrapper onClick={() => handleClickCategory(-1)}>
+                            <Text fs={"18px"} text={`공지사항`} fc={store_categoryId === -1 ? "red" : "black"}/>
+                        </ButtonWrapper>
+                    {/* </Link> */}
                 </Category>
             </Wrapper>
             <Tablet>

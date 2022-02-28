@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { PostListContainer } from '../containers/PostListContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
+import { NoticeListContainer } from '../containers/NoticeListContainer';
 import { PC, Tablet, Mobile } from '../utils/responsive';
+import { useSelector } from "react-redux";
 
 const Wrapper = styled.main`
     width: 100%;
@@ -22,11 +24,14 @@ const Wrapper = styled.main`
 `;
 
 const Home = () => {
+
+    const store_categoryId = useSelector((state: any) => state.category.categoryId);
+
     return(
         <Wrapper>
             <PC>
                 <CategoryContainer />
-                <PostListContainer />
+                {store_categoryId !== -1 ? <PostListContainer />: <NoticeListContainer />}
             </PC>
 
             <Tablet>
