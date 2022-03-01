@@ -23,7 +23,7 @@ export default {
                         };
                     }
     
-                    if(contentsUrl !== ""){
+                    if(contentsUrl === ""){
                         return {
                             __typename: "EditorFailure",
                             status: ERROR,
@@ -42,7 +42,6 @@ export default {
                             id: true,
                             title: true,
                             contentsUrl: true,
-                            modifyAt: true
                         }
                     })
 
