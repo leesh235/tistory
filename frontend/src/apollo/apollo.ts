@@ -21,6 +21,7 @@ const cache: InMemoryCache = new InMemoryCache({
         },
         role: {
           read() {
+            //보안 문제로 인해 수정 예정
             return localStorage.getItem("role") || "";
           }
         }
