@@ -1,22 +1,43 @@
-// import ApolloClient from "apollo-boost";
-import { ApolloClient, InMemoryCache, createHttpLink }from '@apollo/client';
+import { ApolloClient, InMemoryCache, createHttpLink, makeVar }from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { resolvers } from "./LocalState";
 
-//LocalState.ts의 11번줄, defaults와 비슷
+export const currentRole = makeVar<string>("");
+/*
+  값 불러오기 = currentRole()
+  새로운 값 저장 = currentRole(props)
+*/
+
+//초기 cache값 지정, isLoggedIn은 localStorage의 영향을 받아 값이 유지 되지만 role은 새로고침 시 계속 초기화
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
+        //Reactive Variables 지정
         isLoggedIn: {
           read() {
             return Boolean(localStorage.getItem("token")) || false;
           },
         },
+        role: {
+          read() {
+            return localStorage.getItem("role") || "";
+          }
+        }
       },
     },
   },
 })
+
+//위와 같은 방법
+// const cache: InMemoryCache = new InMemoryCache()
+// cache.writeQuery({
+//   query: TOKENINFO,
+//   data: {
+//       isLoggedIn: Boolean(localStorage.getItem("token")) || false,
+//       role: currentRole()
+//   }
+// })
 
 const uri = process.env.REACT_APP_SERVER;
 
@@ -36,14 +57,14 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client =  new ApolloClient({
-  // link: authLink.concat(httpLink),
-  uri,
-  credentials: "same-origin",
-  cache,
-  resolvers: resolvers,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-},
+    // link: authLink.concat(httpLink),
+    uri,
+    credentials: "same-origin",
+    cache,
+    resolvers: resolvers,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
 });
 
 export default client;

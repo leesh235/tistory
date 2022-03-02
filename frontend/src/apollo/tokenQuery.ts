@@ -1,9 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const TOKENINFO = gql`
-query{
-    isLoggedIn @client
-}
+    query {
+        isLoggedIn @client
+        role @client
+    }
 `;
 
 export const TOKENLOGOUT = gql`

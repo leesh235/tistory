@@ -28,9 +28,11 @@ export const LogInContainer = () => {
 
                 await tokenMutation({
                     variables: {
-                        token: data?.login?.data.token
+                        token: data?.login?.data.token,
+                        role: data?.login?.data.role
                     }
                 });
+
                 setTimeout(() => {
                     window.location.replace("/")
                 }, 500);

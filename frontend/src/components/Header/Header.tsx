@@ -97,12 +97,11 @@ const Menu = styled.ul`
 
 export const Header = () => {
 
-    const { loading , data: {
-        isLoggedIn
-    }} = useQuery(TOKENINFO);
+    const { data: { isLoggedIn, role } } = useQuery(TOKENINFO);
+
     const history = useHistory();
     const location = useLocation();
-
+    
     const [tokenMutation] = useMutation(TOKENLOGOUT);
     const [open, setOpen] = useState<boolean>(false);
 
