@@ -61,7 +61,7 @@ interface Props {
 export const PostDetail = ({post, onClick}: Props) => {
 
     const createMarkup = () => {
-        return {__html: `${post.contentsUrl}`};
+        return {__html: `<iframe src=${post.contentsUrl} width="100%" height="100%"></iframe>`}
     }
 
     return(

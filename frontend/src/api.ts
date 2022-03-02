@@ -3,7 +3,6 @@ import { apies } from "./routes";
 
 interface Props{
     postId: number,
-    writer: string,
     title: string,
     editor: any,
 }

@@ -11,7 +11,7 @@ export const routes = {
 }
 
 export const apies = {
-    editor: "editor",
+    editor: "post",
     getPost: "getPost/",
     delete: "editor/delete/",
     profile: "profile",

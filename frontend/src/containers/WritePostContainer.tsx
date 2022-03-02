@@ -31,25 +31,23 @@ export const WritePostContainer = () => {
                 const title = getValues("title");
 
                 const formValue: {
-                    writer: string,
                     postId: number,
                     title: string,
                     editor: any,
                 } = {
-                    writer: data.writePost.data.author,
                     postId: Number(data.writePost.data.id),
                     title: title,
                     editor: postData,
                 }
 
-                // writePostApi(formValue).then(
-                //     data => {
-                //         console.log(data);
-                //     },
-                //     err => {
-                //         console.log(err);
-                //     }
-                // )
+                writePostApi(formValue).then(
+                    data => {
+                        console.log(data);
+                    },
+                    err => {
+                        console.log(err);
+                    }
+                )
             }
             alert("작성 완료");
             window.location.replace("/");
