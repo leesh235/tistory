@@ -6,7 +6,7 @@ export const MODIFYUSERIMAGE = gql`
             ...on UserImageSuccess{
                 status
                 message
-                data: {
+                data{
                     id
                     nickName
                     imageUrl
@@ -21,16 +21,15 @@ export const MODIFYUSERIMAGE = gql`
 `;
 
 export const EDITOR = gql`
-    mutation writeEditor($postId: Int! $contentsUrl: String){
-        writeEditor(postId: $postId contentsUrl: $contentsUrl){
+    mutation writeEditor($postId: Int!, $contentsUrl: String!){
+        writeEditor(postId: $postId, contentsUrl: $contentsUrl){
             ...on EditorSuccess{
                 status
                 message
-                data: {
+                data{
                     id
                     title
                     contentsUrl
-                    modifyAt
                 }
             }
             ...on EditorFailure{

@@ -11,13 +11,13 @@ export const profileToDB = async(req, filename) => {
     });
 };
 
-export const postContentsToDB = async(req) => {
+export const postToDB = async(req) => {
     const client = makeClient(req.headers.authorization);
     return await client.mutate({
         mutation: EDITOR,
         variables: {
             postId: req.body.postId,
-            contentsUrl: process.env.FILESERVER + "/" + req.body.email + "/" + filename
+            contentsUrl: `${process.env.FILESERVER}/${req.body.postId}/${req.body.title}.html`
         }
     });
 };
