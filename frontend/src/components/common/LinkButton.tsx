@@ -58,7 +58,7 @@ LinkButton.defaultProps = {
     color: "white",
     fc: "black",
     fs: "1.4rem",
-    maxW: "100%",
-    width: "250px",
+    width: "100%",
+    maxW: "250px",
     height: "40px",
 }

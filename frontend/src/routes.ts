@@ -10,12 +10,14 @@ export const routes = {
     notice: "/notice/",
     modifyProfile: "/modify-profile",
     modifyPost: "/modify-post/",
+    modifyNotice: "/modify-notice/",
 }
 
 export const apies = {
     editor: "post",
-    getPost: "getPost/",
     delete: "/delete-post/",
+    
+    getPost: "getPost/",
     profile: "profile",
     profileImg: "profileImg/",
     unregister: "unregister/"

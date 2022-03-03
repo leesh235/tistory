@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-import { PC, Tablet, Mobile } from '../utils/responsive';
+import { useSelector } from 'react-redux';
 import moment from "moment";
 import { Text } from "./common/Text";
+import { Button } from "./common/Button";
+import { LinkButton } from "./common/LinkButton";
 import { LineStyle } from "./LineStyle";
+import { routes } from '../routes';
 
 const Wrapper = styled.section`
     display: flex;
@@ -20,12 +23,29 @@ const TopWrapper = styled.article`
 
 const ContentWrapper = styled.article`
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     width: 95%;
     height: auto;
-    >:nth-child(n){
-        margin-bottom: 50px;
+    min-height: 400px;
+    margin-bottom: 50px;
+`;
+
+const ButtonWrapper = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    @media screen and (min-width: 64em){
+        width: 100%;
     }
+    @media screen and (max-width: 63.94em){
+        width: 90%;
+        >:nth-child(n){
+            margin: 0 5px;
+        }
+    }
+
 `;
 
 interface Props {
@@ -35,6 +55,9 @@ interface Props {
 }
 
 export const NoticeDetail = ({ title, contents, createAt }: Props) => {
+
+    const store_role = useSelector((state: any) => state?.user?.role);
+
     return(
         <Wrapper>
             <TopWrapper>
@@ -44,7 +67,18 @@ export const NoticeDetail = ({ title, contents, createAt }: Props) => {
 
             <LineStyle w={"98%"} margin={"20px 0"}/>
 
-            <Text text={`${contents}`} fc={"black"}/>
+            <ContentWrapper>
+                <Text text={`${contents}`} fc={"black"}/>
+            </ContentWrapper>
+
+            {store_role === "ADMIN" ? 
+            <ButtonWrapper>
+                <LinkButton text={"수정"} width={"40%"} pathname={`${routes.modifyNotice}`}/>
+                <Button text={"삭제"} width={"40%"} type={"button"}/>
+            </ButtonWrapper>
+            :
+            ""}
+
         </Wrapper>
     );
 }

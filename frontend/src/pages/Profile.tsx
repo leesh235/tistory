@@ -41,8 +41,8 @@ const Profile = () => {
             <ProfileContainer />
 
             <ButtonWrapper>
-                <LinkButton text={"수정"} maxW={"80%"} pathname={routes.modifyProfile}/>
-                <Button text={"회원탈퇴"} maxW={"80%"} type={"button"}/>
+                <LinkButton text={"수정"} width={"40%"} pathname={routes.modifyProfile}/>
+                <Button text={"회원탈퇴"} width={"40%"} type={"button"}/>
             </ButtonWrapper>
         </Wrapper>
     );

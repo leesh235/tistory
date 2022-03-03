@@ -109,8 +109,8 @@ export const UserForm = ({ register, handleSubmit, errors, onSubmit, userInfo} :
                 </UserWrapper>
             </ContentsWrapper>
             <ButtonWrapper>
-                <Button text={"완료"} maxW={"80%"}/>
-                <LinkButton text={"취소"} maxW={"80%"} pathname={routes.profile}/>
+                <Button text={"완료"} width={"40%"}/>
+                <LinkButton text={"취소"} width={"40%"} pathname={routes.profile}/>
             </ButtonWrapper>
         </Wrapper>
     );

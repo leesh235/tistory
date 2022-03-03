@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import moment from "moment";
-import { Link } from 'react-router-dom';
 import { LineStyle } from "../../components/LineStyle";
 import { Text } from "../common/Text";
 import { Button } from "../common/Button";
@@ -39,6 +38,7 @@ const ContentWrapper = styled.article`
     flex-direction: column;
     width: 95%;
     height: auto;
+    min-height: 400px;
     >:nth-child(n){
         margin-bottom: 50px;
     }
@@ -107,8 +107,8 @@ export const PostDetail = ({post, onClick}: Props) => {
 
             {store_role === "ADMIN" ? 
             <ButtonWrapper>
-                <LinkButton text={"수정"} maxW={"80%"} pathname={`${routes.modifyPost}${post.id}`}/>
-                <Button text={"삭제"} maxW={"80%"} type={"button"} onClick={onClick}/>
+                <LinkButton text={"수정"} width={"40%"} pathname={`${routes.modifyPost}${post.id}`}/>
+                <Button text={"삭제"} width={"40%"} type={"button"} onClick={onClick}/>
             </ButtonWrapper>
             :
             ""}
