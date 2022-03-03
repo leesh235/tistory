@@ -10,6 +10,7 @@ const Wrapper = styled.section`
     >form{
         display: flex;
         flex-direction: column;
+        align-items: center;
         width: 100%;
         height: auto;
         margin-bottom: 30px;
@@ -39,7 +40,7 @@ export const NoitceForm = ({ register, handleSubmit, errors, onSubmit } : Props)
                     {errors.contents?.type === "required" && <Text text={"내용을 입력해주세요."} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
                 
-                <Button text={"완료"} type={"submit"} width={"100%"} height={"45px"}/>
+                <Button text={"완료"} type={"submit"} maxW={"100%"} width={"100%"} height={"45px"}/>
             </form>
         </Wrapper>
     );
