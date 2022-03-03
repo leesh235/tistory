@@ -43,7 +43,7 @@ export default {
                     };
                 }
             } catch(error) {
-                throw new Error(SERVER_ERROR);
+                throw error;
             }
         }
     }

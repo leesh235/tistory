@@ -27,6 +27,7 @@ export const SUCCESS_WRITE_USERIMAGE = "유저 이미지 저장 성공";
 export const SUCCESS_WRITE_CONTENTSURL = "게시글 url 저장 성공";
 export const SUCCESS_MODIFY_POST = "게시글 수정 성공";
 export const SUCCESS_MODIFY_PROFILE = "개인 정보 수정 성공";
+export const SUCCESS_PROFILE = " 유저 정보 불러오기";
 
 export const EXIST_USER = "이미 가입한 이메일입니다.";
 export const EXIST_DELETE = "이미 탈퇴한 이메일입니다.";
