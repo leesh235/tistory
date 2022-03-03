@@ -7,9 +7,9 @@ const Wrapper = styled.button<StyleProps>`
     margin: 0px;
     padding: 0px;
     border: 0px;
-    border-radius: 6px;
-    background-color: ${propss => propss.color};
-
+    border-radius: 10px;
+    background-color: ${props => props.color};
+    box-shadow: 1px 2px 6px 0 rgba(0, 0, 0, 0.16);
     font-size: ${props => props.fs};
     color: ${props => props.fc};
 `;
@@ -45,12 +45,11 @@ export const Button = ({text, type, maxW, width, height, color, fc, onClick, fs}
 }
 
 Button.defaultProps = {
-    color: "green",
-    fc: "white",
-    placeholer: "내용을 입력하세요",
+    color: "white",
+    fc: "black",
     fs: "1.4rem",
     maxW: "100%",
-    width: "284px",
-    height: "30px",
+    width: "250px",
+    height: "40px",
     type: "submit",
 }

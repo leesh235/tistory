@@ -12,9 +12,9 @@ import WritePost from '../pages/WritePost';
 import WriteCategory from '../pages/WriteCategory';
 import WriteNotice from '../pages/WriteNotice';
 import Notice from '../pages/Notice';
+import Profile from '../pages/Profile';
 
 import SignUp from '../routers/SignUp/index';
-import Profile from '../routers/Profile/index';
 import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
