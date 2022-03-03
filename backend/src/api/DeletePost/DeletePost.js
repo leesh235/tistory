@@ -77,6 +77,7 @@ export default {
                         status: SUCCESS,
                         message: SUCCESS_DELETE_POSTLIST,
                         data: {
+                            id: result.id,
                             deleteAt: result.deleteAt
                         }
                     };

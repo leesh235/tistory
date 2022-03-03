@@ -1,4 +1,5 @@
 type DeletePost {
+    id: Int!
     deleteAt: DateTime!
 }
 
