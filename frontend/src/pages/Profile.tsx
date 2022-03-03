@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { ProfileContainer } from '../containers/ProfileContainer';
 import { Button } from "../components/common/Button";
+import { LinkButton } from "../components/common/LinkButton";
+import { routes } from '../routes';
 
 const Wrapper = styled.main`
     display: flex;
@@ -39,8 +41,8 @@ const Profile = () => {
             <ProfileContainer />
 
             <ButtonWrapper>
-                <Button text={"수정"} maxW={"80%"}/>
-                <Button text={"회원탈퇴"} maxW={"80%"}/>
+                <LinkButton text={"수정"} maxW={"80%"} pathname={routes.modifyProfile}/>
+                <Button text={"회원탈퇴"} maxW={"80%"} type={"button"}/>
             </ButtonWrapper>
         </Wrapper>
     );
