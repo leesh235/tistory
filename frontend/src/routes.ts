@@ -8,7 +8,7 @@ export const routes = {
     writeNotice: "/write-notice",
     noticeList: "/notice-list",
     notice: "/notice/",
-    modifyProfile: "modify-profile",
+    modifyProfile: "/modify-profile",
 }
 
 export const apies = {

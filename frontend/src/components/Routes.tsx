@@ -13,9 +13,9 @@ import WriteCategory from '../pages/WriteCategory';
 import WriteNotice from '../pages/WriteNotice';
 import Notice from '../pages/Notice';
 import Profile from '../pages/Profile';
+import ModifyProfile from '../pages/ModifyProfile';
 
 import SignUp from '../routers/SignUp/index';
-import ModifyProfile from '../routers/ModifyProfile/index';
 import ModifyPost from '../routers/ModifyPost/index';
 import Unresister from '../routers/Unresister/index';
 
@@ -45,7 +45,7 @@ const Routes = () => {
                     <Route exact path={`${routes.writePost}`} component={WritePost} />
                     <Route exact path={`${routes.writeCategory}`} component={WriteCategory} />
                     <Route exact path={`${routes.writeNotice}`} component={WriteNotice} />
-                    <Route exact path="/modifyProfile" component={ModifyProfile} />
+                    <Route exact path={`${routes.modifyProfile}`} component={ModifyProfile} />
                     <Route exact path="/modifyPost/:postId" component={ModifyPost} />
                     <Route exact path="/profile/unresister" component={Unresister} />
                     <Route component={Page404}/>
