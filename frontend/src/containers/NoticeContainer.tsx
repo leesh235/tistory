@@ -20,6 +20,7 @@ export const NoticeContainer = () => {
     else{
         return(
             <NoticeDetail 
+                id={data?.getNoticeDetail?.data?.id}
                 title={data?.getNoticeDetail?.data?.title}
                 contents={data?.getNoticeDetail?.data?.contents}
                 createAt={data?.getNoticeDetail?.data?.createAt}

@@ -49,12 +49,13 @@ const ButtonWrapper = styled.div`
 `;
 
 interface Props {
+    id: number,
     title: string,
     contents: string,
     createAt: string,
 }
 
-export const NoticeDetail = ({ title, contents, createAt }: Props) => {
+export const NoticeDetail = ({ id, title, contents, createAt }: Props) => {
 
     const store_role = useSelector((state: any) => state?.user?.role);
 
@@ -73,7 +74,7 @@ export const NoticeDetail = ({ title, contents, createAt }: Props) => {
 
             {store_role === "ADMIN" ? 
             <ButtonWrapper>
-                <LinkButton text={"수정"} width={"40%"} pathname={`${routes.modifyNotice}`}/>
+                <LinkButton text={"수정"} width={"40%"} pathname={`${routes.modifyNotice}${id}`}/>
                 <Button text={"삭제"} width={"40%"} type={"button"}/>
             </ButtonWrapper>
             :
