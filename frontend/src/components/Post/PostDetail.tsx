@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { LineStyle } from "../../components/LineStyle";
 import { Text } from "../common/Text";
 import { Button } from "../common/Button";
+import { LinkButton } from "../common/LinkButton";
+import { useSelector } from 'react-redux';
+import { routes } from '../../routes';
 
 const Wrapper = styled.section`
     display: flex;
@@ -41,6 +44,24 @@ const ContentWrapper = styled.article`
     }
 `;
 
+const ButtonWrapper = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    @media screen and (min-width: 64em){
+        width: 100%;
+    }
+    @media screen and (max-width: 63.94em){
+        width: 90%;
+        >:nth-child(n){
+            margin: 0 5px;
+        }
+    }
+
+`;
+
 interface Post {
     id: number,
     title: string,
@@ -59,6 +80,8 @@ interface Props {
 }
 
 export const PostDetail = ({post, onClick}: Props) => {
+
+    const store_role = useSelector((state: any) => state?.user?.role);
 
     const createMarkup = () => {
         return {__html: `<iframe src=${post.contentsUrl} width="100%" height="100%"></iframe>`}
@@ -81,17 +104,15 @@ export const PostDetail = ({post, onClick}: Props) => {
                 <div dangerouslySetInnerHTML={createMarkup()} />
             </ContentWrapper>
 
-            {/* <FlexWrapper display={"flex"} fd={"row"} jc={"flex-end"} w={"90%"}>
-                {equal ? 
-                    <Link to={{
-                        pathname: `/modifyPost/${post.postId}`,
-                    }}>
-                        <Button text={"수정"} fs={"1.5rem"} color={"skyblue"} w={"9rem"} h={"3rem"}/>
-                    </Link> :
-                    ""
-                }
-                {equal ? <Button text={"삭제"} fs={"1.5rem"} color={"pink"} w={"9rem"} h={"3rem"} onClick={onClick} margin={"0 0 0 30px"}/> : ""}
-            </FlexWrapper> */}
+
+            {store_role === "ADMIN" ? 
+            <ButtonWrapper>
+                <LinkButton text={"수정"} maxW={"80%"} pathname={`${routes.modifyPost}${post.id}`}/>
+                <Button text={"삭제"} maxW={"80%"} onClick={onClick}/>
+            </ButtonWrapper>
+            :
+            ""}
+
         </Wrapper>
     );
 }

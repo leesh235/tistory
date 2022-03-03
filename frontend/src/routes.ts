@@ -9,6 +9,7 @@ export const routes = {
     noticeList: "/notice-list",
     notice: "/notice/",
     modifyProfile: "/modify-profile",
+    modifyPost: "/modify-post/",
 }
 
 export const apies = {
