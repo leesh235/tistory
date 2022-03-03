@@ -67,6 +67,7 @@ export const WritePostContainer = () => {
 
     return(
         <PostForm 
+            mode={"post"}
             register={register}
             handleSubmit={handleSubmit}
             errors={errors}

@@ -24,6 +24,7 @@ const Wrapper = styled.section`
 `;
 
 interface Props {
+    mode: "post" | "modify",
     register: any,
     handleSubmit: any,
     errors: any,
@@ -33,7 +34,7 @@ interface Props {
     categoryList?: Array<string>
 }
 
-export const PostForm = ({ register, setValue, handleSubmit, errors, onSubmit, editorRef, categoryList } : Props) => {
+export const PostForm = ({ mode, register, setValue, handleSubmit, errors, onSubmit, editorRef, categoryList } : Props) => {
     return(
         <Wrapper>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -43,7 +44,12 @@ export const PostForm = ({ register, setValue, handleSubmit, errors, onSubmit, e
                     {errors.title?.type === "required" && <Text text={"제목을 입력해주세요."} fs={"1rem"} fc={"red"}/>}
                 </ErrorMessage>
 
-                <Select  width={"100%"} inputName={"category"} register={register("category",{required: true})} setValue={setValue} option={categoryList}/>
+                {
+                    mode === "post" ? 
+                    <Select  width={"100%"} inputName={"category"} register={register("category",{required: true})} setValue={setValue} option={categoryList}/>
+                    :
+                    <Input type={"text"} register={register("category",{required: true})} readOnly={true} width={"100%"} placeholder={"제목"}/>
+                }
 
                 <ErrorMessage>
                     {errors.category?.type === "required" && <Text text={"카테고리를 선택해주세요."} fs={"1rem"} fc={"red"}/>}
