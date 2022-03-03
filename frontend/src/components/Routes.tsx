@@ -15,6 +15,7 @@ import Notice from '../pages/Notice';
 import Profile from '../pages/Profile';
 import ModifyProfile from '../pages/ModifyProfile';
 import ModifyPost from '../pages/ModifyPost';
+import ModifyNotice from '../pages/ModifyNotice';
 
 import SignUp from '../routers/SignUp/index';
 import Unresister from '../routers/Unresister/index';
@@ -47,6 +48,7 @@ const Routes = () => {
                     <Route exact path={`${routes.writeNotice}`} component={WriteNotice} />
                     <Route exact path={`${routes.modifyProfile}`} component={ModifyProfile} />
                     <Route exact path={`${routes.modifyPost}:id`} component={ModifyPost} />
+                    <Route exact path={`${routes.modifyNotice}:id`} component={ModifyNotice} />
                     <Route exact path="/profile/unresister" component={Unresister} />
                     <Route component={Page404}/>
                 </Switch>
