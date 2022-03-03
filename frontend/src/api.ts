@@ -29,11 +29,10 @@ export const getPostApi = async(formData: {
 }
 
 export const deletePostApi = async(formData: {
-    writer: string,
     postId: number
 }) => {
     try{
-        const res = await fileserver.get(`${apies.delete}${formData.writer}/${formData.postId}`);
+        const res = await fileserver.post(`${apies.delete}`, formData);
         return res;
     }catch(error){
         throw error;

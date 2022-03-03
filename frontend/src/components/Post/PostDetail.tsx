@@ -108,7 +108,7 @@ export const PostDetail = ({post, onClick}: Props) => {
             {store_role === "ADMIN" ? 
             <ButtonWrapper>
                 <LinkButton text={"수정"} maxW={"80%"} pathname={`${routes.modifyPost}${post.id}`}/>
-                <Button text={"삭제"} maxW={"80%"} onClick={onClick}/>
+                <Button text={"삭제"} maxW={"80%"} type={"button"} onClick={onClick}/>
             </ButtonWrapper>
             :
             ""}

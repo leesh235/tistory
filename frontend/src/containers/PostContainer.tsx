@@ -7,7 +7,7 @@ import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
 import { useHistory } from 'react-router';
 import { getPostApi, deletePostApi } from "../api";
-import { routes } from "../routes"
+import { routes } from "../routes";
 
 export const PostContainer = () => {
 
@@ -23,10 +23,10 @@ export const PostContainer = () => {
         }
     });
 
+    const [deletePost] = useMutation(DELETEPOST);
+
     const writer = data?.getPostDetail?.data?.writer;
     const contents = data?.getPostDetail?.data?.contents;
-
-    // const [deletePost] = useMutation(DELETEPOST);
 
     const init = async() => {
         if(contents){
@@ -44,31 +44,28 @@ export const PostContainer = () => {
 
     const deleteHandler = async() => {
         if(window.confirm("게시물을 삭제하시겠습니까?")){
-            // const {data: {DeletePost : {check, status}}} = await deletePost({
-            //     variables: {
-            //         postId: Number(postId)
-            //     }
-            // })
-            // if(check && contents){
-            //     const formData = {
-            //         writer: writer,
-            //         postId: Number(postId)
-            //     }
+            const { data } = await deletePost({
+                variables: {
+                    postId: Number(postId)
+                }
+            })
+            if(data?.deletePost?.__typename === "DeletePostSuccess" && contents !== null){
+                const formData = {
+                    postId: data?.deletePost?.data.id
+                }
         
-            //     deletePostApi(formData).then(
-            //         data => {
-            //             console.log(data)
-            //         }
-            //     )
-            // }
+                deletePostApi(formData).then(
+                    data => {
+                        console.log(data)
+                    }
+                )
+            }
             window.location.replace(`${routes.home}`);
         }
     }
 
     useEffect(() => {
-        if(data?.getPostDetail?.__typename !== "PostSuccess"){
-            // alert(data?.getPostDetail?.message);
-        }
+
     },[])
 
     if(loading) return <Loading /> 

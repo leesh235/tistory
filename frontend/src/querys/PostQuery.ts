@@ -25,10 +25,20 @@ export const POST = gql`
 `;
 
 export const DELETEPOST = gql`
-    mutation DeletePost($postId: Int!){
-        DeletePost(postId: $postId){
-            check
-            status
+    mutation deletePost($postId: Int!){
+        deletePost(postId: $postId){
+            ...on DeletePostSuccess{
+                status
+                message
+                data{
+                    id
+                    deleteAt
+                }
+            }
+            ...on DeletePostFailure{
+                status
+                message
+            }
         }
     }
 `;
