@@ -13,6 +13,7 @@ model User {
   password    String
   nickName    String
   createAt    DateTime      @default(now())
+  modifyAt    DateTime?
   deleteAt    DateTime?
   imageUrl    String?
   role        Role          @default(USER)
