@@ -29,11 +29,12 @@ interface StyleProps{
 interface Props extends StyleProps{
     type?: string,
     placeholder?: string,
+    readOnly?: boolean,
     register?(): void,
     func?(): void,
 }
 
-export const Input = ({type, maxW, width, height,  color, fs, fc, placeholder, register, func}: Props) => {
+export const Input = ({type, maxW, width, height,  color, fs, fc, readOnly, placeholder, register, func}: Props) => {
     return(
         <Wrapper 
             type={type}
@@ -46,6 +47,7 @@ export const Input = ({type, maxW, width, height,  color, fs, fc, placeholder, r
             fc={fc}
             {...register}
             onInput={func}
+            readOnly={readOnly}
         />
     );
 }
@@ -59,4 +61,5 @@ Input.defaultProps = {
     maxW: "100%",
     width: "282px",
     height: "30px",
+    readOnly: false,
 }
