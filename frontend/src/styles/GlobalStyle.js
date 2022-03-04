@@ -20,6 +20,11 @@ export const GlobalStyle = createGlobalStyle`
         outline: none;
         font-family: "EliceDigitalBaeum_Regular";
     }
+    textarea{
+        outline: none;
+        resize: none;
+        font-family: "EliceDigitalBaeum_Regular";
+    }
     a{
         text-decoration: none;
         color: inherit;
@@ -42,6 +47,10 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 18px;
         font-weight: bold;
         font-family: "EliceDigitalBaeum_Bold";
+    }
+    div, p, span{
+        font-size: 1.3rem;
+        font-family: "EliceDigitalBaeum_Regular";
     }
 
     @font-face {
