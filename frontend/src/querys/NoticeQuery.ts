@@ -20,3 +20,21 @@ export const NOTICE = gql`
         }
     }
 `;
+
+export const DELETENOTICE = gql`
+    mutation deleteNotice($noticeId: Int!){
+        deleteNotice(noticeId: $noticeId){
+            ... on DeleteNoticeSuccess{
+                status
+                message
+                data{
+                    deleteAt
+                }
+            }
+            ... on DeleteNoticeFailure{
+                status
+                message
+            }
+        }
+    }
+`;

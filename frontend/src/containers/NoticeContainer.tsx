@@ -1,9 +1,10 @@
-import { NOTICE } from '../querys/NoticeQuery';
-import { useQuery } from '@apollo/client';
+import { NOTICE, DELETENOTICE } from '../querys/NoticeQuery';
+import { useQuery, useMutation } from '@apollo/client';
 import { NoticeDetail } from '../components/NoticeDetail';
 import { useParams } from 'react-router-dom';
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
+import { routes } from '../routes';
 
 export const NoticeContainer = () => {
 
@@ -14,6 +15,25 @@ export const NoticeContainer = () => {
             noticeId: Number(id)
         }
     });
+    const [deleteNotice] = useMutation(DELETENOTICE);
+
+    const onClick = async() => {
+        try{
+            if(window.confirm("게시글을 삭제하시겠습니까?")){
+                const result = await deleteNotice({
+                    variables: {
+                        noticeId: Number(id)
+                    }
+                })
+                if(result.data?.deleteNotice?.__typename !== "DeleteNoticeSuccess"){
+                    console.log(result.data?.deleteNotice?.message);
+                }
+                window.location.replace(`${routes.noticeList}`);
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     if(loading) return <Loading /> 
     else if(error) return <Error />
@@ -24,6 +44,7 @@ export const NoticeContainer = () => {
                 title={data?.getNoticeDetail?.data?.title}
                 contents={data?.getNoticeDetail?.data?.contents}
                 createAt={data?.getNoticeDetail?.data?.createAt}
+                onClick={onClick}
             />
         );
     }
