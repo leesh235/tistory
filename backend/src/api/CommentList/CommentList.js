@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { isAuthenticated } from "../../utile";
 import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
-import { SUCCESS_GET_COMMENTLIST } from "../../constants/message";
+import { SUCCESS_GET_COMMENTLIST, DELETECOMMENT } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -26,6 +26,9 @@ export default {
                         },
                         {
                             sequence: "asc"
+                        },
+                        {
+                            createAt:"desc"
                         }
                     ],
                     select: {
@@ -53,7 +56,8 @@ export default {
                         })
                     }else{
                         result.push({
-                            commentId: commentList[i].id
+                            commentId: commentList[i].id,
+                            comment: DELETECOMMENT
                         })
                     }
                 }

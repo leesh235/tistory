@@ -51,3 +51,5 @@ export const PASSWORD_ERROR = "비밀번호가 틀렸습니다.";
 export const ADDMIN_ERROR = "관리자 권한이 없습니다.";
 
 export const WRONG_ACCESS = "잘못된 접근입니다.";
+
+export const DELETECOMMENT = "삭제된 댓글입니다.";
