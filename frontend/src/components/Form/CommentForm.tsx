@@ -16,16 +16,17 @@ const Wrapper = styled.form`
 `;
 
 interface Porps {
-    handleWriteComment: () => void,
-    register: any,
-    handleSubmit: any,
+    handleWriteComment?: () => void,
+    register?: any,
+    handleSubmit?: any,
 }
 
 export const CommentForm = ({ register, handleSubmit, handleWriteComment, }: Porps) => {
+    console.log("CommentForm")
     return(
         <Wrapper onSubmit={handleSubmit(handleWriteComment)}>
             <Textarea register={register("comment",{ required: true, })}/>
-            <Button text={"작성"} height={"100%"} maxW={"100px"} width={"15%"}/>
+            <Button type={"submit"} text={"작성"} height={"100%"} maxW={"100px"} width={"15%"}/>
         </Wrapper>
     );
 }

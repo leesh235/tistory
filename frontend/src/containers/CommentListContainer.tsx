@@ -1,44 +1,24 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { useQuery, useMutation } from '@apollo/client';
-import { COMMENT, WRITECOMMENT, MODIFYCOMMENT, DLETECOMMENT } from '../querys/CommentQuery';
+import { COMMENT, MODIFYCOMMENT, DLETECOMMENT } from '../querys/CommentQuery';
 import { Error } from '../components/common/Error';
 import { CommentList } from '../components/CommentList';
-import { CommentForm } from '../components/Form/CommentForm';
-
-interface Comment {
-    comment: string,
-}
+import { useSelector } from 'react-redux';
 
 export const CommentListContainer = () => {
-
+    console.log("CommentListContainer")
     const { postId } = useParams<{postId: string}>();
+    const store_comment = useSelector((state: any) => state?.comment?.comment);
 
-    const { register, setValue, handleSubmit, getValues, setError, formState: { errors } } = useForm<Comment>();
-
-    const { loading, data, error } = useQuery(COMMENT,{
+    const { data, error, refetch } = useQuery(COMMENT,{
         variables: {
             postId: Number(postId)
         }
     });
-    const [writeMutation] = useMutation(WRITECOMMENT);
+
     const [modifyMutation] = useMutation(MODIFYCOMMENT);
     const [deleteMutation] = useMutation(DLETECOMMENT);
-
-    const writeComment = async() => {
-        try{
-            const result = await writeMutation({
-                variables:{
-                    postId: Number(postId),
-                    commentId: null,
-                    contents: getValues("comment"),
-                }
-            })
-        }catch(error){
-            console.log(error);
-        }
-    }
 
     const modifyComment = async(id: number) => {
         try{
@@ -61,24 +41,24 @@ export const CommentListContainer = () => {
     }
 
     useEffect(() => {
-        
-    },[])
+        if(data?.getCommentList?.__typename === "CommentListSuccess"){
+            if(
+                data?.getCommentList?.data[data?.getCommentList?.data.length - 1].commentId !== store_comment &&
+                data?.getCommentList?.data[data?.getCommentList?.data.length - 1].commentId !== -1
+            ){
+                refetch();
+            }
+        }
+    },[store_comment])
 
     if(error) return <Error />
     else{
         return(
-            <>
-                <CommentForm 
-                    register={register}
-                    handleSubmit={handleSubmit}
-                    handleWriteComment={writeComment}
-                />
-                <CommentList 
-                    commentList={data?.getCommentList?.data} 
-                    handleModifyComment={modifyComment}
-                    handleDeleteComment={deleteComment}
-                />
-            </>
+            <CommentList 
+                commentList={data?.getCommentList?.data} 
+                handleModifyComment={modifyComment}
+                handleDeleteComment={deleteComment}
+            />
         );
     }
 }
