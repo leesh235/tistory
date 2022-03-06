@@ -25,7 +25,6 @@ interface Porps {
 }
 
 export const CommentList = ({ commentList, handleModifyComment, handleDeleteComment }: Porps) => {
-    console.log(commentList)
     return(
         <Wrapper>
             {commentList?.length !== 0 ? 

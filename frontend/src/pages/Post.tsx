@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { PostContainer } from '../containers/PostContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
 import { CommentListContainer } from '../containers/CommentListContainer';
+import { WriteCommentContainer } from '../containers/WriteCommentContainer';
 import { PC, Tablet, Mobile } from '../utils/responsive';
 
 const Wrapper = styled.main`
@@ -32,12 +33,14 @@ const FlexWrapper = styled.section`
 `;
 
 const Home = () => {
+    console.log("Home")
     return(
         <Wrapper>
             <PC>
                 <CategoryContainer />
                 <FlexWrapper>
                     <PostContainer />
+                    <WriteCommentContainer />
                     <CommentListContainer />
                 </FlexWrapper>
             </PC>
@@ -47,6 +50,7 @@ const Home = () => {
                 <div></div>
                 <FlexWrapper>
                     <PostContainer />
+                    <WriteCommentContainer />
                     <CommentListContainer />
                 </FlexWrapper>
                 <div></div>
@@ -56,6 +60,7 @@ const Home = () => {
                 <CategoryContainer />
                 <FlexWrapper>
                     <PostContainer />
+                    <WriteCommentContainer />
                     <CommentListContainer />
                 </FlexWrapper>
             </Mobile>
