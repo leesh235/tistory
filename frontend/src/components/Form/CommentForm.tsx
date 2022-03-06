@@ -22,7 +22,6 @@ interface Porps {
 }
 
 export const CommentForm = ({ register, handleSubmit, handleWriteComment, }: Porps) => {
-    console.log("CommentForm")
     return(
         <Wrapper onSubmit={handleSubmit(handleWriteComment)}>
             <Textarea register={register("comment",{ required: true, })}/>

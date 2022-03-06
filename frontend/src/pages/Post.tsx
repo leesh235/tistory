@@ -33,7 +33,6 @@ const FlexWrapper = styled.section`
 `;
 
 const Home = () => {
-    console.log("Home")
     return(
         <Wrapper>
             <PC>

@@ -12,7 +12,6 @@ interface Comment {
 }
 
 export const WriteCommentContainer = () => {
-    console.log("WriteCommentContainer")
     const { postId } = useParams<{postId: string}>();
     const dispatch = useDispatch();
 

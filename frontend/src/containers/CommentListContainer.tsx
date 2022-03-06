@@ -7,7 +7,6 @@ import { CommentList } from '../components/CommentList';
 import { useSelector } from 'react-redux';
 
 export const CommentListContainer = () => {
-    console.log("CommentListContainer")
     const { postId } = useParams<{postId: string}>();
     const store_comment = useSelector((state: any) => state?.comment?.comment);
 
