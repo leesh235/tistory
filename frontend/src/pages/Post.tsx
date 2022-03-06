@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { PostContainer } from '../containers/PostContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
+import { CommentListContainer } from '../containers/CommentListContainer';
 import { PC, Tablet, Mobile } from '../utils/responsive';
 
 const Wrapper = styled.main`
@@ -21,24 +22,42 @@ const Wrapper = styled.main`
     }
 `;
 
+const FlexWrapper = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    >:nth-child(n+1){
+        margin-bottom: 30px;
+    }
+`;
+
 const Home = () => {
     return(
         <Wrapper>
             <PC>
-            <CategoryContainer />
-            <PostContainer />
+                <CategoryContainer />
+                <FlexWrapper>
+                    <PostContainer />
+                    <CommentListContainer />
+                </FlexWrapper>
             </PC>
 
             <Tablet>
                 <CategoryContainer />
                 <div></div>
-                <PostContainer />
+                <FlexWrapper>
+                    <PostContainer />
+                    <CommentListContainer />
+                </FlexWrapper>
                 <div></div>
             </Tablet>
 
             <Mobile>
                 <CategoryContainer />
-                <PostContainer />
+                <FlexWrapper>
+                    <PostContainer />
+                    <CommentListContainer />
+                </FlexWrapper>
             </Mobile>
         </Wrapper>
     );
