@@ -54,11 +54,11 @@ export const PostContainer = () => {
                     postId: data?.deletePost?.data.id
                 }
         
-                deletePostApi(formData).then(
-                    data => {
-                        console.log(data)
-                    }
-                )
+                // deletePostApi(formData).then(
+                //     data => {
+                //         console.log(data)
+                //     }
+                // )
             }
             window.location.replace(`${routes.home}`);
         }
