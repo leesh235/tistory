@@ -27,7 +27,7 @@ export const CategoryContainer = () => {
 
     useEffect(() => {
         if(window.location.pathname === routes.noticeList){
-            handleClickCategory(-1);
+            handleClickCategory(2);
             window.history.pushState({}, '', window.origin + `${routes.noticeList}`);
         }
     },[y.scrollY])

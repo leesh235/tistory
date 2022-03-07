@@ -22,16 +22,10 @@ export const WriteCategoryContainer = () => {
     const onSubmit = async() => {
         try{
             if(check){
-                let parentCategory = "";
-                
-                if(store_selectName !== "전체보기"){
-                    parentCategory = store_selectName
-                }
-    
                 const { data } = await writeMutation({
                     variables: {
                         name: getValues("name"),
-                        parentCategoryName: parentCategory
+                        parentCategoryName: store_selectName
                     }
                 });
     

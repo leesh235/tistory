@@ -46,23 +46,28 @@ interface Props extends Notice{
     noticeQuantity: number
 }
 
-export const NoticeList = ({ noticeList, noticeQuantity }: Props) => {
+export const NoticeList = ({ noticeList, noticeQuantity = 0 }: Props) => {
     return(
         <Wrapper>
-            {noticeList.map((val, idx) => {
-                return(
-                    <ContentsWrapper key={idx}>
-                        <Link to={{
-                            pathname: `${routes.notice}${val.id}`
-                        }}>
-                            <h3>{val.title}</h3>
-                            <FlexWrapper>
-                                <Text text={moment(val.createAt).format("YYYY.MM.DD. HH:MM")} fs={"1.4rem"}/>
-                            </FlexWrapper>
-                        </Link>
-                    </ContentsWrapper>
-                );
-            })}
+            {
+                noticeQuantity !== 0 ?
+                noticeList?.map((val, idx) => {
+                    return(
+                        <ContentsWrapper key={idx}>
+                            <Link to={{
+                                pathname: `${routes.notice}${val.id}`
+                            }}>
+                                <h3>{val.title}</h3>
+                                <FlexWrapper>
+                                    <Text text={moment(val.createAt).format("YYYY.MM.DD. HH:MM")} fs={"1.4rem"}/>
+                                </FlexWrapper>
+                            </Link>
+                        </ContentsWrapper>
+                    );
+                })
+                :
+                <Text text={"공지사항이 없습니다"}/>
+            }
         </Wrapper>
     );
 }

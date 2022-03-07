@@ -31,19 +31,19 @@ const Home = () => {
         <Wrapper>
             <PC>
                 <CategoryContainer />
-                {store_categoryId !== -1 ? <PostListContainer />: <NoticeListContainer />}
+                {store_categoryId !== 2 ? <PostListContainer />: <NoticeListContainer />}
             </PC>
 
             <Tablet>
                 <CategoryContainer />
                 <div></div>
-                {store_categoryId !== -1 ? <PostListContainer />: <NoticeListContainer />}
+                {store_categoryId !== 2 ? <PostListContainer />: <NoticeListContainer />}
                 <div></div>
             </Tablet>
 
             <Mobile>
                 <CategoryContainer />
-                {store_categoryId !== -1 ? <PostListContainer />: <NoticeListContainer />}
+                {store_categoryId !== 2 ? <PostListContainer />: <NoticeListContainer />}
             </Mobile>
         </Wrapper>
     );

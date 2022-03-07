@@ -111,28 +111,34 @@ export const CategoryList = ({ category, handleClickCategory, scrollY }: Props) 
             <Wrapper>
                 <Category>
                     {category?.map((val, idx) => {
-                        return(
-                            <Category key={val.id}>
-                                <ButtonWrapper onClick={() => handleClickCategory(val.id)}>
-                                    <Text fs={"18px"} text={val.name} key={val.id} fc={store_categoryId === val.id ? "red" : "black"}/>
-                                </ButtonWrapper>
-                                {val.sub.map((subVal) => {
-                                    return(
-                                        <ButtonWrapper onClick={() => handleClickCategory(subVal.id)} key={subVal.id}>
-                                            <Text fs={"18px"} text={`-${subVal.name}`} key={subVal.id} fc={store_categoryId === subVal.id ? "red" : "black"}/>
-                                        </ButtonWrapper>
-                                    );
-                                })}
-                            </Category>
-                        );
+                        if(val.name === "공지사항"){
+                            return (
+                                <Link to={{
+                                    pathname: `${routes.noticeList}`
+                                }} key={val.id}>
+                                    <ButtonWrapper onClick={() => handleClickCategory(val.id)}>
+                                        <Text fs={"18px"} text={val.name} fc={store_categoryId === val.id ? "red" : "black"}/>
+                                    </ButtonWrapper>
+                                </Link>
+                            );
+                        }
+                        else{
+                            return(
+                                <Category key={val.id}>
+                                    <ButtonWrapper onClick={() => handleClickCategory(val.id)}>
+                                        <Text fs={"18px"} text={val.name} key={val.id} fc={store_categoryId === val.id ? "red" : "black"}/>
+                                    </ButtonWrapper>
+                                    {val.sub.map((subVal) => {
+                                        return(
+                                            <ButtonWrapper onClick={() => handleClickCategory(subVal.id)} key={subVal.id}>
+                                                <Text fs={"18px"} text={`-${subVal.name}`} key={subVal.id} fc={store_categoryId === subVal.id ? "red" : "black"}/>
+                                            </ButtonWrapper>
+                                        );
+                                    })}
+                                </Category>
+                            );
+                        }
                     })}
-                    <Link to={{
-                        pathname: `${routes.noticeList}`
-                    }}>
-                        <ButtonWrapper onClick={() => handleClickCategory(-1)}>
-                            <Text fs={"18px"} text={`공지사항`} fc={store_categoryId === -1 ? "red" : "black"}/>
-                        </ButtonWrapper>
-                    </Link>
                 </Category>
             </Wrapper>
             <Tablet>
