@@ -61,7 +61,7 @@ export default {
                         })
                     }
                 }
-                console.log(result)
+          
                 return {
                     __typename: "CommentListSuccess",
                     status: SUCCESS,
