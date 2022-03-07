@@ -6,6 +6,7 @@ import { Button } from "../common/Button";
 import { LinkButton } from "../common/LinkButton";
 import { useSelector } from 'react-redux';
 import { routes } from '../../routes';
+import { Viewer } from '../Viewer';
 
 const Wrapper = styled.section`
     display: flex;
@@ -31,17 +32,6 @@ const TopWrapper = styled.article`
     width: 95%;
     height: auto;
     margin: 20px 0 0 0;
-`;
-
-const ContentWrapper = styled.article`
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    height: auto;
-    min-height: 400px;
-    >:nth-child(n){
-        margin-bottom: 50px;
-    }
 `;
 
 const ButtonWrapper = styled.div`
@@ -83,10 +73,6 @@ export const PostDetail = ({post, onClick}: Props) => {
 
     const store_role = useSelector((state: any) => state?.user?.role);
 
-    const createMarkup = () => {
-        return {__html: `<iframe src=${post.contentsUrl} width="100%" height="100%"></iframe>`}
-    }
-
     return(
         <Wrapper>
             
@@ -100,10 +86,7 @@ export const PostDetail = ({post, onClick}: Props) => {
 
             <LineStyle w={"98%"} margin={"20px 0"}/>
 
-            <ContentWrapper>
-                <div dangerouslySetInnerHTML={createMarkup()} />
-            </ContentWrapper>
-
+            <Viewer contentsUrl={post.contentsUrl} />
 
             {store_role === "ADMIN" ? 
             <ButtonWrapper>
