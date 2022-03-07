@@ -8,6 +8,7 @@ import { Error } from "../components/common/Error";
 import { Loading } from "../components/common/Loding";
 import { routes } from "../routes";
 import { PostForm } from "../components/Form/PostForm";
+import { getPostApi, writePostApi } from "../api";
 
 interface Post {
     postId: number,
@@ -31,6 +32,8 @@ export const ModifyPostContainer = () => {
 
     const onSubmit = async() => {
         try{
+            const postData = editorRef.current.getInstance().getHTML();
+
             if(window.confirm("정보를 변경하시겠습니까?")){
                 const result = await postMutation({
                     variables: {
@@ -38,12 +41,33 @@ export const ModifyPostContainer = () => {
                         title: getValues("title")
                     }
                 });
+                console.log(result)
 
-                if(result.data?.modifyPost?.__typename === "ModifyPostSuccess"){
-                    window.location.replace(`${routes.detail}${id}`);
-                }else{
-                    alert(result.data?.modifyPost.message);
+                if(postData !== "" && result?.data?.modifyPost?.__typename === "ModifyPostSuccess"){
+                    const title = getValues("title");
+                    console.log(title)
+                    const formValue: {
+                        postId: number,
+                        title: string,
+                        editor: any,
+                    } = {
+                        postId: Number(id),
+                        title: title,
+                        editor: postData,
+                    }
+    
+                    writePostApi(formValue).then(
+                        data => {
+                            console.log("data")
+                            console.log(data);
+                        },
+                        err => {
+                            console.log("err")
+                            console.log(err);
+                        }
+                    )
                 }
+                window.location.replace(`${routes.detail}${id}`);
             }
         }catch(error){
             console.log(error);
@@ -54,7 +78,13 @@ export const ModifyPostContainer = () => {
         if(data?.getPostDetail?.__typename === "PostSuccess"){
             setValue("title", data?.getPostDetail?.data.title);
             setValue("category", data?.getPostDetail?.data.category);
-            editorRef.current.getInstance().setHTML(data?.getPostDetail?.data.contentsUrl)
+            if(data?.getPostDetail?.data.contentsUrl){
+                getPostApi(data?.getPostDetail?.data.contentsUrl).then(
+                    data => {
+                        editorRef.current.getInstance().setHTML(data.data);
+                    }
+                )
+            }
         }
     },[])
 
