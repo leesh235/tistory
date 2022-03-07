@@ -36,6 +36,6 @@ type BagicCategoryListFailure {
 union BagicCategoryListResult = BagicCategoryListSuccess | BagicCategoryListFailure
 
 type Query{
-    getCategoryList: CategoryListResult!,
+    getCategoryList(skip: Int): CategoryListResult!,
     getBagicCategoryList: BagicCategoryListResult
 }

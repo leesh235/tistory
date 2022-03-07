@@ -9,7 +9,10 @@ export default {
     Query: {
         getCategoryList: async(_, args, {request}) => {
             try{
+                const { skip } = args;
+
                 const categoryList = await prisma.category.findMany({
+                    skip,
                     where:{
                         parent: 0
                     },
@@ -64,7 +67,7 @@ export default {
         getBagicCategoryList: async(_, args, {request}) => {
             try{
                 const bagicCategoryList = await prisma.category.findMany({
-                    // skip: 1,
+                    skip: 2,
                     orderBy: {
                         sequence: 'asc'
                     },

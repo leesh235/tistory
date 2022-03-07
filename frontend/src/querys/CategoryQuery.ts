@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const CATEGORYLIST = gql`
-    query getCategoryList{
-        getCategoryList{
+    query getCategoryList($skip: Int){
+        getCategoryList(skip: $skip){
             ... on CategoryListSuccess{
                 status
                 message

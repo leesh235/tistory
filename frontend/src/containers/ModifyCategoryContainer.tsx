@@ -9,7 +9,11 @@ export const ModifyCategoryContainer = () => {
 
     const dispatch = useDispatch();
 
-    const { loading, data, error } = useQuery(CATEGORYLIST);
+    const { loading, data, error } = useQuery(CATEGORYLIST,{
+        variables:{
+            skip: 2
+        }
+    });
     const [deleteMutation] = useMutation(DELETECATEGORY);
 
     const onClick = ({name, id}: {name: string, id: number}) => {
