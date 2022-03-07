@@ -32,6 +32,8 @@ export const WriteCategoryContainer = () => {
                 if(data?.writeCategory?.__typename === "WriteCategorySuccess"){
                     alert("작성 완료");
                     window.location.replace(`${routes.writeCategory}`);
+                }else{
+                    alert(`${data?.writeCategory?.message}`)
                 }
             }else{
                 const modifyResult = await modifyMutation({
@@ -44,6 +46,8 @@ export const WriteCategoryContainer = () => {
                 if(modifyResult?.data?.modifyCategory?.__typename === "ModifyCategorySuccess"){
                     alert("수정 완료");
                     window.location.replace(`${routes.writeCategory}`);
+                }else{
+                    alert(`${modifyResult?.data?.modifyCategory?.message}`)
                 }
             }
         } catch(error){

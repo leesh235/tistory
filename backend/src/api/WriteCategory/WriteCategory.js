@@ -52,9 +52,18 @@ export default {
                                 name: parentCategoryName
                             },
                             select:{
-                                id: true
+                                id: true,
+                                parent: true
                             }
                         })
+
+                        if(parentCategory.parent !== 0){
+                            return {
+                                __typename: "WriteCategoryFailure",
+                                status: ERROR,
+                                message: "해당 카테고리는 서브 카테고리 생성이 불가합니다."
+                            };
+                        }
 
                         lastCategory = await prisma.category.findFirst({
                             where:{
