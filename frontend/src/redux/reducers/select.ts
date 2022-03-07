@@ -1,7 +1,7 @@
 import { SELECT_ACTION_TYPE } from "../actions/select";
 
 interface init {
-    select: number
+    select: string
 }
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const initState : init = {
-    select: -1
+    select: ""
 }
 
 const reducers = (state = initState, action: Props) => {
