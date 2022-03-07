@@ -16,7 +16,7 @@ export const postToDB = async(req) => {
     return await client.mutate({
         mutation: EDITOR,
         variables: {
-            postId: req.body.postId,
+            postId: Number(req.body.postId),
             contentsUrl: `${process.env.FILESERVER}/${req.body.postId}/${req.body.title}.html`
         }
     });

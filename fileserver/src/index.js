@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import fs from "fs-extra";
+import path from "path";
 import morgan from "morgan";
 import { profileToDB, postToDB } from "./modules/uploadImg";
 import { upload } from "./middleware/multer";
@@ -96,7 +97,6 @@ app.use(express.static('uploadPosts'));
 app.post("/post", async(req, res) => {
     try{
         upload(req, res, async(err) => {
-  
             const { data } = await postToDB(req);
 
             if(data?.writeEditor.__typename === "EditorSuccess"){
@@ -127,6 +127,30 @@ app.post("/post", async(req, res) => {
         })
     }catch(error){
         res.status(500).send({message: `${error}`});
+    }
+})
+
+//post 불러오기
+app.get("/postDetail/:postId", async(req, res) => {
+    try{
+        const postId = req.params.postId
+        const uerDirPath = `uploadPosts/`;
+        const dirpath = `${uerDirPath}${postId}`;
+        const filename = fs.readdirSync(dirpath)[0].toString();
+        if(filename){
+            const uri = dirpath+ "/" + filename
+            // res.status(200).download(uri, filename, (err) => {
+            //     console.log(err);
+            // });
+            // res.status(200).sendFile(path.join(__dirname , "..", `${uri}`));
+            console.log(res.sendFile(path.join(__dirname , "..", `${uri}`)))
+            return res.sendFile(path.join(__dirname , "..", `${uri}`));
+        }
+        // else{
+        //     res.status(404).send({message: "no such image"});
+        // }
+    }catch(err){
+        res.status(500).send({message: `${err}`});
     }
 })
 
