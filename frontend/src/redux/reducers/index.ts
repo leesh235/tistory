@@ -4,6 +4,7 @@ import sideMenu from "./sideMenu";
 import categoryList from "./categoryList";
 import user from "./user";
 import comment from "./comment";
+import select from "./select";
 
 const allReducer = combineReducers({
     category,
@@ -11,6 +12,7 @@ const allReducer = combineReducers({
     categoryList,
     user,
     comment,
+    select,
 });
 
 export default allReducer;
