@@ -109,6 +109,7 @@ export const Header = () => {
         e.preventDefault();
         if(window.confirm("really?")){
             await tokenMutation();
+            window.location.reload();
         }
     }
 
