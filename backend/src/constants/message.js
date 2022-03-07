@@ -7,6 +7,7 @@ export const SUCCESS_LOGIN = "로그인 성공";
 export const SUCCESS_GET_PROFILE = "유저 정보";
 export const SUCCESS_WRITE_CATEGORY = "카테고리 추가 완료";
 export const SUCCESS_DELETE_CATEGORY = "카테고리 삭제 완료";
+export const SUCCESS_MODIFY_CATEGORY = "카테고리 수정 완료";
 export const SUCCESS_GET_CATEGORY = "카테고리 가져오기 성공";
 export const SUCCESS_WRITE_POST = "게시글 작성 성공";
 export const SUCCESS_GET_POST = "게시글 가져오기 성공";

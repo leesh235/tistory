@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { isAuthenticated } from "../../utile"
-import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
-import { REQUIRED_LOGIN, SUCCESS_DELETE_CATEGORY, ADDMIN_ERROR, EXIST_CATEGORY_POST } from "../../constants/message";
+import { SUCCESS, ERROR } from "../../constants/statusCode";
+import { REQUIRED_LOGIN, SUCCESS_MODIFY_CATEGORY, ADDMIN_ERROR } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -23,30 +23,42 @@ export default {
                     
                     if(user.role !== "ADMIN"){
                         return {
-                            __typename: "DeleteCategoryFailure",
+                            __typename: "ModifyCategoryFailure",
                             status: ERROR,
                             message: ADDMIN_ERROR
                         };
                     }
 
-                    return {
-                        __typename: "DeleteCategorySuccess",
-                        status: SUCCESS,
-                        message: SUCCESS_DELETE_CATEGORY,
+                    const result = await prisma.category.update({
+                        where: { 
+                            id: categoryId
+                        },
                         data: {
                             name
+                        },
+                        select:{
+                            name: true
+                        }
+                    })
+
+                    return {
+                        __typename: "ModifyCategorySuccess",
+                        status: SUCCESS,
+                        message: SUCCESS_MODIFY_CATEGORY,
+                        data: {
+                            name: result.name
                         }
                     };
 
                 } else{
                     return {
-                        __typename: "DeleteCategoryFailure",
+                        __typename: "ModifyCategoryFailure",
                         status: ERROR,
                         message: REQUIRED_LOGIN
                     };
                 }
             } catch(error) {
-                throw new Error(SERVER_ERROR);
+                throw error;
             }
         }
     }
