@@ -1,7 +1,8 @@
 import { SELECT_ACTION_TYPE } from "../actions/select";
 
 interface init {
-    select: string
+    name: string,
+    id: number,
 }
 
 interface Props {
@@ -10,7 +11,8 @@ interface Props {
 }
 
 const initState : init = {
-    select: ""
+    name: "",
+    id: -1,
 }
 
 const reducers = (state = initState, action: Props) => {
