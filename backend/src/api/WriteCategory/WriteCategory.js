@@ -50,6 +50,9 @@ export default {
                         parentCategory = await prisma.category.findFirst({
                             where:{
                                 name: parentCategoryName
+                            },
+                            select:{
+                                id: true
                             }
                         })
 
@@ -61,9 +64,19 @@ export default {
                                 sequence: "desc"
                             }
                         })
+
+                        if(!lastCategory){
+                            lastCategory = {
+                                sequence: -1,
+                                depth: 0,
+                            }
+                        }
                     }else{
                         parentCategory = null;
                         lastCategory = await prisma.category.findFirst({
+                            where:{
+                                parent: 0
+                            },
                             orderBy:{
                                 sequence: "desc"
                             }
@@ -75,15 +88,18 @@ export default {
                     //sequence = parent의 sequence 최댓값 + 1
                     //parnet = 해당 카테고리의 id *최상위 category parent = 0
                     let setSequence = lastCategory.sequence + 1;
-                    let setDepth = parentCategory !== null ? parentCategory.depth +  1 : 0;
-                    let parent = parentCategory !== null ? parentCategory.id : 0;
+                    let setDepth = lastCategory.depth +  1;
+                    let setParent = parentCategory !== null ? parentCategory.id : 0;
 
-                    await prisma.category.create({
+                    const result = await prisma.category.create({
                         data:{
                             name,
-                            parent: parent,
+                            parent: setParent,
                             sequence: setSequence,
                             depth: setDepth
+                        },
+                        select: {
+                            name: true
                         }
                     })
 
@@ -92,7 +108,7 @@ export default {
                         status: SUCCESS,
                         message: SUCCESS_WRITE_CATEGORY,
                         data: {
-                            name
+                            name: result.name
                         }
                     };
 

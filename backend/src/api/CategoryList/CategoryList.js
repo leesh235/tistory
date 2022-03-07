@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { isAuthenticated } from "../../utile"
+import { isAuthenticated } from "../../utile";
 import { SUCCESS, ERROR, SERVER_ERROR } from "../../constants/statusCode";
-import { SUCCESS_GET_CATEGORY, NOT_EXIST_CATEGORY } from "../../constants/message";
+import { SUCCESS_GET_CATEGORY, NOT_EXIST_CATEGORY, ALL, NOTICE } from "../../constants/message";
 
 const prisma = new PrismaClient();
 
@@ -67,7 +67,20 @@ export default {
         getBagicCategoryList: async(_, args, {request}) => {
             try{
                 const bagicCategoryList = await prisma.category.findMany({
-                    skip: 2,
+                    where: {
+                        NOT:[
+                            {
+                               OR: [
+                                    {
+                                        name: ALL
+                                    },
+                                    {
+                                        name: NOTICE
+                                    },
+                               ]
+                            }
+                        ]
+                    },
                     orderBy: {
                         sequence: 'asc'
                     },
