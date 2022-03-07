@@ -105,8 +105,8 @@ app.post("/post", async(req, res) => {
                 if(!fs.existsSync(uerDirPath)){
                     fs.mkdirSync(uerDirPath);
                 }
-                
                 const dirPath = `${uerDirPath}/${req.body.postId}`;
+                
                 const fileData = req.body.editor
                 let fileContents = Buffer.from(fileData, "utf8");
 
@@ -143,7 +143,6 @@ app.get("/postDetail/:postId", async(req, res) => {
             //     console.log(err);
             // });
             // res.status(200).sendFile(path.join(__dirname , "..", `${uri}`));
-            console.log(res.sendFile(path.join(__dirname , "..", `${uri}`)))
             return res.sendFile(path.join(__dirname , "..", `${uri}`));
         }
         // else{
