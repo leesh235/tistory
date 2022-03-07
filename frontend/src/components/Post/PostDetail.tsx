@@ -63,10 +63,8 @@ interface Post {
 }
 
 interface Props {
-    equal: boolean,
     onClick: () => void,
-    postContents: any
-    post: Post
+    post: Post,
 }
 
 export const PostDetail = ({post, onClick}: Props) => {

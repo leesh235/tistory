@@ -16,12 +16,9 @@ export const writePostApi = async(formData: Props) => {
     }
 }
 
-export const getPostApi = async(formData: {
-    writer: string,
-    postId: number
-}) => {
+export const getPostApi = async(api: string) => {
     try{
-        const res = await fileserver.get(`${apies.getPost}${formData.writer}/${formData.postId}`);
+        const res = await fileserver.get(`${api}`);
         return res;
     }catch(error){
         throw error;

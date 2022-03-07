@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { POST, DELETEPOST } from '../querys/PostQuery';
 import { PostDetail } from '../components/Post/PostDetail';
@@ -11,11 +11,7 @@ import { routes } from "../routes";
 
 export const PostContainer = () => {
 
-    const routeHistory = useHistory();
-
     const { postId } = useParams<{postId: string}>();
-
-    const [postContents, setPostContents] = useState<any>(null);
 
     const {loading, error, data} = useQuery(POST,{
         variables: {
@@ -25,22 +21,7 @@ export const PostContainer = () => {
 
     const [deletePost] = useMutation(DELETEPOST);
 
-    const writer = data?.getPostDetail?.data?.writer;
     const contents = data?.getPostDetail?.data?.contents;
-
-    const init = async() => {
-        if(contents){
-            const formData = {
-                writer: writer,
-                postId: Number(postId)
-            }
-            getPostApi(formData).then(
-                data => {
-                    setPostContents(data.data);
-                }
-            )
-        }
-    }
 
     const deleteHandler = async() => {
         if(window.confirm("게시물을 삭제하시겠습니까?")){
@@ -65,7 +46,7 @@ export const PostContainer = () => {
     }
 
     useEffect(() => {
-
+  
     },[])
 
     if(loading) return <Loading /> 
@@ -73,9 +54,7 @@ export const PostContainer = () => {
     else{
         return (
             <PostDetail 
-                postContents={"postContents"}
                 post={data?.getPostDetail?.data}
-                equal={true}
                 onClick={deleteHandler}
             />
         );
