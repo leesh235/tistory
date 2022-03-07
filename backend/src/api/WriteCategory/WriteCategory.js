@@ -63,14 +63,18 @@ export default {
                         })
                     }else{
                         parentCategory = null;
-                        lastCategory = null;
+                        lastCategory = await prisma.category.findFirst({
+                            orderBy:{
+                                sequence: "desc"
+                            }
+                        })
                     }
                    
 
                     //depth = parent의 depth + 1
                     //sequence = parent의 sequence 최댓값 + 1
                     //parnet = 해당 카테고리의 id *최상위 category parent = 0
-                    let setSequence = lastCategory !== null ? lastCategory.sequence + 1 : 0;
+                    let setSequence = lastCategory.sequence + 1;
                     let setDepth = parentCategory !== null ? parentCategory.depth +  1 : 0;
                     let parent = parentCategory !== null ? parentCategory.id : 0;
 
