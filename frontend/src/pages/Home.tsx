@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-import { PostListContainer } from '../containers/PostListContainer';
 import { CategoryContainer } from '../containers/CategoryContainer';
-import { NoticeListContainer } from '../containers/NoticeListContainer';
-import { PC, Tablet, Mobile } from '../utils/responsive';
-import { useSelector } from "react-redux";
+import { HomeContainer } from '../containers/HomeContainer';
 
 const Wrapper = styled.main`
     width: 100%;
@@ -17,6 +14,7 @@ const Wrapper = styled.main`
     }
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){
         grid-template-columns: 50px auto 50px;
+        >:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 2 ;}
     }
     @media screen and (max-width: 22.44em){
         padding-top: 10px;
@@ -24,27 +22,10 @@ const Wrapper = styled.main`
 `;
 
 const Home = () => {
-
-    const store_categoryId = useSelector((state: any) => state.category.categoryId);
-    
     return(
         <Wrapper>
-            <PC>
-                <CategoryContainer />
-                {store_categoryId !== 2 ? <PostListContainer />: <NoticeListContainer />}
-            </PC>
-
-            <Tablet>
-                <CategoryContainer />
-                <div></div>
-                {store_categoryId !== 2 ? <PostListContainer />: <NoticeListContainer />}
-                <div></div>
-            </Tablet>
-
-            <Mobile>
-                <CategoryContainer />
-                {store_categoryId !== 2 ? <PostListContainer />: <NoticeListContainer />}
-            </Mobile>
+            <CategoryContainer />
+            <HomeContainer />
         </Wrapper>
     );
 }
