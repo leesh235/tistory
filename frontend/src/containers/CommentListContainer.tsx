@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { COMMENT, MODIFYCOMMENT, DLETECOMMENT } from '../querys/CommentQuery';
 import { Error } from '../components/common/Error';
-import { CommentList } from '../components/CommentList';
+import { CommentList } from '../components/List/CommentList';
 import { useSelector } from 'react-redux';
 
 export const CommentListContainer = () => {

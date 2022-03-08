@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { POSTLIST } from '../querys/PostQuery';
-import { PostList } from '../components/Post/PostList';
+import { PostList } from '../components/List/PostList';
 import { Pages } from "../components/Pages";
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';

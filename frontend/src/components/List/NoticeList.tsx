@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { PC, Tablet, Mobile } from '../utils/responsive';
+import { PC, Tablet, Mobile } from '../../utils/responsive';
 import { Link } from 'react-router-dom';
-import { routes } from '../routes';
-import { Text } from './common/Text';
+import { routes } from '../../routes';
+import { Text } from '../common/Text';
 import moment from "moment";
 
 const Wrapper = styled.section`

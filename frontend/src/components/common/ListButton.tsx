@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { MenuLine } from '../assets/svg/MenuLine';
+import { MenuLine } from '../../assets/svg/MenuLine';
 import { useSelector, useDispatch } from "react-redux";
-import { setSideBar } from "../redux/actions/sideMenu";
+import { setSideBar } from "../../redux/actions/sideMenu";
 
 const Wrapper = styled.div`
     @media screen and (max-width: 63.94em) and (min-width: 22.5em){

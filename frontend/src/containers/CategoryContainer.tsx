@@ -1,4 +1,4 @@
-import { CategoryList } from '../components/CategoryList';
+import { CategoryList } from '../components/List/CategoryList';
 import { useQuery } from '@apollo/client';
 import { CATEGORYLIST } from '../querys/CategoryQuery';
 import { Error } from '../components/common/Error';

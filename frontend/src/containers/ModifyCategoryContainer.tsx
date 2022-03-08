@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { setSelect } from '../redux/actions/select';
 import { useQuery, useMutation } from "@apollo/client";
 import { CATEGORYLIST, DELETECATEGORY } from '../querys/CategoryQuery';
-import { ModifyCategory } from "../components/ModifyCategory";
+import { ModifyCategory } from "../components/View/ModifyCategory";
 import { routes } from '../routes';
 
 export const ModifyCategoryContainer = () => {

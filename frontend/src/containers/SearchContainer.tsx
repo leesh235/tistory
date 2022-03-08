@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SEARCH } from '../querys/SearchQuery';
-import { SearchList } from '../components/SearchList';
+import { SearchList } from '../components/List/SearchList';
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
 import { Pages } from "../components/Pages";

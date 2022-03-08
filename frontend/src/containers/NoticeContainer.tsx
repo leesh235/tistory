@@ -1,6 +1,6 @@
 import { NOTICE, DELETENOTICE } from '../querys/NoticeQuery';
 import { useQuery, useMutation } from '@apollo/client';
-import { NoticeDetail } from '../components/NoticeDetail';
+import { NoticeDetail } from '../components/View/NoticeDetail';
 import { useParams } from 'react-router-dom';
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';

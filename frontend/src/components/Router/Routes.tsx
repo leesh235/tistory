@@ -1,24 +1,24 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
-import { Header } from './Header/Header';
-import { Footer } from './Footer';
-import { routes } from '../routes';
+import { Header } from '../Header';
+import { Footer } from '../Footer';
+import { routes } from '../../routes';
 
-import Home from '../pages/Home';
-import Post from '../pages/Post';
-import LogIn from '../pages/LogIn';
-import Page404 from '../pages/Page404';
-import WritePost from '../pages/WritePost';
-import WriteCategory from '../pages/WriteCategory';
-import WriteNotice from '../pages/WriteNotice';
-import Notice from '../pages/Notice';
-import Profile from '../pages/Profile';
-import ModifyProfile from '../pages/ModifyProfile';
-import ModifyPost from '../pages/ModifyPost';
-import ModifyNotice from '../pages/ModifyNotice';
+import Home from '../../pages/Home';
+import Post from '../../pages/Post';
+import LogIn from '../../pages/LogIn';
+import Page404 from '../../pages/Page404';
+import WritePost from '../../pages/WritePost';
+import WriteCategory from '../../pages/WriteCategory';
+import WriteNotice from '../../pages/WriteNotice';
+import Notice from '../../pages/Notice';
+import Profile from '../../pages/Profile';
+import ModifyProfile from '../../pages/ModifyProfile';
+import ModifyPost from '../../pages/ModifyPost';
+import ModifyNotice from '../../pages/ModifyNotice';
 
-import SignUp from '../routers/SignUp/index';
-import Unresister from '../routers/Unresister/index';
+import SignUp from '../../routers/SignUp/index';
+import Unresister from '../../routers/Unresister/index';
 
 const Wrapper = styled.main`
     width: 100vw;

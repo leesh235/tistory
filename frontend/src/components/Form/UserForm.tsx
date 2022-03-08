@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import moment from "moment";
 import { Text } from '../common/Text';
-import { Img } from '../Img';
+import { Img } from '../common/Img';
 import { Input } from '../common/Input';
 import { LinkButton } from "../common/LinkButton";
 import { Button } from '../common/Button';

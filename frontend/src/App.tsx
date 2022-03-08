@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/theme";
-import Routes from './components/Routes';
+import Routes from './components/Router/Routes';
 
 import { useQuery } from '@apollo/client';
 import { TOKENINFO } from "./apollo/tokenQuery";

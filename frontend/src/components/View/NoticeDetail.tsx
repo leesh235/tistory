@@ -1,12 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import moment from "moment";
-import { LineStyle } from "../../components/LineStyle";
 import { Text } from "../common/Text";
 import { Button } from "../common/Button";
 import { LinkButton } from "../common/LinkButton";
-import { useSelector } from 'react-redux';
+import { LineStyle } from "../common/LineStyle";
 import { routes } from '../../routes';
-import { Viewer } from '../Viewer';
 
 const Wrapper = styled.section`
     display: flex;
@@ -16,22 +15,19 @@ const Wrapper = styled.section`
     align-items: center;
 `;
 
-const FlexWrapper = styled.div`
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 10px 0 0 0;
-    >:nth-child(2){
-        margin-right: 30px;
-    }
-`;
-
 const TopWrapper = styled.article`
     width: 95%;
     height: auto;
     margin: 20px 0 0 0;
+`;
+
+const ContentWrapper = styled.article`
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    height: auto;
+    min-height: 400px;
+    margin-bottom: 50px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -52,43 +48,34 @@ const ButtonWrapper = styled.div`
 
 `;
 
-interface Post {
+interface Props {
     id: number,
     title: string,
-    contentsUrl: string,
-    author: string,
+    contents: string,
     createAt: string,
-    hits: number,
-    category: string,
-}
-
-interface Props {
     onClick: () => void,
-    post: Post,
 }
 
-export const PostDetail = ({post, onClick}: Props) => {
+export const NoticeDetail = ({ id, title, contents, createAt, onClick }: Props) => {
 
     const store_role = useSelector((state: any) => state?.user?.role);
 
     return(
         <Wrapper>
-            
             <TopWrapper>
-                <h2>{post.title}</h2>
-                <FlexWrapper>
-                    <Text text={`${post.category}`} fc={"#3db39e"}/>
-                    <Text text={`Leesh | ${moment(post.createAt).format("YYYY-MM-DD")}`} fs={"1.3rem"} fc={"gray"}/>
-                </FlexWrapper>
+                <Text text={`Leesh | ${moment(createAt).format("YYYY-MM-DD")}`} fs={"1.3rem"} fc={"gray"}/>
+                <h2>{title}</h2>
             </TopWrapper>
 
             <LineStyle w={"98%"} margin={"20px 0"}/>
 
-            <Viewer contentsUrl={post.contentsUrl} />
+            <ContentWrapper>
+                <Text text={`${contents}`} fc={"black"}/>
+            </ContentWrapper>
 
             {store_role === "ADMIN" ? 
             <ButtonWrapper>
-                <LinkButton text={"수정"} width={"40%"} pathname={`${routes.modifyPost}${post.id}`}/>
+                <LinkButton text={"수정"} width={"40%"} pathname={`${routes.modifyNotice}${id}`}/>
                 <Button text={"삭제"} width={"40%"} type={"button"} onClick={onClick}/>
             </ButtonWrapper>
             :

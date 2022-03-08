@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { POST, DELETEPOST } from '../querys/PostQuery';
-import { PostDetail } from '../components/Post/PostDetail';
+import { PostDetail } from '../components/Contents/PostDetail';
 import { useParams } from "react-router-dom";
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';

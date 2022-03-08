@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Text } from './common/Text';
+import { Text } from '../common/Text';
 import moment from "moment";
 
 const Wrapper = styled.li`

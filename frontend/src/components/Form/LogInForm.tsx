@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Input } from "../common/Input";
 import { Button } from "../common/Button";
-import { ErrorMessage } from "../ErrorMessage";
+import { ErrorMessage } from "../common/ErrorMessage";
 import { Text } from "../common/Text";
-import { FlexWrapper } from "../FlexWrapper";
+import { FlexWrapper } from "../common/FlexWrapper";
 import { emailPattern, passwordPattern } from "../../regex";
 
 const Wrapper = styled.article`

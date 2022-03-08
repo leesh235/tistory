@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../components/common/Button";
 import { Input } from "../../components/common/Input";
 import { Text } from "../../components/common/Text";
-import { ErrorMessage } from "../../components/ErrorMessage";
+import { ErrorMessage } from "../../components/common/ErrorMessage";
 
 const Wrapper = styled.section`
     display: flex;

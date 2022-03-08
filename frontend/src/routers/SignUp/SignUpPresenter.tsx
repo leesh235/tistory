@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import { Input } from "../../components/common/Input";
 import { Button } from "../../components/common/Button";
 import { Text } from "../../components/common/Text";
-import { ErrorMessage } from "../../components/ErrorMessage";
+import { ErrorMessage } from "../../components/common/ErrorMessage";
 import { emailPattern, passwordPattern } from "../../regex";
 
 const Wrapper = styled.section`

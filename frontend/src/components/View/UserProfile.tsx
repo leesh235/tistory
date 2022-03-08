@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import moment from "moment";
-import { Text } from './common/Text';
-import { Img } from './Img';
+import { Text } from '../common/Text';
+import { Img } from '../common/Img';
 
 const Wrapper = styled.section`
     display: flex;

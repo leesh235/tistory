@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled from "styled-components";
-import { Text } from "./common/Text";
-import { Close } from "../assets/svg/Close";
+import { Text } from "../common/Text";
+import { Close } from "../../assets/svg/Close";
 
 const Wrapper = styled.article`
 

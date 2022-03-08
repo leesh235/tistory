@@ -1,4 +1,4 @@
-import { UserProfile } from "../components/UserProfile";
+import { UserProfile } from "../components/View/UserProfile";
 import { PROFILE } from "../querys/ProfileQuery";
 import { useQuery } from "@apollo/client";
 import { Error } from "../components/common/Error";

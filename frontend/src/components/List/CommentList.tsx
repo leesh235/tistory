@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Text } from './common/Text';
-import { Comment } from "./Comment";
+import { Text } from '../common/Text';
+import { Comment } from "../Contents/Comment";
 
 const Wrapper = styled.ul`
     display: flex;

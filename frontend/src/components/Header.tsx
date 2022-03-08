@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { TOKENINFO, TOKENLOGOUT } from "../../apollo/tokenQuery";
+import { TOKENINFO, TOKENLOGOUT } from "../apollo/tokenQuery";
 import { useMutation, useQuery } from "@apollo/client";
-import { Text } from "../common/Text";
-import { PC, Tablet, Mobile, PCTablet } from "../../utils/responsive";
-import { ListButton } from "../ListButton";
-import { SearchInput } from "../SearchInput";
-import { routes } from "../../routes";
-import { ListBar } from "../ListBar";
+import { Text } from "./common/Text";
+import { PC, Tablet, Mobile, PCTablet } from "../utils/responsive";
+import { ListButton } from "./common/ListButton";
+import { SearchInput } from "./SearchInput";
+import { routes } from "../routes";
+import { ListBar } from "./ListBar";
 import { useHistory, useLocation } from 'react-router-dom';
 
 const Wrapper = styled.header`

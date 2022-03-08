@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { PC, Tablet, Mobile } from '../../utils/responsive';
-import { ToastEditor } from '../ToastEditor';
+import { ToastEditor } from '../Editor/ToastEditor';
 import { Input } from '../common/Input';
 import { Button } from '../common/Button';
 import { Select } from '../common/Select';
-import { ErrorMessage } from '../ErrorMessage';
+import { ErrorMessage } from '../common/ErrorMessage';
 import { Text } from '../common/Text';
 
 const Wrapper = styled.section`

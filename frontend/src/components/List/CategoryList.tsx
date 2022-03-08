@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import styled from 'styled-components';
-import { Text } from './common/Text';
-import { PC, Tablet, Mobile } from '../utils/responsive';
-import { ListButton } from './ListButton';
+import { Text } from '../common/Text';
+import { PC, Tablet, Mobile } from '../../utils/responsive';
+import { ListButton } from '../common/ListButton';
 import { Link } from "react-router-dom";
-import { routes } from "../routes";
+import { routes } from "../../routes";
 
 const Wrapper = styled.section`
     @media screen and (min-width: 64em){

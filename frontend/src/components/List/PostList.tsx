@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Contents } from '../Contents';
+import { Contents } from '../Contents/Contents';
 import { Text } from '../common/Text';
 
 const Wrapper = styled.section`
