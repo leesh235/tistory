@@ -5,6 +5,7 @@ import categoryList from "./categoryList";
 import user from "./user";
 import comment from "./comment";
 import select from "./select";
+import search from "./search";
 
 const allReducer = combineReducers({
     category,
@@ -13,6 +14,7 @@ const allReducer = combineReducers({
     user,
     comment,
     select,
+    search,
 });
 
 export default allReducer;
