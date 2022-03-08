@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NoticeList } from "../components/NoticeList";
 import { useQuery } from "@apollo/client";
-import { NOTICELIST } from "../querys/NoticeListQuery";
+import { NOTICELIST } from "../querys/NoticeQuery";
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';
 import { Pages } from "../components/Pages";

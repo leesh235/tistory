@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { MODIFYNOTICE } from "../querys/ModifyNoticeQuery";
+import { MODIFYNOTICE } from "../querys/NoticeQuery";
 import { NOTICE } from "../querys/NoticeQuery";
 import { Error } from "../components/common/Error";
 import { Loading } from "../components/common/Loding";

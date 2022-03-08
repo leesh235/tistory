@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { WRITENOTICE } from '../querys/WriteNoticeQuery';
+import { WRITENOTICE } from '../querys/NoticeQuery';
 import { useMutation } from "@apollo/client";
 import { useForm } from 'react-hook-form';
 import { NoitceForm } from '../components/Form/NoitceForm';
