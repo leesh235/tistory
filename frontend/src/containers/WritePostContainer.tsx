@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { WRITEPOST } from '../querys/WritePostQuery';
+import { WRITEPOST } from '../querys/PostQuery';
 import { useMutation, useQuery } from "@apollo/client";
 import { useForm } from 'react-hook-form';
 import { PostForm } from '../components/Form/PostForm';

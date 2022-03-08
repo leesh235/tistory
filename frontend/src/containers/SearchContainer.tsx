@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { SEARCH } from '../querys/PostQuery';
+import { SEARCH } from '../querys/SearchQuery';
 import { SearchList } from '../components/SearchList';
 import { Loading } from '../components/common/Loding';
 import { Error } from '../components/common/Error';

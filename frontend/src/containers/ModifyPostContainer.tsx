@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { MODIFYPOST } from "../querys/ModifyPostQuery";
+import { MODIFYPOST } from "../querys/PostQuery";
 import { POST } from "../querys/PostQuery";
 import { Error } from "../components/common/Error";
 import { Loading } from "../components/common/Loding";

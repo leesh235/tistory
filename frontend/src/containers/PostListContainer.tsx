@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { POSTLIST } from '../querys/PostListQuery';
+import { POSTLIST } from '../querys/PostQuery';
 import { PostList } from '../components/Post/PostList';
 import { Pages } from "../components/Pages";
 import { Loading } from '../components/common/Loding';
