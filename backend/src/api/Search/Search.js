@@ -68,7 +68,8 @@ export default {
                     }
                 })
 
-                let result = [];
+                let search = [];
+                
                 for(let i = 0; i < postList.length; i++){
                     result.push({
                         postId: postList[i].id,
@@ -78,6 +79,11 @@ export default {
                         hits: postList[i].hits,
                         thumbnail: ""
                     })
+                }
+
+                let result = {
+                    search: search,
+                    searchQuantity: postLen
                 }
 
                 return {

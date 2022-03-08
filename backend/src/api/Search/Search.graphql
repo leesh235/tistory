@@ -7,10 +7,15 @@ type Search {
     thumbnail: String
 }
 
+type SearchList {
+    search: [Search]!
+    searchQuantity: Int!
+}
+
 type SearchSuccess {
     status: String!
     message: String!
-    data: [Search]!
+    data: SearchList!
 }
 
 type SearchFailure {
