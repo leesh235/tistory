@@ -1,6 +1,6 @@
 import { UserForm } from "../components/Form/UserForm";
 import { PROFILE } from "../querys/ProfileQuery";
-import { MODIFYPROFILE } from "../querys/ModifyProfileQuery";
+import { MODIFYPROFILE } from "../querys/ProfileQuery";
 import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
