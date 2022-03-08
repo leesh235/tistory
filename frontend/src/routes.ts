@@ -11,6 +11,7 @@ export const routes = {
     modifyProfile: "/modify-profile",
     modifyPost: "/modify-post/",
     modifyNotice: "/modify-notice/",
+    search: "/search",
 }
 
 export const apies = {

@@ -4,6 +4,7 @@ import { CATEGORYLIST } from '../querys/CategoryQuery';
 import { Error } from '../components/common/Error';
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId } from "../redux/actions/category";
+import { setSearch } from '../redux/actions/search';
 import { useScroll } from '../hooks/useScroll';
 import { useEffect } from 'react';
 import { routes } from '../routes';
@@ -19,6 +20,7 @@ export const CategoryContainer = () => {
     const store_categoryId = useSelector((state: any) => state.category.categoryId);
 
     const handleClickCategory = (id: number) => {
+        dispatch(setSearch(""));
         dispatch(setCategoryId(id));
         if(window.location.pathname !== routes.home){
             history.push(`${routes.home}`)

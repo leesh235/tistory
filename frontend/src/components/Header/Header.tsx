@@ -82,6 +82,7 @@ const Logo = styled.h1`
 `;
 
 const Menu = styled.ul`
+    height: 30px;
     display: flex;
     flex-direction: row;
     >li{
