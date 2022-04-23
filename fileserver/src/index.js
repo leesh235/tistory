@@ -10,7 +10,6 @@ import "./env";
 const app = express();
 const PORT = process.env.PORT;
 const origin = `${process.env.CLIENT}`;
-
 //cors설정
 const corsOptions = {
     exposedHeaders: "Content-Disposition",
@@ -20,12 +19,12 @@ const corsOptions = {
 //middleware 등록
 // app.use(cors(corsOptions));
 app.use(cors());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 
 //정적자원 이용
-app.use(express.static('uploadNotice'));
-app.use(express.static('uploadPosts'));
+app.use(express.static("uploadNotice"));
+app.use(express.static("uploadPosts"));
 
 // profile image
 // app.post("/profile", async(req, res) => {
@@ -94,82 +93,88 @@ app.use(express.static('uploadPosts'));
 // })
 
 //post 생성
-app.post("/post", async(req, res) => {
-    try{
-        upload(req, res, async(err) => {
+app.post("/post", async (req, res) => {
+    try {
+        upload(req, res, async (err) => {
             const { data } = await postToDB(req);
 
-            if(data?.writeEditor.__typename === "EditorSuccess"){
+            if (data?.writeEditor.__typename === "EditorSuccess") {
                 const uerDirPath = `./uploadPosts`;
 
-                if(!fs.existsSync(uerDirPath)){
+                if (!fs.existsSync(uerDirPath)) {
                     fs.mkdirSync(uerDirPath);
                 }
                 const dirPath = `${uerDirPath}/${req.body.postId}`;
-                
-                const fileData = req.body.editor
+
+                const fileData = req.body.editor;
                 let fileContents = Buffer.from(fileData, "utf8");
 
-                if(fs.existsSync(dirPath)) {
-                    const files = fs.readdirSync(dirPath)
-                    fs.removeSync(dirPath+"/"+files[0])
-                }else{
+                if (fs.existsSync(dirPath)) {
+                    const files = fs.readdirSync(dirPath);
+                    fs.removeSync(dirPath + "/" + files[0]);
+                } else {
                     fs.mkdirSync(dirPath);
                 }
 
-                fs.writeFile(dirPath+ "/" + req.body.title + ".html", fileContents)
-                
+                fs.writeFile(
+                    dirPath + "/" + req.body.title + ".html",
+                    fileContents
+                );
 
-                res.status(200).send({message: `${data?.writeEditor?.message}`});
-            }else{
-                res.status(404).send({message: `${data?.writeEditor?.message}`});
+                res.status(200).send({
+                    message: `${data?.writeEditor?.message}`,
+                });
+            } else {
+                res.status(404).send({
+                    message: `${data?.writeEditor?.message}`,
+                });
             }
-        })
-    }catch(error){
-        res.status(500).send({message: `${error}`});
+        });
+    } catch (error) {
+        res.status(500).send({ message: `${error}` });
     }
-})
+});
 
 //post 불러오기
-app.get("/postDetail/:postId", async(req, res) => {
-    try{
-        const postId = req.params.postId
+app.get("/postDetail/:postId", async (req, res) => {
+    try {
+        const postId = req.params.postId;
         const uerDirPath = `uploadPosts/`;
         const dirpath = `${uerDirPath}${postId}`;
         const filename = fs.readdirSync(dirpath)[0].toString();
-        if(filename){
-            const uri = dirpath+ "/" + filename
+        if (filename) {
+            const uri = dirpath + "/" + filename;
             // res.status(200).download(uri, filename, (err) => {
             //     console.log(err);
             // });
             // res.status(200).sendFile(path.join(__dirname , "..", `${uri}`));
-            return res.sendFile(path.join(__dirname , "..", `${uri}`));
+            return res.sendFile(path.join(__dirname, "..", `${uri}`));
         }
         // else{
         //     res.status(404).send({message: "no such image"});
         // }
-    }catch(err){
-        res.status(500).send({message: `${err}`});
+    } catch (err) {
+        res.status(500).send({ message: `${err}` });
     }
-})
+});
 
 //post 삭제
-app.post("/delete-post", async(req, res) => {
-    try{
+app.post("/delete-post", async (req, res) => {
+    try {
         const postId = req.body.postId;
         const dirPath = `uploadPosts/${postId}`;
         if (fs.existsSync(dirPath)) {
             fs.removeSync(dirPath);
-            res.status(200).send({message: "success delete post"});
-        }else{
-            res.status(404).send({message: "not exist post"});
+            res.status(200).send({ message: "success delete post" });
+        } else {
+            res.status(404).send({ message: "not exist post" });
         }
-    }catch(error){
-        res.status(500).send({message: `${error}`});
+    } catch (error) {
+        res.status(500).send({ message: `${error}` });
     }
-})
+});
 
 //서버 실행알림
 app.listen(PORT, () => {
     console.log(`fileserver:${PORT}`);
-})
+});
